@@ -1,0 +1,193 @@
+body {
+	MARGIN: 0;
+	SCROLLBAR-FACE-COLOR: #c4c8cb;
+	SCROLLBAR-3DLIGHT-COLOR: #ffffff;
+	SCROLLBAR-ARROW-COLOR: #ffffff;
+	SCROLLBAR-HIGHLIGHT-COLOR: #ffffff;
+	SCROLLBAR-SHADOW-COLOR: #ffffff;
+	SCROLLBAR-DARKSHADOW-COLOR: #c4c8cb;
+	SCROLLBAR-TRACK-COLOR: #ffffff;
+	SCROLLBAR-BASE-COLOR: #ffffff;
+	SCROLLBAR-FRONT-COLOR: #7fbbd5
+}
+
+/*a:visited {
+				color: #000;
+			}*/
+#nav a:hover {
+	COLOR: #00c;
+	TEXT-DECORATION: underline;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*-        end <a> rules             *-*-*-*- *-*-*-*- *-*-*-*- 
+ 	 *                                   _____________                                      */ /* *-*-*-*- *-*-*-*- *-*-*         Begin Menu tree rules        *-*-*-*- *-*-*-*- *-*-*-*- 
+ 	 *                                 _____________________                                */
+.button { /* may cause windows bug:
+				   position: relative;
+				*/
+	LETTER-SPACING: .05em;
+	COLOR: #161e5f;
+	Z-INDEX: 100000;
+	CURSOR: default;
+	FONT-FAMILY: verdana, geneva, arial, helvetica, sans-serif;
+	FONT: menu;
+	MARGIN-BOTTOM: -2px;
+	MARGIN-TOP: 2px;
+	FONT-SIZE: 12px;
+}
+
+.buttonlabel {
+	FONT-SIZE: 10px;
+	HEIGHT: 18px;
+	/* may cause windows bug:
+				   position: relative;
+				*/
+	FONT-WEIGHT: 500;
+	CURSOR: default;
+	/** padding/margin Causes Freeze in
+				 *  Windows IE6.
+				 *  Bug discovered by 
+				 *  Michael of 13thparallel.org
+				 *
+				 * padding: .05em .5em .05em .4em;
+				 * margin: 1px 1px 0px 1px;
+				 */
+	BORDER-WIDTH: 1px;
+	TOP: 0;
+	LEFT: 0;
+	VISIBILITY: visible;
+}
+
+.buttonlabel img {
+	MARGIN: 0 0 -4px 0 !IMPORTANT;
+	BORDER: 0 !IMPORTANT;
+	PADDING: 0 !IMPORTANT;
+}
+
+.level1label {
+	HEIGHT: 12px;
+	FONT-COLOR: #161e5f;
+	FONT-SIZE: 10px;
+	FONT-WEIGHT: 500;
+	PADDING: 1px 3px;
+	CURSOR: default;
+	MARGIN-BOTTOM: 0;
+	MARGIN-TOP: .05em;
+	BORDER-LEFT: 0px solid #bbbbbb !IMPORTANT;
+}
+
+/** .menuItem replaces .menuNode 
+			 * to open menus instantly. 
+			 * (see open-instantly.html source)
+			 */
+.menunode,.menuitem {
+	FONT-SIZE: 10px;
+	BORDER-BOTTOM: 0px solid #ffffff;
+	BORDER-LEFT: 0px solid #bbbbbb;
+	HEIGHT: 12px;
+	WIDTH: 120px;
+}
+
+.menunode a,menuitem a {
+	COLOR: #161e5f;
+	FONT-SIZE: 10px;
+	LINE-HEIGHT: 11px;
+	FONT-WEIGHT: 400;
+	PADDING: 0px 3px 1px 8px;
+	TEXT-DECORATION: none;
+	WIDTH: auto;
+	WHITE-SPACE: nowrap;
+	BACKGROUND-POSITION: left bottom;
+	BACKGROUND-IMAGE: url(images/tabs/vineta.jpg);
+	BACKGROUND-REPEAT: no-repeat;
+}
+
+.menunode a:hover,.menuitem a:hover {
+	COLOR: #FFFFFF;
+	FONT-SIZE: 10px;
+	LINE-HEIGHT: 11px;
+	FONT-WEIGHT: 400;
+	PADDING: 0px 3px 1px 8px;
+	TEXT-DECORATION: none;
+	WIDTH: auto;
+	WHITE-SPACE: nowrap;
+	BACKGROUND-POSITION: left bottom;
+	BACKGROUND-COLOR:#A6C2F4 ;
+	BACKGROUND-REPEAT: no-repeat;
+}
+
+.menunode a:active,.menuitem a:active {
+	COLOR: #3C5775;
+	FONT-SIZE: 10px;
+	LINE-HEIGHT: 11px;
+	FONT-WEIGHT: 400;
+	PADDING: 0px 3px 1px 8px;
+	TEXT-DECORATION: none;
+	WIDTH: auto;
+	WHITE-SPACE: nowrap;
+	BACKGROUND-POSITION: left bottom;
+	BACKGROUND-COLOR:#A6C2F4 ;
+	BACKGROUND-REPEAT: no-repeat;
+}
+
+.menu {
+	POSITION: relative;
+	LINE-HEIGHT: 13px;
+	PADDING-LEFT: 16px;
+	PADDING-BOTTOM: .3em;
+	PADDING-TOP: 1px;
+	FONT-FAMILY: verdana, geneva, arial, helvetica, sans-serif;
+	MARGIN-BOTTOM: -3px;
+	BORDER-BOTTOM: 0px solid #bbbbbb;
+	BORDER-LEFT: 0px solid #bbbbbb;
+}
+
+.menu .menu,.menu .menu .menu { /* submenus & submenus' submenus  */
+	BORDER-LEFT: 0px solid #bbbbbb;
+	PADDING-LEFT: 10px;
+}
+
+.menu .menu .menu { /* submenus' submenus  */
+	HEIGHT: 1%;
+}
+
+#nav {
+	BORDER: 0px solid #ccc;
+	BACKGROUND: #ffffff;
+	COLOR: #000;
+	OVERFLOW: hidden;
+	POSITION: relative;
+	WIDTH: 175px;
+	HEIGHT: 100%;
+	MARGIN: 3px;
+	LEFT: 0;
+	TOP: 0px;
+	POSITION: relative;
+	WHITE-SPACE: nowrap;
+	-MOZ-USER-SELECT: none;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*         End Menu tree rules        *-*-*-*- *-*-*-*- *-*-*-*- 
+ 	 *                                   ___________________                                */
+h1 {
+	COLOR: #777;
+	FONT-SIZE: 18px;
+	TEXT-INDENT: 24px;
+	PADDING: 10px;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*-        @media print rules        *-*-*-*- *-*-*-*- *-*-*-*- 
+ 	 *                                   __________________                                 */
+@MEDIA PRINT {
+	title {
+		DISPLAY: none
+	}
+	#nav {
+		POSITION: absolute;
+		WIDTH: 0;
+		HEIGHT: 0;
+		PADDING: 0px;
+		MARGIN: 0;
+		DISPLAY: none;
+	}
+}

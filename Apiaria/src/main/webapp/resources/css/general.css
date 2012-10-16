@@ -1,0 +1,88 @@
+
+HTML,TABLE,TABLE TR,TABLE TR TD,FONT,B,STRONG,INPUT,A {
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+}
+
+
+
+A {
+	color: #333333;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+.frameBorder {
+	border-color: #E8A04E;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.bodyForm {
+	
+}
+
+.bodyForm .HeaderHide {
+	display: none;
+}
+
+.bodyForm .TitleScreen {	
+	background-image: url(../images/background/BG-titulo-1.gif);
+	font-family: Verdana;	
+	font-size: 14px;
+	font-weight: bold;	
+	color : white;
+	text-transform: uppercase;
+}
+
+.bodyForm .cLabel {	
+	position: absolute;
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+.bodyForm .cObject {
+	position: absolute;
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	border-bottom: silver 1px solid;
+	border-left: silver 1px solid;
+	border-right: silver 1px solid;
+	border-top: silver 1px solid;
+	text-decoration: none;
+}
+
+.bodyForm .cObjectReadOnly {
+	position: absolute;
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	border-bottom: silver 1px solid;
+	border-left: silver 1px solid;
+	border-right: silver 1px solid;
+	border-top: silver 1px solid;
+	text-decoration: none;
+	background-color: #FFECCC; 
+}
+
+.bodyForm .cPanel {
+	position: absolute;
+	border-color: #E8A04E;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.bodyForm .cCheck {	
+	border: none;	
+}
+
+

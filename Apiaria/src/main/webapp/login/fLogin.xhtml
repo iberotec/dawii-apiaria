@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
+	>
+
+
+<h:head>
+	<link rel="stylesheet" href="#{request.contextPath}/css/login.css" />
+	<link rel="stylesheet" href="#{request.contextPath}/css/general.css" />
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div class="span"></div>
+	</div>
+	<div class="shadow_top"></div>
+
+
+	<div id="containerLogin">
+		<div class="top"></div>
+		<div class="center">
+			<h:form id="form">
+
+				<p:panel id="pnlLogin" styleClass="panel">
+
+					<h:panelGrid columns="3">
+						<h:outputLabel for="user" value="USUARIO" />
+						<p:inputText id="user" required="true" label="user" value="#" />
+						<h:outputLabel value="#{editor.usuario}" />
+
+						<h:outputLabel for="password" value="CONTRASEÑA" />
+						<p:password id="password" required="true" label="password" value="#"/>
+						<h:outputLabel value="#{editor.pass}" />
+
+
+						<p:commandButton value="INGRESAR" update="pnlLogin,:growl" actionListener="#{editor.login}" />
+						
+					</h:panelGrid>
+
+				</p:panel>
+
+			</h:form>
+		</div>
+		<div class="bottom">
+			<p>
+				2004-2012 APIGRANJA
+					
+			</p>
+			<p>Derechos Reservados</p>
+			<p>Version V5.R00.00</p>
+		</div>
+	</div>
+	
+	<p:ajaxStatus onstart="statusDialog.show();"
+				onsuccess="statusDialog.hide();" />
+
+			<p:dialog modal="true" widgetVar="statusDialog" header="Status"
+				width="300" height="50" draggable="false" closable="false"
+				resizable="false" styleClass="ajaxStatus" appendToBody="true">
+				<p:graphicImage value="/resources/images/loading.gif" />
+				<h:outputText
+					value="#" />
+			</p:dialog>
+
+
+	<p:growl id="growl" showDetail="true" life="5000" />
+	
+	
+<!-- 	DIALOG ENVIRONMENT -->
+		<p:dialog  widgetVar="_modalDialog" id="modalDialog" modal="true" showEffect="fade" hideEffect="fade" 
+					   header="ENTORNO DE TRABAJO" visible="#"
+					   appendToBody="true" width="250" resizable="false" closable="false"
+					   >
+			   <h:form id="formEnv">
+						<h:outputLabel for="cboEnvironment" value="Seleccione el ambiente en el cual desea autenticarse." style="font-size:11px !important;color:#666 ;font-family:Verdana;margin-bottom:5px !important;padding-bottom:5px !important;display:block;"/>
+						<p:commandButton value="OK"   style="float:right;"/>
+			</h:form>
+			</p:dialog>
+	
+	
+
+	<div id="footer">
+		<div class="shadow_bottom"></div>
+		<div class="span"></div>
+	</div>
+</h:body>
+</html>

@@ -1,0 +1,491 @@
+.numpad 
+{ 
+    COLOR: #15006A;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11px
+}
+
+.sectionFont
+{ 
+    COLOR: #a4c3eb;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    FONT-SIZE: 16px;
+    font-weight: bold;
+}
+
+.numpad A:link
+{
+    COLOR: #15006A;
+    TEXT-DECORATION: none
+}
+
+.numpad A:hover
+{
+    COLOR: #ae0000;
+    TEXT-DECORATION: none
+}
+
+.numpadtable
+{ 
+  border: #D5D5D5 1px solid;
+  text-align: center;
+}
+
+.numpadrow
+{ 
+  background-color: #f0f5f5;
+}
+
+.numpadcell
+{ 
+  width: 25px;
+}
+
+.checkbox
+{
+border : none;
+	
+}
+
+.graphic
+{
+	text-align: center;
+    height: 250;
+    width: 600;
+    padding: 0;
+    vertical-align: middle;
+	COLOR: #15006A;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11px;
+	border-bottom: solid;
+	border-left: solid;
+    border-right: solid;
+    border-top: solid;
+	background-color: #fefefe;
+    
+}
+
+.graphTitle
+{   border: none 0px;
+	text-align: center;
+    FONT-FAMILY: Arial, Helvetica, sans-serif;
+    FONT-SIZE: 20px;
+	background-color: #fefefe;
+	width: 600;
+}
+
+.barraGraph
+{   border: solid 2px;	
+    text-align: center;
+    vertical-align: top;    
+}
+
+.barraGraphTD 
+{
+	text-align: center;
+	height: 60;		
+}
+
+.barraGraphTR
+{
+	vertical-align: bottom;
+}
+
+body {
+	scrollbar-face-color: #c4c8cb;
+	scrollbar-3dlight-color: #ffffff;
+	scrollbar-arrow-color: #ffffff;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-shadow-color: #ffffff;
+	scrollbar-darkshadow-color: #c4c8cb;
+	scrollbar-track-color: #ffffff;
+	scrollbar-base-color: #ffffff;
+	scrollbar-front-color: #7fbbd5
+}
+
+HTML,TABLE,TABLE TR,TABLE TR TD,FONT,B,STRONG,INPUT,A {
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.cssHeaderLogin {
+	background-color: #202664;
+}
+
+.cssHeaderLogin .cssMainTitle {
+	color: #ffffff;
+	font-size: 12pt;
+	text-decoration: none
+}
+
+A:hover {
+	color: #0000ff;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: underline
+}
+
+A:active {
+	color: #000000;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: underline
+}
+
+A {
+	color: #333333;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+P {
+	color: #000000;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+.bordT {
+	border-top: #808080 1px solid;
+}
+
+.bordL {
+	border-left: #808080 1px solid;
+}
+
+.bordR {
+	border-right: #808080 1px solid;
+}
+
+.bordB {
+	border-bottom: #808080 1px solid;
+}
+
+.bordBO {
+	border: #ffffff 2px outset;
+}
+
+.bordTopBG {
+	border-top: #cccccc 1px solid;
+}
+
+.bordTopBDG {
+	border-top: #808080 1px solid;
+}
+
+TD {
+	color: #333333;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+SELECT {
+	color: #000000;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+.tet {
+	border: #808080 1px solid;
+	border-color: #808080 #808080 #808080 #808080;
+	background-attachment: fixed;
+	background-image: url(images/box_shadow.gif);
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+A:hover {
+	text-decoration: underline
+}
+
+A {
+	text-decoration: none
+}
+
+.NormalText {
+	color: #0c3c63;
+	font-family: verdana, arial;
+	font-size: 10pt;
+	text-decoration: none
+}
+
+TD {
+	color: #000000;
+	font-family: verdana, arial;
+	font-size: 10pt;
+	text-decoration: none
+}
+
+INPUT {
+	border: #000000 1px inset;
+	border-color: #000000 #000000 #000000 #000000;
+	background-attachment: fixed;
+	background-image: url(images/box_shadow.gif);
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 10pt;
+	color: #000000;
+}
+
+btnEnter {
+	border: #000000 1px inset;
+	border-color: #000000;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+
+.bodyGrid {
+	border-top-width: 3px;
+	border-top-color: white;
+	border-top-style: solid;
+	border-left-width: 7px;
+	border-left-color: white;
+	border-left-style: solid;
+	border-right-width: 7px;
+	border-right-color: white;
+	border-right-style: solid;
+	border-bottom-width: 7px;
+	border-bottom-color: white;
+	border-bottom-style: solid;
+}
+
+.bodyForm {
+	
+}
+
+.bodyForm .NoHeaders {
+	display: none;
+}
+
+.bodyForm .TitleScreen {	
+	background-image: url(../images/background/BG-titulo-1.gif);		
+	font-family: verdana;
+	font-size: 14px;
+	font-weight: bold;	
+	color : #3C5775;
+}
+
+.bodyForm .cellframe {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #e7e7ef;
+}
+
+.bodyForm .cLabel {
+	position: absolute;
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	text-decoration: none;
+}
+
+.bodyForm .cText {	
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	text-decoration: none;
+}
+
+.bodyForm .cText TR TD {	
+	color: #3C5775;
+}
+
+.bodyForm .cButton {	
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	width:20px;	
+	text-align:center;
+	background-color:silver;
+	border-bottom: black 1px solid;
+	border-left: black 1px solid;
+	border-right: black 1px solid;
+	border-top: black 1px solid;
+	cursor: hand;
+}
+
+.bodyForm .cBlankButton {	
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	text-decoration: none;	
+	text-align:center;	
+	width:20px;
+	border-bottom: black 1px solid;
+	border-left: black 1px solid;
+	border-right: black 1px solid;
+	border-top: black 1px solid;
+	cursor: hand;
+}
+
+.bodyForm .cLabelAccount {
+	position: absolute;
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 10pt;
+	text-decoration: none
+}
+
+.bodyForm .cLabelNoResult {
+	position: absolute;
+	color: red;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 10pt;
+	text-decoration: none
+}
+
+.bodyForm .cObject {
+	position: absolute;
+	color: midnightblue;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	border-bottom: silver 1px solid;
+	border-left: silver 1px solid;
+	border-right: silver 1px solid;
+	border-top: silver 1px solid;
+	text-decoration: none;
+}
+
+.cProperty {
+	color: midnightblue;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	border-bottom: silver 1px solid;
+	border-left: silver 1px solid;
+	border-right: silver 1px solid;
+	border-top: silver 1px solid;
+	text-decoration: none;
+}
+
+.bodyForm .cObjectLabel {
+	position: absolute;
+	color: midnightblue;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.bodyForm .cObjectReadOnly {
+	position: absolute;
+	color: midnightblue;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	border-bottom: silver 1px solid;
+	border-left: silver 1px solid;
+	border-right: silver 1px solid;
+	border-top: silver 1px solid;
+	text-decoration: none;
+	text-transform: uppercase;
+	background-color: #e0e0e0;
+}
+
+.bodyForm .cPanel {
+	position: absolute;
+	border-color: #FFB652;
+	border-style: solid;
+	border-width: 1px;
+	
+}
+
+.bodyForm .cSubTitle {
+	position: absolute;
+	background-color: #9caaad;
+	color: white;
+	font-weight: bold;
+	padding-top: 1px;
+}
+
+.bodyForm .cLine {
+	color: #3C5775;
+	position: absolute;
+	height: 1px;
+}
+
+.bodyForm .cGroupLine1 {
+	background-color: navy;
+	color: navy;
+	position: absolute;
+	height: 1px;
+}
+
+.bodyForm .cGroupLine2 {
+	background-color: white;
+	color: white;
+	position: absolute;
+	height: 1px;
+}
+
+.bodyForm .cGroupText {
+	position: absolute;
+	background-color: #e7e7ef;
+	color: midnightblue;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.bodyForm .cCheck {
+	
+	border: none;
+	
+}
+
+.bodyForm .cTitleSubGrid {
+	position: absolute;
+	color: #3C5775;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 8pt;
+	text-decoration: none;
+	background-image: url(../images/background/BG-titulo-2.gif);
+}
+
+#popitmenu {
+	position: absolute;
+	background-color: white;
+	border: 1px solid black;
+	font: normal 12px verdana;
+	line-height: 18px;
+	z-index: 100;
+	visibility: hidden;
+}
+
+#popitmenu a {
+	text-decoration: none;
+	padding-left: 6px;
+	color: black;
+	display: block;
+}
+
+#popitmenu a:hover { /*hover background color*/
+	background-color: #ccff9d;
+}
+
+hr {
+	border-style: solid; 
+	border-color: #49627E;
+	border-width: 2px
+}
