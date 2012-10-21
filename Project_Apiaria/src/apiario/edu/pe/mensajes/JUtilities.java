@@ -1,4 +1,4 @@
-package apiario.edu.pe;
+package apiario.edu.pe.mensajes;
 
 import java.io.File;
 import java.io.IOException;
