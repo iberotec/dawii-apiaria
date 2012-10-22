@@ -19,15 +19,15 @@ public class DetalleUsuarioEnva implements Serializable {
 	@Column(name="fecha_uso")
 	private String fechaUso;
 
-	//bi-directional many-to-one association to Envasadora
-    @ManyToOne
-	@JoinColumn(name="idEnvasadora")
-	private Envasadora envasadora;
-
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
 	@JoinColumn(name="idusuario")
 	private Usuario usuario;
+
+	//bi-directional many-to-one association to Envasadora
+    @ManyToOne
+	@JoinColumn(name="idEnvasadora")
+	private Envasadora envasadora;
 
     public DetalleUsuarioEnva() {
     }
@@ -48,20 +48,20 @@ public class DetalleUsuarioEnva implements Serializable {
 		this.fechaUso = fechaUso;
 	}
 
-	public Envasadora getEnvasadora() {
-		return this.envasadora;
-	}
-
-	public void setEnvasadora(Envasadora envasadora) {
-		this.envasadora = envasadora;
-	}
-	
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public Envasadora getEnvasadora() {
+		return this.envasadora;
+	}
+
+	public void setEnvasadora(Envasadora envasadora) {
+		this.envasadora = envasadora;
 	}
 	
 }

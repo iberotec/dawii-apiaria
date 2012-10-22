@@ -36,15 +36,15 @@ public class PlanillaCosecha implements Serializable {
 		)
 	private List<Centrifugadora> centrifugadoras;
 
-	//bi-directional many-to-one association to Colmena
-    @ManyToOne
-	@JoinColumn(name="idcolmena")
-	private Colmena colmena;
-
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
 	@JoinColumn(name="idusuario")
 	private Usuario usuario;
+
+	//bi-directional many-to-one association to Colmena
+    @ManyToOne
+	@JoinColumn(name="idcolmena")
+	private Colmena colmena;
 
     public PlanillaCosecha() {
     }
@@ -73,20 +73,20 @@ public class PlanillaCosecha implements Serializable {
 		this.centrifugadoras = centrifugadoras;
 	}
 	
-	public Colmena getColmena() {
-		return this.colmena;
-	}
-
-	public void setColmena(Colmena colmena) {
-		this.colmena = colmena;
-	}
-	
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public Colmena getColmena() {
+		return this.colmena;
+	}
+
+	public void setColmena(Colmena colmena) {
+		this.colmena = colmena;
 	}
 	
 }

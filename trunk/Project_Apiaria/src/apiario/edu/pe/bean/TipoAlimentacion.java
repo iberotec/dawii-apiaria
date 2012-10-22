@@ -20,9 +20,9 @@ public class TipoAlimentacion implements Serializable {
 
 	private String descripcion;
 
-	//bi-directional many-to-one association to DetallePlanillaRevTipoAlim
-	@OneToMany(mappedBy="tipoAlimentacion")
-	private List<DetallePlanillaRevTipoAlim> detallePlanillaRevTipoAlims;
+	//bi-directional many-to-many association to PlanillaRevision
+	@ManyToMany(mappedBy="tipoAlimentacions")
+	private List<PlanillaRevision> planillaRevisions;
 
 	//bi-directional many-to-many association to Insumo
 	@ManyToMany(mappedBy="tipoAlimentacions")
@@ -47,12 +47,12 @@ public class TipoAlimentacion implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<DetallePlanillaRevTipoAlim> getDetallePlanillaRevTipoAlims() {
-		return this.detallePlanillaRevTipoAlims;
+	public List<PlanillaRevision> getPlanillaRevisions() {
+		return this.planillaRevisions;
 	}
 
-	public void setDetallePlanillaRevTipoAlims(List<DetallePlanillaRevTipoAlim> detallePlanillaRevTipoAlims) {
-		this.detallePlanillaRevTipoAlims = detallePlanillaRevTipoAlims;
+	public void setPlanillaRevisions(List<PlanillaRevision> planillaRevisions) {
+		this.planillaRevisions = planillaRevisions;
 	}
 	
 	public List<Insumo> getInsumos() {

@@ -19,11 +19,6 @@ public class Medicamento implements Serializable {
 
 	private String descripcion;
 
-	//bi-directional many-to-one association to TipoMedicamento
-    @ManyToOne
-	@JoinColumn(name="idtipo_medicamento")
-	private TipoMedicamento tipoMedicamento;
-
 	//bi-directional many-to-many association to Tratamiento
     @ManyToMany
 	@JoinTable(
@@ -36,6 +31,11 @@ public class Medicamento implements Serializable {
 			}
 		)
 	private List<Tratamiento> tratamientos;
+
+	//bi-directional many-to-one association to TipoMedicamento
+    @ManyToOne
+	@JoinColumn(name="idtipo_medicamento")
+	private TipoMedicamento tipoMedicamento;
 
     public Medicamento() {
     }
@@ -56,20 +56,20 @@ public class Medicamento implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public TipoMedicamento getTipoMedicamento() {
-		return this.tipoMedicamento;
-	}
-
-	public void setTipoMedicamento(TipoMedicamento tipoMedicamento) {
-		this.tipoMedicamento = tipoMedicamento;
-	}
-	
 	public List<Tratamiento> getTratamientos() {
 		return this.tratamientos;
 	}
 
 	public void setTratamientos(List<Tratamiento> tratamientos) {
 		this.tratamientos = tratamientos;
+	}
+	
+	public TipoMedicamento getTipoMedicamento() {
+		return this.tipoMedicamento;
+	}
+
+	public void setTipoMedicamento(TipoMedicamento tipoMedicamento) {
+		this.tipoMedicamento = tipoMedicamento;
 	}
 	
 }

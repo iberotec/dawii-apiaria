@@ -17,6 +17,9 @@ public class DetalleApiarioNormaSegPK implements Serializable {
 	@Column(name="idnorma_seguridad")
 	private int idnormaSeguridad;
 
+	@Column(name="iddetalle_apiario_norma_seguridad")
+	private int iddetalleApiarioNormaSeguridad;
+
     public DetalleApiarioNormaSegPK() {
     }
 	public int getIdapiario() {
@@ -31,6 +34,12 @@ public class DetalleApiarioNormaSegPK implements Serializable {
 	public void setIdnormaSeguridad(int idnormaSeguridad) {
 		this.idnormaSeguridad = idnormaSeguridad;
 	}
+	public int getIddetalleApiarioNormaSeguridad() {
+		return this.iddetalleApiarioNormaSeguridad;
+	}
+	public void setIddetalleApiarioNormaSeguridad(int iddetalleApiarioNormaSeguridad) {
+		this.iddetalleApiarioNormaSeguridad = iddetalleApiarioNormaSeguridad;
+	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -42,7 +51,8 @@ public class DetalleApiarioNormaSegPK implements Serializable {
 		DetalleApiarioNormaSegPK castOther = (DetalleApiarioNormaSegPK)other;
 		return 
 			(this.idapiario == castOther.idapiario)
-			&& (this.idnormaSeguridad == castOther.idnormaSeguridad);
+			&& (this.idnormaSeguridad == castOther.idnormaSeguridad)
+			&& (this.iddetalleApiarioNormaSeguridad == castOther.iddetalleApiarioNormaSeguridad);
 
     }
     
@@ -51,6 +61,7 @@ public class DetalleApiarioNormaSegPK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.idapiario;
 		hash = hash * prime + this.idnormaSeguridad;
+		hash = hash * prime + this.iddetalleApiarioNormaSeguridad;
 		
 		return hash;
     }

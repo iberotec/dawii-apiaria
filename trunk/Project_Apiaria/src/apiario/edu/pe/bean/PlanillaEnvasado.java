@@ -22,11 +22,6 @@ public class PlanillaEnvasado implements Serializable {
 	@Column(name="fecha_envasado")
 	private String fechaEnvasado;
 
-	//bi-directional many-to-one association to Envasadora
-    @ManyToOne
-	@JoinColumn(name="idEnvasadora")
-	private Envasadora envasadora;
-
 	//bi-directional many-to-one association to Envase
     @ManyToOne
 	@JoinColumn(name="idenvase")
@@ -36,6 +31,11 @@ public class PlanillaEnvasado implements Serializable {
     @ManyToOne
 	@JoinColumn(name="idproducto")
 	private Producto producto;
+
+	//bi-directional many-to-one association to Envasadora
+    @ManyToOne
+	@JoinColumn(name="idEnvasadora")
+	private Envasadora envasadora;
 
     public PlanillaEnvasado() {
     }
@@ -64,14 +64,6 @@ public class PlanillaEnvasado implements Serializable {
 		this.fechaEnvasado = fechaEnvasado;
 	}
 
-	public Envasadora getEnvasadora() {
-		return this.envasadora;
-	}
-
-	public void setEnvasadora(Envasadora envasadora) {
-		this.envasadora = envasadora;
-	}
-	
 	public Envase getEnvase() {
 		return this.envase;
 	}
@@ -86,6 +78,14 @@ public class PlanillaEnvasado implements Serializable {
 
 	public void setProducto(Producto producto) {
 		this.producto = producto;
+	}
+	
+	public Envasadora getEnvasadora() {
+		return this.envasadora;
+	}
+
+	public void setEnvasadora(Envasadora envasadora) {
+		this.envasadora = envasadora;
 	}
 	
 }

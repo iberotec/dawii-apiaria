@@ -17,6 +17,9 @@ public class DetalleRecNatZonaPK implements Serializable {
 
 	private int idzona;
 
+	@Column(name="iddetalle_recursonatura_zona")
+	private int iddetalleRecursonaturaZona;
+
     public DetalleRecNatZonaPK() {
     }
 	public int getIdrecursoNatural() {
@@ -31,6 +34,12 @@ public class DetalleRecNatZonaPK implements Serializable {
 	public void setIdzona(int idzona) {
 		this.idzona = idzona;
 	}
+	public int getIddetalleRecursonaturaZona() {
+		return this.iddetalleRecursonaturaZona;
+	}
+	public void setIddetalleRecursonaturaZona(int iddetalleRecursonaturaZona) {
+		this.iddetalleRecursonaturaZona = iddetalleRecursonaturaZona;
+	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -42,7 +51,8 @@ public class DetalleRecNatZonaPK implements Serializable {
 		DetalleRecNatZonaPK castOther = (DetalleRecNatZonaPK)other;
 		return 
 			(this.idrecursoNatural == castOther.idrecursoNatural)
-			&& (this.idzona == castOther.idzona);
+			&& (this.idzona == castOther.idzona)
+			&& (this.iddetalleRecursonaturaZona == castOther.iddetalleRecursonaturaZona);
 
     }
     
@@ -51,6 +61,7 @@ public class DetalleRecNatZonaPK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.idrecursoNatural;
 		hash = hash * prime + this.idzona;
+		hash = hash * prime + this.iddetalleRecursonaturaZona;
 		
 		return hash;
     }

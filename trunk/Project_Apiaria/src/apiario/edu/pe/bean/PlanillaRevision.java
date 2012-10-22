@@ -41,6 +41,19 @@ public class PlanillaRevision implements Serializable {
 	@Column(name="peligro_colmena")
 	private String peligroColmena;
 
+	//bi-directional many-to-many association to TipoAlimentacion
+    @ManyToMany
+	@JoinTable(
+		name="detalle_planilla_rev_tipo_alim"
+		, joinColumns={
+			@JoinColumn(name="idplanilla_revision")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="idtipo_alimentacion")
+			}
+		)
+	private List<TipoAlimentacion> tipoAlimentacions;
+
 	//bi-directional many-to-one association to DetallePlanillaRevisionAlza
 	@OneToMany(mappedBy="planillaRevision")
 	private List<DetallePlanillaRevisionAlza> detallePlanillaRevisionAlzas;
@@ -48,11 +61,6 @@ public class PlanillaRevision implements Serializable {
 	//bi-directional many-to-one association to DetallePlanillaRevisionTipoEnfermedad
 	@OneToMany(mappedBy="planillaRevision")
 	private List<DetallePlanillaRevisionTipoEnfermedad> detallePlanillaRevisionTipoEnfermedads;
-
-	//bi-directional many-to-one association to Colmena
-    @ManyToOne
-	@JoinColumn(name="idcolmena")
-	private Colmena colmena;
 
 	//bi-directional many-to-one association to EstadoRevision
     @ManyToOne
@@ -68,6 +76,11 @@ public class PlanillaRevision implements Serializable {
     @ManyToOne
 	@JoinColumn(name="idusuario")
 	private Usuario usuario;
+
+	//bi-directional many-to-one association to Colmena
+    @ManyToOne
+	@JoinColumn(name="idcolmena")
+	private Colmena colmena;
 
     public PlanillaRevision() {
     }
@@ -144,6 +157,14 @@ public class PlanillaRevision implements Serializable {
 		this.peligroColmena = peligroColmena;
 	}
 
+	public List<TipoAlimentacion> getTipoAlimentacions() {
+		return this.tipoAlimentacions;
+	}
+
+	public void setTipoAlimentacions(List<TipoAlimentacion> tipoAlimentacions) {
+		this.tipoAlimentacions = tipoAlimentacions;
+	}
+	
 	public List<DetallePlanillaRevisionAlza> getDetallePlanillaRevisionAlzas() {
 		return this.detallePlanillaRevisionAlzas;
 	}
@@ -158,14 +179,6 @@ public class PlanillaRevision implements Serializable {
 
 	public void setDetallePlanillaRevisionTipoEnfermedads(List<DetallePlanillaRevisionTipoEnfermedad> detallePlanillaRevisionTipoEnfermedads) {
 		this.detallePlanillaRevisionTipoEnfermedads = detallePlanillaRevisionTipoEnfermedads;
-	}
-	
-	public Colmena getColmena() {
-		return this.colmena;
-	}
-
-	public void setColmena(Colmena colmena) {
-		this.colmena = colmena;
 	}
 	
 	public EstadoRevision getEstadoRevision() {
@@ -190,6 +203,14 @@ public class PlanillaRevision implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public Colmena getColmena() {
+		return this.colmena;
+	}
+
+	public void setColmena(Colmena colmena) {
+		this.colmena = colmena;
 	}
 	
 }

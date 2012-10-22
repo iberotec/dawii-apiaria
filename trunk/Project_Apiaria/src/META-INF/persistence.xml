@@ -9,8 +9,6 @@
 		<class>apiario.edu.pe.bean.Colmena</class>
 		<class>apiario.edu.pe.bean.DetalleApiarioNormaSeg</class>
 		<class>apiario.edu.pe.bean.DetalleApiarioNormaSegPK</class>
-		<class>apiario.edu.pe.bean.DetallePlanillaRevTipoAlim</class>
-		<class>apiario.edu.pe.bean.DetallePlanillaRevTipoAlimPK</class>
 		<class>apiario.edu.pe.bean.DetallePlanillaRevisionAlza</class>
 		<class>apiario.edu.pe.bean.DetallePlanillaRevisionAlzaPK</class>
 		<class>apiario.edu.pe.bean.DetallePlanillaRevisionTipoEnfermedad</class>
@@ -33,8 +31,6 @@
 		<class>apiario.edu.pe.bean.PlanillaCosecha</class>
 		<class>apiario.edu.pe.bean.PlanillaEnvasado</class>
 		<class>apiario.edu.pe.bean.PlanillaRevision</class>
-		<class>apiario.edu.pe.bean.PlanillaRevisionAlza</class>
-		<class>apiario.edu.pe.bean.PlanillaRevisionAlzaPK</class>
 		<class>apiario.edu.pe.bean.PlanillaSeguimiento</class>
 		<class>apiario.edu.pe.bean.PlanillaSeguimientoPK</class>
 		<class>apiario.edu.pe.bean.Producto</class>
@@ -52,6 +48,7 @@
 		<class>apiario.edu.pe.bean.Ubigeo</class>
 		<class>apiario.edu.pe.bean.Usuario</class>
 		<class>apiario.edu.pe.bean.Zona</class>
+		
 		<properties>
 			<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/db_sistema_apiario"/>
