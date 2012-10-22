@@ -30,14 +30,14 @@
 					<h:panelGrid columns="3">
 						<h:outputLabel for="user" value="USUARIO" />
 						<p:inputText id="user" required="true" label="user" value="#" />
-						<h:outputLabel value="#{editor.usuario}" />
+						<h:outputLabel value="#{jMBLogueo.usuario}" />
 
 						<h:outputLabel for="password" value="CONTRASEÑA" />
 						<p:password id="password" required="true" label="password" value="#"/>
-						<h:outputLabel value="#{editor.pass}" />
+						<h:outputLabel value="#{jMBLogueo.pass}" />
 
 
-						<p:commandButton value="INGRESAR" update="pnlLogin,:growl" actionListener="#{editor.login}" />
+						<p:commandButton value="INGRESAR" update="pnlLogin,:growl" actionListener="#{jMBLogueo.login}" />
 						
 					</h:panelGrid>
 
