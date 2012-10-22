@@ -19,15 +19,15 @@ public class PlanillaSeguimiento implements Serializable {
 	@Column(name="motivo_ubicacion")
 	private String motivoUbicacion;
 
-	//bi-directional many-to-one association to Apiario
-    @ManyToOne
-	@JoinColumn(name="idapiario")
-	private Apiario apiario;
-
 	//bi-directional many-to-one association to Zona
     @ManyToOne
 	@JoinColumn(name="idzona")
 	private Zona zona;
+
+	//bi-directional many-to-one association to Apiario
+    @ManyToOne
+	@JoinColumn(name="idapiario")
+	private Apiario apiario;
 
     public PlanillaSeguimiento() {
     }
@@ -48,20 +48,20 @@ public class PlanillaSeguimiento implements Serializable {
 		this.motivoUbicacion = motivoUbicacion;
 	}
 
-	public Apiario getApiario() {
-		return this.apiario;
-	}
-
-	public void setApiario(Apiario apiario) {
-		this.apiario = apiario;
-	}
-	
 	public Zona getZona() {
 		return this.zona;
 	}
 
 	public void setZona(Zona zona) {
 		this.zona = zona;
+	}
+	
+	public Apiario getApiario() {
+		return this.apiario;
+	}
+
+	public void setApiario(Apiario apiario) {
+		this.apiario = apiario;
 	}
 	
 }

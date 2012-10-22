@@ -31,10 +31,6 @@ public class Alza implements Serializable {
 	@OneToMany(mappedBy="alza")
 	private List<DetallePlanillaRevisionAlza> detallePlanillaRevisionAlzas;
 
-	//bi-directional many-to-one association to PlanillaRevisionAlza
-	@OneToMany(mappedBy="alza")
-	private List<PlanillaRevisionAlza> planillaRevisionAlzas;
-
     public Alza() {
     }
 
@@ -68,14 +64,6 @@ public class Alza implements Serializable {
 
 	public void setDetallePlanillaRevisionAlzas(List<DetallePlanillaRevisionAlza> detallePlanillaRevisionAlzas) {
 		this.detallePlanillaRevisionAlzas = detallePlanillaRevisionAlzas;
-	}
-	
-	public List<PlanillaRevisionAlza> getPlanillaRevisionAlzas() {
-		return this.planillaRevisionAlzas;
-	}
-
-	public void setPlanillaRevisionAlzas(List<PlanillaRevisionAlza> planillaRevisionAlzas) {
-		this.planillaRevisionAlzas = planillaRevisionAlzas;
 	}
 	
 }

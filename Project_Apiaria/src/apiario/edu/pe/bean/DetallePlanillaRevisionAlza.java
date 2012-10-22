@@ -29,15 +29,15 @@ public class DetallePlanillaRevisionAlza implements Serializable {
 	@Column(name="porcentaje_polen")
 	private BigDecimal porcentajePolen;
 
-	//bi-directional many-to-one association to Alza
-    @ManyToOne
-	@JoinColumn(name="idalza")
-	private Alza alza;
-
 	//bi-directional many-to-one association to PlanillaRevision
     @ManyToOne
 	@JoinColumn(name="idplanilla_revision")
 	private PlanillaRevision planillaRevision;
+
+	//bi-directional many-to-one association to Alza
+    @ManyToOne
+	@JoinColumn(name="idalza")
+	private Alza alza;
 
     public DetallePlanillaRevisionAlza() {
     }
@@ -82,20 +82,20 @@ public class DetallePlanillaRevisionAlza implements Serializable {
 		this.porcentajePolen = porcentajePolen;
 	}
 
-	public Alza getAlza() {
-		return this.alza;
-	}
-
-	public void setAlza(Alza alza) {
-		this.alza = alza;
-	}
-	
 	public PlanillaRevision getPlanillaRevision() {
 		return this.planillaRevision;
 	}
 
 	public void setPlanillaRevision(PlanillaRevision planillaRevision) {
 		this.planillaRevision = planillaRevision;
+	}
+	
+	public Alza getAlza() {
+		return this.alza;
+	}
+
+	public void setAlza(Alza alza) {
+		this.alza = alza;
 	}
 	
 }

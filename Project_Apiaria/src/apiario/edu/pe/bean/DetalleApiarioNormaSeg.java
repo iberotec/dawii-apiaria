@@ -2,6 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -18,6 +19,10 @@ public class DetalleApiarioNormaSeg implements Serializable {
 
 	@Column(name="estado_conformidad")
 	private String estadoConformidad;
+
+    @Temporal( TemporalType.DATE)
+	@Column(name="fecha_registro")
+	private Date fechaRegistro;
 
 	//bi-directional many-to-one association to Apiario
     @ManyToOne
@@ -46,6 +51,14 @@ public class DetalleApiarioNormaSeg implements Serializable {
 
 	public void setEstadoConformidad(String estadoConformidad) {
 		this.estadoConformidad = estadoConformidad;
+	}
+
+	public Date getFechaRegistro() {
+		return this.fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 
 	public Apiario getApiario() {

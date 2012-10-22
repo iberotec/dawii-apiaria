@@ -16,6 +16,9 @@ public class PlanillaSeguimientoPK implements Serializable {
 
 	private int idapiario;
 
+	@Column(name="idplanilla_seguimiento")
+	private int idplanillaSeguimiento;
+
     public PlanillaSeguimientoPK() {
     }
 	public int getIdzona() {
@@ -30,6 +33,12 @@ public class PlanillaSeguimientoPK implements Serializable {
 	public void setIdapiario(int idapiario) {
 		this.idapiario = idapiario;
 	}
+	public int getIdplanillaSeguimiento() {
+		return this.idplanillaSeguimiento;
+	}
+	public void setIdplanillaSeguimiento(int idplanillaSeguimiento) {
+		this.idplanillaSeguimiento = idplanillaSeguimiento;
+	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -41,7 +50,8 @@ public class PlanillaSeguimientoPK implements Serializable {
 		PlanillaSeguimientoPK castOther = (PlanillaSeguimientoPK)other;
 		return 
 			(this.idzona == castOther.idzona)
-			&& (this.idapiario == castOther.idapiario);
+			&& (this.idapiario == castOther.idapiario)
+			&& (this.idplanillaSeguimiento == castOther.idplanillaSeguimiento);
 
     }
     
@@ -50,6 +60,7 @@ public class PlanillaSeguimientoPK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.idzona;
 		hash = hash * prime + this.idapiario;
+		hash = hash * prime + this.idplanillaSeguimiento;
 		
 		return hash;
     }

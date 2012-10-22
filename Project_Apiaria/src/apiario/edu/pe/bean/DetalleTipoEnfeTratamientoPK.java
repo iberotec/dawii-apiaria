@@ -17,6 +17,9 @@ public class DetalleTipoEnfeTratamientoPK implements Serializable {
 
 	private int idtratamiento;
 
+	@Column(name="idtipo_enfermedad_tratamiento")
+	private int idtipoEnfermedadTratamiento;
+
     public DetalleTipoEnfeTratamientoPK() {
     }
 	public int getIdtipoEnfermedad() {
@@ -31,6 +34,12 @@ public class DetalleTipoEnfeTratamientoPK implements Serializable {
 	public void setIdtratamiento(int idtratamiento) {
 		this.idtratamiento = idtratamiento;
 	}
+	public int getIdtipoEnfermedadTratamiento() {
+		return this.idtipoEnfermedadTratamiento;
+	}
+	public void setIdtipoEnfermedadTratamiento(int idtipoEnfermedadTratamiento) {
+		this.idtipoEnfermedadTratamiento = idtipoEnfermedadTratamiento;
+	}
 
 	public boolean equals(Object other) {
 		if (this == other) {
@@ -42,7 +51,8 @@ public class DetalleTipoEnfeTratamientoPK implements Serializable {
 		DetalleTipoEnfeTratamientoPK castOther = (DetalleTipoEnfeTratamientoPK)other;
 		return 
 			(this.idtipoEnfermedad == castOther.idtipoEnfermedad)
-			&& (this.idtratamiento == castOther.idtratamiento);
+			&& (this.idtratamiento == castOther.idtratamiento)
+			&& (this.idtipoEnfermedadTratamiento == castOther.idtipoEnfermedadTratamiento);
 
     }
     
@@ -51,6 +61,7 @@ public class DetalleTipoEnfeTratamientoPK implements Serializable {
 		int hash = 17;
 		hash = hash * prime + this.idtipoEnfermedad;
 		hash = hash * prime + this.idtratamiento;
+		hash = hash * prime + this.idtipoEnfermedadTratamiento;
 		
 		return hash;
     }
