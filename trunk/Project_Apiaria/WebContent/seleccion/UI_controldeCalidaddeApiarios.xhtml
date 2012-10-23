@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+	<ui:define name="content">
+		<h:panelGroup id="pgControldeApiarios">
+			<table>
+				<tr>
+					<td>
+						<h:outputText value="Apiarios" />
+					</td>
+					<td>
+						<h:selectOneMenu value="">
+							<f:selectItem value="Apiario 1"/>
+							<f:selectItem value="Apiario 2"/>
+						</h:selectOneMenu>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:outputText value="Control de Calidad de Apiario(SENASA)" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:selectManyCheckbox value="">
+							Distancia entre apiarios(2 a 3 Km.)
+							Flora melifera adecuada
+							Fuente natural de agua o bebederos adecuados
+							Aguas contaminadas o residuales a 2Km de distancia
+							Zona apropiada(no humeda, no calurosa)
+							Distancia entre vias publicas(200m)
+							Posicionamiento adecuado de piqueras
+						</h:selectManyCheckbox>
+					</td>
+				</tr>
+			</table>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

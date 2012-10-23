@@ -5,7 +5,7 @@
 	<welcome-file-list>
 		<welcome-file>/login/fLogin.xhtml</welcome-file>
 	</welcome-file-list>
-	<!-- Configuración de JSF -->
+	<!-- ConfiguraciÃ³n de JSF -->
 	<context-param>
 		<description>
 			Define the value returned by Application.getProjectStage(). Allowed values: Production,	Development,
