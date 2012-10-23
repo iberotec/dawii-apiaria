@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+
+		<ui:define name="title">
+			<h:outputText value="MODULO DE SELECCION" />
+		</ui:define>
+		<ui:define name="content">
+			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
+				SELECCION</h1>
+
+
+			<div class="contenedor">
+				<p:tabView id="tabContainer" dynamic="false" cache="false">
+
+					<p:tab id="VERIFICAR_APIARIOS"
+						title="VERIFICAR APIARIOS">
+						
+						   <ui:include src="fVerificarApiaria.xhtml" />
+					</p:tab>
+
+					<p:tab id="CCAPIARIOS"
+						title="CONTROL DE CALIDAD DE APIARIOS">
+						<ui:include src="L_controldeCalidaddeApiarios.xhtml" />
+					</p:tab>
+					
+					<p:tab id="APIARIOSASIGNADOS"
+						title="APIARIOSASIGNADOS">
+						<ui:include src="fApiariosAsignados.xhtml" />
+					</p:tab>
+				</p:tabView>
+			</div>
+
+
+			<p:growl id="growl" showDetail="true" life="5000" />
+
+
+
+		</ui:define>
+</ui:composition>

@@ -23,6 +23,8 @@ public class MBVerificarApiario {
 	
 	public void init(){
 		
+//		 JUtilities.redirect("/functionality/modseleccion/fMain.xhtml");
+		 JUtilities.redirect("/seleccion/layouts/main.xhtml");
 		
 		 JUtilities.redirect("/functionality/modseleccion/fMain.xhtml");
 		
