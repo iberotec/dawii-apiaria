@@ -10,7 +10,7 @@ import javax.persistence.Query;
 
 import apiario.edu.pe.bean.Apiario;
 
-public class MySqlApiarioDAO implements ApiarioDAO{
+public class MySqlApiarioDAOImpl implements ApiarioDAO{
 
 	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Project_Apiaria");
 	EntityManager em=emf.createEntityManager();
