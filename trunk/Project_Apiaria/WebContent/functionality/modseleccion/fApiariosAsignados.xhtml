@@ -13,6 +13,21 @@
 
 <h:body>
 
-	asignados
+	<h:outputText value="Apiarios" />
+	<br />
+	<p:selectOneMenu value="" required="true" label="popupAmlcfilial"
+		requiredMessage="escoja una opcion">
+		<f:selectItems value="#{jMBVerificarApiario.oList}" />
+
+	</p:selectOneMenu>
+
+	<br />
+	<h:outputText value="Comportamiento de Reina" />
+	<br />
+	<p:inputTextarea rows="10" cols="50" value="" required="true" maxlength="12">
+	</p:inputTextarea>
+	<br />
+	
+	
 </h:body>
 </html>
