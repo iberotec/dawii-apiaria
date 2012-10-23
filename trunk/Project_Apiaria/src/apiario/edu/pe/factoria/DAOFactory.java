@@ -1,6 +1,6 @@
 package apiario.edu.pe.factoria;
 
-import apiario.edu.pe.interfaces.commons.UsuarioDAO;
+import apiario.edu.pe.dao.commons.UsuarioDAO;
 
 public abstract class DAOFactory {
 

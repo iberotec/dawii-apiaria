@@ -1,4 +1,4 @@
-package apiario.edu.pe.interfaces.seleccion;
+package apiario.edu.pe.dao.seleccion;
 
 import java.util.List;
 
