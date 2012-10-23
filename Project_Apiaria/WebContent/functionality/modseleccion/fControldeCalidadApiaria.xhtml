@@ -13,6 +13,21 @@
 
 <h:body>
 
-	calidad
+	<h:outputText value="Apiarios" /><br/>
+	<p:selectOneMenu value=""  required="true"
+		label="popupAmlcfilial" requiredMessage="escoja una opcion">
+		<f:selectItems value="#{jMBVerificarApiario.oList}" />
+
+	</p:selectOneMenu>
+	
+	<h:outputText
+			value="Control de Calidad de Apiario (SENAZA)" />
+		<p:selectOneRadio 
+			
+			required="escoja una opcion">
+		<f:selectItems value="#{jMBVerificarApiario.oCheck}" />
+			
+		</p:selectOneRadio>
+	
 </h:body>
 </html>
