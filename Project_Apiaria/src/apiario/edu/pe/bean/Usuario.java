@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -25,19 +25,19 @@ public class Usuario implements Serializable {
 
 	//bi-directional many-to-one association to DetalleUsuarioEnva
 	@OneToMany(mappedBy="usuario")
-	private List<DetalleUsuarioEnva> detalleUsuarioEnvas;
+	private Set<DetalleUsuarioEnva> detalleUsuarioEnvas;
 
 	//bi-directional many-to-one association to PlanillaCosecha
 	@OneToMany(mappedBy="usuario")
-	private List<PlanillaCosecha> planillaCosechas;
+	private Set<PlanillaCosecha> planillaCosechas;
 
 	//bi-directional many-to-one association to PlanillaRevision
 	@OneToMany(mappedBy="usuario")
-	private List<PlanillaRevision> planillaRevisions;
+	private Set<PlanillaRevision> planillaRevisions;
 
 	//bi-directional many-to-one association to Tratamiento
 	@OneToMany(mappedBy="usuario")
-	private List<Tratamiento> tratamientos;
+	private Set<Tratamiento> tratamientos;
 
 	//bi-directional many-to-one association to TipoUsuario
     @ManyToOne
@@ -71,35 +71,35 @@ public class Usuario implements Serializable {
 		this.nomUsu = nomUsu;
 	}
 
-	public List<DetalleUsuarioEnva> getDetalleUsuarioEnvas() {
+	public Set<DetalleUsuarioEnva> getDetalleUsuarioEnvas() {
 		return this.detalleUsuarioEnvas;
 	}
 
-	public void setDetalleUsuarioEnvas(List<DetalleUsuarioEnva> detalleUsuarioEnvas) {
+	public void setDetalleUsuarioEnvas(Set<DetalleUsuarioEnva> detalleUsuarioEnvas) {
 		this.detalleUsuarioEnvas = detalleUsuarioEnvas;
 	}
 	
-	public List<PlanillaCosecha> getPlanillaCosechas() {
+	public Set<PlanillaCosecha> getPlanillaCosechas() {
 		return this.planillaCosechas;
 	}
 
-	public void setPlanillaCosechas(List<PlanillaCosecha> planillaCosechas) {
+	public void setPlanillaCosechas(Set<PlanillaCosecha> planillaCosechas) {
 		this.planillaCosechas = planillaCosechas;
 	}
 	
-	public List<PlanillaRevision> getPlanillaRevisions() {
+	public Set<PlanillaRevision> getPlanillaRevisions() {
 		return this.planillaRevisions;
 	}
 
-	public void setPlanillaRevisions(List<PlanillaRevision> planillaRevisions) {
+	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
 		this.planillaRevisions = planillaRevisions;
 	}
 	
-	public List<Tratamiento> getTratamientos() {
+	public Set<Tratamiento> getTratamientos() {
 		return this.tratamientos;
 	}
 
-	public void setTratamientos(List<Tratamiento> tratamientos) {
+	public void setTratamientos(Set<Tratamiento> tratamientos) {
 		this.tratamientos = tratamientos;
 	}
 	

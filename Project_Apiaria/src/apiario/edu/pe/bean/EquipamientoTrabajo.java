@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -18,18 +18,9 @@ public class EquipamientoTrabajo implements Serializable {
 	@Column(name="idequipamiento_trabajo")
 	private int idequipamientoTrabajo;
 
-	//bi-directional many-to-many association to EstadoRevision
-    @ManyToMany
-	@JoinTable(
-		name="detalle_est_revision_equi_trab"
-		, joinColumns={
-			@JoinColumn(name="idequipamiento_trabajo")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="idestado_revision")
-			}
-		)
-	private List<EstadoRevision> estadoRevisions;
+	//bi-directional many-to-one association to DetalleEstRevisionEquiTrab
+	@OneToMany(mappedBy="equipamientoTrabajo")
+	private Set<DetalleEstRevisionEquiTrab> detalleEstRevisionEquiTrabs;
 
     public EquipamientoTrabajo() {
     }
@@ -42,12 +33,12 @@ public class EquipamientoTrabajo implements Serializable {
 		this.idequipamientoTrabajo = idequipamientoTrabajo;
 	}
 
-	public List<EstadoRevision> getEstadoRevisions() {
-		return this.estadoRevisions;
+	public Set<DetalleEstRevisionEquiTrab> getDetalleEstRevisionEquiTrabs() {
+		return this.detalleEstRevisionEquiTrabs;
 	}
 
-	public void setEstadoRevisions(List<EstadoRevision> estadoRevisions) {
-		this.estadoRevisions = estadoRevisions;
+	public void setDetalleEstRevisionEquiTrabs(Set<DetalleEstRevisionEquiTrab> detalleEstRevisionEquiTrabs) {
+		this.detalleEstRevisionEquiTrabs = detalleEstRevisionEquiTrabs;
 	}
 	
 }

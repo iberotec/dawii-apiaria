@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -19,7 +19,7 @@ public class Piso implements Serializable {
 
 	//bi-directional many-to-one association to Alza
 	@OneToMany(mappedBy="piso")
-	private List<Alza> alzas;
+	private Set<Alza> alzas;
 
 	//bi-directional many-to-one association to Colmena
     @ManyToOne
@@ -37,11 +37,11 @@ public class Piso implements Serializable {
 		this.idpiso = idpiso;
 	}
 
-	public List<Alza> getAlzas() {
+	public Set<Alza> getAlzas() {
 		return this.alzas;
 	}
 
-	public void setAlzas(List<Alza> alzas) {
+	public void setAlzas(Set<Alza> alzas) {
 		this.alzas = alzas;
 	}
 	

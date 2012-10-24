@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -21,11 +21,11 @@ public class Tratamiento implements Serializable {
 
 	//bi-directional many-to-one association to DetalleTipoEnfeTratamiento
 	@OneToMany(mappedBy="tratamiento")
-	private List<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos;
+	private Set<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos;
 
-	//bi-directional many-to-many association to Medicamento
-	@ManyToMany(mappedBy="tratamientos")
-	private List<Medicamento> medicamentos;
+	//bi-directional many-to-one association to DetalleTratMed
+	@OneToMany(mappedBy="tratamiento")
+	private Set<DetalleTratMed> detalleTratMeds;
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
@@ -51,20 +51,20 @@ public class Tratamiento implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<DetalleTipoEnfeTratamiento> getDetalleTipoEnfeTratamientos() {
+	public Set<DetalleTipoEnfeTratamiento> getDetalleTipoEnfeTratamientos() {
 		return this.detalleTipoEnfeTratamientos;
 	}
 
-	public void setDetalleTipoEnfeTratamientos(List<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos) {
+	public void setDetalleTipoEnfeTratamientos(Set<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos) {
 		this.detalleTipoEnfeTratamientos = detalleTipoEnfeTratamientos;
 	}
 	
-	public List<Medicamento> getMedicamentos() {
-		return this.medicamentos;
+	public Set<DetalleTratMed> getDetalleTratMeds() {
+		return this.detalleTratMeds;
 	}
 
-	public void setMedicamentos(List<Medicamento> medicamentos) {
-		this.medicamentos = medicamentos;
+	public void setDetalleTratMeds(Set<DetalleTratMed> detalleTratMeds) {
+		this.detalleTratMeds = detalleTratMeds;
 	}
 	
 	public Usuario getUsuario() {

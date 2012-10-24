@@ -13,33 +13,34 @@ import javax.persistence.*;
 public class PlanillaSeguimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private PlanillaSeguimientoPK id;
+	@Id
+	@Column(name="idplanilla_seguimiento")
+	private int idplanillaSeguimiento;
 
 	@Column(name="motivo_ubicacion")
 	private String motivoUbicacion;
-
-	//bi-directional many-to-one association to Zona
-    @ManyToOne
-	@JoinColumn(name="idzona")
-	private Zona zona;
 
 	//bi-directional many-to-one association to Apiario
     @ManyToOne
 	@JoinColumn(name="idapiario")
 	private Apiario apiario;
 
+	//bi-directional many-to-one association to Zona
+    @ManyToOne
+	@JoinColumn(name="idzona")
+	private Zona zona;
+
     public PlanillaSeguimiento() {
     }
 
-	public PlanillaSeguimientoPK getId() {
-		return this.id;
+	public int getIdplanillaSeguimiento() {
+		return this.idplanillaSeguimiento;
 	}
 
-	public void setId(PlanillaSeguimientoPK id) {
-		this.id = id;
+	public void setIdplanillaSeguimiento(int idplanillaSeguimiento) {
+		this.idplanillaSeguimiento = idplanillaSeguimiento;
 	}
-	
+
 	public String getMotivoUbicacion() {
 		return this.motivoUbicacion;
 	}
@@ -48,20 +49,20 @@ public class PlanillaSeguimiento implements Serializable {
 		this.motivoUbicacion = motivoUbicacion;
 	}
 
-	public Zona getZona() {
-		return this.zona;
-	}
-
-	public void setZona(Zona zona) {
-		this.zona = zona;
-	}
-	
 	public Apiario getApiario() {
 		return this.apiario;
 	}
 
 	public void setApiario(Apiario apiario) {
 		this.apiario = apiario;
+	}
+	
+	public Zona getZona() {
+		return this.zona;
+	}
+
+	public void setZona(Zona zona) {
+		this.zona = zona;
 	}
 	
 }

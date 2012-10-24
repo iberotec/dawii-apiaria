@@ -14,8 +14,9 @@ import java.util.Date;
 public class DetalleApiarioNormaSeg implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetalleApiarioNormaSegPK id;
+	@Id
+	@Column(name="iddetalle_apiario_norma_seguridad")
+	private int iddetalleApiarioNormaSeguridad;
 
 	@Column(name="estado_conformidad")
 	private String estadoConformidad;
@@ -37,14 +38,14 @@ public class DetalleApiarioNormaSeg implements Serializable {
     public DetalleApiarioNormaSeg() {
     }
 
-	public DetalleApiarioNormaSegPK getId() {
-		return this.id;
+	public int getIddetalleApiarioNormaSeguridad() {
+		return this.iddetalleApiarioNormaSeguridad;
 	}
 
-	public void setId(DetalleApiarioNormaSegPK id) {
-		this.id = id;
+	public void setIddetalleApiarioNormaSeguridad(int iddetalleApiarioNormaSeguridad) {
+		this.iddetalleApiarioNormaSeguridad = iddetalleApiarioNormaSeguridad;
 	}
-	
+
 	public String getEstadoConformidad() {
 		return this.estadoConformidad;
 	}

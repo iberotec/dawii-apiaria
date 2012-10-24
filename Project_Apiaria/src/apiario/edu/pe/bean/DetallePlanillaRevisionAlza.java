@@ -14,8 +14,9 @@ import java.math.BigDecimal;
 public class DetallePlanillaRevisionAlza implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetallePlanillaRevisionAlzaPK id;
+	@Id
+	@Column(name="idplanilla_revision_alza")
+	private int idplanillaRevisionAlza;
 
 	@Column(name="estado_alza")
 	private String estadoAlza;
@@ -29,27 +30,27 @@ public class DetallePlanillaRevisionAlza implements Serializable {
 	@Column(name="porcentaje_polen")
 	private BigDecimal porcentajePolen;
 
-	//bi-directional many-to-one association to PlanillaRevision
-    @ManyToOne
-	@JoinColumn(name="idplanilla_revision")
-	private PlanillaRevision planillaRevision;
-
 	//bi-directional many-to-one association to Alza
     @ManyToOne
 	@JoinColumn(name="idalza")
 	private Alza alza;
 
+	//bi-directional many-to-one association to PlanillaRevision
+    @ManyToOne
+	@JoinColumn(name="idplanilla_revision")
+	private PlanillaRevision planillaRevision;
+
     public DetallePlanillaRevisionAlza() {
     }
 
-	public DetallePlanillaRevisionAlzaPK getId() {
-		return this.id;
+	public int getIdplanillaRevisionAlza() {
+		return this.idplanillaRevisionAlza;
 	}
 
-	public void setId(DetallePlanillaRevisionAlzaPK id) {
-		this.id = id;
+	public void setIdplanillaRevisionAlza(int idplanillaRevisionAlza) {
+		this.idplanillaRevisionAlza = idplanillaRevisionAlza;
 	}
-	
+
 	public String getEstadoAlza() {
 		return this.estadoAlza;
 	}
@@ -82,20 +83,20 @@ public class DetallePlanillaRevisionAlza implements Serializable {
 		this.porcentajePolen = porcentajePolen;
 	}
 
-	public PlanillaRevision getPlanillaRevision() {
-		return this.planillaRevision;
-	}
-
-	public void setPlanillaRevision(PlanillaRevision planillaRevision) {
-		this.planillaRevision = planillaRevision;
-	}
-	
 	public Alza getAlza() {
 		return this.alza;
 	}
 
 	public void setAlza(Alza alza) {
 		this.alza = alza;
+	}
+	
+	public PlanillaRevision getPlanillaRevision() {
+		return this.planillaRevision;
+	}
+
+	public void setPlanillaRevision(PlanillaRevision planillaRevision) {
+		this.planillaRevision = planillaRevision;
 	}
 	
 }

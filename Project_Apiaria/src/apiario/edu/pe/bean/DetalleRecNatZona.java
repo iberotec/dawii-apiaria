@@ -14,8 +14,9 @@ import java.math.BigDecimal;
 public class DetalleRecNatZona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetalleRecNatZonaPK id;
+	@Id
+	@Column(name="iddetalle_recursonatura_zona")
+	private int iddetalleRecursonaturaZona;
 
 	@Column(name="porcentaje_recurso")
 	private BigDecimal porcentajeRecurso;
@@ -33,14 +34,14 @@ public class DetalleRecNatZona implements Serializable {
     public DetalleRecNatZona() {
     }
 
-	public DetalleRecNatZonaPK getId() {
-		return this.id;
+	public int getIddetalleRecursonaturaZona() {
+		return this.iddetalleRecursonaturaZona;
 	}
 
-	public void setId(DetalleRecNatZonaPK id) {
-		this.id = id;
+	public void setIddetalleRecursonaturaZona(int iddetalleRecursonaturaZona) {
+		this.iddetalleRecursonaturaZona = iddetalleRecursonaturaZona;
 	}
-	
+
 	public BigDecimal getPorcentajeRecurso() {
 		return this.porcentajeRecurso;
 	}

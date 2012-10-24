@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -19,18 +19,9 @@ public class Insumo implements Serializable {
 
 	private String descripcion;
 
-	//bi-directional many-to-many association to TipoAlimentacion
-    @ManyToMany
-	@JoinTable(
-		name="detalle_tipo_alimentacion_insumo"
-		, joinColumns={
-			@JoinColumn(name="idinsumo")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="idtipo_alimentacion")
-			}
-		)
-	private List<TipoAlimentacion> tipoAlimentacions;
+	//bi-directional many-to-one association to DetalleTipoAlimentacionInsumo
+	@OneToMany(mappedBy="insumo")
+	private Set<DetalleTipoAlimentacionInsumo> detalleTipoAlimentacionInsumos;
 
     public Insumo() {
     }
@@ -51,12 +42,12 @@ public class Insumo implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<TipoAlimentacion> getTipoAlimentacions() {
-		return this.tipoAlimentacions;
+	public Set<DetalleTipoAlimentacionInsumo> getDetalleTipoAlimentacionInsumos() {
+		return this.detalleTipoAlimentacionInsumos;
 	}
 
-	public void setTipoAlimentacions(List<TipoAlimentacion> tipoAlimentacions) {
-		this.tipoAlimentacions = tipoAlimentacions;
+	public void setDetalleTipoAlimentacionInsumos(Set<DetalleTipoAlimentacionInsumo> detalleTipoAlimentacionInsumos) {
+		this.detalleTipoAlimentacionInsumos = detalleTipoAlimentacionInsumos;
 	}
 	
 }

@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -22,11 +22,11 @@ public class TipoEnfermedad implements Serializable {
 
 	//bi-directional many-to-one association to DetallePlanillaRevisionTipoEnfermedad
 	@OneToMany(mappedBy="tipoEnfermedad")
-	private List<DetallePlanillaRevisionTipoEnfermedad> detallePlanillaRevisionTipoEnfermedads;
+	private Set<DetallePlanillaRevisionTipoEnfermedad> detallePlanillaRevisionTipoEnfermedads;
 
 	//bi-directional many-to-one association to DetalleTipoEnfeTratamiento
 	@OneToMany(mappedBy="tipoEnfermedad")
-	private List<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos;
+	private Set<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos;
 
     public TipoEnfermedad() {
     }
@@ -47,19 +47,19 @@ public class TipoEnfermedad implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<DetallePlanillaRevisionTipoEnfermedad> getDetallePlanillaRevisionTipoEnfermedads() {
+	public Set<DetallePlanillaRevisionTipoEnfermedad> getDetallePlanillaRevisionTipoEnfermedads() {
 		return this.detallePlanillaRevisionTipoEnfermedads;
 	}
 
-	public void setDetallePlanillaRevisionTipoEnfermedads(List<DetallePlanillaRevisionTipoEnfermedad> detallePlanillaRevisionTipoEnfermedads) {
+	public void setDetallePlanillaRevisionTipoEnfermedads(Set<DetallePlanillaRevisionTipoEnfermedad> detallePlanillaRevisionTipoEnfermedads) {
 		this.detallePlanillaRevisionTipoEnfermedads = detallePlanillaRevisionTipoEnfermedads;
 	}
 	
-	public List<DetalleTipoEnfeTratamiento> getDetalleTipoEnfeTratamientos() {
+	public Set<DetalleTipoEnfeTratamiento> getDetalleTipoEnfeTratamientos() {
 		return this.detalleTipoEnfeTratamientos;
 	}
 
-	public void setDetalleTipoEnfeTratamientos(List<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos) {
+	public void setDetalleTipoEnfeTratamientos(Set<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos) {
 		this.detalleTipoEnfeTratamientos = detalleTipoEnfeTratamientos;
 	}
 	

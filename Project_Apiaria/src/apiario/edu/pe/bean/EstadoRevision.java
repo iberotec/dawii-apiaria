@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -20,13 +20,13 @@ public class EstadoRevision implements Serializable {
 
 	private String descripcion;
 
-	//bi-directional many-to-many association to EquipamientoTrabajo
-	@ManyToMany(mappedBy="estadoRevisions")
-	private List<EquipamientoTrabajo> equipamientoTrabajos;
+	//bi-directional many-to-one association to DetalleEstRevisionEquiTrab
+	@OneToMany(mappedBy="estadoRevision")
+	private Set<DetalleEstRevisionEquiTrab> detalleEstRevisionEquiTrabs;
 
 	//bi-directional many-to-one association to PlanillaRevision
 	@OneToMany(mappedBy="estadoRevision")
-	private List<PlanillaRevision> planillaRevisions;
+	private Set<PlanillaRevision> planillaRevisions;
 
     public EstadoRevision() {
     }
@@ -47,19 +47,19 @@ public class EstadoRevision implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<EquipamientoTrabajo> getEquipamientoTrabajos() {
-		return this.equipamientoTrabajos;
+	public Set<DetalleEstRevisionEquiTrab> getDetalleEstRevisionEquiTrabs() {
+		return this.detalleEstRevisionEquiTrabs;
 	}
 
-	public void setEquipamientoTrabajos(List<EquipamientoTrabajo> equipamientoTrabajos) {
-		this.equipamientoTrabajos = equipamientoTrabajos;
+	public void setDetalleEstRevisionEquiTrabs(Set<DetalleEstRevisionEquiTrab> detalleEstRevisionEquiTrabs) {
+		this.detalleEstRevisionEquiTrabs = detalleEstRevisionEquiTrabs;
 	}
 	
-	public List<PlanillaRevision> getPlanillaRevisions() {
+	public Set<PlanillaRevision> getPlanillaRevisions() {
 		return this.planillaRevisions;
 	}
 
-	public void setPlanillaRevisions(List<PlanillaRevision> planillaRevisions) {
+	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
 		this.planillaRevisions = planillaRevisions;
 	}
 	

@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -21,11 +21,11 @@ public class Zona implements Serializable {
 
 	//bi-directional many-to-one association to DetalleRecNatZona
 	@OneToMany(mappedBy="zona")
-	private List<DetalleRecNatZona> detalleRecNatZonas;
+	private Set<DetalleRecNatZona> detalleRecNatZonas;
 
 	//bi-directional many-to-one association to PlanillaSeguimiento
 	@OneToMany(mappedBy="zona")
-	private List<PlanillaSeguimiento> planillaSeguimientos;
+	private Set<PlanillaSeguimiento> planillaSeguimientos;
 
 	//bi-directional many-to-one association to Ubigeo
     @ManyToOne
@@ -51,19 +51,19 @@ public class Zona implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<DetalleRecNatZona> getDetalleRecNatZonas() {
+	public Set<DetalleRecNatZona> getDetalleRecNatZonas() {
 		return this.detalleRecNatZonas;
 	}
 
-	public void setDetalleRecNatZonas(List<DetalleRecNatZona> detalleRecNatZonas) {
+	public void setDetalleRecNatZonas(Set<DetalleRecNatZona> detalleRecNatZonas) {
 		this.detalleRecNatZonas = detalleRecNatZonas;
 	}
 	
-	public List<PlanillaSeguimiento> getPlanillaSeguimientos() {
+	public Set<PlanillaSeguimiento> getPlanillaSeguimientos() {
 		return this.planillaSeguimientos;
 	}
 
-	public void setPlanillaSeguimientos(List<PlanillaSeguimiento> planillaSeguimientos) {
+	public void setPlanillaSeguimientos(Set<PlanillaSeguimiento> planillaSeguimientos) {
 		this.planillaSeguimientos = planillaSeguimientos;
 	}
 	

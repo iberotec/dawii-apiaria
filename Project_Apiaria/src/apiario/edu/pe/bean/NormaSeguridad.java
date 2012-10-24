@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -22,7 +22,7 @@ public class NormaSeguridad implements Serializable {
 
 	//bi-directional many-to-one association to DetalleApiarioNormaSeg
 	@OneToMany(mappedBy="normaSeguridad")
-	private List<DetalleApiarioNormaSeg> detalleApiarioNormaSegs;
+	private Set<DetalleApiarioNormaSeg> detalleApiarioNormaSegs;
 
     public NormaSeguridad() {
     }
@@ -43,11 +43,11 @@ public class NormaSeguridad implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<DetalleApiarioNormaSeg> getDetalleApiarioNormaSegs() {
+	public Set<DetalleApiarioNormaSeg> getDetalleApiarioNormaSegs() {
 		return this.detalleApiarioNormaSegs;
 	}
 
-	public void setDetalleApiarioNormaSegs(List<DetalleApiarioNormaSeg> detalleApiarioNormaSegs) {
+	public void setDetalleApiarioNormaSegs(Set<DetalleApiarioNormaSeg> detalleApiarioNormaSegs) {
 		this.detalleApiarioNormaSegs = detalleApiarioNormaSegs;
 	}
 	

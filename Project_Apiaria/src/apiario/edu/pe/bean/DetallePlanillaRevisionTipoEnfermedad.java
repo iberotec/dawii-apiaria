@@ -13,33 +13,34 @@ import javax.persistence.*;
 public class DetallePlanillaRevisionTipoEnfermedad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetallePlanillaRevisionTipoEnfermedadPK id;
+	@Id
+	@Column(name="idplanilla_revision_tipo_enfermedad")
+	private int idplanillaRevisionTipoEnfermedad;
 
 	@Column(name="mienbro_enfermo")
 	private String mienbroEnfermo;
-
-	//bi-directional many-to-one association to PlanillaRevision
-    @ManyToOne
-	@JoinColumn(name="idplanilla_revision")
-	private PlanillaRevision planillaRevision;
 
 	//bi-directional many-to-one association to TipoEnfermedad
     @ManyToOne
 	@JoinColumn(name="idtipo_enfermedad")
 	private TipoEnfermedad tipoEnfermedad;
 
+	//bi-directional many-to-one association to PlanillaRevision
+    @ManyToOne
+	@JoinColumn(name="idplanilla_revision")
+	private PlanillaRevision planillaRevision;
+
     public DetallePlanillaRevisionTipoEnfermedad() {
     }
 
-	public DetallePlanillaRevisionTipoEnfermedadPK getId() {
-		return this.id;
+	public int getIdplanillaRevisionTipoEnfermedad() {
+		return this.idplanillaRevisionTipoEnfermedad;
 	}
 
-	public void setId(DetallePlanillaRevisionTipoEnfermedadPK id) {
-		this.id = id;
+	public void setIdplanillaRevisionTipoEnfermedad(int idplanillaRevisionTipoEnfermedad) {
+		this.idplanillaRevisionTipoEnfermedad = idplanillaRevisionTipoEnfermedad;
 	}
-	
+
 	public String getMienbroEnfermo() {
 		return this.mienbroEnfermo;
 	}
@@ -48,20 +49,20 @@ public class DetallePlanillaRevisionTipoEnfermedad implements Serializable {
 		this.mienbroEnfermo = mienbroEnfermo;
 	}
 
-	public PlanillaRevision getPlanillaRevision() {
-		return this.planillaRevision;
-	}
-
-	public void setPlanillaRevision(PlanillaRevision planillaRevision) {
-		this.planillaRevision = planillaRevision;
-	}
-	
 	public TipoEnfermedad getTipoEnfermedad() {
 		return this.tipoEnfermedad;
 	}
 
 	public void setTipoEnfermedad(TipoEnfermedad tipoEnfermedad) {
 		this.tipoEnfermedad = tipoEnfermedad;
+	}
+	
+	public PlanillaRevision getPlanillaRevision() {
+		return this.planillaRevision;
+	}
+
+	public void setPlanillaRevision(PlanillaRevision planillaRevision) {
+		this.planillaRevision = planillaRevision;
 	}
 	
 }

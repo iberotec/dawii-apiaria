@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -24,19 +24,19 @@ public class Colmena implements Serializable {
 
 	//bi-directional many-to-one association to Piso
 	@OneToMany(mappedBy="colmena")
-	private List<Piso> pisos;
+	private Set<Piso> pisos;
 
 	//bi-directional many-to-one association to PlanillaCosecha
 	@OneToMany(mappedBy="colmena")
-	private List<PlanillaCosecha> planillaCosechas;
+	private Set<PlanillaCosecha> planillaCosechas;
 
 	//bi-directional many-to-one association to PlanillaRevision
 	@OneToMany(mappedBy="colmena")
-	private List<PlanillaRevision> planillaRevisions;
+	private Set<PlanillaRevision> planillaRevisions;
 
 	//bi-directional many-to-one association to Reina
 	@OneToMany(mappedBy="colmena")
-	private List<Reina> reinas;
+	private Set<Reina> reinas;
 
     public Colmena() {
     }
@@ -57,35 +57,35 @@ public class Colmena implements Serializable {
 		this.apiario = apiario;
 	}
 	
-	public List<Piso> getPisos() {
+	public Set<Piso> getPisos() {
 		return this.pisos;
 	}
 
-	public void setPisos(List<Piso> pisos) {
+	public void setPisos(Set<Piso> pisos) {
 		this.pisos = pisos;
 	}
 	
-	public List<PlanillaCosecha> getPlanillaCosechas() {
+	public Set<PlanillaCosecha> getPlanillaCosechas() {
 		return this.planillaCosechas;
 	}
 
-	public void setPlanillaCosechas(List<PlanillaCosecha> planillaCosechas) {
+	public void setPlanillaCosechas(Set<PlanillaCosecha> planillaCosechas) {
 		this.planillaCosechas = planillaCosechas;
 	}
 	
-	public List<PlanillaRevision> getPlanillaRevisions() {
+	public Set<PlanillaRevision> getPlanillaRevisions() {
 		return this.planillaRevisions;
 	}
 
-	public void setPlanillaRevisions(List<PlanillaRevision> planillaRevisions) {
+	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
 		this.planillaRevisions = planillaRevisions;
 	}
 	
-	public List<Reina> getReinas() {
+	public Set<Reina> getReinas() {
 		return this.reinas;
 	}
 
-	public void setReinas(List<Reina> reinas) {
+	public void setReinas(Set<Reina> reinas) {
 		this.reinas = reinas;
 	}
 	
