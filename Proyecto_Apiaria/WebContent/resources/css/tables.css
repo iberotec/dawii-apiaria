@@ -1,0 +1,548 @@
+/* *-*-*-*- *-*-*-*- *-*-*-*-        tablaprint        *-*-*-*- *-*-*-*- *-*-*-*-           */
+
+.tablaprint {
+
+	font-size: 1em;
+	background-repeat:no-repeat;
+	list-style-type:none;
+	border: 1px solid #666;
+	width: 98%;
+	margin: 0 0px 0;
+}
+
+.tablaprint a, .tablaprint a:visited, .tablaprint a:hover {
+	color: #101C5A; text-decoration:none;
+	font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+
+.tablaprint a:hover {
+	text-decoration: underline;
+    color: #101C5A;
+}
+
+.tablaprint th, .tablaprint td {
+	padding: 2px 4px 2px 4px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.tablaprint thead tr {
+  background-color: #7FBBD5;
+}
+
+.tablaprint th.sorted {
+    background-color: #C9C9C9;
+}
+
+.tablaprint th a {
+  color: #101C5A;
+}
+
+.tablaprint th a:hover {
+  text-decoration: underline;
+  color: #101C5A;
+}
+
+.tablaprint tr.odd {
+  background-color: #fff;
+}
+
+.tablaprint tr.even {
+  background-color: #CEE4FB;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*-        tabla        *-*-*-*- *-*-*-*- *-*-*-*-           */
+
+.tabla {
+	margin:0;
+	padding:0;
+	font-size: 1em;
+	background-repeat:no-repeat;
+	list-style-type:none;
+	color: #3C5775;
+	width: 100%;
+	margin: 0 0px 0;
+}
+
+.tabla a, .tabla a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+.tabla tbody tr td a {
+	color: #000000;
+}
+
+.tabla a:hover {
+    color: #8293A7;
+    text-decoration: underline;
+}
+
+.tabla th, .tabla td {
+	padding: 2px 4px 2px 4px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.tabla thead tr {
+
+  background-color: #ebebed;
+	background-repeat: repeat;
+
+}
+
+.tabla th.sorted {
+    background-image: url("../images/diseno/bg-titulo-3.gif");
+	background-repeat: repeat-x;
+}
+
+.tabla th a, .tabla th a:visited {
+  color: #3C5775;
+}
+
+.tabla th a:hover {
+  text-decoration: underline;
+  color: #3C5775;
+}
+
+.tabla tr.odd {
+  background-color: #fff;
+}
+
+.tabla tr.even {
+  background-color: #FFEBD6;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*-        tablanormal        *-*-*-*- *-*-*-*- *-*-*-*-           */
+
+.tablanormal {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	list-style-type: none;
+}
+
+.tablanormal a p, .tablanormal a:visited p, .tablanormal a:hover p, .tablanormal a, .tablanormal a:visited, .tablanormal a:hover, .tablanormal p {
+	color: #101c5a;
+	text-decoration: none;
+	font-size: 9px;
+}
+
+.tablanormal a:hover p {
+	color: #101c5a;
+	text-decoration: none;
+	font-size: 9px;
+
+}
+
+.tablanormal th {
+	padding: 2px 4px 2px 4px;
+	text-align: left;
+	vertical-align: top;
+	color: #FFFFFF;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.tablanormal td {
+	padding: 2px 4px 2px 4px;
+	text-align: left;
+	vertical-align: top;
+	color: #101c5a;
+}
+
+.tablanormal thead {
+	background-image: url(../images/background/BG-Titulo-Grilla18.gif);
+	background-repeat: repeat-x;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tablanormal thead tr {
+
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tablanormal thead tr th a {
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tablanormal th.sorted {
+	background-color: #9caaad;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tablanormal th a, .tablanormal th a:visited {
+
+	color: #FFFFFF;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tablanormal th a:hover {
+	text-decoration: underline;
+	color: #FFFFFF;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tablanormal tr.even {
+	background-color: #ffffff
+}
+
+.tablanormal tr.even2 {
+	background-image: "images/objetos/background.jpg";
+}
+
+.tablanormal tr.odd {
+	background-color: #FFEBD6;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*-        tablahorizontal        *-*-*-*- *-*-*-*- *-*-*-*-           */
+
+.tablahorizontal {
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	background-repeat: no-repeat;
+	list-style-type: none;
+	border: 1px solid #666;
+	width: 98%;
+	margin: 20px 0 20px 0;
+}
+
+.tablahorizontal a, .tablahorizontal a:visited, .tablahorizontal a:hover, .tablahorizontal a p, .tablahorizontal a:visited p, .tablahorizontal a:hover p, .tablahorizontal p {
+	color: #101c5a;
+	text-decoration: none;
+	font-family: verdana, geneva, arial, helvetica, sans-serif;
+	font-size: 9px;
+}
+
+.tablahorizontal a:hover, .tablahorizontal a:hover p {
+	text-decoration: underline;
+}
+
+.tablahorizontal th, .tablahorizontal td {
+	padding: 2px 4px 2px 4px;
+	text-align: left;
+	vertical-align: top;
+	color: #ffffff;
+}
+
+.tablahorizontal thead tr {
+	background-color: #fff;
+	background-color-old: #9caaad;
+}
+
+.tablahorizontal th.sorted {
+	background-color: 7fbbd5;
+}
+
+.tablahorizontal th a, .tablahorizontal th a:visited {
+	color: #101c5a;
+}
+
+.tablahorizontal th a:hover {
+	text-decoration: underline;
+	color: #101c5a;
+}
+
+.tablahorizontal tr.even {
+	background-color: #fff
+}
+
+.tablahorizontal tr.odd {
+	background-color: #E9E6F2;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*-        tablaflex        *-*-*-*- *-*-*-*- *-*-*-*-           */
+
+.tablaflex {
+	margin:0;
+	padding:0;
+	font-size: 1em;
+	background-repeat:no-repeat;
+	list-style-type:none;
+	color: #3C5775;
+	width: 98%;
+	margin: 0 0px 0;
+}
+
+.tablaflex a, .tablaflex a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+.tablaflex tbody tr td a {
+	color: #000000;
+}
+
+.tablaflex a:hover {
+    color: #FFFFFF;
+    text-decoration: underline;
+}
+
+.tablaflex th, .tablaflex td {
+	padding: 2px 4px 2px 4px;
+	vertical-align: top;
+}
+
+.tablaflex thead tr {
+
+  background-color: #ebebed;
+	background-repeat: repeat;
+
+}
+
+.tablaflex th.sorted {
+    background-image: url("../images/diseno/bg-titulo-3.gif");
+	background-repeat: repeat-x;
+}
+
+.tablaflex th a, .tablaflex th a:visited {
+  color: #3C5775;
+}
+
+.tablaflex th a:hover {
+  text-decoration: underline;
+  color: #8293A7;
+}
+
+.tablaflex tr.odd {
+  background-color: #fff;
+}
+
+.tablaflex tr.even {
+  background-color: #FFEBD6;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*- *-*-*-*- *-*-*-*- *-*-*-*- *- *-*-*-*- *-*-*-*- *-*-*-*-           */
+
+/* *-*-*-*- *-*-*-*- *-*-*-*-        tablaPopup        *-*-*-*- *-*-*-*- *-*-*-*-           */
+
+.tablapopup {
+	margin:0;
+	padding:0;
+	font-size: 1em;
+	background-repeat:no-repeat;
+	list-style-type:none;
+	color: #FFFFFF;
+	width: 98%;
+	margin: 0 0px 0;
+}
+
+.tablapopup a, .tabla a:visited {
+	color: #000000;
+	text-decoration: none;
+}
+
+.tablapopup tbody tr td a {
+	color: #000000;
+}
+
+.tablapopup a:hover {
+    color: #FFFFE1;
+    text-decoration: underline;
+}
+
+.tablapopup th, .tabla td {
+	padding: 2px 4px 2px 4px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.tablapopup thead tr {
+
+  background-color: "#7C8DA2";
+	background-repeat: repeat;
+
+}
+
+.tablapopup th.sorted {
+    background-image: url("../images/diseno/bg-titulo-3.gif");
+	background-repeat: repeat-x;
+}
+
+.tablapopup th a, .tabla th a:visited {
+  color: #FFFFFF;
+}
+
+.tablapopup th a:hover {
+  text-decoration: underline;
+  color: #FFFFFF;
+}
+
+.tablapopup tr.odd {
+  background-color: #fff;
+}
+
+.tablapopup tr.even {
+  background-color: #FFFFE1;
+}
+
+/* *-*-*-*- *-*-*-*- *-*-*-*- *-*-*-*- *-*-*-*- *-*-*-*- *- *-*-*-*- *-*-*-*- *-*-*-*-           */
+
+.thCenter {
+ text-align: center;
+}
+
+.thLeft {
+ text-align: left;
+}
+
+.thRight {
+ text-align: right;
+}
+
+span.pagelinks {
+	background-color: #7FBBD5;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	width: 99%;
+	display:block;
+	border-top: none;
+	margin-bottom: -5px;
+}
+.label1b
+{
+	font-family: Verdana;
+	font-size: 9px;
+	font-weight: bold;
+	color: Navy;
+}
+.label1
+{
+	font-family: Verdana;
+	font-size: 9px;
+}
+.label2b
+{
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight: bold;
+	color: Navy;
+}
+.label2
+{
+	font-family: Verdana;
+	font-size: 10px;
+}
+.label3b
+{
+	font-family: Verdana;
+	font-size: 12px;
+	font-weight: bold;
+	color: Navy;
+}
+.label3
+{
+	font-family: Verdana;
+	font-size: 12px;
+}
+.label4
+{
+	font-color: blue;
+	font-family: Verdana;
+	font-size: 9px;
+}
+.label4b
+{
+	font-color: blue;
+	font-family: Verdana;
+	font-size: 9px;
+	font-weight: bold;
+	color: Navy;
+
+}
+
+
+div.exportlinks {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	margin: 5px 0 10px 0px;
+	width: 99%;
+}
+
+span.export {
+	padding: 0 4px 1px 20px;
+	display:inline;
+	display:inline-block;
+	cursor: pointer;
+}
+
+span.rtf {
+	background-image: url(../images/icons/ico_file_rtf.png);
+	background-repeat: no-repeat;
+}
+
+span.pdf {
+	background-image: url(../images/icons/ico_file_pdf.png);
+	background-repeat: no-repeat;
+}
+
+span.excel {
+	background-image: url(../images/icons/ico_file_excel.png);
+	background-repeat: no-repeat;
+}
+
+span.csv {
+	background-image: url(../images/icons/ico_file_csv.png);
+	background-repeat: no-repeat;
+}
+
+span.xml {
+	background-image: url(../images/icons/ico_file_xml.png);
+	background-repeat: no-repeat;
+}
+
+.norecordsfound {
+	color: red;
+}
+
+.nointerfacesfound {
+	color: red;
+	padding: 0px 0px 0px 2px;
+}
+
+
+.HeaderHide{
+display: none;
+}
+
+span.pagelinks {
+	background-color: #7fbbd5;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	width: 98%;
+	display: block;
+	border-top: none;
+	margin-bottom: -5px;
+}
+
+selected {
+	background-color: GRAY;
+}
+
+.displayNone {
+	display: none;
+}
+
+.thCode {
+	width: 50px;
+}
+
+.thDescription{
+	width: 200px;
+}

@@ -1,0 +1,689 @@
+body { 
+	scrollbar-face-color: #C4C8CB; 
+	scrollbar-3dlight-color: #FFFFFF; 
+	scrollbar-arrow-color: #FFFFFF; 
+	scrollbar-highlight-color: #FFFFFF; 
+	scrollbar-shadow-color: #FFFFFF; 
+	scrollbar-darkshadow-color: #C4C8CB; 
+	scrollbar-track-color: #FFFFFF; 
+	scrollbar-base-color: #FFFFFF; 
+	Scrollbar-Front-Color:#7FBBD5
+}
+
+.TitleScreen {
+	font-family: Verdana;
+	font-size: 14px;
+	font-weight: bold;
+	background-image: url("../images/diseno/bg-tit-1.gif");
+	/*background-repeat: repeat;*/
+	color: #3C5775;
+	height: 23px;
+	vertical-align: middle;
+}
+
+.TableBG {
+	background-color : #E7DFEF;
+}
+
+.SubTitleorange {
+	font-weight: bold;
+	background-image: url("../images/diseno/bg-tit-2.gif");
+	background-repeat: repeat-x;
+	color:#3C5775;
+	height: 16px;
+}
+
+.SubTitleScreen {
+	font-weight: bold;
+	background-image: url("../images/diseno/bg-titulo-3.gif");
+	/*background-repeat: repeat;*/
+	color:#3C5775;
+	height: 18px;
+	border-color: #8c99aa;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.SubTitleScreenNoRepeat {
+	font-weight: bold;
+	background-image: url("../images/diseno/bg-titulo-3.gif");
+	background-repeat: repeat-x;
+	color:White;
+	height: 18px;
+}
+
+.labelerror1 {
+	COLOR: white;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+		background-image: url("../images/diseno/bg-loudpag-azacer.gif");
+	background-repeat: repeat;
+	
+}
+
+
+.labelerror2 {
+	COLOR: white;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+		background-image: url("../images/diseno/bg-loudpag-rojo.gif");
+	background-repeat: repeat;
+	
+}
+
+.labelerror3 {
+	COLOR: white;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+	color: red;
+}
+
+
+
+.BlueScreen {
+	font-weight: bold;
+	background-color : #161E5F;
+	color:White;
+}
+
+.BlueAceroScreen {
+	font-weight: bold;
+	background-image: url("../images/diseno/bg_titulo_01.gif");
+	color:#3C5775;
+	border-color: #8c99aa;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+.BlueAceroScreenBorderR {
+	font-weight: bold;
+	background-image: url("../images/diseno/bg_titulo_01.gif");
+	color:#3C5775;
+	border-color: #8c99aa;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-right-width: 1px;
+}
+
+.BlueAceroScreenBorderL {
+	font-weight: bold;
+	background-image: url("../images/diseno/bg_titulo_01.gif");
+	color:#3C5775;
+	border-color: #8c99aa;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-left-style: solid;
+	border-left-width: 1px;
+}
+
+.Search{
+	height: 24px;
+	background-image: url("../images/diseno/bg-search.gif");
+}
+
+.Tabs{
+
+	background-image: url("../images/tabs/bg-tree.gif");
+	background-repeat:repeat-x;
+}
+
+
+
+.GrayScreen {
+	font-weight: bold;
+	background-color : #D7D6D7;
+	color:White;
+}
+
+
+
+
+	.bloques a {
+		color:#161E5F;
+		font-size: 11px;
+		font-family: Arial;
+		text-decoration: none;
+		width: auto;
+	}
+ 	
+	.bloques a:hover {
+		font-color: #515787;
+		font-size: 11px;
+		font-family: Arial;
+		text-decoration: none;
+		width: auto;
+	}
+	
+    .bloque {
+        cursor:hand ;
+        font-size : 13;
+		bgcolor : gray;
+		font-family: verdana, geneva, sans serif;
+		font-color:red;
+		font: menu;
+	}
+
+.label3b {
+	font-family: Verdana;
+	font-size: 12px;
+	font-weight: bold;
+	color: Navy;
+}
+
+
+.labelsubtitle {
+	COLOR: #3C5775;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitleonlybold {
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitleonlygraytext {
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	color: graytext;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitleonlygraytext1 {
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	color: graytext;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitlered {
+	COLOR: red;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitlered2 {
+	COLOR: red;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitlered3 {
+	COLOR: red;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 6pt;
+	TEXT-DECORATION: none;
+}
+
+.labelsubtitlemonospace {
+	COLOR: #3C5775;
+	FONT-FAMILY: monospace;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	BORDER-BOTTOM: silver 1px solid;
+	BORDER-LEFT: silver 1px solid;
+	BORDER-RIGHT: silver 1px solid;
+	BORDER-TOP: silver 1px solid;
+	TEXT-DECORATION: none;
+}
+
+.labelsubtitle18 {
+	COLOR: #3C5775;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 18pt;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitleexpected {
+	COLOR: #3C5775;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none;
+	background-color: #ebebed;
+}
+
+
+.labelsubtitlece {
+	COLOR: 8293A7;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 11px;
+	TEXT-DECORATION: none
+}
+
+
+.labelsubtitleblack {
+	COLOR: #000000;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+.labelsubtitlegray {
+	COLOR: #808080;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitlesearch {
+	COLOR: #5F7A95;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+
+.labelbuttom {
+	COLOR: navy;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+
+
+
+.text1 {
+	COLOR: #2C4A6D;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	BORDER-BOTTOM: silver 1px solid;
+	BORDER-LEFT: silver 1px solid;
+	BORDER-RIGHT: silver 1px solid;
+	BORDER-TOP: silver 1px solid;
+	TEXT-DECORATION: none;
+}
+
+.text2 {
+	FONT-COLOR: blue;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+#width200 {
+	width: 200px;
+}
+
+.textLabel {
+	COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	border: none;
+	border-width: 1px;
+	background-color: transparent;
+}
+
+.textLabel2 {
+	COLOR: red;
+	
+}
+.labelsubtitle2ce {
+	COLOR: red;
+	font-weight: bold;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+.textLabel3ce {
+    COLOR: "#182063";
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 2;
+}
+
+.textLabel4ce {
+    COLOR: #000000;
+	FONT-FAMILY: Arial;
+	FONT-SIZE: 11;
+	font-weight: bold;
+}
+
+
+.textLabel5ce {
+    COLOR: "#000000";
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 2;
+	font-weight: bold;
+}
+
+/*.textLabel6ce {
+    COLOR: "#FFFFFF";
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 20px;
+	font-weight: bold;
+}
+*/
+
+
+.textLabel6ce {
+    COLOR: "WHITE";
+	font-weight: bold;
+}
+
+.textLabel7ce {
+    COLOR: Navy;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+}
+
+.cellframe {
+	border-color: #FFB652;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #FFFFFF;
+}
+
+.interline {
+	background-color: #FFEBD6;
+}
+
+.ownerColumn {
+	background-color: #FFCE73;
+}
+
+.labelsubtitle1 {
+	COLOR: #3C5775;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+.labelsubtitle2 {
+	COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+.labelsubtitle3 {
+	COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+.labelsubtitle4 {
+	COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	font-weight: bold;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+.labelsubtitle5 {
+	COLOR: #FFFFFF;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	font-weight: bold;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+.labelreadonly {
+	COLOR:#9CAAAD;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	BORDER-BOTTOM: silver 1px solid;
+	BORDER-LEFT: silver 1px solid;
+	BORDER-RIGHT: silver 1px solid;
+	BORDER-TOP: silver 1px solid;
+	TEXT-DECORATION: none;
+}
+
+
+
+
+
+HTML, TABLE, TABLE TR, TABLE TR TD, FONT, B, STRONG, INPUT  { 
+	font-family: Arial, Verdana, Geneva,  Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.cssHeaderLogin {
+	background-color: #202664;
+}
+
+.cssHeaderLogin .cssMainTitle {
+	color: #FFFFFF;
+    FONT-SIZE: 12pt;
+    TEXT-DECORATION: none
+}
+
+A:hover {
+    COLOR: #8293A7;
+    font-weight: bold;
+    FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+A:link {
+    COLOR: #3C5775;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+
+A:active {
+    COLOR: #8293A7;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+
+A {
+    COLOR: #3C5775;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+
+P {
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    TEXT-DECORATION: none
+}
+
+.bordT {border-top: #808080 1px solid;}
+.bordL {border-left: #808080 1px solid;}
+.bordR {border-right: #808080 1px solid;}
+.bordB {border-bottom: #808080 1px solid;}
+.bordBO {border: #ffffff 2px outset;}
+
+.bordTopBG {border-top: #cccccc 1px solid;}
+.bordTopBDG {border-top: #808080 1px solid;}
+
+TD {
+    COLOR: #333333;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    TEXT-DECORATION: none
+}
+
+SELECT {
+    COLOR: #000000;
+    FONT-FAMILY: Verdana, Arial;
+    FONT-SIZE: 8pt;
+    TEXT-DECORATION: none
+}
+
+.tet {
+	border: #808080 1px solid;
+	border-color: #808080 #808080 #808080 #808080;
+	background-attachment: fixed;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 8px;
+	color: #000000;
+}
+
+.NormalText {
+    COLOR: #0C3C63;
+    FONT-FAMILY: Verdana,Arial;
+    FONT-SIZE: 10pt;
+    TEXT-DECORATION: none
+}
+
+TD {
+    COLOR: #000000;
+    FONT-FAMILY: Verdana,Arial;
+    FONT-SIZE: 10pt;
+    TEXT-DECORATION: none
+}
+
+INPUT {
+	background-attachment: fixed;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #000000;
+}
+
+OLDINPUT {
+	border: #000000 1px inset;
+	border-color: #000000 #000000 #000000 #000000;
+	background-attachment: fixed;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	color: #000000;
+}
+
+btnEnter {
+	border: #000000 1px inset;
+	border-color: #000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+.cellframeDiv {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+    background-color: #FFFFE1;
+}
+
+.wiretransfer {
+	background-color: #FDFDFD;
+}
+
+.wiretransfertr {
+	background-color: #D7D6D7;
+}
+
+.comments {
+	background-color: #FFEFDE;
+}
+
+.comments2 {
+	background-color: #9CAAAD;
+}
+
+.borderexp {
+	background-color: #FFB652;
+}
+
+.tet {
+	border: #808080 1px solid;
+	border-color: #808080 #808080 #808080 #808080;
+	background-attachment: fixed;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+}
+
+.blackFont {
+	font-weight: bold;
+	font-family:arial;
+	TEXT-DECORATION: none
+}
+
+.borderorange {
+	border-color: #FDBE61;
+	border-style: solid;
+	border-width: 2px;
+}
+
+.text1Missing {
+	COLOR: #2C4A6D;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	BORDER-BOTTOM: silver 1px solid;
+	BORDER-LEFT: silver 1px solid;
+	BORDER-RIGHT: silver 1px solid;
+	BORDER-TOP: silver 1px solid;
+	TEXT-DECORATION: none;
+	background-color: #BBD6FA;
+}
+
+.cellHidden {
+	display: none;
+}
+
+.centered {
+    margin: 0px auto;
+    
+}
+
+.formLogin{
+	margin: 0px auto;	
+}
