@@ -13,12 +13,11 @@
 	<link rel="stylesheet" href="#{request.contextPath}/css/general.css" />
 </h:head>
 
-<h:body>
 
 	<h:outputText value="Apiarios" /><br/>
 	<p:selectOneMenu id="b" value=""  required="true"
 		requiredMessage="escoja una opcion">
-		<f:selectItems value="#{jMBControldeCalidadApiaria.oList1}" />
+		<f:selectItems value="#{jMBControlCalidadApiario.oList1}" />
 
 	</p:selectOneMenu>
 	<br />
@@ -31,5 +30,4 @@
 			
 		</p:selectOneRadio>
 	
-</h:body>
 </html>
