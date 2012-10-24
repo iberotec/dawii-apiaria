@@ -16,46 +16,62 @@ public class MySqlApiarioDAOImpl implements ApiarioDAO{
 	EntityManager em=emf.createEntityManager();
 	
 	@Override
-	public List<Apiario> listarApiarios() throws Exception {
-		
+	public List<Apiario> buscarTodos() {
 		List<Apiario> lista=new ArrayList<Apiario>();
 		
 		try {
 			em.getTransaction().begin();
 			
 			Query sql=em.createQuery("select a from Apiario a");
+			
 			lista=sql.getResultList();
 			
 			em.getTransaction().commit();
+			
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 		}
 		return lista;
 	}
-
 	@Override
-	public Apiario buscarApiarioporId(Integer codigo) throws Exception {
+	public List<Apiario> buscarApiarios(Apiario instance) {
+
+		return null;
+	}
+	@Override
+	public Apiario obtenerporId(Integer id) {
+//		try {
+//			em.getTransaction().begin();
+//			
+//			Query sql=em.createQuery("select a from Apiario a where idapiario= ?1");
+//			
+//			
+//			em.getTransaction().commit();
+//		} catch (Exception e) {
+//			em.getTransaction().rollback();
+//		}
+		return null;
+	}
+	@Override
+	public List<Apiario> buscarPorPropiedad(String propiedad, Object valor) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@Override
-	public void actualizarApiario(Apiario entidad) throws Exception {
+	public Apiario guardarInstancia(Apiario instance) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
-
 	@Override
-	public void registrarApiario(Apiario entidad) throws Exception {
-		try {
-			em.getTransaction().begin();
-			
-			em.persist(entidad);
-			
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			em.getTransaction().rollback();
-		}
+	public Apiario guardarInstancias(List<Apiario> lista) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+	@Override
+	public Apiario eliminarInstancia(Apiario instance) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 }
