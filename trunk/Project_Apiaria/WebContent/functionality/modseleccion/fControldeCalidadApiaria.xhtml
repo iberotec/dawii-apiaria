@@ -9,17 +9,19 @@
 
 
 <h:head>
+	<link rel="stylesheet" href="#{request.contextPath}/css/reset.css" />
+	<link rel="stylesheet" href="#{request.contextPath}/css/general.css" />
 </h:head>
 
 <h:body>
 
 	<h:outputText value="Apiarios" /><br/>
-	<p:selectOneMenu value=""  required="true"
-		label="popupAmlcfilial" requiredMessage="escoja una opcion">
-		<f:selectItems value="#{jMBVerificarApiario.oList}" />
+	<p:selectOneMenu id="b" value=""  required="true"
+		requiredMessage="escoja una opcion">
+		<f:selectItems value="#{jMBControldeCalidadApiaria.oList1}" />
 
 	</p:selectOneMenu>
-	
+	<br />
 	<h:outputText
 			value="Control de Calidad de Apiario (SENAZA)" />
 		<p:selectOneRadio 
