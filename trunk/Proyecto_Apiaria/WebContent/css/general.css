@@ -1,0 +1,331 @@
+body {
+	font-size: 10px;
+	color: rgba(0, 0, 0, 0.7);
+}
+
+a .noBorder {
+	font-style: none !important;
+	border: none !important;
+}
+
+#lyContainer {
+	padding: 0px 10px;
+	overflow-x: hidden;
+}
+
+#growl_container {
+	/*zoom: 120%;*/
+}
+
+#logoCompany{
+	padding:0px !important;
+	height: 100px;
+	background-color: rgb(250,250,250) !important;
+}
+
+
+
+#logoSystem{
+	padding:0px !important;
+	width:100%;
+	float:left;
+	bottom:0px !important;
+	margin-bottom: 0px !important;
+	height: 70px;
+	position:absolute;
+	background-color: rgb(250,250,250) !important;
+}
+#logoCompany .ui-panel-content,#logoSystem .ui-panel-content{
+	padding:0px !important;
+}
+
+
+#logoCompany img, #logoSystem img{
+	margin: 18px auto;
+	display: block;
+}
+
+/*ESTILOS PARA EL TOP*/
+.containerFlag{
+	/*display: block;
+	float: left;
+	width: 30px;
+	margin-top:-10px;
+	margin-right: 10px;
+	margin-left: 10px;*/
+	margin-top:-11px !important;
+	margin-left:10px !important;
+	position: absolute;
+}
+
+.containerTheme{
+	display: block;
+	float: right;
+	width: 170px !important;
+	min-width: 170px !important;
+	max-width: 170px !important;
+	margin-right: 10px;
+	background-color: RED !important;
+}
+
+.lblTheme{
+margin-top:5px !important;
+margin-right: 5px !important;
+}
+.cboTheme{
+	top:0px !important;
+	margin-top: 0px !important;
+	padding-top: 0px !important;
+	margin-top:7px !important;
+	
+	position: absolute;
+}
+
+
+.pnlTheme,.pnlTheme .ui-panel,.pnlTheme .ui-widget-content{
+	width: 250px !important;
+	min-width: 250px !important;
+	max-width: 250px !important;
+	display: block;
+	
+}
+
+
+/*FIN ESTILOS PARA TOP*/
+
+/*ESTILOS PARA BOTTOM*/
+#lyBottom{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#lyBottom .left{
+	display: block;
+	float: left;
+	text-align: left;
+	width:400px !important;
+}
+#lyBottom .right{
+	width:400px !important;
+	display: block;
+	float: right;
+	text-align: right;
+}
+/*FIN ESTILOS BOTTOM*/
+
+
+/*ESTILOS PARA LEFT*/
+#lyLeft .ui-layout-unit-header{
+	height: 0px !important;
+	max-height: 1px !important;
+	min-height: 1px !important;
+	margin: 0px !important;
+	padding: 0px !important;
+	border: none;
+	display: none;
+}
+
+#lyLeft .ui-layout-unit-header span{
+	margin: 4px -4px !important;
+	padding: -3px !important;
+	background-color: RED !impotant;
+}
+
+#lyLeft .ui-layout-unit-header-icon{
+	height: 25px !important;
+	width:9px !important;
+	padding:0px !important;
+	float: right;
+	margin-top: 265px;
+	z-index: 100;
+	float: right;
+	right:-10px;
+	position: inherit;
+}
+
+#lyLeft-resizer{
+	width: 14px !important;
+}
+#lyLeft-toggler{
+	height: 100% !important;
+}
+#lyLeft-toggler span{
+	margin: 4px -4px !important;
+	padding: -3px !important;
+	background-color: RED !impotant;
+	background-position: -32px -16px !important;
+}
+#lyLeft-toggler .ui-layout-unit-expand-icon{
+	height: 25px !important;
+	width:9px !important;
+	margin-top: 265px;
+	margin-left: -5px !important;
+	margin-right: 3px !important;
+}
+/*FIN ESTILOS LEFT*/
+
+
+
+
+
+
+.titlePage{
+	
+	font-size: 12px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.menuLateral2{
+min-width: 150px !important;
+}
+.menuLateral2 a{
+	font-size: 8.5px !important;
+	text-transform: uppercase !important;	
+}
+
+.menuLateral2 .ui-menuitem-link,.menuLateral2 .ui-menuitem ,.menuLateral2 .ui-menu-list{
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+	padding-top: 0px !important;	
+	paffing-bottom: 0px !important;	
+}
+
+
+
+.tabMenu .ui-accordion-content{
+	overflow:hidden !important;
+	padding: 0px !important;
+}
+
+
+.treeMenu{
+	margin: 0px !important;
+	width: auto;
+}
+
+.span{
+	height: 5px;
+	display: block;
+}
+.contenedor {
+	display: block;
+	/*margin:10px;
+		width: 900px;
+		max-width: 900px;
+		min-width: 500px;*/
+}
+
+.btnEdicionGear {
+	height: 20px !important;
+	max-height: 20px !important;
+	width: 25px !important;
+	max-width: 25px !important;
+	margin: 0px !important;
+	font-size: 5px;
+}
+
+.frmDialog td {
+	margin-bottom: 2px !important;
+	margin-right: 10px !important;
+	padding-right: 10px !important;
+	padding-bottom: 2px !important;
+}
+
+.pestana-l,.pestana-r {
+	display: block;
+	margin-bottom: 0px !important;
+	border-bottom: none !important;
+	padding: 2px;
+	width: auto !important;
+	position: absolute;
+	bottom: 0px;
+}
+
+.pestana-l {
+	float: left;
+	left: 0px;
+}
+
+.pestana-r {
+	float: right;
+	right: 0px;
+}
+
+.linkExport {
+	margin: 2px 5px;
+	border-width: 0px !important;
+	border: none !important;
+}
+
+.linkExport img {
+	margin: 2px 5px;
+	border-width: 0px !important;
+	border: none !important;
+}
+
+/*
+IMPORTANTE PAR LA TABLA
+*/
+.maintenanceTable tbody td .ui-dt-c{
+	
+	padding: 2px 5px !important;
+	margin: 0px !important;
+	min-width: 10px !important;
+	
+	
+}
+
+/*GROWL*/
+.ui-growl-title{
+	display:none !important;
+}
+#growl_container{
+}
+
+#growl_container > *:nth-child(n) {
+	display:none !important;
+}
+#growl_container > *:nth-child(1) {
+	display:block !important;
+}
+
+
+
+
+
+
+.btnEdicionGear{
+	margin-right: -8px !important;
+	
+}
+
+
+
+
+
+
+#lyLeft{
+	overflow: hidden;
+}
+
+#lyLeft .ui-layout-unit-content{
+	overflow: hidden;
+}
+
+
+
+
+#lyTop .ui-layout-unit-content{
+margin: 0px !important;
+padding: 0px !important;
+overflow: hidden;
+}
+
+
+
+
+/*ESTO ES PARA COMPACTAR EL MENU */
+
+.growl_container{
+	
+}

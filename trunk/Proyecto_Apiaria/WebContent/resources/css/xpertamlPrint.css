@@ -1,0 +1,381 @@
+body {
+	scrollbar-face-color: #c4c8cb;
+	scrollbar-3dlight-color: #ffffff;
+	scrollbar-arrow-color: #ffffff;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-shadow-color: #ffffff;
+	scrollbar-darkshadow-color: #c4c8cb;
+	scrollbar-track-color: #ffffff;
+	scrollbar-base-color: #ffffff;
+	scrollbar-front-color: #7fbbd5
+}
+
+.labelsubtitleexpected {
+	COLOR: #000000;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none;
+	background-color: #A9AAAA;
+}
+
+
+.TitleScreen {
+	font-family: Verdana;
+	font-size: 14px;
+	font-weight: bold;
+	background-image: url("../images/diseno/bg-tit-1-gris.gif");
+	background-repeat: repeat;
+	color: white;
+	height: 26px;
+	vertical-align: middle;
+}
+
+.TableBG {
+	background-color: #ffffff;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.SubTitleorange {
+	font-weight: bold;
+	background-image: url("../images/diseno/bg-tit-2-gris.gif");
+	background-repeat: repeat;
+	color:White;
+	height: 18px;
+}
+
+.SubTitleScreen {
+	font-weight: bold;
+	background-image: url("../images/diseno/bg-titulo-3-gris.gif");
+	background-repeat: repeat;
+	color:White;
+	height: 18px;
+}
+
+
+.label3b {
+	font-family: verdana;
+	font-size: 12px;
+	font-weight: bold;
+	color: navy;
+}
+
+.labelsupertitle{
+	   color: black;
+	   font-family: arial, verdana, geneva, helvetica, sans-serif;
+	   font-weight: bold;
+	   font-size: 15pt;
+	   text-decoration: none
+}
+.labelsubtitle {
+	   color: black;
+	   font-family: arial, verdana, geneva, helvetica, sans-serif;
+	   font-weight: bold;
+	   font-size: 8pt;
+	   text-decoration: none;
+}
+
+.labelsubtitlered {
+	COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	font-weight: bold;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitlered2 {
+	COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	TEXT-DECORATION: none
+}
+
+.labelsubtitlered3 {
+	COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 6pt;
+	TEXT-DECORATION: none;
+}
+
+.labelbuttom {
+	   color: black;
+	   font-family: arial, verdana, geneva, helvetica, sans-serif;
+	   font-weight: bold;
+	   font-size: 8pt;
+	   text-decoration: none
+}
+
+.text1 {
+	color: black;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	border-bottom: silver 1px solid;
+	border-left: silver 1px solid;
+	border-right: silver 1px solid;
+	border-top: silver 1px solid;
+	text-decoration: none;
+}
+
+.textLabel3ce {
+    COLOR: "#182063";
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 2;
+}
+
+.textLabel4ce {
+    COLOR: #000000;
+	FONT-FAMILY: Arial;
+	FONT-SIZE: 11;
+	font-weight: bold;
+}
+
+.cellframe {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #ffffff;
+}
+
+.interline {
+	background-color: #E7E3E7;
+}
+
+.ownerColumn {
+	background-color: #636163;
+}
+
+.labelsubtitlemonospace {
+	color: black;
+	FONT-FAMILY: monospace;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	border-bottom: silver 1px solid;
+	border-left: silver 1px solid;
+	border-right: silver 1px solid;
+	border-top: silver 1px solid;
+	text-decoration: none;
+}
+
+.labelsubtitle1 {
+	color: black;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	text-decoration: none;
+}
+
+.labelsubtitle2 {
+	color: black;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	text-decoration: none;
+}
+
+.labelsubtitle3 {
+	color: black;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+	text-decoration: none;
+}
+
+.labelsubtitle4 {
+	color: white;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-weight: bold;
+	font-variant: normal;
+	text-decoration: none;
+}
+
+.labelsubtitle5 {
+   color: white;
+   font-family: arial, verdana, geneva, helvetica, sans-serif;
+   font-size: 8pt;
+   font-weight: bold;
+   font-variant: normal;
+   text-decoration: none;
+}
+
+.labelreadonly {
+	color: #9caaad;
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 8pt;
+	font-style: normal;
+	font-variant: normal;
+    border-bottom: silver 1px solid;
+    border-left: silver 1px solid;
+    border-right: silver 1px solid;
+    border-top: silver 1px solid;
+	text-decoration: none;
+}
+
+.labelerror1 {
+	   color: white;
+	   font-family: arial, verdana, geneva, helvetica, sans-serif;
+	   font-size: 8pt;
+	   font-style: normal;
+	   font-variant: normal;
+	   text-decoration: none;
+	   font-weight: bold;
+}
+
+HTML,TABLE,TABLE TR,TABLE TR TD,FONT,B,STRONG,INPUT {
+	font-family: arial, verdana, geneva, helvetica, sans-serif;
+	font-size: 11px;
+}
+
+.cssHeaderLogin {
+	background-color: #202664;
+}
+
+.cssHeaderLogin .cssMainTitle {
+	color: #ffffff;
+	font-size: 12pt;
+	text-decoration: none
+}
+
+A:hover {
+    COLOR: black;
+    FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+A:link {
+    COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+A:active {
+    COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+A {
+    COLOR: black;
+	FONT-FAMILY: Arial, Verdana, Geneva, Helvetica, sans-serif;
+	FONT-SIZE: 8pt;
+	FONT-STYLE: normal;
+	FONT-VARIANT: normal;
+	TEXT-DECORATION: none;
+}
+
+P {
+	color: #000000;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+.bordT {
+	border-top: #808080 1px solid;
+}
+
+.bordL {
+	border-left: #808080 1px solid;
+}
+
+.bordR {
+	border-right: #808080 1px solid;
+}
+
+.bordB {
+	border-bottom: #808080 1px solid;
+}
+
+.bordBO {
+	border: #ffffff 2px outset;
+}
+
+.bordTopBG {
+	border-top: #cccccc 1px solid;
+}
+
+.bordTopBDG {
+	border-top: #808080 1px solid;
+}
+
+TD {
+	color: #333333;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+SELECT {
+	color: #000000;
+	font-family: verdana, arial;
+	font-size: 8pt;
+	text-decoration: none
+}
+
+.tet {
+	border: #808080 1px solid;
+	border-color: #808080 #808080 #808080 #808080;
+	background-attachment: fixed;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 8px;
+	color: #000000;
+}
+
+.NormalText {
+	color: #0c3c63;
+	font-family: verdana, arial;
+	font-size: 10pt;
+	text-decoration: none
+}
+
+TD {
+	color: #000000;
+	font-family: verdana, arial;
+	font-size: 10pt;
+	text-decoration: none
+}
+
+INPUT {
+	background-attachment: fixed;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 10pt;
+	color: #000000;
+}
+
+OLDINPUT {
+	border: #000000 1px inset;
+	border-color: #000000 #000000 #000000 #000000;
+	background-attachment: fixed;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 10pt;
+	color: #000000;
+}
+
+btnEnter {
+	border: #000000 1px inset;
+	border-color: #000000;
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+}
+
+.borderexp {
+	background-color: #9C9A9C;
+}
