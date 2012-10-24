@@ -1,22 +1,44 @@
 package apiario.edu.pe.modulo.seleccion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.event.ActionEvent;
 
 import apiario.edu.pe.util.JUtilities;
 
 @ManagedBean(name = "jMBVerificarApiario")
 @SessionScoped
-public class MBVerificarApiario {
+public class MBVerificarApiario implements Serializable{
 
-	
-	List<String> oList;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@ManagedProperty("#{jMBApiarioAsignado}")
+	private MBApiarioAsignado oaa;
+	@ManagedProperty("#{jMBControlCalidadApiario}")
+	private MBControlCalidadApiario occ;
+	List<String> oList=new ArrayList<String>();
 	List<String> oCheck;
-	public MBVerificarApiario(){
-		oList=new ArrayList<String>();
+	
+	List<String> oList2=new ArrayList<String>();;
+	
+	public void load2(){
+		
+		
+		oList2.add("Tarma");
+		oList2.add("Tambo");
+		oList2.add("La merced");
+	}
+	
+	public void load()throws Exception{
+		
+		
 		oList.add("Tarma");
 		oList.add("Tambo");
 		oList.add("La merced");
@@ -29,8 +51,17 @@ public class MBVerificarApiario {
 		oCheck.add("Zona apropiada no humedas, no calurosas");
 		oCheck.add("Distancia entre vias publicas 200 km");
 		oCheck.add("Posicionamiento adecuado de piqueras");
+		
+		
 	}
-	
+	public void init(ActionEvent event)throws Exception{
+		load2();
+		occ.init(event);
+		load();
+		
+		 JUtilities.redirect("/functionality/modseleccion/fMain.xhtml");
+		
+	}
 	public List<String> getoCheck() {
 		return oCheck;
 	}
@@ -39,14 +70,7 @@ public class MBVerificarApiario {
 		this.oCheck = oCheck;
 	}
 
-	public void init(){
-		
-//		 JUtilities.redirect("/functionality/modseleccion/fMain.xhtml");
-		 JUtilities.redirect("/seleccion/layouts/main.xhtml");
-		
-		 JUtilities.redirect("/functionality/modseleccion/fMain.xhtml");
-		
-	}
+	
 
 
 	public List<String> getoList() {
@@ -57,5 +81,18 @@ public class MBVerificarApiario {
 	public void setoList(List<String> oList) {
 		this.oList = oList;
 	}
+	public MBApiarioAsignado getOaa() {
+		return oaa;
+	}
+	public void setOaa(MBApiarioAsignado oaa) {
+		this.oaa = oaa;
+	}
+	public MBControlCalidadApiario getOcc() {
+		return occ;
+	}
+	public void setOcc(MBControlCalidadApiario occ) {
+		this.occ = occ;
+	}
+	
 
 }
