@@ -1,4 +1,4 @@
-package apiario.edu.pe.modulo.seleccion;
+package apiario.edu.pe.manageBeans.seleccion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,11 +17,7 @@ public class MBApiarioAsignado implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	List<String> oList2=new ArrayList<String>();
-	
-	public MBApiarioAsignado(){
-		load();
-	}
+	List<String> oList2=new ArrayList<String>();;
 public void load(){
 	
 	

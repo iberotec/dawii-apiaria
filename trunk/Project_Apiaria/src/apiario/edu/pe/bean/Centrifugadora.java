@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -20,9 +20,9 @@ public class Centrifugadora implements Serializable {
 	@Column(name="nombre_centrifugadora")
 	private String nombreCentrifugadora;
 
-	//bi-directional many-to-many association to PlanillaCosecha
-	@ManyToMany(mappedBy="centrifugadoras")
-	private List<PlanillaCosecha> planillaCosechas;
+	//bi-directional many-to-one association to DetalleCentrifugadoraPlanillaCosecha
+	@OneToMany(mappedBy="centrifugadora")
+	private Set<DetalleCentrifugadoraPlanillaCosecha> detalleCentrifugadoraPlanillaCosechas;
 
     public Centrifugadora() {
     }
@@ -43,12 +43,12 @@ public class Centrifugadora implements Serializable {
 		this.nombreCentrifugadora = nombreCentrifugadora;
 	}
 
-	public List<PlanillaCosecha> getPlanillaCosechas() {
-		return this.planillaCosechas;
+	public Set<DetalleCentrifugadoraPlanillaCosecha> getDetalleCentrifugadoraPlanillaCosechas() {
+		return this.detalleCentrifugadoraPlanillaCosechas;
 	}
 
-	public void setPlanillaCosechas(List<PlanillaCosecha> planillaCosechas) {
-		this.planillaCosechas = planillaCosechas;
+	public void setDetalleCentrifugadoraPlanillaCosechas(Set<DetalleCentrifugadoraPlanillaCosecha> detalleCentrifugadoraPlanillaCosechas) {
+		this.detalleCentrifugadoraPlanillaCosechas = detalleCentrifugadoraPlanillaCosechas;
 	}
 	
 }

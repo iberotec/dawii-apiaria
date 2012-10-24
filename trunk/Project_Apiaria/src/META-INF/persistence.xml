@@ -8,17 +8,16 @@
 		<class>apiario.edu.pe.bean.Centrifugadora</class>
 		<class>apiario.edu.pe.bean.Colmena</class>
 		<class>apiario.edu.pe.bean.DetalleApiarioNormaSeg</class>
-		<class>apiario.edu.pe.bean.DetalleApiarioNormaSegPK</class>
+		<class>apiario.edu.pe.bean.DetalleCentrifugadoraPlanillaCosecha</class>
+		<class>apiario.edu.pe.bean.DetalleEstRevisionEquiTrab</class>
+		<class>apiario.edu.pe.bean.DetallePlanillaRevTipoAlim</class>
 		<class>apiario.edu.pe.bean.DetallePlanillaRevisionAlza</class>
-		<class>apiario.edu.pe.bean.DetallePlanillaRevisionAlzaPK</class>
 		<class>apiario.edu.pe.bean.DetallePlanillaRevisionTipoEnfermedad</class>
-		<class>apiario.edu.pe.bean.DetallePlanillaRevisionTipoEnfermedadPK</class>
 		<class>apiario.edu.pe.bean.DetalleRecNatZona</class>
-		<class>apiario.edu.pe.bean.DetalleRecNatZonaPK</class>
+		<class>apiario.edu.pe.bean.DetalleTipoAlimentacionInsumo</class>
 		<class>apiario.edu.pe.bean.DetalleTipoEnfeTratamiento</class>
-		<class>apiario.edu.pe.bean.DetalleTipoEnfeTratamientoPK</class>
+		<class>apiario.edu.pe.bean.DetalleTratMed</class>
 		<class>apiario.edu.pe.bean.DetalleUsuarioEnva</class>
-		<class>apiario.edu.pe.bean.DetalleUsuarioEnvaPK</class>
 		<class>apiario.edu.pe.bean.Envasadora</class>
 		<class>apiario.edu.pe.bean.Envase</class>
 		<class>apiario.edu.pe.bean.EquipamientoTrabajo</class>
@@ -32,7 +31,6 @@
 		<class>apiario.edu.pe.bean.PlanillaEnvasado</class>
 		<class>apiario.edu.pe.bean.PlanillaRevision</class>
 		<class>apiario.edu.pe.bean.PlanillaSeguimiento</class>
-		<class>apiario.edu.pe.bean.PlanillaSeguimientoPK</class>
 		<class>apiario.edu.pe.bean.Producto</class>
 		<class>apiario.edu.pe.bean.RecursoNatural</class>
 		<class>apiario.edu.pe.bean.Reina</class>
@@ -48,12 +46,13 @@
 		<class>apiario.edu.pe.bean.Ubigeo</class>
 		<class>apiario.edu.pe.bean.Usuario</class>
 		<class>apiario.edu.pe.bean.Zona</class>
+	
 		
 		<properties>
 			<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/db_sistema_apiario"/>
 			<property name="eclipselink.jdbc.user" value="root"/>
-			<property name="eclipselink.jdbc.password" value="admin"/>
+			<property name="eclipselink.jdbc.password" value="root"/>
 		</properties>
 	
 	</persistence-unit>

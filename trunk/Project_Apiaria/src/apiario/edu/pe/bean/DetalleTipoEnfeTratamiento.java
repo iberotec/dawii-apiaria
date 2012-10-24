@@ -13,8 +13,9 @@ import javax.persistence.*;
 public class DetalleTipoEnfeTratamiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetalleTipoEnfeTratamientoPK id;
+	@Id
+	@Column(name="idtipo_enfermedad_tratamiento")
+	private int idtipoEnfermedadTratamiento;
 
 	private String dosis;
 
@@ -31,14 +32,14 @@ public class DetalleTipoEnfeTratamiento implements Serializable {
     public DetalleTipoEnfeTratamiento() {
     }
 
-	public DetalleTipoEnfeTratamientoPK getId() {
-		return this.id;
+	public int getIdtipoEnfermedadTratamiento() {
+		return this.idtipoEnfermedadTratamiento;
 	}
 
-	public void setId(DetalleTipoEnfeTratamientoPK id) {
-		this.id = id;
+	public void setIdtipoEnfermedadTratamiento(int idtipoEnfermedadTratamiento) {
+		this.idtipoEnfermedadTratamiento = idtipoEnfermedadTratamiento;
 	}
-	
+
 	public String getDosis() {
 		return this.dosis;
 	}

@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -19,15 +19,15 @@ public class Apiario implements Serializable {
 
 	//bi-directional many-to-one association to Colmena
 	@OneToMany(mappedBy="apiario")
-	private List<Colmena> colmenas;
+	private Set<Colmena> colmenas;
 
 	//bi-directional many-to-one association to DetalleApiarioNormaSeg
 	@OneToMany(mappedBy="apiario")
-	private List<DetalleApiarioNormaSeg> detalleApiarioNormaSegs;
+	private Set<DetalleApiarioNormaSeg> detalleApiarioNormaSegs;
 
 	//bi-directional many-to-one association to PlanillaSeguimiento
 	@OneToMany(mappedBy="apiario")
-	private List<PlanillaSeguimiento> planillaSeguimientos;
+	private Set<PlanillaSeguimiento> planillaSeguimientos;
 
     public Apiario() {
     }
@@ -40,27 +40,27 @@ public class Apiario implements Serializable {
 		this.idapiario = idapiario;
 	}
 
-	public List<Colmena> getColmenas() {
+	public Set<Colmena> getColmenas() {
 		return this.colmenas;
 	}
 
-	public void setColmenas(List<Colmena> colmenas) {
+	public void setColmenas(Set<Colmena> colmenas) {
 		this.colmenas = colmenas;
 	}
 	
-	public List<DetalleApiarioNormaSeg> getDetalleApiarioNormaSegs() {
+	public Set<DetalleApiarioNormaSeg> getDetalleApiarioNormaSegs() {
 		return this.detalleApiarioNormaSegs;
 	}
 
-	public void setDetalleApiarioNormaSegs(List<DetalleApiarioNormaSeg> detalleApiarioNormaSegs) {
+	public void setDetalleApiarioNormaSegs(Set<DetalleApiarioNormaSeg> detalleApiarioNormaSegs) {
 		this.detalleApiarioNormaSegs = detalleApiarioNormaSegs;
 	}
 	
-	public List<PlanillaSeguimiento> getPlanillaSeguimientos() {
+	public Set<PlanillaSeguimiento> getPlanillaSeguimientos() {
 		return this.planillaSeguimientos;
 	}
 
-	public void setPlanillaSeguimientos(List<PlanillaSeguimiento> planillaSeguimientos) {
+	public void setPlanillaSeguimientos(Set<PlanillaSeguimiento> planillaSeguimientos) {
 		this.planillaSeguimientos = planillaSeguimientos;
 	}
 	

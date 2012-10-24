@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -20,13 +20,13 @@ public class TipoAlimentacion implements Serializable {
 
 	private String descripcion;
 
-	//bi-directional many-to-many association to PlanillaRevision
-	@ManyToMany(mappedBy="tipoAlimentacions")
-	private List<PlanillaRevision> planillaRevisions;
+	//bi-directional many-to-one association to DetallePlanillaRevTipoAlim
+	@OneToMany(mappedBy="tipoAlimentacion")
+	private Set<DetallePlanillaRevTipoAlim> detallePlanillaRevTipoAlims;
 
-	//bi-directional many-to-many association to Insumo
-	@ManyToMany(mappedBy="tipoAlimentacions")
-	private List<Insumo> insumos;
+	//bi-directional many-to-one association to DetalleTipoAlimentacionInsumo
+	@OneToMany(mappedBy="tipoAlimentacion")
+	private Set<DetalleTipoAlimentacionInsumo> detalleTipoAlimentacionInsumos;
 
     public TipoAlimentacion() {
     }
@@ -47,20 +47,20 @@ public class TipoAlimentacion implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<PlanillaRevision> getPlanillaRevisions() {
-		return this.planillaRevisions;
+	public Set<DetallePlanillaRevTipoAlim> getDetallePlanillaRevTipoAlims() {
+		return this.detallePlanillaRevTipoAlims;
 	}
 
-	public void setPlanillaRevisions(List<PlanillaRevision> planillaRevisions) {
-		this.planillaRevisions = planillaRevisions;
+	public void setDetallePlanillaRevTipoAlims(Set<DetallePlanillaRevTipoAlim> detallePlanillaRevTipoAlims) {
+		this.detallePlanillaRevTipoAlims = detallePlanillaRevTipoAlims;
 	}
 	
-	public List<Insumo> getInsumos() {
-		return this.insumos;
+	public Set<DetalleTipoAlimentacionInsumo> getDetalleTipoAlimentacionInsumos() {
+		return this.detalleTipoAlimentacionInsumos;
 	}
 
-	public void setInsumos(List<Insumo> insumos) {
-		this.insumos = insumos;
+	public void setDetalleTipoAlimentacionInsumos(Set<DetalleTipoAlimentacionInsumo> detalleTipoAlimentacionInsumos) {
+		this.detalleTipoAlimentacionInsumos = detalleTipoAlimentacionInsumos;
 	}
 	
 }

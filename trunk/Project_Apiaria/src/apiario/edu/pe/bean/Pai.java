@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -22,7 +22,7 @@ public class Pai implements Serializable {
 
 	//bi-directional many-to-one association to Ubigeo
 	@OneToMany(mappedBy="pai")
-	private List<Ubigeo> ubigeos;
+	private Set<Ubigeo> ubigeos;
 
     public Pai() {
     }
@@ -43,11 +43,11 @@ public class Pai implements Serializable {
 		this.nomPais = nomPais;
 	}
 
-	public List<Ubigeo> getUbigeos() {
+	public Set<Ubigeo> getUbigeos() {
 		return this.ubigeos;
 	}
 
-	public void setUbigeos(List<Ubigeo> ubigeos) {
+	public void setUbigeos(Set<Ubigeo> ubigeos) {
 		this.ubigeos = ubigeos;
 	}
 	

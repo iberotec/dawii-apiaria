@@ -13,33 +13,32 @@ import javax.persistence.*;
 public class DetalleUsuarioEnva implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetalleUsuarioEnvaPK id;
+	@Id
+	@Column(name="idusuario_envasadora")
+	private int idusuarioEnvasadora;
 
 	@Column(name="fecha_uso")
 	private String fechaUso;
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
-	@JoinColumn(name="idusuario")
 	private Usuario usuario;
 
 	//bi-directional many-to-one association to Envasadora
     @ManyToOne
-	@JoinColumn(name="idEnvasadora")
 	private Envasadora envasadora;
 
     public DetalleUsuarioEnva() {
     }
 
-	public DetalleUsuarioEnvaPK getId() {
-		return this.id;
+	public int getIdusuarioEnvasadora() {
+		return this.idusuarioEnvasadora;
 	}
 
-	public void setId(DetalleUsuarioEnvaPK id) {
-		this.id = id;
+	public void setIdusuarioEnvasadora(int idusuarioEnvasadora) {
+		this.idusuarioEnvasadora = idusuarioEnvasadora;
 	}
-	
+
 	public String getFechaUso() {
 		return this.fechaUso;
 	}

@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -27,7 +27,7 @@ public class Envase implements Serializable {
 
 	//bi-directional many-to-one association to PlanillaEnvasado
 	@OneToMany(mappedBy="envase")
-	private List<PlanillaEnvasado> planillaEnvasados;
+	private Set<PlanillaEnvasado> planillaEnvasados;
 
     public Envase() {
     }
@@ -56,11 +56,11 @@ public class Envase implements Serializable {
 		this.tipoEnvase = tipoEnvase;
 	}
 	
-	public List<PlanillaEnvasado> getPlanillaEnvasados() {
+	public Set<PlanillaEnvasado> getPlanillaEnvasados() {
 		return this.planillaEnvasados;
 	}
 
-	public void setPlanillaEnvasados(List<PlanillaEnvasado> planillaEnvasados) {
+	public void setPlanillaEnvasados(Set<PlanillaEnvasado> planillaEnvasados) {
 		this.planillaEnvasados = planillaEnvasados;
 	}
 	

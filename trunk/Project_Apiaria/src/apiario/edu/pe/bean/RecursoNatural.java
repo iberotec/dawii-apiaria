@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -22,7 +22,7 @@ public class RecursoNatural implements Serializable {
 
 	//bi-directional many-to-one association to DetalleRecNatZona
 	@OneToMany(mappedBy="recursoNatural")
-	private List<DetalleRecNatZona> detalleRecNatZonas;
+	private Set<DetalleRecNatZona> detalleRecNatZonas;
 
 	//bi-directional many-to-one association to TipoRecursoNatural
     @ManyToOne
@@ -48,11 +48,11 @@ public class RecursoNatural implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public List<DetalleRecNatZona> getDetalleRecNatZonas() {
+	public Set<DetalleRecNatZona> getDetalleRecNatZonas() {
 		return this.detalleRecNatZonas;
 	}
 
-	public void setDetalleRecNatZonas(List<DetalleRecNatZona> detalleRecNatZonas) {
+	public void setDetalleRecNatZonas(Set<DetalleRecNatZona> detalleRecNatZonas) {
 		this.detalleRecNatZonas = detalleRecNatZonas;
 	}
 	

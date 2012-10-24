@@ -1,4 +1,4 @@
-package apiario.edu.pe.modulo.seleccion;
+package apiario.edu.pe.manageBeans.seleccion;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class MBControlCalidadApiario implements Serializable {
 	List<String> oList1=new ArrayList<String>();;
 	
 	public MBControlCalidadApiario() {
-	load();
+	
 	}
 	public void load(){
 		
@@ -28,12 +28,6 @@ public class MBControlCalidadApiario implements Serializable {
 		oList1.add("La merced");
 	}
 	
-	public List<String> getoList1() {
-		return oList1;
-	}
-	public void setoList1(List<String> oList1) {
-		this.oList1 = oList1;
-	}
 	public void init(ActionEvent event)throws Exception{
 		load();
 		

@@ -3,7 +3,7 @@ package apiario.edu.pe.bean;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -23,18 +23,9 @@ public class PlanillaCosecha implements Serializable {
 	@Column(name="fecha_cosecha")
 	private Date fechaCosecha;
 
-	//bi-directional many-to-many association to Centrifugadora
-    @ManyToMany
-	@JoinTable(
-		name="detalle_centrifugadora_planilla_cosecha"
-		, joinColumns={
-			@JoinColumn(name="idplanilla_cosecha")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="idcentrifugadora")
-			}
-		)
-	private List<Centrifugadora> centrifugadoras;
+	//bi-directional many-to-one association to DetalleCentrifugadoraPlanillaCosecha
+	@OneToMany(mappedBy="planillaCosecha")
+	private Set<DetalleCentrifugadoraPlanillaCosecha> detalleCentrifugadoraPlanillaCosechas;
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
@@ -65,12 +56,12 @@ public class PlanillaCosecha implements Serializable {
 		this.fechaCosecha = fechaCosecha;
 	}
 
-	public List<Centrifugadora> getCentrifugadoras() {
-		return this.centrifugadoras;
+	public Set<DetalleCentrifugadoraPlanillaCosecha> getDetalleCentrifugadoraPlanillaCosechas() {
+		return this.detalleCentrifugadoraPlanillaCosechas;
 	}
 
-	public void setCentrifugadoras(List<Centrifugadora> centrifugadoras) {
-		this.centrifugadoras = centrifugadoras;
+	public void setDetalleCentrifugadoraPlanillaCosechas(Set<DetalleCentrifugadoraPlanillaCosecha> detalleCentrifugadoraPlanillaCosechas) {
+		this.detalleCentrifugadoraPlanillaCosechas = detalleCentrifugadoraPlanillaCosechas;
 	}
 	
 	public Usuario getUsuario() {
