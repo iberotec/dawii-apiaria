@@ -15,7 +15,7 @@ public class MBControlCalidadApiario implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	List<String> oList1=new ArrayList<String>();;
+	List<String> oList1=new ArrayList<String>();
 	
 	public MBControlCalidadApiario() {
 	
@@ -39,6 +39,12 @@ public class MBControlCalidadApiario implements Serializable {
 
 	public void setoList2(List<String> oList2) {
 		this.oList1 = oList2;
+	}
+	public List<String> getoList1() {
+		return oList1;
+	}
+	public void setoList1(List<String> oList1) {
+		this.oList1 = oList1;
 	}
 
 }
