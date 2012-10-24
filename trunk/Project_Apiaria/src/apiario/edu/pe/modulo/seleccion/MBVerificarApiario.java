@@ -26,7 +26,8 @@ public class MBVerificarApiario implements Serializable{
 	List<String> oList=new ArrayList<String>();
 	List<String> oCheck;
 	
-	List<String> oList2=new ArrayList<String>();;
+	List<String> oList2=new ArrayList<String>();
+	List<String> oList1=new ArrayList<String>();
 	
 	public void load2(){
 		
@@ -35,7 +36,13 @@ public class MBVerificarApiario implements Serializable{
 		oList2.add("Tambo");
 		oList2.add("La merced");
 	}
-	
+public void load1(){
+		
+		
+		oList1.add("Tarma");
+		oList1.add("Tambo");
+		oList1.add("La merced");
+	}
 	public void load()throws Exception{
 		
 		
@@ -56,7 +63,9 @@ public class MBVerificarApiario implements Serializable{
 	}
 	public void init(ActionEvent event)throws Exception{
 		load2();
+		load1();
 		occ.init(event);
+		oaa.init(event);
 		load();
 		
 		 JUtilities.redirect("/functionality/modseleccion/fMain.xhtml");
@@ -92,6 +101,18 @@ public class MBVerificarApiario implements Serializable{
 	}
 	public void setOcc(MBControlCalidadApiario occ) {
 		this.occ = occ;
+	}
+	public List<String> getoList2() {
+		return oList2;
+	}
+	public void setoList2(List<String> oList2) {
+		this.oList2 = oList2;
+	}
+	public List<String> getoList1() {
+		return oList1;
+	}
+	public void setoList1(List<String> oList1) {
+		this.oList1 = oList1;
 	}
 	
 

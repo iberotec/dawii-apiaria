@@ -17,7 +17,11 @@ public class MBApiarioAsignado implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	List<String> oList2=new ArrayList<String>();;
+	List<String> oList2=new ArrayList<String>();
+	
+	public MBApiarioAsignado(){
+		load();
+	}
 public void load(){
 	
 	
