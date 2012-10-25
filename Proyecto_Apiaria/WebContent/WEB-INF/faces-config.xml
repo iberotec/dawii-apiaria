@@ -21,4 +21,11 @@
 		</locale-config>
 	
 	</application>
+	
+	<managed-bean>
+		<managed-bean-name>mBapiaria</managed-bean-name>
+		<managed-bean-class>apiario.edu.pe.manageBeans.MBAPIARIA</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		
+	</managed-bean>
 </faces-config>

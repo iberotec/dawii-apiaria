@@ -16,7 +16,7 @@
 	<h:outputText value="Apiarios" /><br/>
 	<p:selectOneMenu value="" id="a" required="true"
 		label="popupAmlcfilial" requiredMessage="escoja una opcion">
-		<f:selectItems value="#{jMBVerificarApiario.oList}" />
+		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
 
 	</p:selectOneMenu>
 <br/>
@@ -77,7 +77,7 @@
 	</p:commandButton><br />
 	<!-- TABLA DE DATA -->
 			<p:dataTable id="table" styleClass="maintenanceTable"
-				var="item" value="#{jMBVerificarApiario.oList}" paginator="true"
+				var="item" value="#{MBVerificarApiario.oList}" paginator="true"
 				rows="15" effectSpeed="fast" paginatorPosition="bottom"
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
 				type="none" >
