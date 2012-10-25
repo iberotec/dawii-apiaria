@@ -40,7 +40,6 @@ for (Apiario aux : oList) {
 	System.out.println(""+aux.getIdapiario());
 }
 		oaa.init(event);
-		occ.init(event);
 		
 		 JUtilities.redirect("/functionality/modseleccion/fMain.xhtml");
 		

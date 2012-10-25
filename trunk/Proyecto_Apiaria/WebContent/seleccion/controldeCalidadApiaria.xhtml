@@ -15,19 +15,18 @@
 
 
 	<h:outputText value="Apiarios" /><br/>
-	<p:selectOneMenu id="b" value=""  required="true"
-		requiredMessage="escoja una opcion">
+	<p:selectOneMenu id="b" 
+		>
 		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
 
 	</p:selectOneMenu>
 	<br />
 	<h:outputText
 			value="Control de Calidad de Apiario (SENAZA)" />
-		<p:selectOneRadio 
-			id="cbo2"
-			required="escoja una opcion">
-		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
+		<p:selectManyCheckbox id="am" layout="pageDirection">
 			
-		</p:selectOneRadio>
-	
+		<f:selectItems value="#{mBcontrolcalidad.load()}"  />
+			
+		</p:selectManyCheckbox>
+	<p:commandButton value="Registrar Control de Calidad" actionListener="#{mBcontrolcalidad.grabarCC()}"></p:commandButton>
 </html>
