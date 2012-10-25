@@ -27,7 +27,8 @@ public class MBLogueo implements Serializable{
 	@SuppressWarnings("unused")
 	private void delete(){};
 	public void login(ActionEvent event) throws IOException {
-			JUtilities.redirect("/index.xhtml");
+		
+			JUtilities.redirect("/seleccion/main.xhtml");
 		
 		
 	};

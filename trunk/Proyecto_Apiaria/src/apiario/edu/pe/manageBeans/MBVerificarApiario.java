@@ -9,9 +9,11 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
+import apiario.edu.pe.bean.Apiario;
+import apiario.edu.pe.service.SeleccionService;
 import apiario.edu.pe.util.JUtilities;
 
-@ManagedBean(name = "jMBVerificarApiario")
+@ManagedBean(name = "MBVerificarApiario")
 @SessionScoped
 public class MBVerificarApiario implements Serializable{
 
@@ -23,41 +25,22 @@ public class MBVerificarApiario implements Serializable{
 	private MBApiarioAsignado oaa;
 	@ManagedProperty("#{MBControlCalidadApiario}")
 	private MBControlCalidadApiario occ;
-	List<String> oList=new ArrayList<String>();
+	List<Apiario> oList=new ArrayList<Apiario>();
 	List<String> oCheck;
+	
+	SeleccionService serviceSeleccion = new SeleccionService();
 	
 	List<String> oList2=new ArrayList<String>();;
 	
-	public void load2(){
-		
-		
-		oList2.add("Tarma");
-		oList2.add("Tambo");
-		oList2.add("La merced");
-	}
 	
-	public void load()throws Exception{
-		
-		
-		oList.add("Tarma");
-		oList.add("Tambo");
-		oList.add("La merced");
-		
-		oCheck=new ArrayList<String>();
-		oCheck.add("Distancia entre apiarios(2 a 3 KM)");
-		oCheck.add("Flora melifera adecuada");
-		oCheck.add("Fuente natural de agua o bebederos adecuados");
-		oCheck.add("Aguas contaminadas o residuales a 2km de distancia");
-		oCheck.add("Zona apropiada no humedas, no calurosas");
-		oCheck.add("Distancia entre vias publicas 200 km");
-		oCheck.add("Posicionamiento adecuado de piqueras");
-		
-		
-	}
+	
 	public void init(ActionEvent event)throws Exception{
-		load2();
+		oList=serviceSeleccion.ListarTodos();
+for (Apiario aux : oList) {
+	System.out.println(""+aux.getIdapiario());
+}
+		oaa.init(event);
 		occ.init(event);
-		load();
 		
 		 JUtilities.redirect("/functionality/modseleccion/fMain.xhtml");
 		
@@ -73,13 +56,26 @@ public class MBVerificarApiario implements Serializable{
 	
 
 
-	public List<String> getoList() {
+	public List<Apiario> getoList() {
 		return oList;
 	}
-
-
-	public void setoList(List<String> oList) {
+	public void setoList(List<Apiario> oList) {
 		this.oList = oList;
+	}
+	public SeleccionService getServiceSeleccion() {
+		return serviceSeleccion;
+	}
+	public void setServiceSeleccion(SeleccionService serviceSeleccion) {
+		this.serviceSeleccion = serviceSeleccion;
+	}
+	public List<String> getoList2() {
+		return oList2;
+	}
+	public void setoList2(List<String> oList2) {
+		this.oList2 = oList2;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	public MBApiarioAsignado getOaa() {
 		return oaa;

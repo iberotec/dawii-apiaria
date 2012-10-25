@@ -15,17 +15,14 @@
 
 
 	<h:outputText value="Apiarios" /><br/>
-	<p:selectOneMenu id="c" value="Seleccione"  required="true"
+	<p:selectOneMenu id="cbo3"
 		 requiredMessage="escoja una opcion" >
-		<f:selectItems value="#{jMBApiarioAsignado.oList2}" />
+		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
 
 	</p:selectOneMenu>
-	<br />
 	<h:outputText value="Comportamiento de Reina" />
-	<br />
 	<p:inputTextarea rows="10" cols="50" value="" required="true" maxlength="12">
 	</p:inputTextarea>
-	<br />
 	
 	
 </html>

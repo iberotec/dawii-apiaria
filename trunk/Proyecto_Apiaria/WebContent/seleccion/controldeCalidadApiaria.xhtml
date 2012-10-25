@@ -17,16 +17,16 @@
 	<h:outputText value="Apiarios" /><br/>
 	<p:selectOneMenu id="b" value=""  required="true"
 		requiredMessage="escoja una opcion">
-		<f:selectItems value="#{jMBControlCalidadApiario.oList1}" />
+		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
 
 	</p:selectOneMenu>
 	<br />
 	<h:outputText
 			value="Control de Calidad de Apiario (SENAZA)" />
 		<p:selectOneRadio 
-			
+			id="cbo2"
 			required="escoja una opcion">
-		<f:selectItems value="#{jMBVerificarApiario.oCheck}" />
+		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
 			
 		</p:selectOneRadio>
 	
