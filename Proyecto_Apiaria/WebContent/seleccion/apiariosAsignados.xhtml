@@ -14,13 +14,13 @@
 </h:head>
 
 
-	<h:outputText value="Apiarios" /><br/>
-	<p:selectOneMenu id="cbo3"
-		 requiredMessage="escoja una opcion" >
+	<h:outputText value="Apiarios" />
+	
+	<p:selectOneMenu id="cbo3" >
 		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
 
-	</p:selectOneMenu>
-	<h:outputText value="Comportamiento de Reina" />
+	</p:selectOneMenu><br/>
+	<h:outputText value="Comportamiento de Reina" /><br/>
 	<p:inputTextarea rows="10" cols="50" value="" required="true" maxlength="12">
 	</p:inputTextarea>
 	
