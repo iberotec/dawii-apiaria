@@ -15,17 +15,17 @@
 
 
 	<h:outputText value="Apiarios" /><br/>
-	<p:selectOneMenu id="b" value="Seleccione">
-		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
+	<p:selectOneMenu id="b" value="#{mBNormaSeguridad.apiario.idapiario}" >
+		<f:selectItems  value="#{mBNormaSeguridad.listar()}" var="item" itemLabel="#{item.idapiario}" itemValue="#{item.idapiario}"/>
 
 	</p:selectOneMenu>
 	<br />
 	<h:outputText
 			value="Control de Calidad de Apiario (SENAZA)" />
-		<p:selectManyCheckbox id="am" layout="pageDirection">
+		<p:selectManyCheckbox id="am" layout="pageDirection" >
 			
 		<f:selectItems value="#{mBNormaSeguridad.load()}"  var="item" itemLabel="#{item.descripcion}"/>
 			
 		</p:selectManyCheckbox>
-	<p:commandButton value="Registrar Control de Calidad" actionListener="#{mBcontrolcalidad.grabarCC()}"></p:commandButton>
+	<p:commandButton value="Registrar Control de Calidad" actionListener="#{mBNormaSeguridad.grabarDetApiNormSeg()}"></p:commandButton>
 </html>

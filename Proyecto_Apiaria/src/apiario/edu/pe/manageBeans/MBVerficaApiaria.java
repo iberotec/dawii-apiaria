@@ -1,5 +1,6 @@
 package apiario.edu.pe.manageBeans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +11,13 @@ import apiario.edu.pe.service.SeleccionService;
  * @author Henry
  * 
  */
-public class MBVerficaApiaria {
+public class MBVerficaApiaria implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	SeleccionService se = new SeleccionService();
-	private Apiario apiaria;
+	private Apiario apiaria=new Apiario();
 	private List<Apiario> listaapi = new ArrayList<Apiario>();
 	List<Apiario> lista = new ArrayList<Apiario>();
 
@@ -23,7 +28,6 @@ public class MBVerficaApiaria {
 	public List<Apiario> listar() {
 
 		List<Apiario> lista = se.ListarTodos();
-		System.out.println("" + lista.size());
 		return lista;
 	}
 
