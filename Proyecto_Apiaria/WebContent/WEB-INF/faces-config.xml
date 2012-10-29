@@ -28,7 +28,7 @@
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>mBcontrolcalidad</managed-bean-name>
+		<managed-bean-name>mBNormaSeguridad</managed-bean-name>
 		<managed-bean-class>apiario.edu.pe.manageBeans.MBNormaSeguridad</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>

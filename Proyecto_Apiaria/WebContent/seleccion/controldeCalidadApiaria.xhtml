@@ -24,7 +24,7 @@
 			value="Control de Calidad de Apiario (SENAZA)" />
 		<p:selectManyCheckbox id="am" layout="pageDirection">
 			
-		<f:selectItems value="#{mBcontrolcalidad.load()}"  />
+		<f:selectItems value="#{mBNormaSeguridad.load()}"  var="item" itemLabel="#{item.descripcion}"/>
 			
 		</p:selectManyCheckbox>
 	<p:commandButton value="Registrar Control de Calidad" actionListener="#{mBcontrolcalidad.grabarCC()}"></p:commandButton>
