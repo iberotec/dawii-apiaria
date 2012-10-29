@@ -16,7 +16,7 @@
 	<h:outputText value="Seleccione" /><br/>
 	<p:selectOneMenu value="" id="a" required="true"
 		label="popupAmlcfilial" requiredMessage="escoja una opcion">
-		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
+		<f:selectItems value="#{mBSelectItems.cboApiario}" />
 
 	</p:selectOneMenu>
 <br/>
