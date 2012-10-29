@@ -17,7 +17,8 @@
 	<p:selectOneMenu value="" id="a" required="true"
 		label="popupAmlcfilial" requiredMessage="escoja una opcion">
 		<f:selectItems value="#{mBSelectItems.cboApiario}" />
-
+		<p:ajax event="change"   
+                    listener="#{mBApiario.ubicacionApiario}" process="a"/>  
 	</p:selectOneMenu>
 <br/>
 	<h:outputText value="Ubicacion" /><br/>
