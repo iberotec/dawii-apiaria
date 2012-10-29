@@ -37,5 +37,9 @@
 	<managed-bean-class>apiario.edu.pe.managedBeans.commons.MBSelectItems</managed-bean-class>
 	<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	
+	<managed-bean>
+		<managed-bean-name>mBApiario</managed-bean-name>
+		<managed-bean-class>apiario.edu.pe.manageBeans.MBApiario</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>
