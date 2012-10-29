@@ -107,6 +107,7 @@ ENGINE = InnoDB;
 -- Table `db_sistema_apiario`.`apiario`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`apiario` (
+	`descripcion_apiario` VARCHAR(45) NULL ,
   `idapiario` INT NOT NULL AUTO_INCREMENT ,
   PRIMARY KEY (`idapiario`) )
 ENGINE = InnoDB;
