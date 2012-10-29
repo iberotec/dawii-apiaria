@@ -2,6 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -16,7 +17,10 @@ public class Apiario implements Serializable {
 
 	@Id
 	private int idapiario;
-
+	
+	@Column(name="descripcion_apiario")
+	private String descripcion;
+	
 	//bi-directional many-to-one association to Colmena
 	@OneToMany(mappedBy="apiario")
 	private List<Colmena> colmenas;
@@ -62,6 +66,14 @@ public class Apiario implements Serializable {
 
 	public void setPlanillaSeguimientos(List<PlanillaSeguimiento> planillaSeguimientos) {
 		this.planillaSeguimientos = planillaSeguimientos;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	
 }
