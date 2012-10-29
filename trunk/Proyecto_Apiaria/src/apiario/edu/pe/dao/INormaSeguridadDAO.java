@@ -6,4 +6,5 @@ import apiario.edu.pe.bean.NormaSeguridad;
 
 public interface INormaSeguridadDAO {	
 public abstract List<NormaSeguridad>listaNormaSeguridad();
+
 }
