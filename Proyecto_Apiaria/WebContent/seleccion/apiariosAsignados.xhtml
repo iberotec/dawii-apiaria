@@ -13,16 +13,82 @@
 	<link rel="stylesheet" href="#{request.contextPath}/css/general.css" />
 </h:head>
 
+<h:body>
+<table>
+<tr>
+	<td>
+		<div>
+			<h:outputText value="Apiarios" />
+		</div>
+	</td>
+	<td>
+		<div>
+			<p:selectOneMenu id="cbo3" >
+				<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
+			</p:selectOneMenu>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td>
+		<h:outputText value="Comportamiento de Reina" />
+	</td>
+	<td>
+		<p:inputTextarea rows="10" cols="50" value="" required="true" maxlength="12"></p:inputTextarea>
+	</td>
+</tr>
+<tr>
+	<td>	
+		<h:outputText value="Grado de Peligro de la Reina" />
+	</td>
+	<td>
+		<h:selectOneMenu value="">
+			<f:selectItem itemValue="H"/>
+		</h:selectOneMenu>
+	</td>
+</tr>
+<tr>
+	<td>
+	
+		<h:selectManyCheckbox value="" layout="pageDirection">
+	
+			<f:selectItem itemValue="Necesidad de Alimentacion" />
+			<f:selectItem itemValue="Alza Deteriorada"/>
+			<f:selectItem itemValue="Necesidad de Curacion"/>
+			<f:selectItem itemValue="Ausencia de Reina"/>
+			<f:selectItem itemValue="Falto de espacio camara de cria"/>
+		</h:selectManyCheckbox>
+	</td>
 
-	<h:outputText value="Apiarios" />
-	
-	<p:selectOneMenu id="cbo3" >
-		<f:selectItems value="#{mBapiaria.listar()}" var="item" itemLabel="#{item.idapiario}"/>
+	<td>
+		<h:outputText value="Tipo de Alimentación" />	
 
-	</p:selectOneMenu><br/>
-	<h:outputText value="Comportamiento de Reina" /><br/>
-	<p:inputTextarea rows="10" cols="50" value="" required="true" maxlength="12">
-	</p:inputTextarea>
+		<h:selectOneMenu value="">
+			<f:selectItem itemValue="Para Invierno"/>
+		</h:selectOneMenu>
+		<br></br>
+		<h:outputText value="Tipo de Enfermedad" />	
+		<h:selectOneMenu value="">
+			<f:selectItem itemValue="Enfermedad 1"/>
+		</h:selectOneMenu>
+	</td>
+</tr>
+<tr>
 	
-	
+</tr>
+</table>
+
+<p:tabView>
+	<p:tab title="Colmena">
+		Colmena
+	</p:tab>
+	<p:tab title="Piso">
+		Piso
+	</p:tab>
+	<p:tab title="Alza">
+		Alza
+	</p:tab>
+</p:tabView>
+
+</h:body>	
 </html>
