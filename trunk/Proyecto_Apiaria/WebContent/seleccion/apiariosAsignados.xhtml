@@ -81,14 +81,152 @@
 <p:tabView>
 	<p:tab title="Colmena">
 		Colmena
+		<p:dataTable
+			value=""
+			var="listaColmenas"
+			rowKey="row"
+			id="dtListaColmenas"
+			rows="10"
+			styleClass="so_DataGrid_Body_Table"
+			>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Colmena"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cosechable"></h:outputText>
+				</f:facet>
+				<h:selectBooleanCheckbox value=""></h:selectBooleanCheckbox>
+			</p:column>
+		</p:dataTable>
 	</p:tab>
 	<p:tab title="Piso">
 		Piso
+		<p:dataTable
+			value=""
+			var="listaPiso"
+			rowKey="row"
+			id="dtListaPiso"
+			rows="10"
+			styleClass="so_DataGrid_Body_Table"
+			>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Piso"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+		</p:dataTable>
 	</p:tab>
 	<p:tab title="Alza">
 		Alza
+		<p:dataTable
+			value=""
+			var="listaAlzas"
+			rowKey="row"
+			id="dtListaAlzas"
+			rows="10"
+			styleClass="so_DataGrid_Body_Table"
+			>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Alza"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="% Trabajado"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Extraido"></h:outputText>
+				</f:facet>
+				<h:selectBooleanCheckbox value=""></h:selectBooleanCheckbox>
+			</p:column>
+		</p:dataTable>
 	</p:tab>
 </p:tabView>
+
+<h:commandButton value="Agregar"></h:commandButton>
+
+
+<p:dataTable
+	value=""
+	var="listaApiariosAsignados"
+	rowKey="row"
+	id="dtListaApiariosAsignados"
+	rows="10"
+	styleClass="so_DataGrid_Body_Table"
+	>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="ID"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Colmena"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Piso"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Alza"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Cosechable"></h:outputText>
+		</f:facet>
+		<h:selectBooleanCheckbox value=""></h:selectBooleanCheckbox>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="% Trabajo Extra"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Opción"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+</p:dataTable>
+
+<h:commandButton value="Registrar"></h:commandButton>
 
 </h:body>	
 </html>
