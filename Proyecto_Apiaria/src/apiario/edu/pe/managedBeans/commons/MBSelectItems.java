@@ -1,5 +1,6 @@
 package apiario.edu.pe.managedBeans.commons;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -7,7 +8,8 @@ import javax.faces.model.SelectItem;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.service.SeleccionService;
 
-public class MBSelectItems {
+@SuppressWarnings("serial")
+public class MBSelectItems implements Serializable{
 	
 	public MBSelectItems() {
 		

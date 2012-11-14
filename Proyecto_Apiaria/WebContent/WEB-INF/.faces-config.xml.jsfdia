@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<PROCESS model-entity="JSFProcess"/>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="successMain::#seleccion#mainSeleccion.xhtml"
+    NAME="output" PATH="/seleccion/mainSeleccion.xhtml"
+    TARGET="rules:#seleccion#mainSeleccion.xhtml" TITLE="successMain" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#seleccion#mainSeleccion.xhtml"
+  PATH="/seleccion/mainSeleccion.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>
