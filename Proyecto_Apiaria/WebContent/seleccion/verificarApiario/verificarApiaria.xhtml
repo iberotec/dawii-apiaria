@@ -13,18 +13,20 @@
 </h:head>
 
 <h:body>
+
+
+<h:form>
 	<h:outputText value="Apiario" /><br/>
-	<p:selectOneMenu value="" id="a" required="true"
-		label="popupAmlcfilial" requiredMessage="escoja una opcion">
+	<p:selectOneMenu value="#{mBApiario.apiario.idapiario}">
 		<f:selectItems value="#{mBSelectItems.cboApiario}" />
-		<p:ajax event="change"   
-                    listener="#{mBApiario.ubicacionApiario}" process="a"/>  
+		 <p:ajax update="iUbicacion"  
+                        listener="#{mBApiario.localizarApiario}" />  
 	</p:selectOneMenu>
-<br/>
-	<h:outputText value="Ubicacion" /><br/>
-	<p:inputText value=""  required="true"
-		maxlength="12">
-	</p:inputText><br/>
+	<br/>
+	<h:outputText value="Ubicacion" />
+	<br/>
+	<p:inputText id="iUbicacion" value="#{mBApiario.ubicacionApiario}" ></p:inputText>
+	<br/>
 	<h:outputText value="NIvel de Peligro" /><br/>
 	<p:inputText value=""  required="true"
 		maxlength="12">
@@ -116,6 +118,7 @@
 		value="Confirmar Atencion"
 		>
 	</p:commandButton><br />
-	
+	</h:form>
+
 </h:body>
 </html>

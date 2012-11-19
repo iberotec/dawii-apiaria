@@ -15,7 +15,7 @@ public class Zona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idzona;
+	private Integer idzona;
 
 	private String descripcion;
 
@@ -35,11 +35,11 @@ public class Zona implements Serializable {
     public Zona() {
     }
 
-	public int getIdzona() {
+	public Integer getIdzona() {
 		return this.idzona;
 	}
 
-	public void setIdzona(int idzona) {
+	public void setIdzona(Integer idzona) {
 		this.idzona = idzona;
 	}
 

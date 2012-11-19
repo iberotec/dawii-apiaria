@@ -10,8 +10,8 @@
 	<h:form>
 		<p:panelMenu style="width:200px">
 			<p:submenu label="MODULO DE SELECCION">
-				<p:menuitem value="Verificar Apiarios"
-					outcome="/seleccion/mainSeleccion.xhtml" icon="ui-icon-disk" />
+				<p:menuitem value="Verificar Apiarios" action="#{mBApiario.abrirVerificarApiaria}"
+					 icon="ui-icon-disk" ajax="false"/>
 			</p:submenu>
 			<p:submenu label="MODULO DE EXTRACCION">
 			</p:submenu>
