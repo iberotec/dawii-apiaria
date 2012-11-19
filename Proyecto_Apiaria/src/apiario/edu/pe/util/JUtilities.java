@@ -11,16 +11,17 @@ public class JUtilities {
 
 	public static String firstLetterUpper(String cadena) {
 		String retorno = " ";
-		
+		System.out.println("cadena "+cadena);
 		if (cadena!=null && !cadena.trim().equals("")) {
 			retorno = cadena.substring(0, 1).toUpperCase();
 			retorno = retorno.concat(cadena.substring(1, cadena.length()).toLowerCase());
 		}
-				
+				System.out.println("retorno "+retorno);
 		return retorno;
 	}
 	
 	public static void redirect(String url){
+		System.out.println("url "+url);
 		try {
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 			ec.redirect(ec.getRequestContextPath() + url);
@@ -30,10 +31,12 @@ public class JUtilities {
 	}
 	
 	public static String upper(String cadena) {
+		System.out.println("cadenaupper"+cadena);
 		return cadena!=null ? cadena.toUpperCase() : cadena;
 	}
 	
 	public static String lower(String cadena) {
+		System.out.println("cadenalowe"+cadena);
 		return cadena!=null ? cadena.toLowerCase() : cadena;
 	}
 	
