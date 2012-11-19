@@ -11,25 +11,25 @@
 	</h:head>
 	<body>
 		<h:form>
-			<ui:composition template="layout.xhtml">
+			<ui:composition template="templateLayout.xhtml">
 				<ui:define name="title">
 					SISTEMA DE APIGRANJA
 				</ui:define>
 				
 				<ui:define name="header">
-					<ui:include src="/layouts/top.xhtml" />
+					<ui:include src="/templates/layouts/top.xhtml" />
 				</ui:define>
 
 				<ui:define name="leftColumn">
-					<ui:include src="/layouts/left.xhtml" />
+					<ui:include src="/templates/layouts/left.xhtml" />
 				</ui:define>
 
 				<ui:define name="content">
-					<ui:include src="content.xhtml" />
+					<ui:include src="/templates/templateContent.xhtml" />
 				</ui:define>
 
 				<ui:define name="footer">
-					<ui:include src="/layouts/bottom.xhtml" />
+					<ui:include src="/templates/layouts/footer.xhtml" />
 				</ui:define>
 			</ui:composition>
 		</h:form>
