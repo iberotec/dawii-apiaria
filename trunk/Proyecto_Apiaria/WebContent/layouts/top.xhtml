@@ -37,12 +37,10 @@
 			<p:toolbarGroup align="right" style="margin-right:-8px !important;">  
         		
 				<div class="pnlTheme ui-panel" >
-				<p:commandButton type="button" title="Inicio" icon="ui-icon-home" />
-				<p:commandButton type="button" title="Cambiar Contraseña"
-					icon="ui-icon-locked" />
-				<p:commandButton type="button" title="Cerrar Sesion"
-					icon="ui-icon-power" />
-				<p:commandButton type="button" title="Ayuda" icon="ui-icon-help" />
+				<p:commandButton  title="Inicio" icon="ui-icon-home" />
+				<p:commandButton  title="Cambiar Contraseña" icon="ui-icon-locked" />
+				<p:commandButton  title="Cerrar Sesion" icon="ui-icon-power" action="#{mBLogueo.cerrarSession}" immediate="true" ajax="false"/>
+				<p:commandButton  title="Ayuda" icon="ui-icon-help"/>
 				<p:separator />
 				
 				</div>
