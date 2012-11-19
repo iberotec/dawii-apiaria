@@ -38,6 +38,10 @@
    <from-outcome>successBienvenida</from-outcome>
    <to-view-id>/UI_bienvenida.xhtml</to-view-id>
   </navigation-case>
+    <navigation-case>
+   <from-outcome>successMainSeleccion</from-outcome>
+   <to-view-id>/seleccion/mainSeleccion.xhtml</to-view-id>
+  </navigation-case>
   <navigation-case>
    <from-outcome>successLogin</from-outcome>
    <to-view-id>/UI_login.xhtml</to-view-id>

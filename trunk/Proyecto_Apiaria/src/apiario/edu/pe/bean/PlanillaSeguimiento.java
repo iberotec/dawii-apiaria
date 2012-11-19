@@ -3,6 +3,8 @@ package apiario.edu.pe.bean;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 
 /**
  * The persistent class for the planilla_seguimiento database table.
@@ -10,12 +12,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="planilla_seguimiento")
-public class PlanillaSeguimiento implements Serializable {
+public class PlanillaSeguimiento extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="idplanilla_seguimiento")
-	private int idplanillaSeguimiento;
+	private Integer idplanillaSeguimiento;
 
 	@Column(name="motivo_ubicacion")
 	private String motivoUbicacion;
@@ -33,11 +35,11 @@ public class PlanillaSeguimiento implements Serializable {
     public PlanillaSeguimiento() {
     }
 
-	public int getIdplanillaSeguimiento() {
+	public Integer getIdplanillaSeguimiento() {
 		return this.idplanillaSeguimiento;
 	}
 
-	public void setIdplanillaSeguimiento(int idplanillaSeguimiento) {
+	public void setIdplanillaSeguimiento(Integer idplanillaSeguimiento) {
 		this.idplanillaSeguimiento = idplanillaSeguimiento;
 	}
 
