@@ -2,6 +2,7 @@
 <faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xi="http://www.w3.org/2001/XInclude"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <!-- ManageBean -->
  <managed-bean>
   <managed-bean-name>mBapiaria</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.manageBeans.MBVerficaApiaria</managed-bean-class>
@@ -28,9 +29,11 @@
   <managed-bean-class>apiario.edu.pe.manageBeans.MBLogueo</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
- <!--Diego 
- navegacion -->
+  <!-- Diego -->
+ <!-- ManageBean -->
+ <!--navegacion -->
  <navigation-rule>
+ <!-- Diego -->
   <navigation-case>
    <from-outcome>successBienvenida</from-outcome>
    <to-view-id>/UI_bienvenida.xhtml</to-view-id>
@@ -39,7 +42,9 @@
    <from-outcome>successLogin</from-outcome>
    <to-view-id>/UI_login.xhtml</to-view-id>
   </navigation-case>
+  <!-- Diego -->
  </navigation-rule>
+  <!--navegacion -->
  <application>
   <locale-config>
    <default-locale>es</default-locale>
