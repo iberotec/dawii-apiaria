@@ -16,8 +16,5 @@ public class MBApiario implements Serializable{
 	public void ubicacionApiario(){
 		System.out.println("entrega ubicacion");
 	}
-	public String abrirVerificarApiario(){
-		System.out.println("abrirVerificarApiario");
-		return "successMain";
-	}
+	
 }

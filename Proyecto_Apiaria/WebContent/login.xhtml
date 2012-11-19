@@ -27,17 +27,17 @@
 
 				<p:panel id="pnlLogin" styleClass="panel">
 
-					<h:panelGrid columns="3">
+					<h:panelGrid columns="2" >
 						<h:outputLabel for="user" value="USUARIO" />
-						<p:inputText id="user" required="true" label="user"  />
-						<h:outputLabel value="#{MBLogueo.usuario}" />
+						<p:inputText id="user" required="true" value="#{mBLogueo.usuario}"  />
+						
 
 						<h:outputLabel for="password" value="CONTRASEÑA" />
-						<p:password id="password" required="true" label="password" value="#"/>
-						<h:outputLabel value="#{MBLogueo.pass}" />
+						<p:password id="password" required="true"  value="#{mBLogueo.pass}"/>
+					
 
 
-						<p:commandButton value="INGRESAR" update="pnlLogin,:growl" actionListener="#{MBLogueo.login}" />
+						<p:commandButton value="INGRESAR"  action="#{mBLogueo.login}" ajax="false"/>
 						
 					</h:panelGrid>
 
@@ -55,7 +55,7 @@
 		</div>
 	</div>
 	
-	<p:ajaxStatus onstart="statusDialog.show();"
+<!--  	<p:ajaxStatus onstart="statusDialog.show();"
 				onsuccess="statusDialog.hide();" />
 
 			<p:dialog modal="true" widgetVar="statusDialog" header="Status"
@@ -65,9 +65,9 @@
 				<h:outputText
 					value="#" />
 			</p:dialog>
+-->
 
-
-	<p:growl id="growl" showDetail="true" life="5000" />
+<!--  	<p:growl id="growl" showDetail="true" life="5000" />-->
 	
 	
 <!-- 	DIALOG ENVIRONMENT 

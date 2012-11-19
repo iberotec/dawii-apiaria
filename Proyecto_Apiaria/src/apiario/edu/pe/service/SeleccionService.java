@@ -1,5 +1,6 @@
 package apiario.edu.pe.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import apiario.edu.pe.bean.Apiario;
@@ -10,7 +11,8 @@ import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
-public class SeleccionService implements IApiarioDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad{
+@SuppressWarnings("serial")
+public class SeleccionService implements IApiarioDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();

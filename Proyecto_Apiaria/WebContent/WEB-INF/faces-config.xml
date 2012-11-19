@@ -23,21 +23,34 @@
   <managed-bean-class>apiario.edu.pe.manageBeans.MBApiario</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+<managed-bean> 
+  <managed-bean-name>mBLogueo</managed-bean-name> 
+  <managed-bean-class>apiario.edu.pe.manageBeans.MBLogueo</managed-bean-class> 
+  <managed-bean-scope>session</managed-bean-scope> 
+</managed-bean> 
  <!--Diego -->
- <navigation-rule>
-  <!--Diego -->
-  <navigation-case>
-   <from-outcome>successMain</from-outcome>
-   <to-view-id>/seleccion/mainSeleccion.xhtml</to-view-id>
-  </navigation-case>
-  <!--Diego -->
- </navigation-rule>
- <!-- <managed-bean> 
-   <managed-bean-name>mBLogueo</managed-bean-name> 
-   <managed-bean-class>apiario.edu.pe.manageBeans.MBLogueo</managed-bean-class> 
-   <managed-bean-scope>session</managed-bean-scope> 
-  </managed-bean> 
- JSF and Spring are integrated -->
+ 
+ 
+ 
+ <!-- navegacion -->
+<navigation-rule>
+	<navigation-case>
+	<from-outcome>successBienvenida</from-outcome>
+	<to-view-id>/UI_bienvenida.xhtml</to-view-id>
+	</navigation-case>
+	<navigation-case>
+	<from-outcome>successLogin</from-outcome>
+	<to-view-id>/login.xhtml</to-view-id>
+	</navigation-case>
+</navigation-rule>
+
+	
+
+
+
+
+
+
  <application>
   <locale-config>
    <default-locale>es</default-locale>
