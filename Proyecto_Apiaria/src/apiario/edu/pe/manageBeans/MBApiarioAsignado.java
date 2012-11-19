@@ -23,7 +23,7 @@ public class MBApiarioAsignado implements Serializable {
 
 	public void init(ActionEvent event) throws Exception {
 
-		oList2 = serviceSeleccion.ListarTodos();
+		oList2 = serviceSeleccion.listarTodosApiarios();
 	}
 
 	public List<Apiario> getoList2() {

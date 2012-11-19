@@ -3,6 +3,8 @@ package apiario.edu.pe.bean;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 import java.util.List;
 
 
@@ -12,11 +14,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="apiario")
-public class Apiario implements Serializable {
+public class Apiario extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idapiario;
+	private Integer idapiario;
 	
 	@Column(name="descripcion_apiario")
 	private String descripcion;
@@ -36,11 +38,11 @@ public class Apiario implements Serializable {
     public Apiario() {
     }
 
-	public int getIdapiario() {
+	public Integer getIdapiario() {
 		return this.idapiario;
 	}
 
-	public void setIdapiario(int idapiario) {
+	public void setIdapiario(Integer idapiario) {
 		this.idapiario = idapiario;
 	}
 

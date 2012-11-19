@@ -18,9 +18,7 @@ public class SeleccionService implements IApiarioDAO,INormaSeguridadDAO,IDetalle
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
 	IDetalleApiarioNormaSeguridad daoDetalleApiarioNormaSeguridad=objDAOFactory.getDetalleApiarioNormaSeguridad();
 
-	public List<Apiario> ListarTodos() {
-		return daoApiario.ListarTodos();
-	}
+	
 
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -29,6 +27,36 @@ public class SeleccionService implements IApiarioDAO,INormaSeguridadDAO,IDetalle
 	@Override
 	public int insertarDetalleApiarioNormaSeguridad(Apiario apiario,NormaSeguridad normaSeguridad) {
 		return	daoDetalleApiarioNormaSeguridad.insertarDetalleApiarioNormaSeguridad(apiario, normaSeguridad);
+	}
+
+	@Override
+	public List<Apiario> listarTodosApiarios() throws Exception {
+		// TODO Auto-generated method stub
+		return daoApiario.listarTodosApiarios();
+	}
+
+	@Override
+	public Apiario guardarApiario(Apiario instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoApiario.guardarApiario(instance);
+	}
+
+	@Override
+	public List<Apiario> buscarApiario(Apiario instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoApiario.buscarApiario(instance);
+	}
+
+	@Override
+	public Apiario obtenerPorIdApiario(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return daoApiario.obtenerPorIdApiario(id);
+	}
+
+	@Override
+	public Apiario eliminarApiario(Apiario instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoApiario.eliminarApiario(instance);
 	}
 	
 	
