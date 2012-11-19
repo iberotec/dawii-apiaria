@@ -14,9 +14,9 @@ public class MBSelectItems implements Serializable{
 	public MBSelectItems() {
 		
 	}
-	public SelectItem[] getCboApiario() { 
+	public SelectItem[] getCboApiario() throws Exception { 
 		SeleccionService service = new SeleccionService();
-		List<Apiario> lista = service.ListarTodos();
+		List<Apiario> lista = service.listarTodosApiarios();
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
 		for (int i = 0; i < cbo.length - 1; i++){

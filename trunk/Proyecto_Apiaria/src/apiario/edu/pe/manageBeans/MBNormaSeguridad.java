@@ -28,9 +28,9 @@ public class MBNormaSeguridad implements Serializable{
     	lista=service.listaNormaSeguridad(); 
     	return lista;
     }
-    public List<Apiario> listar() {
+    public List<Apiario> listar() throws Exception {
 
-		List<Apiario> lista = service.ListarTodos();
+		List<Apiario> lista = service.listarTodosApiarios();
 		return lista;
 	}
 

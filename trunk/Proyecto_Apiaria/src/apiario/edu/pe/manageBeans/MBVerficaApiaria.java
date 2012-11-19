@@ -22,12 +22,12 @@ public class MBVerficaApiaria implements Serializable{
 	List<Apiario> lista = new ArrayList<Apiario>();
 
 	public MBVerficaApiaria() {
-		listar();
+		
 	}
 
-	public List<Apiario> listar() {
+	public List<Apiario> listar() throws Exception {
 
-		List<Apiario> lista = se.ListarTodos();
+		List<Apiario> lista = se.listarTodosApiarios();
 		return lista;
 	}
 
