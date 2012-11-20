@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:outputText value="Seleccione" /><br/>
+	<p:selectOneMenu value="" id="a" required="true"
+		label="popupAmlcfilial" requiredMessage="escoja una opcion">
+		<f:selectItems value="#{mBSelectItems.cboApiario}" />
+		<p:ajax event="change"   
+                    listener="#{mBApiario.ubicacionApiario}" process="a"/>  
+	</p:selectOneMenu>
+<br/>
+	<h:outputText value="Ubicacion" /><br/>
+	<p:inputText value=""  required="true"
+		maxlength="12">
+	</p:inputText><br/>
+	<h:outputText value="Nivel de Peligro" /><br/>
+	<p:inputText value=""  required="true"
+		maxlength="12">
+	</p:inputText><br/><br/>
+
+	<p:commandButton id="btnGuardarapiario"
+		value="Guardar"
+		>
+	</p:commandButton>
+	<br />
+	<br />
+	<!-- TABLA DE DATA -->
+			<p:dataTable id="tableempcat" styleClass="maintenanceTable"
+				var="item" value="#{jMBVerificarApiario.oList}" paginator="true"
+				rows="15" effectSpeed="fast" paginatorPosition="bottom"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				type="none" >
+		
+
+				<p:column >
+					<f:facet name="header">
+						<h:outputText
+							value="apiario" />
+					</f:facet>
+					<h:outputText value="1" />
+				</p:column>
+				
+				<p:column  >
+					<f:facet name="header">
+						<h:outputText
+							value="nivel de peligro" />
+					</f:facet>
+					<h:outputText value="#{item}" />
+				</p:column>
+				<p:column exportable="false">
+				<f:facet name="header">
+						<h:outputText
+							value="eliminar" />
+					</f:facet>
+						<p:commandButton icon="ui-icon-close"
+							styleClass="btnEdicionGear"
+							title="eliminar">
+							<f:attribute name="actionFlag" value="D" />
+						</p:commandButton>
+					</p:column>
+		
+	</p:dataTable><br />
+	<p:commandButton 
+		value="Verificar Apiario"
+		>
+	</p:commandButton><br />
+	<!-- TABLA DE DATA -->
+			<p:dataTable id="table" styleClass="maintenanceTable"
+				var="item" value="#{MBVerificarApiario.oList}" paginator="true"
+				rows="15" effectSpeed="fast" paginatorPosition="bottom"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+				type="none" >
+		
+
+				<p:column >
+					<f:facet name="header">
+						<h:outputText
+							value="equipo" />
+					</f:facet>
+					<h:outputText value="1" />
+				</p:column>
+				
+				<p:column  >
+					<f:facet name="header">
+						<h:outputText
+							value="cantidad" />
+					</f:facet>
+					<h:outputText value="#{item}" />
+				</p:column>
+				<p:column  >
+					<f:facet name="header">
+						<h:outputText
+							value="disponibilidad" />
+					</f:facet>
+					<h:outputText value="#{item}" />
+				</p:column>
+		
+	</p:dataTable><br />
+	<p:commandButton 
+		value="Exportar Mapa"
+		>
+	</p:commandButton>
+	<p:commandButton 
+		value="Confirmar Atencion"
+		>
+	</p:commandButton><br />
+	
+</h:body>
+</html>
