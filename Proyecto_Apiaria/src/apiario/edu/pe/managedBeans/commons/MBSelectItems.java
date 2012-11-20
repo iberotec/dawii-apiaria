@@ -24,5 +24,15 @@ public class MBSelectItems implements Serializable{
 		}return cbo;
 	}
 	
+	public SelectItem[] getCboColmena() throws Exception { 
+		SeleccionService service = new SeleccionService();
+		List<Apiario> lista = service.listarTodosApiarios();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		for (int i = 0; i < cbo.length - 1; i++){
+			cbo[i+1] = new SelectItem(lista.get(i).getIdapiario(),lista.get(i).getDescripcion());			
+		}return cbo;
+	}
+	
 	
 }
