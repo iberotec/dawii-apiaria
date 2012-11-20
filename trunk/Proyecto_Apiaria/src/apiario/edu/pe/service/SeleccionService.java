@@ -6,21 +6,23 @@ import java.util.List;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
+import apiario.edu.pe.bean.Usuario;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
+import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
 @SuppressWarnings("serial")
-public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,Serializable{
+public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad, IUsuario,Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
 	IDetalleApiarioNormaSeguridad daoDetalleApiarioNormaSeguridad=objDAOFactory.getDetalleApiarioNormaSeguridad();
 	IPlanillaSeguimientoDAO daoPlanillaSeguimiento=objDAOFactory.getIPlanillaSeguimientoDAO();
-	
+	IUsuario daoUsuario = objDAOFactory.getIUsuarioDAO();
 
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -94,6 +96,12 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 			PlanillaSeguimiento instance) throws Exception {
 		// TODO Auto-generated method stub
 		return daoPlanillaSeguimiento.eliminarPlanillaSeguimiento(instance);
+	}
+
+	@Override
+	public Usuario validarUsuario(String usuario, String clave) {
+		
+		return daoUsuario.validarUsuario(usuario, clave);
 	}
 	
 	

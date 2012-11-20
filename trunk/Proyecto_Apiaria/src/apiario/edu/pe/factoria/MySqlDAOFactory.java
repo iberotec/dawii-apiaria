@@ -4,10 +4,12 @@ import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
+import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.dao.MySqlPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.MysqlApiarioDAO;
 import apiario.edu.pe.dao.MysqlDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.MysqlNormaSeguridadDAO;
+import apiario.edu.pe.dao.MysqlUsuarioDAO;
 
 public class MySqlDAOFactory extends DAOFactory{
 
@@ -33,6 +35,12 @@ public class MySqlDAOFactory extends DAOFactory{
 	public IPlanillaSeguimientoDAO getIPlanillaSeguimientoDAO() {
 		// TODO Auto-generated method stub
 		return new MySqlPlanillaSeguimientoDAO();
+	}
+
+	@Override
+	public IUsuario getIUsuarioDAO() {
+		
+		return new MysqlUsuarioDAO();
 	}
 
 	
