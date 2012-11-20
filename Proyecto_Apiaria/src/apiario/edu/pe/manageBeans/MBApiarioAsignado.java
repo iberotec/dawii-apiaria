@@ -9,6 +9,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
 import apiario.edu.pe.bean.Apiario;
+import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.service.SeleccionService;
 
 @ManagedBean(name = "MBApiarioAsignado")
@@ -18,9 +20,16 @@ public class MBApiarioAsignado implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	List<Apiario> oList2 = new ArrayList<Apiario>();
-	SeleccionService serviceSeleccion = new SeleccionService();
-
+	private List<Apiario> oList2 = new ArrayList<Apiario>();
+	private SeleccionService serviceSeleccion = new SeleccionService();
+	private IApiarioDAO daoApiario;
+	
+	
+	public void listarApiarios(){
+		
+	}
+	
+	
 	public void init(ActionEvent event) throws Exception {
 
 		oList2 = serviceSeleccion.listarTodosApiarios();
