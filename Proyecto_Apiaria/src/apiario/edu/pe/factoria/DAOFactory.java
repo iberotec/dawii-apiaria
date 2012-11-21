@@ -1,8 +1,11 @@
 package apiario.edu.pe.factoria;
 
+import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
+import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.IUsuario;
 
@@ -18,7 +21,11 @@ public abstract class DAOFactory {
 	public abstract INormaSeguridadDAO getINormaSeguridadDAO();
 	public abstract IDetalleApiarioNormaSeguridad getDetalleApiarioNormaSeguridad();
 	public abstract IPlanillaSeguimientoDAO getIPlanillaSeguimientoDAO();
-	public abstract IUsuario  getIUsuarioDAO();
+	public abstract IUsuario getIUsuarioDAO();
+	public abstract IColmenaDAO getIColmenaDAO();
+	public abstract IPisoDAO getIPisoDAO();
+	public abstract IAlzaDAO getIAlzaDAO();
+	
 	public static DAOFactory getDAOFactory(TipoFabrica tipo) {
 		switch (tipo) {
 		case MYSQL:
