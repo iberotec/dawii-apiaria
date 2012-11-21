@@ -5,40 +5,45 @@
  <!-- ManageBean -->
  <managed-bean>
   <managed-bean-name>mBapiaria</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.manageBeans.MBVerficaApiaria</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.bean.MBVerficaApiaria</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>mBNormaSeguridad</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.manageBeans.MBNormaSeguridad</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.bean.MBNormaSeguridad</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <!-- Diego -->
  <managed-bean>
   <managed-bean-name>mBSelectItems</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.managedBeans.commons.MBSelectItems</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.bean.MBSelectItems</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>mBApiario</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.manageBeans.MBApiario</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.bean.MBApiario</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>mBLogueo</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.manageBeans.MBLogueo</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.bean.MBLogueo</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
-  <!-- Diego -->
- <!-- ManageBean -->
- <!--navegacion -->
+ <managed-bean>
+  <managed-bean-name>mapBean</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.bean.MapBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <!-- Diego 
+ ManageBean 
+navegacion -->
  <navigation-rule>
- <!-- Diego -->
+  <!-- Diego -->
   <navigation-case>
    <from-outcome>successBienvenida</from-outcome>
    <to-view-id>/UI_bienvenida.xhtml</to-view-id>
   </navigation-case>
-    <navigation-case>
+  <navigation-case>
    <from-outcome>successMainSeleccion</from-outcome>
    <to-view-id>/seleccion/mainSeleccion.xhtml</to-view-id>
   </navigation-case>
@@ -48,7 +53,7 @@
   </navigation-case>
   <!-- Diego -->
  </navigation-rule>
-  <!--navegacion -->
+ <!--navegacion -->
  <application>
   <locale-config>
    <default-locale>es</default-locale>

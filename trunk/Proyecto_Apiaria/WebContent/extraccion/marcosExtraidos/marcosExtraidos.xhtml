@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+<h:body>
+	<h:form>
+			<h:outputText value="Apiario" />
+			<p:selectOneMenu value="">
+			<f:selectItems value="" />
+			 <p:ajax update="" listener="#{success}" />  
+			</p:selectOneMenu>
+			
+			<h:outputText value="Colmena" />
+			<p:selectOneMenu value="">
+			<f:selectItems value="" />
+			 <p:ajax update="" listener="#{success}" />  
+			</p:selectOneMenu>
+			
+			<h:outputText value="Piso" />
+			<p:selectOneMenu value="">
+			<f:selectItems value="" />
+			 <p:ajax update="" listener="#{success}" />  
+			</p:selectOneMenu>
+			
+			<h:outputText value="Alza"></h:outputText>
+			<table>
+			<tr>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value=""/>
+				</p:selectBooleanCheckbox>
+				</td>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="2"/>
+				</p:selectBooleanCheckbox>
+				</td>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="3"/>
+				</p:selectBooleanCheckbox>
+				</td>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="4"/>
+				</p:selectBooleanCheckbox>
+				</td>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="5"/>
+				</p:selectBooleanCheckbox>
+				</td>
+			</tr>
+			<tr>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="6"/>
+				</p:selectBooleanCheckbox>
+				</td>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="7"/>
+				</p:selectBooleanCheckbox>
+				</td>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="8"/>
+				</p:selectBooleanCheckbox>
+				</td>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="9"/>
+				</p:selectBooleanCheckbox>
+				</td>
+				<td> 
+				<p:selectBooleanCheckbox >
+					<f:selectItems value="10"/>
+				</p:selectBooleanCheckbox>
+				</td>
+			</tr>
+			</table>
+     
+	</h:form>
+</h:body>
+
+</html>
