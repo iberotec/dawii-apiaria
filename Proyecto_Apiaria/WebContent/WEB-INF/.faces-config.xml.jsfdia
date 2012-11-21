@@ -10,6 +10,9 @@
     NAME="output1" PATH="/seleccion/mainSeleccion.xhtml"
     TARGET="rules:#seleccion#mainSeleccion.xhtml"
     TITLE="successMainSeleccion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="successLogin::#UI_login.xhtml"
+    NAME="output2" PATH="/UI_login.xhtml" TARGET="rules:#UI_login.xhtml"
+    TITLE="successLogin" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#UI_bienvenida.xhtml"
