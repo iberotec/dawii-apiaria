@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
+	>
+
+
+<h:head>
+	<link rel="stylesheet" href="#{request.contextPath}/css/reset.css" />
+	<link rel="stylesheet" href="#{request.contextPath}/css/general.css" />
+</h:head>
+
+<h:body>
+<table>
+<tr>
+	<td>
+		<div>
+			<h:outputText value="Apiarios" />
+		</div>
+	</td>
+	<td>
+		<div>
+			<p:selectOneMenu id="cbo3" >
+				<f:selectItems value="#{mBSelectItems.cboApiario}" />
+			</p:selectOneMenu>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td>
+		<h:outputText value="Comportamiento de Reina" />
+	</td>
+	<td>
+		<p:inputTextarea rows="10" cols="50" value="" required="true" maxlength="12"></p:inputTextarea>
+	</td>
+</tr>
+<tr>
+	<td>	
+		<h:outputText value="Grado de Peligro de la Reina" />
+	</td>
+	<td>
+		<h:selectOneMenu value="">
+			<f:selectItem itemValue="H"/>
+		</h:selectOneMenu>
+	</td>
+</tr>
+<tr>
+	<td>
+	
+	<!--  	<h:selectManyCheckbox value="" layout="pageDirection">
+	
+			<f:selectItem itemValue="Necesidad de Alimentacion" />
+			<f:selectItem itemValue="Alza Deteriorada"/>
+			<f:selectItem itemValue="Necesidad de Curacion"/>
+			<f:selectItem itemValue="Ausencia de Reina"/>
+			<f:selectItem itemValue="Falto de espacio camara de cria"/>
+		</h:selectManyCheckbox>
+		 -->
+	</td>
+
+	<td>
+		<h:outputText value="Tipo de Alimentación" />	
+
+		<h:selectOneMenu value="">
+			<f:selectItem itemValue="Para Invierno"/>
+		</h:selectOneMenu>
+		<br></br>
+		<h:outputText value="Tipo de Enfermedad" />	
+		<h:selectOneMenu value="">
+			<f:selectItem itemValue="Enfermedad 1"/>
+		</h:selectOneMenu>
+	</td>
+</tr>
+<tr>
+	
+</tr>
+</table>
+
+<p:tabView>
+	<p:tab title="Colmena">
+		Colmena
+		<p:dataTable
+			value=""
+			var="listaColmenas"
+			rowKey="row"
+			id="dtListaColmenas"
+			rows="10"
+			styleClass="so_DataGrid_Body_Table"
+			>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Colmena"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cosechable"></h:outputText>
+				</f:facet>
+				<h:selectBooleanCheckbox value=""></h:selectBooleanCheckbox>
+			</p:column>
+		</p:dataTable>
+	</p:tab>
+	<p:tab title="Piso">
+		Piso
+		<p:dataTable
+			value=""
+			var="listaPiso"
+			rowKey="row"
+			id="dtListaPiso"
+			rows="10"
+			styleClass="so_DataGrid_Body_Table"
+			>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Piso"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+		</p:dataTable>
+	</p:tab>
+	<p:tab title="Alza">
+		Alza
+		<p:dataTable
+			value=""
+			var="listaAlzas"
+			rowKey="row"
+			id="dtListaAlzas"
+			rows="10"
+			styleClass="so_DataGrid_Body_Table"
+			>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="ID"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Alza"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="% Trabajado"></h:outputText>
+				</f:facet>
+				<h:outputText value=""></h:outputText>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Extraido"></h:outputText>
+				</f:facet>
+				<h:selectBooleanCheckbox value=""></h:selectBooleanCheckbox>
+			</p:column>
+		</p:dataTable>
+	</p:tab>
+</p:tabView>
+
+<h:commandButton value="Agregar"></h:commandButton>
+
+
+<p:dataTable
+	value=""
+	var="listaApiariosAsignados"
+	rowKey="row"
+	id="dtListaApiariosAsignados"
+	rows="10"
+	styleClass="so_DataGrid_Body_Table"
+	>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="ID"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Colmena"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Piso"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Alza"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Cosechable"></h:outputText>
+		</f:facet>
+		<h:selectBooleanCheckbox value=""></h:selectBooleanCheckbox>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="% Trabajo Extra"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+	<p:column>
+		<f:facet name="header">
+			<h:outputText value="Opción"></h:outputText>
+		</f:facet>
+		<h:outputText value=""></h:outputText>
+	</p:column>
+</p:dataTable>
+
+<h:commandButton value="Registrar"></h:commandButton>
+
+</h:body>	
+</html>
