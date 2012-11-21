@@ -1,10 +1,16 @@
 package apiario.edu.pe.factoria;
 
+import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
+import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.IUsuario;
+import apiario.edu.pe.dao.MySqlAlzaDAO;
+import apiario.edu.pe.dao.MySqlColmenaDAO;
+import apiario.edu.pe.dao.MySqlPisoDAO;
 import apiario.edu.pe.dao.MySqlPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.MysqlApiarioDAO;
 import apiario.edu.pe.dao.MysqlDetalleApiarioNormaSeguridad;
@@ -15,32 +21,42 @@ public class MySqlDAOFactory extends DAOFactory{
 
 	@Override
 	public IApiarioDAO getIApiarioDAO() {
-		// TODO Auto-generated method stub
 		return new MysqlApiarioDAO();
 	}
 
 	@Override
 	public INormaSeguridadDAO getINormaSeguridadDAO() {
-		// TODO Auto-generated method stub
 		return new MysqlNormaSeguridadDAO();
 	}
 
 	@Override
 	public IDetalleApiarioNormaSeguridad getDetalleApiarioNormaSeguridad() {
-		// TODO Auto-generated method stub
 		return new MysqlDetalleApiarioNormaSeguridad();
 	}
 
 	@Override
 	public IPlanillaSeguimientoDAO getIPlanillaSeguimientoDAO() {
-		// TODO Auto-generated method stub
 		return new MySqlPlanillaSeguimientoDAO();
 	}
 
 	@Override
 	public IUsuario getIUsuarioDAO() {
-		
 		return new MysqlUsuarioDAO();
+	}
+
+	@Override
+	public IColmenaDAO getIColmenaDAO() {
+		return new MySqlColmenaDAO();
+	}
+
+	@Override
+	public IPisoDAO getIPisoDAO() {
+		return new MySqlPisoDAO();
+	}
+
+	@Override
+	public IAlzaDAO getIAlzaDAO() {
+		return new MySqlAlzaDAO();
 	}
 
 	
