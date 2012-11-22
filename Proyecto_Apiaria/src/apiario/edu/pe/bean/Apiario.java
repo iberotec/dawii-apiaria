@@ -20,7 +20,7 @@ public class Apiario extends BaseEntidades implements Serializable {
 	@Id
 	private Integer idapiario;
 	
-	@Column(name="descripcion")
+	@Column(name="descripcion_apiario")
 	private String descripcion;
 	
 	//bi-directional many-to-one association to Colmena

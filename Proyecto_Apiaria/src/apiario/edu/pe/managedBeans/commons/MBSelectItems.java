@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.faces.model.SelectItem;
 
+import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
+import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.service.SeleccionService;
 
 @SuppressWarnings("serial")
@@ -16,6 +18,7 @@ public class MBSelectItems implements Serializable{
 		
 	}
 	public SelectItem[] getCboApiario() throws Exception { 
+		System.out.println("entro a apiario");
 		SeleccionService service = new SeleccionService();
 		List<Apiario> lista = service.listarTodosApiarios();
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
@@ -26,6 +29,7 @@ public class MBSelectItems implements Serializable{
 	}
 	
 	public SelectItem[] getCboColmena() throws Exception { 
+		System.out.println("entro a colmena");
 		SeleccionService service = new SeleccionService();
 		List<Colmena> lista = service.listarTodosColmenas();
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
@@ -36,6 +40,36 @@ public class MBSelectItems implements Serializable{
 			col=lista.get(i).getIdcolmena();
 			colm=col.toString();
 			cbo[i+1] = new SelectItem(lista.get(i).getIdcolmena(),colm);			
+		}return cbo;
+	}
+	
+	public SelectItem[] getCboAlza() throws Exception { 
+		System.out.println("entro a alza");
+		SeleccionService service = new SeleccionService();
+		List<Alza> lista = service.listarTodosAlzas();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		Integer al;
+		String alz;
+		for (int i = 0; i < cbo.length - 1; i++){
+			al=lista.get(i).getIdalza();
+			alz=al.toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdalza(),alz);			
+		}return cbo;
+	}
+	
+	public SelectItem[] getCboPiso() throws Exception { 
+		System.out.println("entro a piso");
+		SeleccionService service = new SeleccionService();
+		List<Piso> lista = service.listarTodosPisos();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		Integer pis;
+		String piso;
+		for (int i = 0; i < cbo.length - 1; i++){
+			pis=lista.get(i).getIdpiso();
+			piso=pis.toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdpiso(),piso);			
 		}return cbo;
 	}
 	

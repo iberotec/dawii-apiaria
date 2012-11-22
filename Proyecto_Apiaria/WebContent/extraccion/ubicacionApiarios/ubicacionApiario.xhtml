@@ -9,6 +9,9 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
 	xmlns:sec="http://www.springframework.org/security/tags"
 	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:head>
+	<script type="text/javascript" src="js/gmaps.js"></script>
+</h:head>
 
 <h:body>
 	<h:form id="form">
@@ -16,9 +19,8 @@
 	<tr valign="top">
 		<td>
 		<h:outputText value="Apiario" />
-			<p:selectOneMenu value="">
-			<f:selectItems value="" />
-			 <p:ajax update="iUbicacion" listener="#{success}" />  
+			<p:selectOneMenu id="cbo3" >
+				<f:selectItems value="#{mBSelectItems.cboApiario}" />
 			</p:selectOneMenu>
 		</td>
 		<td>
@@ -48,7 +50,24 @@
 	</tr>
 	</table>
 	<h:form>  
-  
+	<script type="text/javascript">
+		map = new GMaps({
+		  div: '#map',
+		  zoom: 16,
+		  lat: -12.043333,
+		  lng: -77.028333,
+		  click: function(e) {
+		    alert('click');
+		  },
+		  dragend: function(e) {
+		    alert('dragend');
+		  }
+		});
+	</script>  
+	
+	<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.pe/maps?f=d&amp;source=s_d&amp;saddr=Cibertec+Miraflores,+Ernesto+Diez+Canseco,+Lima&amp;daddr=&amp;hl=es&amp;geocode=&amp;aq=3&amp;oq=cibertec&amp;sll=-11.980092,-77.074285&amp;sspn=0.023761,0.048752&amp;mra=ls&amp;ie=UTF8&amp;ll=-12.122294,-77.028404&amp;spn=0.006295,0.006439&amp;t=m&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com.pe/maps?f=d&amp;source=embed&amp;saddr=Cibertec+Miraflores,+Ernesto+Diez+Canseco,+Lima&amp;daddr=&amp;hl=es&amp;geocode=&amp;aq=3&amp;oq=cibertec&amp;sll=-11.980092,-77.074285&amp;sspn=0.023761,0.048752&amp;mra=ls&amp;ie=UTF8&amp;ll=-12.122294,-77.028404&amp;spn=0.006295,0.006439&amp;t=m" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small>
+	
+	
     <p:growl id="messages" showDetail="true" life="2000" />  
   
     <p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" style="width:600px;height:400px">  

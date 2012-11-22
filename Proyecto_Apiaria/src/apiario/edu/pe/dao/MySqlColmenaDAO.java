@@ -21,7 +21,7 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 	
 	@Override
 	public List<Colmena> listarTodosColmenas() throws Exception {
-		List lista=null;
+		List<Colmena> lista=null;
 		
 		try {
 			em.getTransaction().begin();
@@ -32,6 +32,9 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+		}finally{
+			em.close();
+			emf.close();
 		}
 		
 		return lista;

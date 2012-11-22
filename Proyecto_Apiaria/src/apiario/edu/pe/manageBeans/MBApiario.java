@@ -49,6 +49,14 @@ public class MBApiario implements Serializable{
 		limpiar();
 		return "successMainSeleccion";
 	}
+	
+	public String abrirUbicacionApiario(){
+		System.out.println("entrando a ubicacion apiario");
+		limpiar();
+		return "successUbicacion";
+	}
+	
+	
 	public void localizarApiario() throws Exception{
 		System.out.println("entrega ubicacion");
 		PlanillaSeguimiento obj= new PlanillaSeguimiento();
