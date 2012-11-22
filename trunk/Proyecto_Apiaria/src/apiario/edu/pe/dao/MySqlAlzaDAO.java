@@ -21,7 +21,7 @@ public class MySqlAlzaDAO implements IAlzaDAO{
 	
 	@Override
 	public List<Alza> listarTodosAlzas() throws Exception {
-		List lista=null;
+		List<Alza> lista=null;
 		
 		try {
 			em.getTransaction().begin();
@@ -32,6 +32,9 @@ public class MySqlAlzaDAO implements IAlzaDAO{
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+		}finally{
+			em.close();
+			emf.close();
 		}
 		
 		return lista;

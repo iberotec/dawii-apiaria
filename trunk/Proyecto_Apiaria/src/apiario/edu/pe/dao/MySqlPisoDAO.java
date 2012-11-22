@@ -21,7 +21,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 	
 	@Override
 	public List<Piso> listarTodosPisos() throws Exception {
-		List lista=null;
+		List<Piso> lista=null;
 		
 		try {
 			em.getTransaction().begin();
@@ -32,6 +32,9 @@ public class MySqlPisoDAO implements IPisoDAO{
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+		}finally{
+			em.close();
+			emf.close();
 		}
 		
 		return lista;
