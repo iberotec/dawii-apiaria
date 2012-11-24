@@ -9,24 +9,24 @@ import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.Piso;
+import apiario.edu.pe.bean.TipoAlimentacion;
+import apiario.edu.pe.bean.TipoEnfermedad;
 import apiario.edu.pe.service.SeleccionService;
 
 @SuppressWarnings("serial")
 public class MBSelectItems implements Serializable{
-	//-.-!
+	
 	public MBSelectItems() {
 		
 	}
 	public SelectItem[] getCboApiario() throws Exception { 
-		String desc;
 		System.out.println("entro a apiario");
 		SeleccionService service = new SeleccionService();
 		List<Apiario> lista = service.listarTodosApiarios();
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
 		for (int i = 0; i < cbo.length - 1; i++){
-			desc=String.valueOf(lista.get(i).getIdApiario());
-			cbo[i+1] = new SelectItem(lista.get(i).getIdApiario(),"Apiario"+desc);			
+//			cbo[i+1] = new SelectItem(lista.get(i).getIdApiario(),lista.get(i).getDescripcion());		Falta atributo descripcion	
 		}return cbo;
 	}
 	
@@ -75,5 +75,41 @@ public class MBSelectItems implements Serializable{
 		}return cbo;
 	}
 	
+	public SelectItem[] getCboColmenaxApiario(Colmena instance) throws Exception { 
+		System.out.println("entro a ColmenaxApiario");
+		SeleccionService service = new SeleccionService();
+		List<Colmena> lista = service.buscarColmena(instance);
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		Integer col;
+		String cole;
+		for (int i = 0; i < cbo.length - 1; i++){
+			col=lista.get(i).getIdColmena();
+			cole=col.toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdColmena(),cole);			
+		}return cbo;
+	}
+	
+	public SelectItem[] getCboTipoAlimentacion() throws Exception { 
+		System.out.println("entro a tipoAlimentacion");
+		SeleccionService service = new SeleccionService();
+		List<TipoAlimentacion> lista = service.listarTodosTipoAlimentacions();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		for (int i = 0; i < cbo.length - 1; i++){
+			cbo[i+1] = new SelectItem(lista.get(i).getIdTipoAlimentacion(),lista.get(i).getDescripcionTipoAlimentacion());			
+		}return cbo;
+	}
+	
+	public SelectItem[] getCboTipoEnfermedad() throws Exception { 
+		System.out.println("entro a tipoEnfermedad");
+		SeleccionService service = new SeleccionService();
+		List<TipoEnfermedad> lista = service.listarTodosTipoEnfermedades();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		for (int i = 0; i < cbo.length - 1; i++){
+			cbo[i+1] = new SelectItem(lista.get(i).getIdTipoEnfermedad(),lista.get(i).getDescripcionTipoEnfermedad());			
+		}return cbo;
+	}
 	
 }
