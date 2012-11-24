@@ -44,8 +44,8 @@ public class MBApiario implements Serializable{
 	public void setLista(List<Apiario> lista) {
 		this.lista = lista;
 	}
-	public String abrirVerificarApiaria(){
-		System.out.println("entrando a verificar apiario");
+	public String abrirAsignarApiario(){
+		System.out.println("entrando a asignar apiario");
 		limpiar();
 		return "successMainSeleccion";
 	}
