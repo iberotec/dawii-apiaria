@@ -9,6 +9,8 @@ import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
+import apiario.edu.pe.bean.TipoAlimentacion;
+import apiario.edu.pe.bean.TipoEnfermedad;
 import apiario.edu.pe.bean.Usuario;
 import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
@@ -17,12 +19,14 @@ import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
+import apiario.edu.pe.dao.ITipoAlimentacionDAO;
+import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
 @SuppressWarnings("serial")
-public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,IUsuario,Serializable{
+public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,IUsuario,Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -32,6 +36,8 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 	IColmenaDAO daoColmena=objDAOFactory.getIColmenaDAO();
 	IPisoDAO daoPiso=objDAOFactory.getIPisoDAO();
 	IAlzaDAO daoAlza=objDAOFactory.getIAlzaDAO();
+	ITipoAlimentacionDAO daoTipoAlimentacion=objDAOFactory.getITipoAlimentacionDAO();
+	ITipoEnfermedadDAO daoTipoEnfermedad=objDAOFactory.getTipoEnfermedadDAO();
 
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -175,5 +181,63 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 	@Override
 	public Piso eliminarPiso(Piso instance) throws Exception {
 		return daoPiso.eliminarPiso(instance);
+	}
+
+	@Override
+	public List<TipoAlimentacion> listarTodosTipoAlimentacions()
+			throws Exception {
+		return daoTipoAlimentacion.listarTodosTipoAlimentacions();
+	}
+
+	@Override
+	public TipoAlimentacion guardarTipoAlimentacion(TipoAlimentacion instance)
+			throws Exception {
+		return daoTipoAlimentacion.guardarTipoAlimentacion(instance);
+	}
+
+	@Override
+	public List<TipoAlimentacion> buscarTipoAlimentacion(
+			TipoAlimentacion instance) throws Exception {
+		return daoTipoAlimentacion.buscarTipoAlimentacion(instance);
+	}
+
+	@Override
+	public TipoAlimentacion obtenerPorIdTipoAlimentacion(int id)
+			throws Exception {
+		return daoTipoAlimentacion.obtenerPorIdTipoAlimentacion(id);
+	}
+
+	@Override
+	public TipoAlimentacion eliminarTipoAlimentacion(TipoAlimentacion instance)
+			throws Exception {
+		return daoTipoAlimentacion.eliminarTipoAlimentacion(instance);
+	}
+
+	@Override
+	public List<TipoEnfermedad> listarTodosTipoEnfermedades() throws Exception {
+		return daoTipoEnfermedad.listarTodosTipoEnfermedades();
+	}
+
+	@Override
+	public TipoEnfermedad guardarTipoEnfermedad(TipoEnfermedad instance)
+			throws Exception {
+		return daoTipoEnfermedad.guardarTipoEnfermedad(instance);
+	}
+
+	@Override
+	public List<TipoEnfermedad> buscarTipoEnfermedad(TipoEnfermedad instance)
+			throws Exception {
+		return daoTipoEnfermedad.buscarTipoEnfermedad(instance);
+	}
+
+	@Override
+	public TipoEnfermedad obtenerPorIdTipoEnfermedad(int id) throws Exception {
+		return daoTipoEnfermedad.obtenerPorIdTipoEnfermedad(id);
+	}
+
+	@Override
+	public TipoEnfermedad eliminarTipoEnfermedad(TipoEnfermedad instance)
+			throws Exception {
+		return daoTipoEnfermedad.eliminarTipoEnfermedad(instance);
 	}
 }

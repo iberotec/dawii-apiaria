@@ -23,7 +23,7 @@
 	</td>
 	<td>
 		<div>
-			<p:selectOneMenu id="cbo3" >
+			<p:selectOneMenu id="iApiario" >
 				<f:selectItems value="#{mBSelectItems.cboApiario}" />
 			</p:selectOneMenu>
 		</div>
@@ -34,17 +34,28 @@
 		<h:outputText value="Comportamiento de Reina" />
 	</td>
 	<td>
-		<p:inputTextarea rows="10" cols="50" value="" required="true" maxlength="12"></p:inputTextarea>
+		<p:inputTextarea id="iComportamientoReina" rows="10" cols="50"  required="true" maxlength="12"></p:inputTextarea>
 	</td>
 </tr>
 <tr>
 	<td>	
-		<h:outputText value="Grado de Peligro de la Reina" />
+		<h:outputText value="Grado de Peligro de la Colmena" />
 	</td>
 	<td>
+
+		<div>
+			<h:selectOneMenu value="iGradoPeligroColmena">
+				<f:selectItem itemValue="Seleccione..."/>
+				<f:selectItem itemValue="Hard"/>
+				<f:selectItem itemValue="Medium"/>
+				<f:selectItem itemValue="Easy"/>
+			</h:selectOneMenu>
+		</div>
+
 <!--		<h:selectOneMenu value="">-->
 <!--			<f:selectItem itemValue="H"/>-->
 <!--		</h:selectOneMenu>-->
+
 	</td>
 </tr>
 <tr>
@@ -58,10 +69,22 @@
 			<f:selectItem itemValue="Ausencia de Reina"/>
 			<f:selectItem itemValue="Falto de espacio camara de cria"/>
 		</h:selectManyCheckbox>
-		 -->
+		 --> 
 	</td>
 
 	<td>
+
+		<h:outputText value="Tipo de Alimentación" />	
+
+		<h:selectOneMenu value="iTipoAlimentacion">
+			<f:selectItems value="#{mBSelectItems.cboTipoAlimentacion}"/>
+		</h:selectOneMenu>
+		<br></br>
+		<h:outputText value="Tipo de Enfermedad" />	
+		<h:selectOneMenu value="iTipoEnfermedad">
+			<f:selectItems value="#{mBSelectItems.cboTipoEnfermedad}"/>
+		</h:selectOneMenu>
+
 <!--		<h:outputText value="Tipo de Alimentación" />	-->
 <!---->
 <!--		<h:selectOneMenu value="">-->
@@ -72,6 +95,7 @@
 <!--		<h:selectOneMenu value="">-->
 <!--			<f:selectItem itemValue="Enfermedad 1"/>-->
 <!--		</h:selectOneMenu>-->
+
 	</td>
 </tr>
 <tr>

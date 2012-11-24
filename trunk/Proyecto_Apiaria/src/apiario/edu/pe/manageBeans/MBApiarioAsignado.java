@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
 
 import apiario.edu.pe.bean.Apiario;
+import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.service.SeleccionService;
@@ -23,15 +24,24 @@ public class MBApiarioAsignado implements Serializable {
 	private List<Apiario> oList2 = new ArrayList<Apiario>();
 	private SeleccionService serviceSeleccion = new SeleccionService();
 	private IApiarioDAO daoApiario;
+	private Colmena objColmena;
 	
+	private List<Colmena> listaColmenta=new ArrayList<Colmena>();
 	
-	public void listarApiarios(){
+	public void limpiar(){
+		objColmena=new Colmena();
 		
+		
+	}
+	
+	public void buscarColmenaxComboApiario() throws Exception{
+		serviceSeleccion.buscarColmena(objColmena);
+		
+		System.out.println();
 	}
 	
 	
 	public void init(ActionEvent event) throws Exception {
-
 		oList2 = serviceSeleccion.listarTodosApiarios();
 	}
 
@@ -53,6 +63,25 @@ public class MBApiarioAsignado implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+
+	public IApiarioDAO getDaoApiario() {
+		return daoApiario;
+	}
+
+
+	public void setDaoApiario(IApiarioDAO daoApiario) {
+		this.daoApiario = daoApiario;
+	}
+
+	public List<Colmena> getListaColmenta() {
+		return listaColmenta;
+	}
+
+
+	public void setListaColmenta(List<Colmena> listaColmenta) {
+		this.listaColmenta = listaColmenta;
 	}
 
 
