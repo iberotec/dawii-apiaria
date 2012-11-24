@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,51 +15,52 @@ public class EstadoRevision implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idestado_revision")
-	private int idestadoRevision;
+	@Column(name="id_estado_revision")
+	private int idEstadoRevision;
 
-	private String descripcion;
+	@Column(name="descripcion_estado_revision")
+	private String descripcionEstadoRevision;
 
-	//bi-directional many-to-one association to DetalleEstRevisionEquiTrab
+	//bi-directional many-to-one association to EstadoRevisionEquipamientoTrabajo
 	@OneToMany(mappedBy="estadoRevision")
-	private List<DetalleEstRevisionEquiTrab> detalleEstRevisionEquiTrabs;
+	private Set<EstadoRevisionEquipamientoTrabajo> estadoRevisionEquipamientoTrabajos;
 
 	//bi-directional many-to-one association to PlanillaRevision
 	@OneToMany(mappedBy="estadoRevision")
-	private List<PlanillaRevision> planillaRevisions;
+	private Set<PlanillaRevision> planillaRevisions;
 
     public EstadoRevision() {
     }
 
-	public int getIdestadoRevision() {
-		return this.idestadoRevision;
+	public int getIdEstadoRevision() {
+		return this.idEstadoRevision;
 	}
 
-	public void setIdestadoRevision(int idestadoRevision) {
-		this.idestadoRevision = idestadoRevision;
+	public void setIdEstadoRevision(int idEstadoRevision) {
+		this.idEstadoRevision = idEstadoRevision;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionEstadoRevision() {
+		return this.descripcionEstadoRevision;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionEstadoRevision(String descripcionEstadoRevision) {
+		this.descripcionEstadoRevision = descripcionEstadoRevision;
 	}
 
-	public List<DetalleEstRevisionEquiTrab> getDetalleEstRevisionEquiTrabs() {
-		return this.detalleEstRevisionEquiTrabs;
+	public Set<EstadoRevisionEquipamientoTrabajo> getEstadoRevisionEquipamientoTrabajos() {
+		return this.estadoRevisionEquipamientoTrabajos;
 	}
 
-	public void setDetalleEstRevisionEquiTrabs(List<DetalleEstRevisionEquiTrab> detalleEstRevisionEquiTrabs) {
-		this.detalleEstRevisionEquiTrabs = detalleEstRevisionEquiTrabs;
+	public void setEstadoRevisionEquipamientoTrabajos(Set<EstadoRevisionEquipamientoTrabajo> estadoRevisionEquipamientoTrabajos) {
+		this.estadoRevisionEquipamientoTrabajos = estadoRevisionEquipamientoTrabajos;
 	}
 	
-	public List<PlanillaRevision> getPlanillaRevisions() {
+	public Set<PlanillaRevision> getPlanillaRevisions() {
 		return this.planillaRevisions;
 	}
 
-	public void setPlanillaRevisions(List<PlanillaRevision> planillaRevisions) {
+	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
 		this.planillaRevisions = planillaRevisions;
 	}
 	

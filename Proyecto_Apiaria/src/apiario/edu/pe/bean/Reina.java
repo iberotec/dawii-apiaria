@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,53 +15,56 @@ public class Reina implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idreina;
+	@Column(name="id_reina")
+	private int idReina;
 
-	private String descripcion;
+	@Column(name="caracteristica_reina")
+	private String caracteristicaReina;
 
-	private String genetica;
+	@Column(name="descripcion_reina")
+	private String descripcionReina;
 
 	//bi-directional many-to-one association to PlanillaRevision
 	@OneToMany(mappedBy="reina")
-	private List<PlanillaRevision> planillaRevisions;
+	private Set<PlanillaRevision> planillaRevisions;
 
 	//bi-directional many-to-one association to Colmena
     @ManyToOne
-	@JoinColumn(name="idcolmena")
+	@JoinColumn(name="id_colmena")
 	private Colmena colmena;
 
     public Reina() {
     }
 
-	public int getIdreina() {
-		return this.idreina;
+	public int getIdReina() {
+		return this.idReina;
 	}
 
-	public void setIdreina(int idreina) {
-		this.idreina = idreina;
+	public void setIdReina(int idReina) {
+		this.idReina = idReina;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getCaracteristicaReina() {
+		return this.caracteristicaReina;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setCaracteristicaReina(String caracteristicaReina) {
+		this.caracteristicaReina = caracteristicaReina;
 	}
 
-	public String getGenetica() {
-		return this.genetica;
+	public String getDescripcionReina() {
+		return this.descripcionReina;
 	}
 
-	public void setGenetica(String genetica) {
-		this.genetica = genetica;
+	public void setDescripcionReina(String descripcionReina) {
+		this.descripcionReina = descripcionReina;
 	}
 
-	public List<PlanillaRevision> getPlanillaRevisions() {
+	public Set<PlanillaRevision> getPlanillaRevisions() {
 		return this.planillaRevisions;
 	}
 
-	public void setPlanillaRevisions(List<PlanillaRevision> planillaRevisions) {
+	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
 		this.planillaRevisions = planillaRevisions;
 	}
 	

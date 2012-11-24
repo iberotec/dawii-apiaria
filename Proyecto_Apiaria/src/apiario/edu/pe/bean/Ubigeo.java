@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,7 +15,8 @@ public class Ubigeo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private String idubigeo;
+	@Column(name="id_ubigeo")
+	private int idUbigeo;
 
 	private String departamento;
 
@@ -25,22 +26,22 @@ public class Ubigeo implements Serializable {
 
 	//bi-directional many-to-one association to Pai
     @ManyToOne
-	@JoinColumn(name="pais_idpais")
+	@JoinColumn(name="id_pais")
 	private Pai pai;
 
 	//bi-directional many-to-one association to Zona
 	@OneToMany(mappedBy="ubigeo")
-	private List<Zona> zonas;
+	private Set<Zona> zonas;
 
     public Ubigeo() {
     }
 
-	public String getIdubigeo() {
-		return this.idubigeo;
+	public int getIdUbigeo() {
+		return this.idUbigeo;
 	}
 
-	public void setIdubigeo(String idubigeo) {
-		this.idubigeo = idubigeo;
+	public void setIdUbigeo(int idUbigeo) {
+		this.idUbigeo = idUbigeo;
 	}
 
 	public String getDepartamento() {
@@ -75,11 +76,11 @@ public class Ubigeo implements Serializable {
 		this.pai = pai;
 	}
 	
-	public List<Zona> getZonas() {
+	public Set<Zona> getZonas() {
 		return this.zonas;
 	}
 
-	public void setZonas(List<Zona> zonas) {
+	public void setZonas(Set<Zona> zonas) {
 		this.zonas = zonas;
 	}
 	

@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,56 +15,50 @@ public class Tratamiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idtratamiento;
+	@Column(name="id_tratamiento")
+	private int idTratamiento;
 
-	private String descripcion;
+	@Column(name="descripcion_tratamiento")
+	private String descripcionTratamiento;
 
-	//bi-directional many-to-one association to DetalleTipoEnfeTratamiento
+	//bi-directional many-to-one association to TipoEnfermedadTratamiento
 	@OneToMany(mappedBy="tratamiento")
-	private List<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos;
-
-	//bi-directional many-to-one association to DetalleTratMed
-	@OneToMany(mappedBy="tratamiento")
-	private List<DetalleTratMed> detalleTratMeds;
+	private Set<TipoEnfermedadTratamiento> tipoEnfermedadTratamientos;
 
 	//bi-directional many-to-one association to Usuario
     @ManyToOne
-	@JoinColumn(name="idusuario")
+	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
+
+	//bi-directional many-to-one association to TratamientoMedicamento
+	@OneToMany(mappedBy="tratamiento")
+	private Set<TratamientoMedicamento> tratamientoMedicamentos;
 
     public Tratamiento() {
     }
 
-	public int getIdtratamiento() {
-		return this.idtratamiento;
+	public int getIdTratamiento() {
+		return this.idTratamiento;
 	}
 
-	public void setIdtratamiento(int idtratamiento) {
-		this.idtratamiento = idtratamiento;
+	public void setIdTratamiento(int idTratamiento) {
+		this.idTratamiento = idTratamiento;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionTratamiento() {
+		return this.descripcionTratamiento;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionTratamiento(String descripcionTratamiento) {
+		this.descripcionTratamiento = descripcionTratamiento;
 	}
 
-	public List<DetalleTipoEnfeTratamiento> getDetalleTipoEnfeTratamientos() {
-		return this.detalleTipoEnfeTratamientos;
+	public Set<TipoEnfermedadTratamiento> getTipoEnfermedadTratamientos() {
+		return this.tipoEnfermedadTratamientos;
 	}
 
-	public void setDetalleTipoEnfeTratamientos(List<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos) {
-		this.detalleTipoEnfeTratamientos = detalleTipoEnfeTratamientos;
-	}
-	
-	public List<DetalleTratMed> getDetalleTratMeds() {
-		return this.detalleTratMeds;
-	}
-
-	public void setDetalleTratMeds(List<DetalleTratMed> detalleTratMeds) {
-		this.detalleTratMeds = detalleTratMeds;
+	public void setTipoEnfermedadTratamientos(Set<TipoEnfermedadTratamiento> tipoEnfermedadTratamientos) {
+		this.tipoEnfermedadTratamientos = tipoEnfermedadTratamientos;
 	}
 	
 	public Usuario getUsuario() {
@@ -73,6 +67,14 @@ public class Tratamiento implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public Set<TratamientoMedicamento> getTratamientoMedicamentos() {
+		return this.tratamientoMedicamentos;
+	}
+
+	public void setTratamientoMedicamentos(Set<TratamientoMedicamento> tratamientoMedicamentos) {
+		this.tratamientoMedicamentos = tratamientoMedicamentos;
 	}
 	
 }

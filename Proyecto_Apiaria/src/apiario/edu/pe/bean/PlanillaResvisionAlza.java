@@ -2,21 +2,20 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 /**
- * The persistent class for the detalle_planilla_revision_alza database table.
+ * The persistent class for the planilla_resvision_alza database table.
  * 
  */
 @Entity
-@Table(name="detalle_planilla_revision_alza")
-public class DetallePlanillaRevisionAlza implements Serializable {
+@Table(name="planilla_resvision_alza")
+public class PlanillaResvisionAlza implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idplanilla_revision_alza")
-	private int idplanillaRevisionAlza;
+	@Column(name="id_planilla_resvision_alza")
+	private int idPlanillaResvisionAlza;
 
 	@Column(name="estado_alza")
 	private String estadoAlza;
@@ -25,30 +24,27 @@ public class DetallePlanillaRevisionAlza implements Serializable {
 	private String estadoDeterioroAlza;
 
 	@Column(name="porcentaje_miel")
-	private BigDecimal porcentajeMiel;
-
-	@Column(name="porcentaje_polen")
-	private BigDecimal porcentajePolen;
+	private double porcentajeMiel;
 
 	//bi-directional many-to-one association to Alza
     @ManyToOne
-	@JoinColumn(name="idalza")
+	@JoinColumn(name="iid_alza")
 	private Alza alza;
 
 	//bi-directional many-to-one association to PlanillaRevision
     @ManyToOne
-	@JoinColumn(name="idplanilla_revision")
+	@JoinColumn(name="id_planilla_revision")
 	private PlanillaRevision planillaRevision;
 
-    public DetallePlanillaRevisionAlza() {
+    public PlanillaResvisionAlza() {
     }
 
-	public int getIdplanillaRevisionAlza() {
-		return this.idplanillaRevisionAlza;
+	public int getIdPlanillaResvisionAlza() {
+		return this.idPlanillaResvisionAlza;
 	}
 
-	public void setIdplanillaRevisionAlza(int idplanillaRevisionAlza) {
-		this.idplanillaRevisionAlza = idplanillaRevisionAlza;
+	public void setIdPlanillaResvisionAlza(int idPlanillaResvisionAlza) {
+		this.idPlanillaResvisionAlza = idPlanillaResvisionAlza;
 	}
 
 	public String getEstadoAlza() {
@@ -67,20 +63,12 @@ public class DetallePlanillaRevisionAlza implements Serializable {
 		this.estadoDeterioroAlza = estadoDeterioroAlza;
 	}
 
-	public BigDecimal getPorcentajeMiel() {
+	public double getPorcentajeMiel() {
 		return this.porcentajeMiel;
 	}
 
-	public void setPorcentajeMiel(BigDecimal porcentajeMiel) {
+	public void setPorcentajeMiel(double porcentajeMiel) {
 		this.porcentajeMiel = porcentajeMiel;
-	}
-
-	public BigDecimal getPorcentajePolen() {
-		return this.porcentajePolen;
-	}
-
-	public void setPorcentajePolen(BigDecimal porcentajePolen) {
-		this.porcentajePolen = porcentajePolen;
 	}
 
 	public Alza getAlza() {

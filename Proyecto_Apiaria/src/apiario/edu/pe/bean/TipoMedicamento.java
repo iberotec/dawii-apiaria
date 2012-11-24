@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,39 +15,40 @@ public class TipoMedicamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idtipo_medicamento")
-	private int idtipoMedicamento;
+	@Column(name="id_tipo_medicamento")
+	private int idTipoMedicamento;
 
-	private String descripcion;
+	@Column(name="descripcion_tipo_medicamento")
+	private String descripcionTipoMedicamento;
 
 	//bi-directional many-to-one association to Medicamento
 	@OneToMany(mappedBy="tipoMedicamento")
-	private List<Medicamento> medicamentos;
+	private Set<Medicamento> medicamentos;
 
     public TipoMedicamento() {
     }
 
-	public int getIdtipoMedicamento() {
-		return this.idtipoMedicamento;
+	public int getIdTipoMedicamento() {
+		return this.idTipoMedicamento;
 	}
 
-	public void setIdtipoMedicamento(int idtipoMedicamento) {
-		this.idtipoMedicamento = idtipoMedicamento;
+	public void setIdTipoMedicamento(int idTipoMedicamento) {
+		this.idTipoMedicamento = idTipoMedicamento;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionTipoMedicamento() {
+		return this.descripcionTipoMedicamento;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionTipoMedicamento(String descripcionTipoMedicamento) {
+		this.descripcionTipoMedicamento = descripcionTipoMedicamento;
 	}
 
-	public List<Medicamento> getMedicamentos() {
+	public Set<Medicamento> getMedicamentos() {
 		return this.medicamentos;
 	}
 
-	public void setMedicamentos(List<Medicamento> medicamentos) {
+	public void setMedicamentos(Set<Medicamento> medicamentos) {
 		this.medicamentos = medicamentos;
 	}
 	

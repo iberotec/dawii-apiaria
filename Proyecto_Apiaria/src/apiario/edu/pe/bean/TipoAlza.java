@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,39 +15,40 @@ public class TipoAlza implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idtipo_alza")
-	private int idtipoAlza;
+	@Column(name="id_tipo_alza")
+	private int idTipoAlza;
 
-	private String descripcion;
+	@Column(name="descripcion_tipo_alza")
+	private String descripcionTipoAlza;
 
 	//bi-directional many-to-one association to Alza
 	@OneToMany(mappedBy="tipoAlza")
-	private List<Alza> alzas;
+	private Set<Alza> alzas;
 
     public TipoAlza() {
     }
 
-	public int getIdtipoAlza() {
-		return this.idtipoAlza;
+	public int getIdTipoAlza() {
+		return this.idTipoAlza;
 	}
 
-	public void setIdtipoAlza(int idtipoAlza) {
-		this.idtipoAlza = idtipoAlza;
+	public void setIdTipoAlza(int idTipoAlza) {
+		this.idTipoAlza = idTipoAlza;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionTipoAlza() {
+		return this.descripcionTipoAlza;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionTipoAlza(String descripcionTipoAlza) {
+		this.descripcionTipoAlza = descripcionTipoAlza;
 	}
 
-	public List<Alza> getAlzas() {
+	public Set<Alza> getAlzas() {
 		return this.alzas;
 	}
 
-	public void setAlzas(List<Alza> alzas) {
+	public void setAlzas(Set<Alza> alzas) {
 		this.alzas = alzas;
 	}
 	

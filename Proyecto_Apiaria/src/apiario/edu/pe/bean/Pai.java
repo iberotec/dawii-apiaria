@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,39 +15,40 @@ public class Pai implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idpais;
+	@Column(name="id_pais")
+	private int idPais;
 
-	@Column(name="nom_pais")
-	private String nomPais;
+	@Column(name="nombre_pais")
+	private String nombrePais;
 
 	//bi-directional many-to-one association to Ubigeo
 	@OneToMany(mappedBy="pai")
-	private List<Ubigeo> ubigeos;
+	private Set<Ubigeo> ubigeos;
 
     public Pai() {
     }
 
-	public int getIdpais() {
-		return this.idpais;
+	public int getIdPais() {
+		return this.idPais;
 	}
 
-	public void setIdpais(int idpais) {
-		this.idpais = idpais;
+	public void setIdPais(int idPais) {
+		this.idPais = idPais;
 	}
 
-	public String getNomPais() {
-		return this.nomPais;
+	public String getNombrePais() {
+		return this.nombrePais;
 	}
 
-	public void setNomPais(String nomPais) {
-		this.nomPais = nomPais;
+	public void setNombrePais(String nombrePais) {
+		this.nombrePais = nombrePais;
 	}
 
-	public List<Ubigeo> getUbigeos() {
+	public Set<Ubigeo> getUbigeos() {
 		return this.ubigeos;
 	}
 
-	public void setUbigeos(List<Ubigeo> ubigeos) {
+	public void setUbigeos(Set<Ubigeo> ubigeos) {
 		this.ubigeos = ubigeos;
 	}
 	

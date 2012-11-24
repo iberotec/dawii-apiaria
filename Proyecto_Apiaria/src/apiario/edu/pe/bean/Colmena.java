@@ -2,10 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import apiario.edu.pe.bean.base.BaseEntidades;
-
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -14,42 +11,39 @@ import java.util.List;
  */
 @Entity
 @Table(name="colmena")
-public class Colmena extends BaseEntidades implements Serializable {
+public class Colmena implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idcolmena;
+	@Column(name="id_colmena")
+	private int idColmena;
 
 	//bi-directional many-to-one association to Apiario
     @ManyToOne
-	@JoinColumn(name="idapiario")
+	@JoinColumn(name="id_apiario")
 	private Apiario apiario;
 
 	//bi-directional many-to-one association to Piso
 	@OneToMany(mappedBy="colmena")
-	private List<Piso> pisos;
-
-	//bi-directional many-to-one association to PlanillaCosecha
-	@OneToMany(mappedBy="colmena")
-	private List<PlanillaCosecha> planillaCosechas;
+	private Set<Piso> pisos;
 
 	//bi-directional many-to-one association to PlanillaRevision
 	@OneToMany(mappedBy="colmena")
-	private List<PlanillaRevision> planillaRevisions;
+	private Set<PlanillaRevision> planillaRevisions;
 
 	//bi-directional many-to-one association to Reina
 	@OneToMany(mappedBy="colmena")
-	private List<Reina> reinas;
+	private Set<Reina> reinas;
 
     public Colmena() {
     }
 
-	public int getIdcolmena() {
-		return this.idcolmena;
+	public int getIdColmena() {
+		return this.idColmena;
 	}
 
-	public void setIdcolmena(int idcolmena) {
-		this.idcolmena = idcolmena;
+	public void setIdColmena(int idColmena) {
+		this.idColmena = idColmena;
 	}
 
 	public Apiario getApiario() {
@@ -60,35 +54,27 @@ public class Colmena extends BaseEntidades implements Serializable {
 		this.apiario = apiario;
 	}
 	
-	public List<Piso> getPisos() {
+	public Set<Piso> getPisos() {
 		return this.pisos;
 	}
 
-	public void setPisos(List<Piso> pisos) {
+	public void setPisos(Set<Piso> pisos) {
 		this.pisos = pisos;
 	}
 	
-	public List<PlanillaCosecha> getPlanillaCosechas() {
-		return this.planillaCosechas;
-	}
-
-	public void setPlanillaCosechas(List<PlanillaCosecha> planillaCosechas) {
-		this.planillaCosechas = planillaCosechas;
-	}
-	
-	public List<PlanillaRevision> getPlanillaRevisions() {
+	public Set<PlanillaRevision> getPlanillaRevisions() {
 		return this.planillaRevisions;
 	}
 
-	public void setPlanillaRevisions(List<PlanillaRevision> planillaRevisions) {
+	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
 		this.planillaRevisions = planillaRevisions;
 	}
 	
-	public List<Reina> getReinas() {
+	public Set<Reina> getReinas() {
 		return this.reinas;
 	}
 
-	public void setReinas(List<Reina> reinas) {
+	public void setReinas(Set<Reina> reinas) {
 		this.reinas = reinas;
 	}
 	
