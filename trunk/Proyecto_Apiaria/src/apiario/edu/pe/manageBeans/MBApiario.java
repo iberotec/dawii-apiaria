@@ -61,7 +61,7 @@ public class MBApiario implements Serializable{
 		System.out.println("entrega ubicacion");
 		PlanillaSeguimiento obj= new PlanillaSeguimiento();
 		obj.setApiario(new Apiario());
-		obj.getApiario().setIdapiario(apiario.getIdapiario());
+		obj.getApiario().setIdApiario(apiario.getIdApiario());
 		List<PlanillaSeguimiento> listaPlanillaSeguimiento = new ArrayList<PlanillaSeguimiento>();
 		listaPlanillaSeguimiento=service.buscarPlanillaSeguimiento(obj);
 		

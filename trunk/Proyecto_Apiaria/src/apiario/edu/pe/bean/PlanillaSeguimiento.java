@@ -2,6 +2,9 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 import java.util.Date;
 
 
@@ -11,12 +14,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name="planilla_seguimiento")
-public class PlanillaSeguimiento implements Serializable {
+public class PlanillaSeguimiento extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id_planilla_seguimiento")
-	private int idPlanillaSeguimiento;
+	private Integer idPlanillaSeguimiento;
 
     @Temporal( TemporalType.DATE)
 	@Column(name="fecha_registro")
@@ -38,11 +41,11 @@ public class PlanillaSeguimiento implements Serializable {
     public PlanillaSeguimiento() {
     }
 
-	public int getIdPlanillaSeguimiento() {
+	public Integer getIdPlanillaSeguimiento() {
 		return this.idPlanillaSeguimiento;
 	}
 
-	public void setIdPlanillaSeguimiento(int idPlanillaSeguimiento) {
+	public void setIdPlanillaSeguimiento(Integer idPlanillaSeguimiento) {
 		this.idPlanillaSeguimiento = idPlanillaSeguimiento;
 	}
 

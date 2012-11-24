@@ -17,7 +17,7 @@
 
 <h:form>
 	<h:outputText value="Apiario" /><br/>
-	<p:selectOneMenu value="#{mBApiario.apiario.idapiario}">
+	<p:selectOneMenu value="#{mBApiario.apiario.idApiario}">
 		<f:selectItems value="#{mBSelectItems.cboApiario}" />
 		 <p:ajax update="iUbicacion"  
                         listener="#{mBApiario.localizarApiario}" />  

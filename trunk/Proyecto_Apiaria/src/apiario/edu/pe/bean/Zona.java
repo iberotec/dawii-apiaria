@@ -16,7 +16,7 @@ public class Zona implements Serializable {
 
 	@Id
 	@Column(name="id_zona")
-	private int idZona;
+	private Integer idZona;
 
 	@Column(name="descripcion_zona")
 	private String descripcionZona;
@@ -37,11 +37,11 @@ public class Zona implements Serializable {
     public Zona() {
     }
 
-	public int getIdZona() {
+	public Integer getIdZona() {
 		return this.idZona;
 	}
 
-	public void setIdZona(int idZona) {
+	public void setIdZona(Integer idZona) {
 		this.idZona = idZona;
 	}
 

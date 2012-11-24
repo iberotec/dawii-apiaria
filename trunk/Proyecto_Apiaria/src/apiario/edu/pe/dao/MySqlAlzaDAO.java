@@ -14,7 +14,7 @@ import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Alza;
 
-public class MySqlAlzaDAO implements IAlzaDAO{
+public class MySqlAlzaDAO  implements IAlzaDAO{
 
 	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
 	EntityManager em=emf.createEntityManager();
@@ -71,8 +71,8 @@ public class MySqlAlzaDAO implements IAlzaDAO{
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdalza()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idalza"),instance.getIdalza());
+			if(instance.getIdAlza()>0){
+				Predicate condition=builder.equal(colmenaRoot.get("idalza"),instance.getIdAlza());
 				p.add(condition);
 			}
 		}

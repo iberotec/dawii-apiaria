@@ -2,6 +2,9 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 import java.util.Set;
 
 
@@ -11,12 +14,12 @@ import java.util.Set;
  */
 @Entity
 @Table(name="apiario")
-public class Apiario implements Serializable {
+public class Apiario extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id_apiario")
-	private int idApiario;
+	private Integer idApiario;
 
 	//bi-directional many-to-one association to Colmena
 	@OneToMany(mappedBy="apiario")
@@ -33,11 +36,11 @@ public class Apiario implements Serializable {
     public Apiario() {
     }
 
-	public int getIdApiario() {
+	public Integer getIdApiario() {
 		return this.idApiario;
 	}
 
-	public void setIdApiario(int idApiario) {
+	public void setIdApiario(Integer idApiario) {
 		this.idApiario = idApiario;
 	}
 
