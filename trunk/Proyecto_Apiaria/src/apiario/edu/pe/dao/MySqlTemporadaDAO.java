@@ -12,7 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Temporada;
 @SuppressWarnings(value={"unchecked"})
 public class MySqlTemporadaDAO implements ITemporadaDAO{
