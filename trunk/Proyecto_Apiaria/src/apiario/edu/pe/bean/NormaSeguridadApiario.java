@@ -6,20 +6,19 @@ import java.util.Date;
 
 
 /**
- * The persistent class for the detalle_apiario_norma_seg database table.
+ * The persistent class for the norma_seguridad_apiario database table.
  * 
  */
 @Entity
-@Table(name="detalle_apiario_norma_seg")
-public class DetalleApiarioNormaSeg implements Serializable {
+@Table(name="norma_seguridad_apiario")
+public class NormaSeguridadApiario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="iddetalle_apiario_norma_seguridad")
-	private int iddetalleApiarioNormaSeguridad;
+	@Column(name="id_norma_seguridad_apiario")
+	private int idNormaSeguridadApiario;
 
-	@Column(name="estado_conformidad")
-	private String estadoConformidad;
+	private byte estado;
 
     @Temporal( TemporalType.DATE)
 	@Column(name="fecha_registro")
@@ -27,31 +26,31 @@ public class DetalleApiarioNormaSeg implements Serializable {
 
 	//bi-directional many-to-one association to Apiario
     @ManyToOne
-	@JoinColumn(name="idapiario")
+	@JoinColumn(name="id_apiario")
 	private Apiario apiario;
 
 	//bi-directional many-to-one association to NormaSeguridad
     @ManyToOne
-	@JoinColumn(name="idnorma_seguridad")
+	@JoinColumn(name="id_norma_seguridad")
 	private NormaSeguridad normaSeguridad;
 
-    public DetalleApiarioNormaSeg() {
+    public NormaSeguridadApiario() {
     }
 
-	public int getIddetalleApiarioNormaSeguridad() {
-		return this.iddetalleApiarioNormaSeguridad;
+	public int getIdNormaSeguridadApiario() {
+		return this.idNormaSeguridadApiario;
 	}
 
-	public void setIddetalleApiarioNormaSeguridad(int iddetalleApiarioNormaSeguridad) {
-		this.iddetalleApiarioNormaSeguridad = iddetalleApiarioNormaSeguridad;
+	public void setIdNormaSeguridadApiario(int idNormaSeguridadApiario) {
+		this.idNormaSeguridadApiario = idNormaSeguridadApiario;
 	}
 
-	public String getEstadoConformidad() {
-		return this.estadoConformidad;
+	public byte getEstado() {
+		return this.estado;
 	}
 
-	public void setEstadoConformidad(String estadoConformidad) {
-		this.estadoConformidad = estadoConformidad;
+	public void setEstado(byte estado) {
+		this.estado = estado;
 	}
 
 	public Date getFechaRegistro() {

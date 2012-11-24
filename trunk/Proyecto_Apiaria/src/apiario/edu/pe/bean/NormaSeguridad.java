@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,40 +15,41 @@ public class NormaSeguridad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idnorma_seguridad")
-	private int idnormaSeguridad;
+	@Column(name="id_norma_seguridad")
+	private int idNormaSeguridad;
 
-	private String descripcion;
+	@Column(name="descripcion_norma_seguridad")
+	private String descripcionNormaSeguridad;
 
-	//bi-directional many-to-one association to DetalleApiarioNormaSeg
+	//bi-directional many-to-one association to NormaSeguridadApiario
 	@OneToMany(mappedBy="normaSeguridad")
-	private List<DetalleApiarioNormaSeg> detalleApiarioNormaSegs;
+	private Set<NormaSeguridadApiario> normaSeguridadApiarios;
 
     public NormaSeguridad() {
     }
 
-	public int getIdnormaSeguridad() {
-		return this.idnormaSeguridad;
+	public int getIdNormaSeguridad() {
+		return this.idNormaSeguridad;
 	}
 
-	public void setIdnormaSeguridad(int idnormaSeguridad) {
-		this.idnormaSeguridad = idnormaSeguridad;
+	public void setIdNormaSeguridad(int idNormaSeguridad) {
+		this.idNormaSeguridad = idNormaSeguridad;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionNormaSeguridad() {
+		return this.descripcionNormaSeguridad;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionNormaSeguridad(String descripcionNormaSeguridad) {
+		this.descripcionNormaSeguridad = descripcionNormaSeguridad;
 	}
 
-	public List<DetalleApiarioNormaSeg> getDetalleApiarioNormaSegs() {
-		return this.detalleApiarioNormaSegs;
+	public Set<NormaSeguridadApiario> getNormaSeguridadApiarios() {
+		return this.normaSeguridadApiarios;
 	}
 
-	public void setDetalleApiarioNormaSegs(List<DetalleApiarioNormaSeg> detalleApiarioNormaSegs) {
-		this.detalleApiarioNormaSegs = detalleApiarioNormaSegs;
+	public void setNormaSeguridadApiarios(Set<NormaSeguridadApiario> normaSeguridadApiarios) {
+		this.normaSeguridadApiarios = normaSeguridadApiarios;
 	}
 	
 }

@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,39 +15,41 @@ public class Insumo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idinsumo;
+	@Column(name="id_insumo")
+	private int idInsumo;
 
-	private String descripcion;
+	@Column(name="descripcion_insumo")
+	private String descripcionInsumo;
 
-	//bi-directional many-to-one association to DetalleTipoAlimentacionInsumo
+	//bi-directional many-to-one association to TipoAlimentacionInsumo
 	@OneToMany(mappedBy="insumo")
-	private List<DetalleTipoAlimentacionInsumo> detalleTipoAlimentacionInsumos;
+	private Set<TipoAlimentacionInsumo> tipoAlimentacionInsumos;
 
     public Insumo() {
     }
 
-	public int getIdinsumo() {
-		return this.idinsumo;
+	public int getIdInsumo() {
+		return this.idInsumo;
 	}
 
-	public void setIdinsumo(int idinsumo) {
-		this.idinsumo = idinsumo;
+	public void setIdInsumo(int idInsumo) {
+		this.idInsumo = idInsumo;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionInsumo() {
+		return this.descripcionInsumo;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionInsumo(String descripcionInsumo) {
+		this.descripcionInsumo = descripcionInsumo;
 	}
 
-	public List<DetalleTipoAlimentacionInsumo> getDetalleTipoAlimentacionInsumos() {
-		return this.detalleTipoAlimentacionInsumos;
+	public Set<TipoAlimentacionInsumo> getTipoAlimentacionInsumos() {
+		return this.tipoAlimentacionInsumos;
 	}
 
-	public void setDetalleTipoAlimentacionInsumos(List<DetalleTipoAlimentacionInsumo> detalleTipoAlimentacionInsumos) {
-		this.detalleTipoAlimentacionInsumos = detalleTipoAlimentacionInsumos;
+	public void setTipoAlimentacionInsumos(Set<TipoAlimentacionInsumo> tipoAlimentacionInsumos) {
+		this.tipoAlimentacionInsumos = tipoAlimentacionInsumos;
 	}
 	
 }

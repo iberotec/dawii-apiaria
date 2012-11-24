@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,53 +15,54 @@ public class RecursoNatural implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idrecurso_natural")
-	private int idrecursoNatural;
+	@Column(name="id_recurso_natural")
+	private int idRecursoNatural;
 
-	private String descripcion;
+	@Column(name="descripcion_recurso_natural")
+	private String descripcionRecursoNatural;
 
-	//bi-directional many-to-one association to DetalleRecNatZona
-	@OneToMany(mappedBy="recursoNatural")
-	private List<DetalleRecNatZona> detalleRecNatZonas;
-
-	//bi-directional many-to-one association to TipoRecursoNatural
+	//bi-directional many-to-one association to TipoRecurso
     @ManyToOne
-	@JoinColumn(name="idtipo_recurso_natural")
-	private TipoRecursoNatural tipoRecursoNatural;
+	@JoinColumn(name="id_tipo_recurso")
+	private TipoRecurso tipoRecurso;
+
+	//bi-directional many-to-one association to ZonaRecusoNatural
+	@OneToMany(mappedBy="recursoNatural")
+	private Set<ZonaRecusoNatural> zonaRecusoNaturals;
 
     public RecursoNatural() {
     }
 
-	public int getIdrecursoNatural() {
-		return this.idrecursoNatural;
+	public int getIdRecursoNatural() {
+		return this.idRecursoNatural;
 	}
 
-	public void setIdrecursoNatural(int idrecursoNatural) {
-		this.idrecursoNatural = idrecursoNatural;
+	public void setIdRecursoNatural(int idRecursoNatural) {
+		this.idRecursoNatural = idRecursoNatural;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionRecursoNatural() {
+		return this.descripcionRecursoNatural;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionRecursoNatural(String descripcionRecursoNatural) {
+		this.descripcionRecursoNatural = descripcionRecursoNatural;
 	}
 
-	public List<DetalleRecNatZona> getDetalleRecNatZonas() {
-		return this.detalleRecNatZonas;
+	public TipoRecurso getTipoRecurso() {
+		return this.tipoRecurso;
 	}
 
-	public void setDetalleRecNatZonas(List<DetalleRecNatZona> detalleRecNatZonas) {
-		this.detalleRecNatZonas = detalleRecNatZonas;
+	public void setTipoRecurso(TipoRecurso tipoRecurso) {
+		this.tipoRecurso = tipoRecurso;
 	}
 	
-	public TipoRecursoNatural getTipoRecursoNatural() {
-		return this.tipoRecursoNatural;
+	public Set<ZonaRecusoNatural> getZonaRecusoNaturals() {
+		return this.zonaRecusoNaturals;
 	}
 
-	public void setTipoRecursoNatural(TipoRecursoNatural tipoRecursoNatural) {
-		this.tipoRecursoNatural = tipoRecursoNatural;
+	public void setZonaRecusoNaturals(Set<ZonaRecusoNatural> zonaRecusoNaturals) {
+		this.zonaRecusoNaturals = zonaRecusoNaturals;
 	}
 	
 }

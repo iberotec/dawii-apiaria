@@ -2,10 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import apiario.edu.pe.bean.base.BaseEntidades;
-
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -14,37 +11,38 @@ import java.util.List;
  */
 @Entity
 @Table(name="piso")
-public class Piso extends BaseEntidades implements Serializable {
+public class Piso implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idpiso;
+	@Column(name="id_piso")
+	private int idPiso;
 
 	//bi-directional many-to-one association to Alza
 	@OneToMany(mappedBy="piso")
-	private List<Alza> alzas;
+	private Set<Alza> alzas;
 
 	//bi-directional many-to-one association to Colmena
     @ManyToOne
-	@JoinColumn(name="idcolmena")
+	@JoinColumn(name="id_colmena")
 	private Colmena colmena;
 
     public Piso() {
     }
 
-	public int getIdpiso() {
-		return this.idpiso;
+	public int getIdPiso() {
+		return this.idPiso;
 	}
 
-	public void setIdpiso(int idpiso) {
-		this.idpiso = idpiso;
+	public void setIdPiso(int idPiso) {
+		this.idPiso = idPiso;
 	}
 
-	public List<Alza> getAlzas() {
+	public Set<Alza> getAlzas() {
 		return this.alzas;
 	}
 
-	public void setAlzas(List<Alza> alzas) {
+	public void setAlzas(Set<Alza> alzas) {
 		this.alzas = alzas;
 	}
 	

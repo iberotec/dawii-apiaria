@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,55 +15,49 @@ public class Zona implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer idzona;
+	@Column(name="id_zona")
+	private int idZona;
 
-	private String descripcion;
-
-	//bi-directional many-to-one association to DetalleRecNatZona
-	@OneToMany(mappedBy="zona")
-	private List<DetalleRecNatZona> detalleRecNatZonas;
+	@Column(name="descripcion_zona")
+	private String descripcionZona;
 
 	//bi-directional many-to-one association to PlanillaSeguimiento
 	@OneToMany(mappedBy="zona")
-	private List<PlanillaSeguimiento> planillaSeguimientos;
+	private Set<PlanillaSeguimiento> planillaSeguimientos;
 
 	//bi-directional many-to-one association to Ubigeo
     @ManyToOne
-	@JoinColumn(name="idubigeo")
+	@JoinColumn(name="id_ubigeo")
 	private Ubigeo ubigeo;
+
+	//bi-directional many-to-one association to ZonaRecusoNatural
+	@OneToMany(mappedBy="zona")
+	private Set<ZonaRecusoNatural> zonaRecusoNaturals;
 
     public Zona() {
     }
 
-	public Integer getIdzona() {
-		return this.idzona;
+	public int getIdZona() {
+		return this.idZona;
 	}
 
-	public void setIdzona(Integer idzona) {
-		this.idzona = idzona;
+	public void setIdZona(int idZona) {
+		this.idZona = idZona;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionZona() {
+		return this.descripcionZona;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionZona(String descripcionZona) {
+		this.descripcionZona = descripcionZona;
 	}
 
-	public List<DetalleRecNatZona> getDetalleRecNatZonas() {
-		return this.detalleRecNatZonas;
-	}
-
-	public void setDetalleRecNatZonas(List<DetalleRecNatZona> detalleRecNatZonas) {
-		this.detalleRecNatZonas = detalleRecNatZonas;
-	}
-	
-	public List<PlanillaSeguimiento> getPlanillaSeguimientos() {
+	public Set<PlanillaSeguimiento> getPlanillaSeguimientos() {
 		return this.planillaSeguimientos;
 	}
 
-	public void setPlanillaSeguimientos(List<PlanillaSeguimiento> planillaSeguimientos) {
+	public void setPlanillaSeguimientos(Set<PlanillaSeguimiento> planillaSeguimientos) {
 		this.planillaSeguimientos = planillaSeguimientos;
 	}
 	
@@ -73,6 +67,14 @@ public class Zona implements Serializable {
 
 	public void setUbigeo(Ubigeo ubigeo) {
 		this.ubigeo = ubigeo;
+	}
+	
+	public Set<ZonaRecusoNatural> getZonaRecusoNaturals() {
+		return this.zonaRecusoNaturals;
+	}
+
+	public void setZonaRecusoNaturals(Set<ZonaRecusoNatural> zonaRecusoNaturals) {
+		this.zonaRecusoNaturals = zonaRecusoNaturals;
 	}
 	
 }

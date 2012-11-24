@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,52 +15,53 @@ public class TipoEnfermedad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idtipo_enfermedad")
-	private int idtipoEnfermedad;
+	@Column(name="id_tipo_enfermedad")
+	private int idTipoEnfermedad;
 
-	private String descripcion;
+	@Column(name="descripcion_tipo_enfermedad")
+	private String descripcionTipoEnfermedad;
 
-	//bi-directional many-to-one association to DetallePlanillaRevisionTipoEnfermedad
+	//bi-directional many-to-one association to PlanillaRevisionTipoEnfermedad
 	@OneToMany(mappedBy="tipoEnfermedad")
-	private List<DetallePlanillaRevisionTipoEnfermedad> detallePlanillaRevisionTipoEnfermedads;
+	private Set<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedads;
 
-	//bi-directional many-to-one association to DetalleTipoEnfeTratamiento
+	//bi-directional many-to-one association to TipoEnfermedadTratamiento
 	@OneToMany(mappedBy="tipoEnfermedad")
-	private List<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos;
+	private Set<TipoEnfermedadTratamiento> tipoEnfermedadTratamientos;
 
     public TipoEnfermedad() {
     }
 
-	public int getIdtipoEnfermedad() {
-		return this.idtipoEnfermedad;
+	public int getIdTipoEnfermedad() {
+		return this.idTipoEnfermedad;
 	}
 
-	public void setIdtipoEnfermedad(int idtipoEnfermedad) {
-		this.idtipoEnfermedad = idtipoEnfermedad;
+	public void setIdTipoEnfermedad(int idTipoEnfermedad) {
+		this.idTipoEnfermedad = idTipoEnfermedad;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionTipoEnfermedad() {
+		return this.descripcionTipoEnfermedad;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionTipoEnfermedad(String descripcionTipoEnfermedad) {
+		this.descripcionTipoEnfermedad = descripcionTipoEnfermedad;
 	}
 
-	public List<DetallePlanillaRevisionTipoEnfermedad> getDetallePlanillaRevisionTipoEnfermedads() {
-		return this.detallePlanillaRevisionTipoEnfermedads;
+	public Set<PlanillaRevisionTipoEnfermedad> getPlanillaRevisionTipoEnfermedads() {
+		return this.planillaRevisionTipoEnfermedads;
 	}
 
-	public void setDetallePlanillaRevisionTipoEnfermedads(List<DetallePlanillaRevisionTipoEnfermedad> detallePlanillaRevisionTipoEnfermedads) {
-		this.detallePlanillaRevisionTipoEnfermedads = detallePlanillaRevisionTipoEnfermedads;
+	public void setPlanillaRevisionTipoEnfermedads(Set<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedads) {
+		this.planillaRevisionTipoEnfermedads = planillaRevisionTipoEnfermedads;
 	}
 	
-	public List<DetalleTipoEnfeTratamiento> getDetalleTipoEnfeTratamientos() {
-		return this.detalleTipoEnfeTratamientos;
+	public Set<TipoEnfermedadTratamiento> getTipoEnfermedadTratamientos() {
+		return this.tipoEnfermedadTratamientos;
 	}
 
-	public void setDetalleTipoEnfeTratamientos(List<DetalleTipoEnfeTratamiento> detalleTipoEnfeTratamientos) {
-		this.detalleTipoEnfeTratamientos = detalleTipoEnfeTratamientos;
+	public void setTipoEnfermedadTratamientos(Set<TipoEnfermedadTratamiento> tipoEnfermedadTratamientos) {
+		this.tipoEnfermedadTratamientos = tipoEnfermedadTratamientos;
 	}
 	
 }

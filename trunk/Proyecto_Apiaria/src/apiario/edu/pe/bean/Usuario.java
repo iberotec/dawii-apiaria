@@ -2,6 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Set;
 
 
 /**
@@ -14,63 +15,88 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int idusuario;
+	@Column(name="id_usuario")
+	private int idUsuario;
 
-	@Column(name="ape_usu")
-	private String apeUsu;
+	@Column(name="ape_mater_usuario")
+	private String apeMaterUsuario;
 
-	private String clave;
+	@Column(name="ape_pater_usuario")
+	private String apePaterUsuario;
 
-	@Column(name="nom_usu")
-	private String nomUsu;
+	@Column(name="nombre_usuario")
+	private String nombreUsuario;
 
-	//bi-directional many-to-one association to TipoUsuario
+	//bi-directional many-to-one association to PlanillaRevision
+	@OneToMany(mappedBy="usuario")
+	private Set<PlanillaRevision> planillaRevisions;
+
+	//bi-directional many-to-one association to Tratamiento
+	@OneToMany(mappedBy="usuario")
+	private Set<Tratamiento> tratamientos;
+
+	//bi-directional many-to-one association to TipoUsario
     @ManyToOne
-	@JoinColumn(name="idtipo_usuario")
-	private TipoUsuario tipoUsuario;
+	@JoinColumn(name="id_tipo_usario")
+	private TipoUsario tipoUsario;
 
     public Usuario() {
     }
 
-	public int getIdusuario() {
-		return this.idusuario;
+	public int getIdUsuario() {
+		return this.idUsuario;
 	}
 
-	public void setIdusuario(int idusuario) {
-		this.idusuario = idusuario;
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
-	public String getApeUsu() {
-		return this.apeUsu;
+	public String getApeMaterUsuario() {
+		return this.apeMaterUsuario;
 	}
 
-	public void setApeUsu(String apeUsu) {
-		this.apeUsu = apeUsu;
+	public void setApeMaterUsuario(String apeMaterUsuario) {
+		this.apeMaterUsuario = apeMaterUsuario;
 	}
 
-	public String getClave() {
-		return this.clave;
+	public String getApePaterUsuario() {
+		return this.apePaterUsuario;
 	}
 
-	public void setClave(String clave) {
-		this.clave = clave;
+	public void setApePaterUsuario(String apePaterUsuario) {
+		this.apePaterUsuario = apePaterUsuario;
 	}
 
-	public String getNomUsu() {
-		return this.nomUsu;
+	public String getNombreUsuario() {
+		return this.nombreUsuario;
 	}
 
-	public void setNomUsu(String nomUsu) {
-		this.nomUsu = nomUsu;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
-	public TipoUsuario getTipoUsuario() {
-		return this.tipoUsuario;
+	public Set<PlanillaRevision> getPlanillaRevisions() {
+		return this.planillaRevisions;
 	}
 
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
+		this.planillaRevisions = planillaRevisions;
+	}
+	
+	public Set<Tratamiento> getTratamientos() {
+		return this.tratamientos;
+	}
+
+	public void setTratamientos(Set<Tratamiento> tratamientos) {
+		this.tratamientos = tratamientos;
+	}
+	
+	public TipoUsario getTipoUsario() {
+		return this.tipoUsario;
+	}
+
+	public void setTipoUsario(TipoUsario tipoUsario) {
+		this.tipoUsario = tipoUsario;
 	}
 	
 }

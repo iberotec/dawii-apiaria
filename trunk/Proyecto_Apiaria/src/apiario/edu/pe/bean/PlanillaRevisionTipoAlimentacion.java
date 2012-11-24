@@ -5,37 +5,37 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the detalle_planilla_rev_tipo_alim database table.
+ * The persistent class for the planilla_revision_tipo_alimentacion database table.
  * 
  */
 @Entity
-@Table(name="detalle_planilla_rev_tipo_alim")
-public class DetallePlanillaRevTipoAlim implements Serializable {
+@Table(name="planilla_revision_tipo_alimentacion")
+public class PlanillaRevisionTipoAlimentacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idplanilla_revision_tipo_alimento")
-	private int idplanillaRevisionTipoAlimento;
+	@Column(name="id_planilla_revision_tipo_alimentacion")
+	private int idPlanillaRevisionTipoAlimentacion;
 
 	//bi-directional many-to-one association to PlanillaRevision
     @ManyToOne
-	@JoinColumn(name="idplanilla_revision")
+	@JoinColumn(name="id_planilla_revision")
 	private PlanillaRevision planillaRevision;
 
 	//bi-directional many-to-one association to TipoAlimentacion
     @ManyToOne
-	@JoinColumn(name="idtipo_alimentacion")
+	@JoinColumn(name="id_tipo_alimentacion")
 	private TipoAlimentacion tipoAlimentacion;
 
-    public DetallePlanillaRevTipoAlim() {
+    public PlanillaRevisionTipoAlimentacion() {
     }
 
-	public int getIdplanillaRevisionTipoAlimento() {
-		return this.idplanillaRevisionTipoAlimento;
+	public int getIdPlanillaRevisionTipoAlimentacion() {
+		return this.idPlanillaRevisionTipoAlimentacion;
 	}
 
-	public void setIdplanillaRevisionTipoAlimento(int idplanillaRevisionTipoAlimento) {
-		this.idplanillaRevisionTipoAlimento = idplanillaRevisionTipoAlimento;
+	public void setIdPlanillaRevisionTipoAlimentacion(int idPlanillaRevisionTipoAlimentacion) {
+		this.idPlanillaRevisionTipoAlimentacion = idPlanillaRevisionTipoAlimentacion;
 	}
 
 	public PlanillaRevision getPlanillaRevision() {

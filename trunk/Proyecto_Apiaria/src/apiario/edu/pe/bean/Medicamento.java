@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,52 +15,54 @@ public class Medicamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private int idmedicamento;
+	@Column(name="id_medicamento")
+	private int idMedicamento;
 
-	private String descripcion;
-
-	//bi-directional many-to-one association to DetalleTratMed
-	@OneToMany(mappedBy="medicamento")
-	private List<DetalleTratMed> detalleTratMeds;
+	@Column(name="descripcion_medicamento")
+	private String descripcionMedicamento;
 
 	//bi-directional many-to-one association to TipoMedicamento
     @ManyToOne
-	@JoinColumn(name="idtipo_medicamento")
+	@JoinColumn(name="id_tipo_medicamento")
 	private TipoMedicamento tipoMedicamento;
+
+	//bi-directional many-to-one association to TratamientoMedicamento
+	@OneToMany(mappedBy="medicamento")
+	private Set<TratamientoMedicamento> tratamientoMedicamentos;
 
     public Medicamento() {
     }
 
-	public int getIdmedicamento() {
-		return this.idmedicamento;
+	public int getIdMedicamento() {
+		return this.idMedicamento;
 	}
 
-	public void setIdmedicamento(int idmedicamento) {
-		this.idmedicamento = idmedicamento;
+	public void setIdMedicamento(int idMedicamento) {
+		this.idMedicamento = idMedicamento;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionMedicamento() {
+		return this.descripcionMedicamento;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionMedicamento(String descripcionMedicamento) {
+		this.descripcionMedicamento = descripcionMedicamento;
 	}
 
-	public List<DetalleTratMed> getDetalleTratMeds() {
-		return this.detalleTratMeds;
-	}
-
-	public void setDetalleTratMeds(List<DetalleTratMed> detalleTratMeds) {
-		this.detalleTratMeds = detalleTratMeds;
-	}
-	
 	public TipoMedicamento getTipoMedicamento() {
 		return this.tipoMedicamento;
 	}
 
 	public void setTipoMedicamento(TipoMedicamento tipoMedicamento) {
 		this.tipoMedicamento = tipoMedicamento;
+	}
+	
+	public Set<TratamientoMedicamento> getTratamientoMedicamentos() {
+		return this.tratamientoMedicamentos;
+	}
+
+	public void setTratamientoMedicamentos(Set<TratamientoMedicamento> tratamientoMedicamentos) {
+		this.tratamientoMedicamentos = tratamientoMedicamentos;
 	}
 	
 }

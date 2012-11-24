@@ -2,8 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import apiario.edu.pe.bean.base.BaseEntidades;
+import java.util.Date;
 
 
 /**
@@ -12,35 +11,47 @@ import apiario.edu.pe.bean.base.BaseEntidades;
  */
 @Entity
 @Table(name="planilla_seguimiento")
-public class PlanillaSeguimiento extends BaseEntidades implements Serializable {
+public class PlanillaSeguimiento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idplanilla_seguimiento")
-	private Integer idplanillaSeguimiento;
+	@Column(name="id_planilla_seguimiento")
+	private int idPlanillaSeguimiento;
+
+    @Temporal( TemporalType.DATE)
+	@Column(name="fecha_registro")
+	private Date fechaRegistro;
 
 	@Column(name="motivo_ubicacion")
 	private String motivoUbicacion;
 
 	//bi-directional many-to-one association to Apiario
     @ManyToOne
-	@JoinColumn(name="idapiario")
+	@JoinColumn(name="id_apiario")
 	private Apiario apiario;
 
 	//bi-directional many-to-one association to Zona
     @ManyToOne
-	@JoinColumn(name="idzona")
+	@JoinColumn(name="id_zona")
 	private Zona zona;
 
     public PlanillaSeguimiento() {
     }
 
-	public Integer getIdplanillaSeguimiento() {
-		return this.idplanillaSeguimiento;
+	public int getIdPlanillaSeguimiento() {
+		return this.idPlanillaSeguimiento;
 	}
 
-	public void setIdplanillaSeguimiento(Integer idplanillaSeguimiento) {
-		this.idplanillaSeguimiento = idplanillaSeguimiento;
+	public void setIdPlanillaSeguimiento(int idPlanillaSeguimiento) {
+		this.idPlanillaSeguimiento = idPlanillaSeguimiento;
+	}
+
+	public Date getFechaRegistro() {
+		return this.fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
 	}
 
 	public String getMotivoUbicacion() {

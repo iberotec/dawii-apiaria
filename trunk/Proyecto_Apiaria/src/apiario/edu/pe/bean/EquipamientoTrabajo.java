@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,30 +15,41 @@ public class EquipamientoTrabajo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idequipamiento_trabajo")
-	private int idequipamientoTrabajo;
+	@Column(name="id_equipamiento_trabajo")
+	private int idEquipamientoTrabajo;
 
-	//bi-directional many-to-one association to DetalleEstRevisionEquiTrab
+	@Column(name="descripcion_equipo_trabajo")
+	private String descripcionEquipoTrabajo;
+
+	//bi-directional many-to-one association to EstadoRevisionEquipamientoTrabajo
 	@OneToMany(mappedBy="equipamientoTrabajo")
-	private List<DetalleEstRevisionEquiTrab> detalleEstRevisionEquiTrabs;
+	private Set<EstadoRevisionEquipamientoTrabajo> estadoRevisionEquipamientoTrabajos;
 
     public EquipamientoTrabajo() {
     }
 
-	public int getIdequipamientoTrabajo() {
-		return this.idequipamientoTrabajo;
+	public int getIdEquipamientoTrabajo() {
+		return this.idEquipamientoTrabajo;
 	}
 
-	public void setIdequipamientoTrabajo(int idequipamientoTrabajo) {
-		this.idequipamientoTrabajo = idequipamientoTrabajo;
+	public void setIdEquipamientoTrabajo(int idEquipamientoTrabajo) {
+		this.idEquipamientoTrabajo = idEquipamientoTrabajo;
 	}
 
-	public List<DetalleEstRevisionEquiTrab> getDetalleEstRevisionEquiTrabs() {
-		return this.detalleEstRevisionEquiTrabs;
+	public String getDescripcionEquipoTrabajo() {
+		return this.descripcionEquipoTrabajo;
 	}
 
-	public void setDetalleEstRevisionEquiTrabs(List<DetalleEstRevisionEquiTrab> detalleEstRevisionEquiTrabs) {
-		this.detalleEstRevisionEquiTrabs = detalleEstRevisionEquiTrabs;
+	public void setDescripcionEquipoTrabajo(String descripcionEquipoTrabajo) {
+		this.descripcionEquipoTrabajo = descripcionEquipoTrabajo;
+	}
+
+	public Set<EstadoRevisionEquipamientoTrabajo> getEstadoRevisionEquipamientoTrabajos() {
+		return this.estadoRevisionEquipamientoTrabajos;
+	}
+
+	public void setEstadoRevisionEquipamientoTrabajos(Set<EstadoRevisionEquipamientoTrabajo> estadoRevisionEquipamientoTrabajos) {
+		this.estadoRevisionEquipamientoTrabajos = estadoRevisionEquipamientoTrabajos;
 	}
 	
 }

@@ -2,10 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
-import apiario.edu.pe.bean.base.BaseEntidades;
-
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -14,68 +11,58 @@ import java.util.List;
  */
 @Entity
 @Table(name="apiario")
-public class Apiario extends BaseEntidades implements Serializable {
+public class Apiario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer idapiario;
-	
-	@Column(name="descripcion_apiario")
-	private String descripcion;
-	
+	@Column(name="id_apiario")
+	private int idApiario;
+
 	//bi-directional many-to-one association to Colmena
 	@OneToMany(mappedBy="apiario")
-	private List<Colmena> colmenas;
+	private Set<Colmena> colmenas;
 
-	//bi-directional many-to-one association to DetalleApiarioNormaSeg
+	//bi-directional many-to-one association to NormaSeguridadApiario
 	@OneToMany(mappedBy="apiario")
-	private List<DetalleApiarioNormaSeg> detalleApiarioNormaSegs;
+	private Set<NormaSeguridadApiario> normaSeguridadApiarios;
 
 	//bi-directional many-to-one association to PlanillaSeguimiento
 	@OneToMany(mappedBy="apiario")
-	private List<PlanillaSeguimiento> planillaSeguimientos;
+	private Set<PlanillaSeguimiento> planillaSeguimientos;
 
     public Apiario() {
     }
 
-	public Integer getIdapiario() {
-		return this.idapiario;
+	public int getIdApiario() {
+		return this.idApiario;
 	}
 
-	public void setIdapiario(Integer idapiario) {
-		this.idapiario = idapiario;
+	public void setIdApiario(int idApiario) {
+		this.idApiario = idApiario;
 	}
 
-	public List<Colmena> getColmenas() {
+	public Set<Colmena> getColmenas() {
 		return this.colmenas;
 	}
 
-	public void setColmenas(List<Colmena> colmenas) {
+	public void setColmenas(Set<Colmena> colmenas) {
 		this.colmenas = colmenas;
 	}
 	
-	public List<DetalleApiarioNormaSeg> getDetalleApiarioNormaSegs() {
-		return this.detalleApiarioNormaSegs;
+	public Set<NormaSeguridadApiario> getNormaSeguridadApiarios() {
+		return this.normaSeguridadApiarios;
 	}
 
-	public void setDetalleApiarioNormaSegs(List<DetalleApiarioNormaSeg> detalleApiarioNormaSegs) {
-		this.detalleApiarioNormaSegs = detalleApiarioNormaSegs;
+	public void setNormaSeguridadApiarios(Set<NormaSeguridadApiario> normaSeguridadApiarios) {
+		this.normaSeguridadApiarios = normaSeguridadApiarios;
 	}
 	
-	public List<PlanillaSeguimiento> getPlanillaSeguimientos() {
+	public Set<PlanillaSeguimiento> getPlanillaSeguimientos() {
 		return this.planillaSeguimientos;
 	}
 
-	public void setPlanillaSeguimientos(List<PlanillaSeguimiento> planillaSeguimientos) {
+	public void setPlanillaSeguimientos(Set<PlanillaSeguimiento> planillaSeguimientos) {
 		this.planillaSeguimientos = planillaSeguimientos;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
 	}
 	
 }

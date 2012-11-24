@@ -2,7 +2,7 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -15,52 +15,53 @@ public class TipoAlimentacion implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idtipo_alimentacion")
-	private int idtipoAlimentacion;
+	@Column(name="id_tipo_alimentacion")
+	private int idTipoAlimentacion;
 
-	private String descripcion;
+	@Column(name="descripcion_tipo_alimentacion")
+	private String descripcionTipoAlimentacion;
 
-	//bi-directional many-to-one association to DetallePlanillaRevTipoAlim
+	//bi-directional many-to-one association to PlanillaRevisionTipoAlimentacion
 	@OneToMany(mappedBy="tipoAlimentacion")
-	private List<DetallePlanillaRevTipoAlim> detallePlanillaRevTipoAlims;
+	private Set<PlanillaRevisionTipoAlimentacion> planillaRevisionTipoAlimentacions;
 
-	//bi-directional many-to-one association to DetalleTipoAlimentacionInsumo
+	//bi-directional many-to-one association to TipoAlimentacionInsumo
 	@OneToMany(mappedBy="tipoAlimentacion")
-	private List<DetalleTipoAlimentacionInsumo> detalleTipoAlimentacionInsumos;
+	private Set<TipoAlimentacionInsumo> tipoAlimentacionInsumos;
 
     public TipoAlimentacion() {
     }
 
-	public int getIdtipoAlimentacion() {
-		return this.idtipoAlimentacion;
+	public int getIdTipoAlimentacion() {
+		return this.idTipoAlimentacion;
 	}
 
-	public void setIdtipoAlimentacion(int idtipoAlimentacion) {
-		this.idtipoAlimentacion = idtipoAlimentacion;
+	public void setIdTipoAlimentacion(int idTipoAlimentacion) {
+		this.idTipoAlimentacion = idTipoAlimentacion;
 	}
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescripcionTipoAlimentacion() {
+		return this.descripcionTipoAlimentacion;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionTipoAlimentacion(String descripcionTipoAlimentacion) {
+		this.descripcionTipoAlimentacion = descripcionTipoAlimentacion;
 	}
 
-	public List<DetallePlanillaRevTipoAlim> getDetallePlanillaRevTipoAlims() {
-		return this.detallePlanillaRevTipoAlims;
+	public Set<PlanillaRevisionTipoAlimentacion> getPlanillaRevisionTipoAlimentacions() {
+		return this.planillaRevisionTipoAlimentacions;
 	}
 
-	public void setDetallePlanillaRevTipoAlims(List<DetallePlanillaRevTipoAlim> detallePlanillaRevTipoAlims) {
-		this.detallePlanillaRevTipoAlims = detallePlanillaRevTipoAlims;
+	public void setPlanillaRevisionTipoAlimentacions(Set<PlanillaRevisionTipoAlimentacion> planillaRevisionTipoAlimentacions) {
+		this.planillaRevisionTipoAlimentacions = planillaRevisionTipoAlimentacions;
 	}
 	
-	public List<DetalleTipoAlimentacionInsumo> getDetalleTipoAlimentacionInsumos() {
-		return this.detalleTipoAlimentacionInsumos;
+	public Set<TipoAlimentacionInsumo> getTipoAlimentacionInsumos() {
+		return this.tipoAlimentacionInsumos;
 	}
 
-	public void setDetalleTipoAlimentacionInsumos(List<DetalleTipoAlimentacionInsumo> detalleTipoAlimentacionInsumos) {
-		this.detalleTipoAlimentacionInsumos = detalleTipoAlimentacionInsumos;
+	public void setTipoAlimentacionInsumos(Set<TipoAlimentacionInsumo> tipoAlimentacionInsumos) {
+		this.tipoAlimentacionInsumos = tipoAlimentacionInsumos;
 	}
 	
 }
