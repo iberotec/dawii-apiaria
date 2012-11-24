@@ -13,6 +13,11 @@
    <PROCESS-ITEM-OUTPUT ID="successLogin::#UI_login.xhtml"
     NAME="output2" PATH="/UI_login.xhtml" TARGET="rules:#UI_login.xhtml"
     TITLE="successLogin" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successUbicacion::#extraccion#mainExtraccion.xhtml"
+    NAME="output3" PATH="/extraccion/mainExtraccion.xhtml"
+    TARGET="rules:#extraccion#mainExtraccion.xhtml"
+    TITLE="successUbicacion" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#UI_bienvenida.xhtml"
@@ -21,4 +26,6 @@
   SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#seleccion#mainSeleccion.xhtml"
   PATH="/seleccion/mainSeleccion.xhtml" SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#extraccion#mainExtraccion.xhtml"
+  PATH="/extraccion/mainExtraccion.xhtml" SHAPE="288,465,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
