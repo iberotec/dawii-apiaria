@@ -71,8 +71,8 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdcolmena()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idcolmena"),instance.getIdcolmena());
+			if(instance.getIdColmena()>0){
+				Predicate condition=builder.equal(colmenaRoot.get("idcolmena"),instance.getIdColmena());
 				p.add(condition);
 			}
 		}

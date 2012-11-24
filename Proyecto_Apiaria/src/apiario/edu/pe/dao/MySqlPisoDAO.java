@@ -71,8 +71,8 @@ public class MySqlPisoDAO implements IPisoDAO{
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdpiso()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idpiso"),instance.getIdpiso());
+			if(instance.getIdPiso()>0){
+				Predicate condition=builder.equal(colmenaRoot.get("idpiso"),instance.getIdPiso());
 				p.add(condition);
 			}
 		}

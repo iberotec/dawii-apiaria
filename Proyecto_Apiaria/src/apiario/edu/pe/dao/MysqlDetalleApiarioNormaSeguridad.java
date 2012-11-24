@@ -5,8 +5,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import apiario.edu.pe.bean.Apiario;
-import apiario.edu.pe.bean.DetalleApiarioNormaSeg;
 import apiario.edu.pe.bean.NormaSeguridad;
+import apiario.edu.pe.bean.NormaSeguridadApiario;
 
 public class MysqlDetalleApiarioNormaSeguridad implements IDetalleApiarioNormaSeguridad{
 	EntityManagerFactory emf= Persistence.createEntityManagerFactory("Proyecto_Apiaria");
@@ -17,7 +17,7 @@ public class MysqlDetalleApiarioNormaSeguridad implements IDetalleApiarioNormaSe
 		
 		try {
 			em.getTransaction().begin();
-			DetalleApiarioNormaSeg detalle=new DetalleApiarioNormaSeg();	
+			NormaSeguridadApiario detalle=new NormaSeguridadApiario();	
 			detalle.setApiario(apiario);
 			detalle.setNormaSeguridad(normaSeguridad);
 			// Grabar datos, si no va el persist no se graba
