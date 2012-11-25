@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 
@@ -74,15 +75,15 @@ public class PlanillaRevision implements Serializable {
 
 	//bi-directional many-to-one association to PlanillaRevisionAlza
 	@OneToMany(mappedBy="planillaRevision")
-	private Set<PlanillaRevisionAlza> planillaRevisionAlzas;
+	private List<PlanillaRevisionAlza> planillaRevisionAlzas;
 
 	//bi-directional many-to-one association to PlanillaRevisionTipoAlimentacion
 	@OneToMany(mappedBy="planillaRevision")
-	private Set<PlanillaRevisionTipoAlimentacion> planillaRevisionTipoAlimentacions;
+	private List<PlanillaRevisionTipoAlimentacion> planillaRevisionTipoAlimentacions;
 
 	//bi-directional many-to-one association to PlanillaRevisionTipoEnfermedad
 	@OneToMany(mappedBy="planillaRevision")
-	private Set<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedads;
+	private List<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedads;
 
     public PlanillaRevision() {
     }
@@ -215,27 +216,27 @@ public class PlanillaRevision implements Serializable {
 		this.temporada = temporada;
 	}
 	
-	public Set<PlanillaRevisionAlza> getPlanillaRevisionAlzas() {
+	public List<PlanillaRevisionAlza> getPlanillaRevisionAlzas() {
 		return this.planillaRevisionAlzas;
 	}
 
-	public void setPlanillaRevisionAlzas(Set<PlanillaRevisionAlza> planillaRevisionAlzas) {
+	public void setPlanillaRevisionAlzas(List<PlanillaRevisionAlza> planillaRevisionAlzas) {
 		this.planillaRevisionAlzas = planillaRevisionAlzas;
 	}
 	
-	public Set<PlanillaRevisionTipoAlimentacion> getPlanillaRevisionTipoAlimentacions() {
+	public List<PlanillaRevisionTipoAlimentacion> getPlanillaRevisionTipoAlimentacions() {
 		return this.planillaRevisionTipoAlimentacions;
 	}
 
-	public void setPlanillaRevisionTipoAlimentacions(Set<PlanillaRevisionTipoAlimentacion> planillaRevisionTipoAlimentacions) {
+	public void setPlanillaRevisionTipoAlimentacions(List<PlanillaRevisionTipoAlimentacion> planillaRevisionTipoAlimentacions) {
 		this.planillaRevisionTipoAlimentacions = planillaRevisionTipoAlimentacions;
 	}
 	
-	public Set<PlanillaRevisionTipoEnfermedad> getPlanillaRevisionTipoEnfermedads() {
+	public List<PlanillaRevisionTipoEnfermedad> getPlanillaRevisionTipoEnfermedads() {
 		return this.planillaRevisionTipoEnfermedads;
 	}
 
-	public void setPlanillaRevisionTipoEnfermedads(Set<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedads) {
+	public void setPlanillaRevisionTipoEnfermedads(List<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedads) {
 		this.planillaRevisionTipoEnfermedads = planillaRevisionTipoEnfermedads;
 	}
 	

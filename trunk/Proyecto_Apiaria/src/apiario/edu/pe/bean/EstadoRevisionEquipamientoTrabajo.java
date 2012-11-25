@@ -15,7 +15,7 @@ public class EstadoRevisionEquipamientoTrabajo implements Serializable {
 
 	@Id
 	@Column(name="id_estado_revision_equipamiento_trabajo")
-	private int idEstadoRevisionEquipamientoTrabajo;
+	private Integer idEstadoRevisionEquipamientoTrabajo;
 
 	//bi-directional many-to-one association to EquipamientoTrabajo
     @ManyToOne
@@ -33,11 +33,11 @@ public class EstadoRevisionEquipamientoTrabajo implements Serializable {
     public EstadoRevisionEquipamientoTrabajo() {
     }
 
-	public int getIdEstadoRevisionEquipamientoTrabajo() {
+	public Integer getIdEstadoRevisionEquipamientoTrabajo() {
 		return this.idEstadoRevisionEquipamientoTrabajo;
 	}
 
-	public void setIdEstadoRevisionEquipamientoTrabajo(int idEstadoRevisionEquipamientoTrabajo) {
+	public void setIdEstadoRevisionEquipamientoTrabajo(Integer idEstadoRevisionEquipamientoTrabajo) {
 		this.idEstadoRevisionEquipamientoTrabajo = idEstadoRevisionEquipamientoTrabajo;
 	}
 
