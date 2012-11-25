@@ -9,6 +9,8 @@ USE `db_sistema_apiario` ;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`apiario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`apiario` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`apiario` (
   `id_apiario` INT NOT NULL AUTO_INCREMENT ,
   PRIMARY KEY (`id_apiario`) )
@@ -18,6 +20,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`colmena`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`colmena` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`colmena` (
   `id_colmena` INT NOT NULL AUTO_INCREMENT ,
   `id_apiario` INT NOT NULL ,
@@ -34,6 +38,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_usario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_usario` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tipo_usario` (
   `id_tipo_usario` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_usuario` VARCHAR(45) NULL ,
@@ -44,6 +50,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`usuario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`usuario` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT ,
   `nombre_usuario` VARCHAR(45) NULL ,
@@ -63,6 +71,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`reina`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`reina` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`reina` (
   `id_reina` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_reina` VARCHAR(45) NULL ,
@@ -81,6 +91,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`estado_revision`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`estado_revision` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`estado_revision` (
   `id_estado_revision` INT NOT NULL ,
   `descripcion_estado_revision` VARCHAR(45) NULL ,
@@ -91,6 +103,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`temporada`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`temporada` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`temporada` (
   `id_temporada` INT NOT NULL AUTO_INCREMENT ,
   `periodo_inicial` DATE NULL ,
@@ -103,6 +117,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`planilla_revision`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`planilla_revision` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision` (
   `id_planilla_revision` INT NOT NULL AUTO_INCREMENT ,
   `id_colmena` INT NOT NULL ,
@@ -117,6 +133,9 @@ CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision` (
   `falta_alza` VARCHAR(45) NULL ,
   `comportamiento` VARCHAR(100) NULL ,
   `temporada_id_temporada` INT NOT NULL ,
+  `estado_planilla_revision` VARCHAR(45) NULL ,
+  `fecha_asignacion` DATE NULL ,
+  `fecha_revision` DATE NULL ,
   PRIMARY KEY (`id_planilla_revision`) ,
   INDEX `fk_Planilla_revision_Colmena1` (`id_colmena` ASC) ,
   INDEX `fk_planilla_revision_usuario2` (`id_usuario` ASC) ,
@@ -154,6 +173,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`piso`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`piso` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`piso` (
   `id_piso` INT NOT NULL AUTO_INCREMENT ,
   `id_colmena` INT NOT NULL ,
@@ -170,6 +191,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_alza`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_alza` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tipo_alza` (
   `id_tipo_alza` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_tipo_alza` VARCHAR(45) NULL ,
@@ -180,6 +203,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`alza`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`alza` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`alza` (
   `id_alza` INT NOT NULL AUTO_INCREMENT ,
   `id_piso` INT NOT NULL ,
@@ -203,6 +228,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`pais`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`pais` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`pais` (
   `id_pais` INT NOT NULL ,
   `nombre_pais` VARCHAR(45) NULL ,
@@ -213,6 +240,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`ubigeo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`ubigeo` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`ubigeo` (
   `id_ubigeo` INT NOT NULL AUTO_INCREMENT ,
   `departamento` VARCHAR(45) NULL ,
@@ -232,6 +261,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`zona`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`zona` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`zona` (
   `id_zona` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_zona` VARCHAR(100) NULL ,
@@ -249,6 +280,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`planilla_seguimiento`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`planilla_seguimiento` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_seguimiento` (
   `id_planilla_seguimiento` INT NOT NULL AUTO_INCREMENT ,
   `id_apiario` INT NOT NULL ,
@@ -274,6 +307,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_recurso`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_recurso` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tipo_recurso` (
   `id_tipo_recurso` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_tipo_recurso` VARCHAR(100) NULL ,
@@ -284,6 +319,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`recurso_natural`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`recurso_natural` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`recurso_natural` (
   `id_recurso_natural` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_recurso_natural` VARCHAR(100) NULL ,
@@ -301,6 +338,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`zona_recuso_natural`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`zona_recuso_natural` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`zona_recuso_natural` (
   `id_zona_recurso_natural` INT NOT NULL AUTO_INCREMENT ,
   `zona_id_zona` INT NOT NULL ,
@@ -324,6 +363,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`norma_seguridad`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`norma_seguridad` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`norma_seguridad` (
   `id_norma_seguridad` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_norma_seguridad` VARCHAR(100) NULL ,
@@ -334,6 +375,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`norma_seguridad_apiario`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`norma_seguridad_apiario` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`norma_seguridad_apiario` (
   `id_norma_seguridad_apiario` INT NOT NULL AUTO_INCREMENT ,
   `id_norma_seguridad` INT NOT NULL ,
@@ -359,6 +402,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_alimentacion`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_alimentacion` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tipo_alimentacion` (
   `id_tipo_alimentacion` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_tipo_alimentacion` VARCHAR(45) NULL ,
@@ -369,6 +414,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`planilla_revision_tipo_alimentacion`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`planilla_revision_tipo_alimentacion` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision_tipo_alimentacion` (
   `id_planilla_revision_tipo_alimentacion` INT NOT NULL AUTO_INCREMENT ,
   `id_planilla_revision` INT NOT NULL ,
@@ -392,6 +439,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`Insumo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`Insumo` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`Insumo` (
   `id_insumo` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_insumo` VARCHAR(45) NULL ,
@@ -402,6 +451,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_alimentacion_insumo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_alimentacion_insumo` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tipo_alimentacion_insumo` (
   `id_tipo_alimentacion_insumo` INT NOT NULL AUTO_INCREMENT ,
   `id_tipo_alimentacion` INT NOT NULL ,
@@ -425,6 +476,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_enfermedad`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_enfermedad` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tipo_enfermedad` (
   `id_tipo_enfermedad` INT NOT NULL ,
   `descripcion_tipo_enfermedad` VARCHAR(45) NULL ,
@@ -435,6 +488,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`planilla_revision_tipo_enfermedad`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`planilla_revision_tipo_enfermedad` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision_tipo_enfermedad` (
   `id_planilla_revision_tipo_enfermedad` INT NOT NULL AUTO_INCREMENT ,
   `id_planilla_revision` INT NOT NULL ,
@@ -458,6 +513,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tratamiento`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tratamiento` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tratamiento` (
   `id_tratamiento` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_tratamiento` VARCHAR(145) NULL ,
@@ -475,6 +532,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_enfermedad_tratamiento`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_enfermedad_tratamiento` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tipo_enfermedad_tratamiento` (
   `id_tipo_enfermedad_tratamiento` INT NOT NULL AUTO_INCREMENT ,
   `id_tipo_enfermedad` INT NOT NULL ,
@@ -498,6 +557,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_medicamento`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_medicamento` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tipo_medicamento` (
   `id_tipo_medicamento` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_tipo_medicamento` VARCHAR(45) NULL ,
@@ -508,6 +569,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`medicamento`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`medicamento` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`medicamento` (
   `id_medicamento` INT NOT NULL AUTO_INCREMENT ,
   `descripcion_medicamento` VARCHAR(145) NULL ,
@@ -525,6 +588,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tratamiento_medicamento`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`tratamiento_medicamento` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`tratamiento_medicamento` (
   `id_tratamiento_medicamento` INT NOT NULL AUTO_INCREMENT ,
   `id_medicamento` INT NOT NULL ,
@@ -548,6 +613,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`equipamiento_trabajo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`equipamiento_trabajo` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`equipamiento_trabajo` (
   `id_equipamiento_trabajo` INT NOT NULL ,
   `descripcion_equipo_trabajo` VARCHAR(145) NULL ,
@@ -558,6 +625,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`estado_revision_equipamiento_trabajo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`estado_revision_equipamiento_trabajo` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`estado_revision_equipamiento_trabajo` (
   `id_estado_revision_equipamiento_trabajo` INT NOT NULL AUTO_INCREMENT ,
   `id_equipamiento_trabajo` INT NOT NULL ,
@@ -581,6 +650,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`planilla_revision_alza`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`planilla_revision_alza` ;
+
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision_alza` (
   `id_planilla_revision_alza` INT NOT NULL AUTO_INCREMENT ,
   `id_planilla_revision` INT NOT NULL ,
