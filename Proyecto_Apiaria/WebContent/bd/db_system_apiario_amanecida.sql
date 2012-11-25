@@ -579,32 +579,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_sistema_apiario`.`planilla_resvision_alza`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_resvision_alza` (
-  `id_planilla_resvision_alza` INT NOT NULL AUTO_INCREMENT ,
-  `iid_alza` INT NOT NULL ,
-  `id_planilla_revision` INT NOT NULL ,
-  `estado_deterioro_alza` VARCHAR(45) NULL ,
-  `estado_alza` VARCHAR(45) NULL ,
-  `porcentaje_miel` DOUBLE NULL ,
-  PRIMARY KEY (`id_planilla_resvision_alza`) ,
-  INDEX `fk_planilla_resvision_alza_alza1` (`iid_alza` ASC) ,
-  INDEX `fk_planilla_resvision_alza_planilla_revision1` (`id_planilla_revision` ASC) ,
-  CONSTRAINT `fk_planilla_resvision_alza_alza1`
-    FOREIGN KEY (`iid_alza` )
-    REFERENCES `db_sistema_apiario`.`alza` (`id_alza` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_planilla_resvision_alza_planilla_revision1`
-    FOREIGN KEY (`id_planilla_revision` )
-    REFERENCES `db_sistema_apiario`.`planilla_revision` (`id_planilla_revision` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`planilla_revision_alza`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision_alza` (
