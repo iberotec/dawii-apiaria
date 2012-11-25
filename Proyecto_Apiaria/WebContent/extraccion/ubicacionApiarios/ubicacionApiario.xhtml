@@ -35,15 +35,16 @@
 		</td>
 		<td>
 			<h:outputText value="Equipo Seguridad" />
-			<p:dataTable value="" var="">
+			<p:dataTable value="#{mBEstadoRevisionEquipoTrabajo.listaestadorevisionequiptrabajomodel}" var="data">
+			
 				<p:column headerText="Código">
-					<h:outputText value=""/>
+					#{data.equipamientoTrabajo.idEquipamientoTrabajo}
 				</p:column>
 				<p:column headerText="Equipo">
-					<h:outputText value=""/>
+					#{data.equipamientoTrabajo.descripcionEquipamientoTrabajo}
 				</p:column>
 				<p:column headerText="Cantidad">
-					<h:outputText value=""/>
+					#{data.cantidad}
 				</p:column>
 			</p:dataTable>
 		</td>

@@ -7,28 +7,30 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import apiario.edu.pe.bean.EquipamientoTrabajo;
-import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
+import apiario.edu.pe.bean.PlanillaRevision;
 
-public class MySqlEquipoTrabajoDAO implements IEquipoTrabajo {
+public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proyecto_Apiaria");
 	EntityManager em = emf.createEntityManager();
 	
 	@Override
-	public List<EstadoRevisionEquipamientoTrabajo> listarDetalleEquipoTrabajo(int codEstadoRevision) {
+	public List<PlanillaRevision> listaPlanillaRevision(Integer colmena) {
 		
-		EquipamientoTrabajo objequipotrabajo = null;
-		
+		List lista = null;
 		try {
 			em.getTransaction().begin();
-				Query sql = em.createQuery("Select u from EquipamientoTrabajo u where u.idEquipamientoTrabajo=:xcodequitrab");
+				Query sql = em.createQuery("Select u from PlanillaRevision u where u.colmena.idColmena=:xcolmena");
+				sql.setParameter("xcolmena", colmena);
+				lista = sql.getResultList();
+				
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 		}
 		
-		return null;
+		
+		return lista;
 	}
 
 }

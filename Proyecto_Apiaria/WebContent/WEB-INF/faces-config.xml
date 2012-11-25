@@ -29,6 +29,12 @@
   <managed-bean-class>apiario.edu.pe.managedBeans.MBLogueo</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+  <managed-bean>
+  <managed-bean-name>mBEstadoRevisionEquipoTrabajo</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBDetalleEquipamientoTrabajo</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ 
 <!--  <managed-bean> -->
 <!--   <managed-bean-name>mapBean</managed-bean-name> -->
 <!--   <managed-bean-class>apiario.edu.pe.managedBeans.MapBean</managed-bean-class> -->

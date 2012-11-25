@@ -6,6 +6,7 @@ import java.util.List;
 import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
+import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
@@ -16,6 +17,7 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
+import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
@@ -26,7 +28,7 @@ import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
 @SuppressWarnings("serial")
-public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,IUsuario,Serializable{
+public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,IUsuario,IDetalleEquipoTrabajo, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -38,6 +40,7 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 	IAlzaDAO daoAlza=objDAOFactory.getIAlzaDAO();
 	ITipoAlimentacionDAO daoTipoAlimentacion=objDAOFactory.getITipoAlimentacionDAO();
 	ITipoEnfermedadDAO daoTipoEnfermedad=objDAOFactory.getTipoEnfermedadDAO();
+	IDetalleEquipoTrabajo daoDetalleEquipoTrabajo = objDAOFactory.getIDetalleEquipoTrabajo();
 
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -239,5 +242,12 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 	public TipoEnfermedad eliminarTipoEnfermedad(TipoEnfermedad instance)
 			throws Exception {
 		return daoTipoEnfermedad.eliminarTipoEnfermedad(instance);
+	}
+
+	@Override
+	public List<EstadoRevisionEquipamientoTrabajo> listarDetalleEquipoTrabajo(
+			int codEstadoRevision) {
+		
+		return daoDetalleEquipoTrabajo.listarDetalleEquipoTrabajo(codEstadoRevision);
 	}
 }
