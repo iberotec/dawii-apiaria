@@ -5,12 +5,12 @@
  <!-- ManageBean -->
  <managed-bean>
   <managed-bean-name>mBapiaria</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.manageBeans.MBVerficaApiaria</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBVerficaApiaria</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>mBNormaSeguridad</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.manageBeans.MBNormaSeguridad</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBNormaSeguridad</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <!-- Diego -->
@@ -21,17 +21,17 @@
  </managed-bean>
  <managed-bean>
   <managed-bean-name>mBApiario</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.manageBeans.MBApiario</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBApiario</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
   <managed-bean-name>mBLogueo</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.manageBeans.MBLogueo</managed-bean-class>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBLogueo</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
 <!--  <managed-bean> -->
 <!--   <managed-bean-name>mapBean</managed-bean-name> -->
-<!--   <managed-bean-class>apiario.edu.pe.manageBeans.MapBean</managed-bean-class> -->
+<!--   <managed-bean-class>apiario.edu.pe.managedBeans.MapBean</managed-bean-class> -->
 <!--   <managed-bean-scope>session</managed-bean-scope> -->
 <!--  </managed-bean> -->
  <!-- Diego 

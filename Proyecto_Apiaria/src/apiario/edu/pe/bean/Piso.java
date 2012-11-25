@@ -19,7 +19,7 @@ public class Piso extends BaseEntidades implements Serializable {
 
 	@Id
 	@Column(name="id_piso")
-	private int idPiso;
+	private Integer idPiso;
 
 	//bi-directional many-to-one association to Alza
 	@OneToMany(mappedBy="piso")
@@ -33,11 +33,11 @@ public class Piso extends BaseEntidades implements Serializable {
     public Piso() {
     }
 
-	public int getIdPiso() {
+	public Integer getIdPiso() {
 		return this.idPiso;
 	}
 
-	public void setIdPiso(int idPiso) {
+	public void setIdPiso(Integer idPiso) {
 		this.idPiso = idPiso;
 	}
 

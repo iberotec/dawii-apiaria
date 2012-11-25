@@ -24,15 +24,15 @@ public class NormaSeguridadApiario implements Serializable {
 	@Column(name="fecha_registro")
 	private Date fechaRegistro;
 
-	//bi-directional many-to-one association to Apiario
-    @ManyToOne
-	@JoinColumn(name="id_apiario")
-	private Apiario apiario;
-
 	//bi-directional many-to-one association to NormaSeguridad
     @ManyToOne
 	@JoinColumn(name="id_norma_seguridad")
 	private NormaSeguridad normaSeguridad;
+
+	//bi-directional many-to-one association to Apiario
+    @ManyToOne
+	@JoinColumn(name="id_apiario")
+	private Apiario apiario;
 
     public NormaSeguridadApiario() {
     }
@@ -61,20 +61,20 @@ public class NormaSeguridadApiario implements Serializable {
 		this.fechaRegistro = fechaRegistro;
 	}
 
-	public Apiario getApiario() {
-		return this.apiario;
-	}
-
-	public void setApiario(Apiario apiario) {
-		this.apiario = apiario;
-	}
-	
 	public NormaSeguridad getNormaSeguridad() {
 		return this.normaSeguridad;
 	}
 
 	public void setNormaSeguridad(NormaSeguridad normaSeguridad) {
 		this.normaSeguridad = normaSeguridad;
+	}
+	
+	public Apiario getApiario() {
+		return this.apiario;
+	}
+
+	public void setApiario(Apiario apiario) {
+		this.apiario = apiario;
 	}
 	
 }

@@ -19,7 +19,7 @@ public class Colmena extends BaseEntidades implements Serializable {
 
 	@Id
 	@Column(name="id_colmena")
-	private int idColmena;
+	private Integer idColmena;
 
 	//bi-directional many-to-one association to Apiario
     @ManyToOne
@@ -41,11 +41,11 @@ public class Colmena extends BaseEntidades implements Serializable {
     public Colmena() {
     }
 
-	public int getIdColmena() {
+	public Integer getIdColmena() {
 		return this.idColmena;
 	}
 
-	public void setIdColmena(int idColmena) {
+	public void setIdColmena(Integer idColmena) {
 		this.idColmena = idColmena;
 	}
 
