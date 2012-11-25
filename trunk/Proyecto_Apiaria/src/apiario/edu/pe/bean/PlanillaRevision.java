@@ -2,6 +2,8 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.sql.Date;
 import java.util.Set;
 
 
@@ -37,7 +39,15 @@ public class PlanillaRevision implements Serializable {
 
 	@Column(name="necesidad_curacion")
 	private byte necesidadCuracion;
-
+	
+	@Column(name="fecha_asignacion")
+	private Date fechaAsignacion;
+	
+	@Column(name="fecha_revision")
+	private Date fechaRevision;
+	
+	@Column(name="estado_planilla_revision")
+	private String estadoPlanillaRevision;
 	//bi-directional many-to-one association to Colmena
     @ManyToOne
 	@JoinColumn(name="id_colmena")
@@ -76,6 +86,30 @@ public class PlanillaRevision implements Serializable {
 
     public PlanillaRevision() {
     }
+    
+	public Date getFechaAsignacion() {
+		return fechaAsignacion;
+	}
+
+	public void setFechaAsignacion(Date fechaAsignacion) {
+		this.fechaAsignacion = fechaAsignacion;
+	}
+
+	public Date getFechaRevision() {
+		return fechaRevision;
+	}
+
+	public void setFechaRevision(Date fechaRevision) {
+		this.fechaRevision = fechaRevision;
+	}
+
+	public String getEstadoPlanillaRevision() {
+		return estadoPlanillaRevision;
+	}
+
+	public void setEstadoPlanillaRevision(String estadoPlanillaRevision) {
+		this.estadoPlanillaRevision = estadoPlanillaRevision;
+	}
 
 	public int getIdPlanillaRevision() {
 		return this.idPlanillaRevision;
