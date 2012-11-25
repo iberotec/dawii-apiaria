@@ -15,9 +15,8 @@
 
 
 	<h:outputText value="Apiarios" /><br/>
-	<p:selectOneMenu id="b" value="#{mBNormaSeguridad.apiario.idApiario}" >
-		<f:selectItems  value="#{mBNormaSeguridad.listar()}" var="item" itemLabel="#{item.idapiario}" itemValue="#{item.idapiario}"/>
-
+	<p:selectOneMenu id="iApiarioSe" >
+		<f:selectItems value="#{mBSelectItems.cboApiario}" />
 	</p:selectOneMenu>
 	<br />
 	<h:outputText

@@ -13,6 +13,12 @@
   <managed-bean-class>apiario.edu.pe.managedBeans.MBNormaSeguridad</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+  <managed-bean>
+  <managed-bean-name>mBApiariaAsignada</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBApiarioAsignado</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ 
  <!-- Diego -->
  <managed-bean>
   <managed-bean-name>mBSelectItems</managed-bean-name>

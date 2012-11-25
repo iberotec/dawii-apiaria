@@ -79,7 +79,7 @@ public class MysqlApiarioDAO implements IApiarioDAO {
 		
 		if(instance!=null){
 			System.out.println("apiario");
-			if(instance.getIdApiario()!=0 && instance.getIdApiario()>0){
+			if(instance.getIdApiario()>0){
 				System.out.println("apiario.getIdapiario");
 				Predicate condition=builder.equal(apiarioRoot.get("idapiario"), instance.getIdApiario());
 				p.add(condition);

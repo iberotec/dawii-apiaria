@@ -16,6 +16,7 @@ import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.Usuario;
 import java.util.UUID;  
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext; 
 
 import org.primefaces.event.RowEditEvent;
@@ -66,15 +67,15 @@ public class MBPlanillaRevision implements Serializable{
 
 	
 	public void onEdit(RowEditEvent event) {  
-        FacesMessage msg = new FacesMessage("Car Edited", ((Car) event.getObject()).getModel());  
+//        FacesMessage msg = new FacesMessage("Car Edited", ((Car) event.getObject()).getModel());  
   
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
+//        FacesContext.getCurrentInstance().addMessage(null, msg);  
     }  
       
     public void onCancel(RowEditEvent event) {  
-        FacesMessage msg = new FacesMessage("Car Cancelled", ((Car) event.getObject()).getModel());  
+//        FacesMessage msg = new FacesMessage("Car Cancelled", ((Car) event.getObject()).getModel());  
   
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
+//        FacesContext.getCurrentInstance().addMessage(null, msg);  
     }
 	
 	//Getter and Setter
