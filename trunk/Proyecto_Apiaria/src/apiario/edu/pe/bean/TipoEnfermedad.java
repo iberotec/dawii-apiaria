@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 import apiario.edu.pe.bean.base.BaseEntidades;
 
-import java.util.List;
 import java.util.Set;
 
 
@@ -20,7 +19,7 @@ public class TipoEnfermedad extends BaseEntidades implements Serializable {
 
 	@Id
 	@Column(name="id_tipo_enfermedad")
-	private int idTipoEnfermedad;
+	private Integer idTipoEnfermedad;
 
 	@Column(name="descripcion_tipo_enfermedad")
 	private String descripcionTipoEnfermedad;
@@ -36,11 +35,11 @@ public class TipoEnfermedad extends BaseEntidades implements Serializable {
     public TipoEnfermedad() {
     }
 
-	public int getIdTipoEnfermedad() {
+	public Integer getIdTipoEnfermedad() {
 		return this.idTipoEnfermedad;
 	}
 
-	public void setIdTipoEnfermedad(int idTipoEnfermedad) {
+	public void setIdTipoEnfermedad(Integer idTipoEnfermedad) {
 		this.idTipoEnfermedad = idTipoEnfermedad;
 	}
 

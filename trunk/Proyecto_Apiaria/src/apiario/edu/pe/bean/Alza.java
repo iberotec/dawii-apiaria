@@ -19,7 +19,7 @@ public class Alza extends BaseEntidades implements Serializable {
 
 	@Id
 	@Column(name="id_alza")
-	private int idAlza;
+	private Integer idAlza;
 
 	//bi-directional many-to-one association to Piso
     @ManyToOne
@@ -31,10 +31,6 @@ public class Alza extends BaseEntidades implements Serializable {
 	@JoinColumn(name="id_tipo_alza")
 	private TipoAlza tipoAlza;
 
-	//bi-directional many-to-one association to PlanillaResvisionAlza
-	@OneToMany(mappedBy="alza")
-	private Set<PlanillaResvisionAlza> planillaResvisionAlzas;
-
 	//bi-directional many-to-one association to PlanillaRevisionAlza
 	@OneToMany(mappedBy="alza")
 	private Set<PlanillaRevisionAlza> planillaRevisionAlzas;
@@ -42,11 +38,11 @@ public class Alza extends BaseEntidades implements Serializable {
     public Alza() {
     }
 
-	public int getIdAlza() {
+	public Integer getIdAlza() {
 		return this.idAlza;
 	}
 
-	public void setIdAlza(int idAlza) {
+	public void setIdAlza(Integer idAlza) {
 		this.idAlza = idAlza;
 	}
 
@@ -64,14 +60,6 @@ public class Alza extends BaseEntidades implements Serializable {
 
 	public void setTipoAlza(TipoAlza tipoAlza) {
 		this.tipoAlza = tipoAlza;
-	}
-	
-	public Set<PlanillaResvisionAlza> getPlanillaResvisionAlzas() {
-		return this.planillaResvisionAlzas;
-	}
-
-	public void setPlanillaResvisionAlzas(Set<PlanillaResvisionAlza> planillaResvisionAlzas) {
-		this.planillaResvisionAlzas = planillaResvisionAlzas;
 	}
 	
 	public Set<PlanillaRevisionAlza> getPlanillaRevisionAlzas() {

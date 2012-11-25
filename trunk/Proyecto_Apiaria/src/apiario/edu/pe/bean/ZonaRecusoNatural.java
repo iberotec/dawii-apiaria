@@ -17,14 +17,14 @@ public class ZonaRecusoNatural implements Serializable {
 	@Column(name="id_zona_recurso_natural")
 	private int idZonaRecursoNatural;
 
+	//bi-directional many-to-one association to Zona
+    @ManyToOne
+	private Zona zona;
+
 	//bi-directional many-to-one association to RecursoNatural
     @ManyToOne
 	@JoinColumn(name="id_recurso_natural")
 	private RecursoNatural recursoNatural;
-
-	//bi-directional many-to-one association to Zona
-    @ManyToOne
-	private Zona zona;
 
     public ZonaRecusoNatural() {
     }
@@ -37,20 +37,20 @@ public class ZonaRecusoNatural implements Serializable {
 		this.idZonaRecursoNatural = idZonaRecursoNatural;
 	}
 
-	public RecursoNatural getRecursoNatural() {
-		return this.recursoNatural;
-	}
-
-	public void setRecursoNatural(RecursoNatural recursoNatural) {
-		this.recursoNatural = recursoNatural;
-	}
-	
 	public Zona getZona() {
 		return this.zona;
 	}
 
 	public void setZona(Zona zona) {
 		this.zona = zona;
+	}
+	
+	public RecursoNatural getRecursoNatural() {
+		return this.recursoNatural;
+	}
+
+	public void setRecursoNatural(RecursoNatural recursoNatural) {
+		this.recursoNatural = recursoNatural;
 	}
 	
 }

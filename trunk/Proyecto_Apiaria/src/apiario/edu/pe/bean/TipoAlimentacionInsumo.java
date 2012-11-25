@@ -17,15 +17,15 @@ public class TipoAlimentacionInsumo implements Serializable {
 	@Column(name="id_tipo_alimentacion_insumo")
 	private int idTipoAlimentacionInsumo;
 
-	//bi-directional many-to-one association to Insumo
-    @ManyToOne
-	@JoinColumn(name="id_insumo")
-	private Insumo insumo;
-
 	//bi-directional many-to-one association to TipoAlimentacion
     @ManyToOne
 	@JoinColumn(name="id_tipo_alimentacion")
 	private TipoAlimentacion tipoAlimentacion;
+
+	//bi-directional many-to-one association to Insumo
+    @ManyToOne
+	@JoinColumn(name="id_insumo")
+	private Insumo insumo;
 
     public TipoAlimentacionInsumo() {
     }
@@ -38,20 +38,20 @@ public class TipoAlimentacionInsumo implements Serializable {
 		this.idTipoAlimentacionInsumo = idTipoAlimentacionInsumo;
 	}
 
-	public Insumo getInsumo() {
-		return this.insumo;
-	}
-
-	public void setInsumo(Insumo insumo) {
-		this.insumo = insumo;
-	}
-	
 	public TipoAlimentacion getTipoAlimentacion() {
 		return this.tipoAlimentacion;
 	}
 
 	public void setTipoAlimentacion(TipoAlimentacion tipoAlimentacion) {
 		this.tipoAlimentacion = tipoAlimentacion;
+	}
+	
+	public Insumo getInsumo() {
+		return this.insumo;
+	}
+
+	public void setInsumo(Insumo insumo) {
+		this.insumo = insumo;
 	}
 	
 }

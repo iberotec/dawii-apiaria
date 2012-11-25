@@ -38,33 +38,29 @@ public class PlanillaRevision implements Serializable {
 	@Column(name="necesidad_curacion")
 	private byte necesidadCuracion;
 
-	//bi-directional many-to-one association to PlanillaResvisionAlza
-	@OneToMany(mappedBy="planillaRevision")
-	private Set<PlanillaResvisionAlza> planillaResvisionAlzas;
-
 	//bi-directional many-to-one association to Colmena
     @ManyToOne
 	@JoinColumn(name="id_colmena")
 	private Colmena colmena;
 
-	//bi-directional many-to-one association to EstadoRevision
+	//bi-directional many-to-one association to Usuario
     @ManyToOne
-	@JoinColumn(name="id_estado_revision")
-	private EstadoRevision estadoRevision;
+	@JoinColumn(name="id_usuario")
+	private Usuario usuario;
 
 	//bi-directional many-to-one association to Reina
     @ManyToOne
 	@JoinColumn(name="id_reina")
 	private Reina reina;
 
+	//bi-directional many-to-one association to EstadoRevision
+    @ManyToOne
+	@JoinColumn(name="id_estado_revision")
+	private EstadoRevision estadoRevision;
+
 	//bi-directional many-to-one association to Temporada
     @ManyToOne
 	private Temporada temporada;
-
-	//bi-directional many-to-one association to Usuario
-    @ManyToOne
-	@JoinColumn(name="id_usuario")
-	private Usuario usuario;
 
 	//bi-directional many-to-one association to PlanillaRevisionAlza
 	@OneToMany(mappedBy="planillaRevision")
@@ -145,14 +141,6 @@ public class PlanillaRevision implements Serializable {
 		this.necesidadCuracion = necesidadCuracion;
 	}
 
-	public Set<PlanillaResvisionAlza> getPlanillaResvisionAlzas() {
-		return this.planillaResvisionAlzas;
-	}
-
-	public void setPlanillaResvisionAlzas(Set<PlanillaResvisionAlza> planillaResvisionAlzas) {
-		this.planillaResvisionAlzas = planillaResvisionAlzas;
-	}
-	
 	public Colmena getColmena() {
 		return this.colmena;
 	}
@@ -161,12 +149,12 @@ public class PlanillaRevision implements Serializable {
 		this.colmena = colmena;
 	}
 	
-	public EstadoRevision getEstadoRevision() {
-		return this.estadoRevision;
+	public Usuario getUsuario() {
+		return this.usuario;
 	}
 
-	public void setEstadoRevision(EstadoRevision estadoRevision) {
-		this.estadoRevision = estadoRevision;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	public Reina getReina() {
@@ -177,20 +165,20 @@ public class PlanillaRevision implements Serializable {
 		this.reina = reina;
 	}
 	
+	public EstadoRevision getEstadoRevision() {
+		return this.estadoRevision;
+	}
+
+	public void setEstadoRevision(EstadoRevision estadoRevision) {
+		this.estadoRevision = estadoRevision;
+	}
+	
 	public Temporada getTemporada() {
 		return this.temporada;
 	}
 
 	public void setTemporada(Temporada temporada) {
 		this.temporada = temporada;
-	}
-	
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 	
 	public Set<PlanillaRevisionAlza> getPlanillaRevisionAlzas() {
