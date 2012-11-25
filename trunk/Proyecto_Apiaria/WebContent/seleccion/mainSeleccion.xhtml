@@ -23,23 +23,36 @@
 
 
 			<div class="contenedor">
+<!-- 				<p:tabView id="tabContainer" dynamic="false" cache="false"> -->
+
+<!-- 					<p:tab id="VERIFICAR_APIARIOS" -->
+<!-- 						title="VERIFICAR APIARIOS"> -->
+						
+<!-- 						   <ui:include src="verificarApiario/verificarApiaria.xhtml" /> -->
+<!-- 					</p:tab> -->
+
+<!-- 					<p:tab id="CCAPIARIOS" -->
+<!-- 						title="CONTROL DE CALIDAD DE APIARIOS"> -->
+<!-- 						<ui:include src="controldeCalidadApiaria.xhtml" /> -->
+<!-- 					</p:tab> -->
+					
+<!-- 					<p:tab id="APIARIOSASIGNADOS" -->
+<!-- 						title="APIARIOSASIGNADOS"> -->
+<!-- 						<ui:include src="apiariosAsignados/UI_apiariosAsignados.xhtml" /> -->
+<!-- 						<ui:include src="apiariosAsignados/layouts/Principal.xhtml" /> -->
+<!-- 					</p:tab> -->
+<!-- 				</p:tabView> -->
 				<p:tabView id="tabContainer" dynamic="false" cache="false">
 
-					<p:tab id="VERIFICAR_APIARIOS"
-						title="VERIFICAR APIARIOS">
+					<p:tab id="AASEQNEET"
+						title="Asignar Apiario si es que no esta en temporada">
 						
-						   <ui:include src="verificarApiario/verificarApiaria.xhtml" />
+						   <ui:include src="temporadaSeleccion/temporadaSeleccionOFF.xhtml" />
 					</p:tab>
 
-					<p:tab id="CCAPIARIOS"
-						title="CONTROL DE CALIDAD DE APIARIOS">
-						<ui:include src="controldeCalidadApiaria.xhtml" />
-					</p:tab>
-					
-					<p:tab id="APIARIOSASIGNADOS"
-						title="APIARIOSASIGNADOS">
-						<ui:include src="apiariosAsignados/UI_apiariosAsignados.xhtml" />
-<!--						<ui:include src="apiariosAsignados/layouts/Principal.xhtml" />-->
+					<p:tab id="AAT"
+						title="Asignar Apiario en Temporada">
+						<ui:include src="temporadaSeleccion/temporadaSeleccionON.xhtml" />
 					</p:tab>
 				</p:tabView>
 			</div>

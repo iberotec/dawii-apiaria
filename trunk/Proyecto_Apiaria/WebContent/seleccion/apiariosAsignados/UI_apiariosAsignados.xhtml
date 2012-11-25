@@ -25,7 +25,8 @@
 		<div>
 			<p:selectOneMenu id="iApiario" >
 				<f:selectItems value="#{mBSelectItems.cboApiario}" />
-				
+<!-- 				<p:ajax update="iTab"   -->
+<!--                         listener="#{mBApiario.localizarApiario}" />   -->
 			</p:selectOneMenu>
 		</div>
 	</td>
@@ -97,7 +98,7 @@
 </tr>
 </table>
 
-<p:tabView>
+<p:tabView id="iTab">
 	<p:tab title="Colmena">
 		Colmena
 		<p:dataTable

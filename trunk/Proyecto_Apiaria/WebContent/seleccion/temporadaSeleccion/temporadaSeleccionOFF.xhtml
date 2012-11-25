@@ -12,32 +12,13 @@
 <h:head>
 </h:head>
 
-<h:body>
-	<table>
-		<tr>
-			<td>
-				<p:commandLink value="Nueva Asignacion"></p:commandLink>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<p:commandLink value="Eliminar Asignacion"></p:commandLink>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<p:commandLink value="Modificar Asignacion"></p:commandLink>
-			</td>
-		</tr>
-	</table>
+	<h:panelGrid columns="1" cellpadding="5">
 	
-	<h:dataTable value="" var="listaApiaria">
-		<h:column>
-			Item
-		</h:column>
-		<h:column>
-			Apiario
-		</h:column>
-	</h:dataTable>
-</h:body>
+	    <p:commandButton id="modalDialogButton" value="La Etapa de Seleccion Finalizo" onclick="dlg2.show();" type="button"/>
+	</h:panelGrid>
+	
+	<p:dialog id="modalDialog" header="Mensaje" widgetVar="dlg2" modal="true" height="100">
+	    <h:outputText value="La Etapa de Seleccion Finalizo" />
+	</p:dialog>
+	
 </html>
