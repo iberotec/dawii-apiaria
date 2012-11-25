@@ -6,7 +6,11 @@ import java.util.List;
 import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
+
+import apiario.edu.pe.bean.EstadoRevision;
+
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
+
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
@@ -17,6 +21,7 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
+import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
@@ -28,7 +33,7 @@ import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
 @SuppressWarnings("serial")
-public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,IUsuario,IDetalleEquipoTrabajo, Serializable{
+public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario,Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -40,7 +45,9 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 	IAlzaDAO daoAlza=objDAOFactory.getIAlzaDAO();
 	ITipoAlimentacionDAO daoTipoAlimentacion=objDAOFactory.getITipoAlimentacionDAO();
 	ITipoEnfermedadDAO daoTipoEnfermedad=objDAOFactory.getTipoEnfermedadDAO();
+	IEstadoRevisionDAO daoEstadoRevision=objDAOFactory.getEstadoRevisionDAO();
 	IDetalleEquipoTrabajo daoDetalleEquipoTrabajo = objDAOFactory.getIDetalleEquipoTrabajo();
+
 
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -245,9 +252,38 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 	}
 
 	@Override
+	public List<EstadoRevision> listarTodosEstadoRevisiones() throws Exception {
+		return daoEstadoRevision.listarTodosEstadoRevisiones();
+	}
+
+	@Override
+	public EstadoRevision guardarEstadoRevision(EstadoRevision instance)
+			throws Exception {
+		return daoEstadoRevision.guardarEstadoRevision(instance);
+	}
+
+	@Override
+	public List<EstadoRevision> buscarEstadoRevision(EstadoRevision instance)
+			throws Exception {
+		return daoEstadoRevision.buscarEstadoRevision(instance);
+	}
+
+	@Override
+	public EstadoRevision obtenerPorIdEstadoRevision(int id) throws Exception {
+		return daoEstadoRevision.obtenerPorIdEstadoRevision(id);
+	}
+
+	@Override
+	public EstadoRevision eliminarEstadoRevision(EstadoRevision instance)
+			throws Exception {
+		return daoEstadoRevision.eliminarEstadoRevision(instance);
+	}
+
+
+	@Override
 	public List<EstadoRevisionEquipamientoTrabajo> listarDetalleEquipoTrabajo(
-			int codEstadoRevision) {
-		
+			Integer codEstadoRevision) {
 		return daoDetalleEquipoTrabajo.listarDetalleEquipoTrabajo(codEstadoRevision);
 	}
+
 }

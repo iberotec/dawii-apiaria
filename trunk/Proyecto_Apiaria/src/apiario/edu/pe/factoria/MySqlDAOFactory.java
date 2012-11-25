@@ -4,6 +4,7 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
+import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
@@ -14,6 +15,7 @@ import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.dao.MySqlAlzaDAO;
 import apiario.edu.pe.dao.MySqlColmenaDAO;
+import apiario.edu.pe.dao.MySqlEstadoRevisionDAO;
 import apiario.edu.pe.dao.MySqlDetalleEquipoTrabajoDAO;
 import apiario.edu.pe.dao.MySqlPisoDAO;
 import apiario.edu.pe.dao.MySqlPlanillaRevisionDAO;
@@ -78,6 +80,11 @@ public class MySqlDAOFactory extends DAOFactory{
 	}
 
 	@Override
+	public IEstadoRevisionDAO getEstadoRevisionDAO() {
+		return new MySqlEstadoRevisionDAO();
+	}
+
+	@Override
 	public IDetalleEquipoTrabajo getIDetalleEquipoTrabajo() {
 		
 		return new MySqlDetalleEquipoTrabajoDAO();
@@ -88,6 +95,7 @@ public class MySqlDAOFactory extends DAOFactory{
 		
 		return new MySqlPlanillaRevisionDAO();
 	}
+
 
 	
 

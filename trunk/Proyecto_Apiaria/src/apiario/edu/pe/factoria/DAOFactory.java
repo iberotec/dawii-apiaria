@@ -4,6 +4,7 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
+import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
@@ -13,14 +14,12 @@ import apiario.edu.pe.dao.ITipoAlimentacionDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 
-
-
-
-
 public abstract class DAOFactory {
 	public enum TipoFabrica {
 		MYSQL, SQL, ORACLE
 	};
+	
+	
 	public abstract IApiarioDAO getIApiarioDAO();
 	public abstract INormaSeguridadDAO getINormaSeguridadDAO();
 	public abstract IDetalleApiarioNormaSeguridad getDetalleApiarioNormaSeguridad();
@@ -31,6 +30,7 @@ public abstract class DAOFactory {
 	public abstract IAlzaDAO getIAlzaDAO();
 	public abstract ITipoAlimentacionDAO getITipoAlimentacionDAO();
 	public abstract ITipoEnfermedadDAO getTipoEnfermedadDAO();
+	public abstract IEstadoRevisionDAO getEstadoRevisionDAO();
 	public abstract IDetalleEquipoTrabajo getIDetalleEquipoTrabajo();
 	public abstract IPlanillaRevisionDAO getIPlanillaRevisionDAO();
 	

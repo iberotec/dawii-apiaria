@@ -25,6 +25,7 @@
 		<div>
 			<p:selectOneMenu id="iApiario" >
 				<f:selectItems value="#{mBSelectItems.cboApiario}" />
+				
 			</p:selectOneMenu>
 		</div>
 	</td>
@@ -44,22 +45,15 @@
 	<td>
 
 		<div>
-			<h:selectOneMenu value="iGradoPeligroColmena">
-				<f:selectItem itemValue="Seleccione..."/>
-				<f:selectItem itemValue="Hard"/>
-				<f:selectItem itemValue="Medium"/>
-				<f:selectItem itemValue="Easy"/>
-			</h:selectOneMenu>
+			<p:selectOneMenu id="iGradoPeligroColmena">
+				<f:selectItems value="#{mBSelectItems.cboGradoPeligroColmena}" />
+			</p:selectOneMenu>
 		</div>
-
-<!--		<h:selectOneMenu value="">-->
-<!--			<f:selectItem itemValue="H"/>-->
-<!--		</h:selectOneMenu>-->
 
 	</td>
 </tr>
 <tr>
-	<td>
+<!--	<td>-->
 	
 	<!--  	<h:selectManyCheckbox value="" layout="pageDirection">
 	
@@ -70,20 +64,20 @@
 			<f:selectItem itemValue="Falto de espacio camara de cria"/>
 		</h:selectManyCheckbox>
 		 --> 
-	</td>
+<!--	</td>-->
 
 	<td>
 
 		<h:outputText value="Tipo de Alimentación" />	
 
-		<h:selectOneMenu value="iTipoAlimentacion">
+		<p:selectOneMenu value="iTipoAlimentacion">
 			<f:selectItems value="#{mBSelectItems.cboTipoAlimentacion}"/>
-		</h:selectOneMenu>
+		</p:selectOneMenu>
 		<br></br>
 		<h:outputText value="Tipo de Enfermedad" />	
-		<h:selectOneMenu value="iTipoEnfermedad">
+		<p:selectOneMenu value="iTipoEnfermedad">
 			<f:selectItems value="#{mBSelectItems.cboTipoEnfermedad}"/>
-		</h:selectOneMenu>
+		</p:selectOneMenu>
 
 <!--		<h:outputText value="Tipo de Alimentación" />	-->
 <!---->
@@ -107,7 +101,7 @@
 	<p:tab title="Colmena">
 		Colmena
 		<p:dataTable
-			value=""
+			value="#{mBApiariaAsignada.listaColmenta}"
 			var="listaColmenas"
 			rowKey="row"
 			id="dtListaColmenas"
@@ -118,19 +112,19 @@
 				<f:facet name="header">
 					<h:outputText value="ID"></h:outputText>
 				</f:facet>
-				<h:outputText value=""></h:outputText>
+				<h:outputText value="#{row+1}"></h:outputText>
 			</p:column>
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Colmena"></h:outputText>
 				</f:facet>
-				<h:outputText value=""></h:outputText>
+				<h:outputText value="#{listaColmenas.idColmena}"></h:outputText>
 			</p:column>
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Cosechable"></h:outputText>
 				</f:facet>
-<!--				<h:selectBooleanCheckbox value=""></h:selectBooleanCheckbox>-->
+				<h:selectBooleanCheckbox value=""></h:selectBooleanCheckbox>
 			</p:column>
 		</p:dataTable>
 	</p:tab>
@@ -196,7 +190,7 @@
 	</p:tab>
 </p:tabView>
 
-<h:commandButton value="Agregar"></h:commandButton>
+<p:commandButton value="Agregar"></p:commandButton>
 
 
 <p:dataTable
@@ -251,7 +245,7 @@
 	</p:column>
 </p:dataTable>
 
-<h:commandButton value="Registrar"></h:commandButton>
+<p:commandButton value="Registrar"></p:commandButton>
 
 </h:body>	
 </html>

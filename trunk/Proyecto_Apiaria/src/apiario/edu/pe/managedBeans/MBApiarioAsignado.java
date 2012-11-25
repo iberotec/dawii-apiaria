@@ -7,10 +7,13 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ActionEvent;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.service.SeleccionService;
 
@@ -26,6 +29,8 @@ public class MBApiarioAsignado implements Serializable {
 	private IApiarioDAO daoApiario;
 	private Colmena objColmena;
 	
+	private DataModel<Colmena> listaColmena;
+	
 	private List<Colmena> listaColmenta=new ArrayList<Colmena>();
 	
 	public void limpiar(){
@@ -35,9 +40,9 @@ public class MBApiarioAsignado implements Serializable {
 	}
 	
 	public void buscarColmenaxComboApiario() throws Exception{
-		serviceSeleccion.buscarColmena(objColmena);
+		listaColmenta=serviceSeleccion.buscarColmena(objColmena);
 		
-		System.out.println();
+		System.out.println("entro al metodo???");
 	}
 	
 	
@@ -82,6 +87,14 @@ public class MBApiarioAsignado implements Serializable {
 
 	public void setListaColmenta(List<Colmena> listaColmenta) {
 		this.listaColmenta = listaColmenta;
+	}
+
+	public void setListaColmena(DataModel<Colmena> listaColmena) {
+		this.listaColmena = listaColmena;
+	}
+
+	public DataModel<Colmena> getListaColmena() {
+		return listaColmena;
 	}
 
 
