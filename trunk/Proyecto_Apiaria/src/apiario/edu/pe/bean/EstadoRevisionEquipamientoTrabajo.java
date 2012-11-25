@@ -26,6 +26,9 @@ public class EstadoRevisionEquipamientoTrabajo implements Serializable {
     @ManyToOne
 	@JoinColumn(name="id_estado_revision")
 	private EstadoRevision estadoRevision;
+    
+    @Column(name="cantidad")
+    private Integer cantidad;
 
     public EstadoRevisionEquipamientoTrabajo() {
     }
@@ -52,6 +55,14 @@ public class EstadoRevisionEquipamientoTrabajo implements Serializable {
 
 	public void setEstadoRevision(EstadoRevision estadoRevision) {
 		this.estadoRevision = estadoRevision;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
+	}
+
+	public Integer getCantidad() {
+		return cantidad;
 	}
 	
 }
