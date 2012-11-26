@@ -11,7 +11,7 @@
 		<p:panelMenu style="width:200px">
 			<p:submenu label="MODULO DE SELECCION">
 				<p:menuitem value="Asignacion de Apiarios" action="#{mBApiario.abrirAsignarApiario}"
-					 icon="ui-icon-star" ajax="false"/>
+					 icon="ui-icon-star" ajax="false" oncomplete="#{mBApiario.onComplete}"/>
 			</p:submenu>
 			<p:submenu label="MODULO DE EXTRACCION">
 				<p:menuitem value="Ubicacion Apiarios" action="#{mBApiario.abrirUbicacionApiario}"

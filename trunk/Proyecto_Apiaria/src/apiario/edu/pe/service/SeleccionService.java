@@ -16,6 +16,7 @@ import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
+import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.TipoAlimentacion;
 import apiario.edu.pe.bean.TipoEnfermedad;
 import apiario.edu.pe.bean.Usuario;
@@ -30,6 +31,7 @@ import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
+import apiario.edu.pe.dao.ITemporadaDAO;
 import apiario.edu.pe.dao.ITipoAlimentacionDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
@@ -37,7 +39,10 @@ import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
 @SuppressWarnings("serial")
-public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO, Serializable{
+public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,
+IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
+IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
+ITemporadaDAO, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -53,7 +58,7 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 	IDetalleEquipoTrabajo daoDetalleEquipoTrabajo = objDAOFactory.getIDetalleEquipoTrabajo();
 	IPlanillaRevisionDAO daoPlanillaRevision =objDAOFactory.getIPlanillaRevisionDAO();
 	IPlanillaRevisionAlzaDAO daoPlanillaRevisionAlza = objDAOFactory.getIPlanillaRevisionAlza();
-
+	ITemporadaDAO daoTemporada = objDAOFactory.getITemporadaDAO();
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
 	}
@@ -307,6 +312,36 @@ public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INo
 	public List<Alza> listarAlzaporPiso(Integer codpiso) {
 		
 		return daoAlza.listarAlzaporPiso(codpiso);
+	}
+
+	@Override
+	public List<Temporada> listarTodosTemporada() throws Exception {
+		// TODO Auto-generated method stub
+		return daoTemporada.listarTodosTemporada();
+	}
+
+	@Override
+	public Temporada guardarTemporada(Temporada instance) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Temporada> buscarTemporada(Temporada instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoTemporada.buscarTemporada(instance);
+	}
+
+	@Override
+	public Temporada obtenerPorIdTemporada(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Temporada eliminarTemporada(Temporada instance) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

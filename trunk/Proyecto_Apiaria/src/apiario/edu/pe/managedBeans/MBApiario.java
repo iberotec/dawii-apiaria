@@ -4,11 +4,13 @@ package apiario.edu.pe.managedBeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
+import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.service.SeleccionService;
 
 @SuppressWarnings("serial")
@@ -17,6 +19,7 @@ public class MBApiario implements Serializable{
 	private List<Apiario> lista = new ArrayList<Apiario>();
 	private SeleccionService service= new SeleccionService();
 	private String ubicacionApiario;
+	private String onComplete;
 	public MBApiario() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,7 +28,16 @@ public class MBApiario implements Serializable{
 		System.out.println("Entro al metodo abrirNuevaAsignacion");
 		return "successNuevaAsignacion";
 	}
-	
+
+
+	public String getOnComplete() {
+		return onComplete;
+	}
+
+	public void setOnComplete(String onComplete) {
+		this.onComplete = onComplete;
+	}
+
 	public String getUbicacionApiario() {
 		return ubicacionApiario;
 	}
@@ -49,10 +61,30 @@ public class MBApiario implements Serializable{
 	public void setLista(List<Apiario> lista) {
 		this.lista = lista;
 	}
-	public String abrirAsignarApiario(){
+	public String abrirAsignarApiario() throws Exception{
 		System.out.println("entrando a asignar apiario");
+		String retorno="successMainSeleccion";
+		//Se esta verificando si en la temporada hay alguna etapa de seleccion
+		//y tambien se esta validando que el periodo final sea mayor a la fecha actual
+		//faltaria un campo mas  por que en esta tabla habria varios "seleccion" y tendria que diferenciarse
+		//el seleccion activo
+		List<Temporada> lista = new ArrayList<Temporada>();
+		lista = service.listarTodosTemporada();
+		Date fechaActual= new Date();
+		for (int i = 0; i < lista.size(); i++) {
+			System.out.println("periodo final" + lista.get(i).getPeriodoFinal()+" > "+fechaActual);
+			System.out.println("periodo final" + lista.get(i).getPeriodoFinal().getTime()+" > "+fechaActual.getTime());
+			if(lista.get(i).getEstadoEtapa().equals("seleccion") && lista.get(i).getPeriodoFinal().getTime()>fechaActual.getTime()){
+				System.out.println("correcto si esta en la etapa");
+				retorno="successMainSeleccion";
+			}else{
+				setOnComplete("alert('Ya paso la etapa');");
+				System.out.println("ya paso la etapa");
+			}
+		}
+		
 		limpiar();
-		return "successMainSeleccion";
+		return retorno;
 	}
 	
 	public String abrirUbicacionApiario(){
