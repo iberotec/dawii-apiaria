@@ -51,6 +51,13 @@
   <managed-bean-class>apiario.edu.pe.managedBeans.MBPlanillaRevisionAlza</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean> 
+ 
+   <managed-bean>
+  <managed-bean-name>mBNormaSeguridadApiario</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBNormaSeguridadApiario</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean> 
+ 
 <!--  <managed-bean> -->
 <!--   <managed-bean-name>mapBean</managed-bean-name> -->
 <!--   <managed-bean-class>apiario.edu.pe.managedBeans.MapBean</managed-bean-class> -->

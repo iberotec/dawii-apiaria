@@ -6,6 +6,7 @@ import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
+import apiario.edu.pe.dao.INormaSeguridadApiarioDAO;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
@@ -19,6 +20,7 @@ import apiario.edu.pe.dao.MySqlAlzaDAO;
 import apiario.edu.pe.dao.MySqlColmenaDAO;
 import apiario.edu.pe.dao.MySqlEstadoRevisionDAO;
 import apiario.edu.pe.dao.MySqlDetalleEquipoTrabajoDAO;
+import apiario.edu.pe.dao.MySqlNormaSeguridadApiarioDAO;
 import apiario.edu.pe.dao.MySqlPisoDAO;
 import apiario.edu.pe.dao.MySqlPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.MySqlPlanillaRevisionDAO;
@@ -104,6 +106,11 @@ public class MySqlDAOFactory extends DAOFactory{
 	public IPlanillaRevisionAlzaDAO getIPlanillaRevisionAlza() {
 		
 		return new MySqlPlanillaRevisionAlzaDAO();
+	}
+
+	@Override
+	public INormaSeguridadApiarioDAO getINormaSeguridadApiario() {
+		return new MySqlNormaSeguridadApiarioDAO();
 	}
 
 	@Override

@@ -14,7 +14,19 @@
 
 <h:body>
 	<h:form>
-		<p:selectBooleanCheckbox></p:selectBooleanCheckbox>
+		<p:selectOneMenu value="#{mBNormaSeguridadApiario.normaSeguridadApiario.apiario.idApiario}">
+			<f:selectItems value="#{mBSelectItems.cboApiario}"/>
+		</p:selectOneMenu>
+	
+	<br />
+<!--	value="#{mBNormaSeguridadApiario.normaSeguridadApiario.normaSeguridad.idNormaSeguridad}"-->
+		<p:selectManyCheckbox layout="pageDirection" >
+			<f:selectItems value="#{mBSelectItems.cboNormaSeguridad}"/>
+		</p:selectManyCheckbox>
+		
+		<br />
+		
+		<p:commandButton value="Registrar Control de Calidad" action="#{mBNormaSeguridadApiario.guardarNormaSeguridadApiario}"></p:commandButton>
 	</h:form>
 </h:body>
 	
