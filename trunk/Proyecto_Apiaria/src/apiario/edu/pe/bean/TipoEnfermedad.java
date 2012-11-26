@@ -18,7 +18,7 @@ public class TipoEnfermedad extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idtipo_enfermedad")
+	@Column(name="id_tipo_enfermedad")
 	private Integer idTipoEnfermedad;
 
 	@Column(name="descripcion")

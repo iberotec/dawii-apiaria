@@ -15,7 +15,7 @@ public class NormaSeguridad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idnorma_seguridad")
+	@Column(name="id_norma_seguridad")
 	private int idNormaSeguridad;
 
 	@Column(name="descripcion")

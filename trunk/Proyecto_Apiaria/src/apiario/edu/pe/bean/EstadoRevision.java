@@ -18,7 +18,7 @@ public class EstadoRevision extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idestado_revision")
+	@Column(name="id_estado_revision")
 	private int idEstadoRevision;
 
 	@Column(name="descripcion")

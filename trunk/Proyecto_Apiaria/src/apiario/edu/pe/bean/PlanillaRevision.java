@@ -41,23 +41,10 @@ public class PlanillaRevision implements Serializable {
 	@Column(name="necesidad_curacion")
 	private byte necesidadCuracion;
 	
-	@Column(name="fecha_asignacion")
-	private Date fechaAsignacion;
-	
-	@Column(name="fecha_revision")
-	private Date fechaRevision;
-	
-	@Column(name="estado_planilla_revision")
-	private String estadoPlanillaRevision;
 	//bi-directional many-to-one association to Colmena
     @ManyToOne
 	@JoinColumn(name="id_colmena")
 	private Colmena colmena;
-
-	//bi-directional many-to-one association to Usuario
-    @ManyToOne
-	@JoinColumn(name="id_usuario")
-	private Usuario usuario;
 
 	//bi-directional many-to-one association to Reina
     @ManyToOne
@@ -68,11 +55,11 @@ public class PlanillaRevision implements Serializable {
     @ManyToOne
 	@JoinColumn(name="id_estado_revision")
 	private EstadoRevision estadoRevision;
-
-	//bi-directional many-to-one association to Temporada
+    
     @ManyToOne
-	private Temporada temporada;
-
+	@JoinColumn(name="id_usuario_apiario")
+	private UsuarioApiario usuarioApiario;
+    
 	//bi-directional many-to-one association to PlanillaRevisionAlza
 	@OneToMany(mappedBy="planillaRevision")
 	private List<PlanillaRevisionAlza> planillaRevisionAlzas;
@@ -88,28 +75,12 @@ public class PlanillaRevision implements Serializable {
     public PlanillaRevision() {
     }
     
-	public Date getFechaAsignacion() {
-		return fechaAsignacion;
+	public UsuarioApiario getUsuarioApiario() {
+		return usuarioApiario;
 	}
 
-	public void setFechaAsignacion(Date fechaAsignacion) {
-		this.fechaAsignacion = fechaAsignacion;
-	}
-
-	public Date getFechaRevision() {
-		return fechaRevision;
-	}
-
-	public void setFechaRevision(Date fechaRevision) {
-		this.fechaRevision = fechaRevision;
-	}
-
-	public String getEstadoPlanillaRevision() {
-		return estadoPlanillaRevision;
-	}
-
-	public void setEstadoPlanillaRevision(String estadoPlanillaRevision) {
-		this.estadoPlanillaRevision = estadoPlanillaRevision;
+	public void setUsuarioApiario(UsuarioApiario usuarioApiario) {
+		this.usuarioApiario = usuarioApiario;
 	}
 
 	public int getIdPlanillaRevision() {
@@ -184,14 +155,6 @@ public class PlanillaRevision implements Serializable {
 		this.colmena = colmena;
 	}
 	
-	public Usuario getUsuario() {
-		return this.usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
 	public Reina getReina() {
 		return this.reina;
 	}
@@ -206,14 +169,6 @@ public class PlanillaRevision implements Serializable {
 
 	public void setEstadoRevision(EstadoRevision estadoRevision) {
 		this.estadoRevision = estadoRevision;
-	}
-	
-	public Temporada getTemporada() {
-		return this.temporada;
-	}
-
-	public void setTemporada(Temporada temporada) {
-		this.temporada = temporada;
 	}
 	
 	public List<PlanillaRevisionAlza> getPlanillaRevisionAlzas() {
