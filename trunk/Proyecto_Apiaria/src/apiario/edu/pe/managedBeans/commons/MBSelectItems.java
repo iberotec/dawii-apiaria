@@ -1,6 +1,7 @@
 package apiario.edu.pe.managedBeans.commons;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.model.SelectItem;
@@ -36,6 +37,28 @@ public class MBSelectItems implements Serializable{
 		}return cbo;
 	}
 	
+	public SelectItem[] getCboColmenaxApiario(int idApiario) throws Exception { 
+		System.out.println("entro a colmenaxapiario");
+		SeleccionService service = new SeleccionService();
+		Colmena obj=new Colmena();
+		obj.setApiario(new Apiario());
+		obj.getApiario().setIdApiario(idApiario);
+		List<Colmena> lista = new ArrayList<Colmena>();
+		if(idApiario>0){
+			lista=service.buscarColmena(obj);
+		}
+		
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		Integer col;
+		String colm;
+		for (int i = 0; i < cbo.length - 1; i++){
+			col=lista.get(i).getIdColmena();
+			colm=col.toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdColmena(),colm);			
+		}return cbo;
+	}
+	
 	public SelectItem[] getCboColmena() throws Exception { 
 		System.out.println("entro a colmena");
 		SeleccionService service = new SeleccionService();
@@ -51,18 +74,25 @@ public class MBSelectItems implements Serializable{
 		}return cbo;
 	}
 	
-	public SelectItem[] getCboAlza() throws Exception { 
-		System.out.println("entro a alza");
+	public SelectItem[] getCboPisoxColmena(int idColmena) throws Exception { 
+		System.out.println("entro a pisoxcolmena");
 		SeleccionService service = new SeleccionService();
-		List<Alza> lista = service.listarTodosAlzas();
+		Piso obj=new Piso();
+		obj.setColmena(new Colmena());
+		obj.getColmena().setIdColmena(idColmena);
+		List<Piso> lista = new ArrayList<Piso>();
+		if(idColmena>0){
+			lista=service.buscarPiso(obj);
+		}
+		
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
-		Integer al;
-		String alz;
+		Integer col;
+		String colm;
 		for (int i = 0; i < cbo.length - 1; i++){
-			al=lista.get(i).getIdAlza();
-			alz=al.toString();
-			cbo[i+1] = new SelectItem(lista.get(i).getIdAlza(),alz);			
+			col=lista.get(i).getIdPiso();
+			colm=col.toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdPiso(),colm);			
 		}return cbo;
 	}
 	
@@ -81,20 +111,57 @@ public class MBSelectItems implements Serializable{
 		}return cbo;
 	}
 	
-	public SelectItem[] getCboColmenaxApiario(Colmena instance) throws Exception { 
-		System.out.println("entro a ColmenaxApiario");
+	public SelectItem[] getCboAlzaxPiso(int idPiso) throws Exception { 
+		System.out.println("entro a alzaxpiso");
 		SeleccionService service = new SeleccionService();
-		List<Colmena> lista = service.buscarColmena(instance);
+		Alza obj=new Alza();
+		obj.setPiso(new Piso());
+		obj.getPiso().setIdPiso(idPiso);
+		List<Alza> lista = new ArrayList<Alza>();
+		if(idPiso>0){
+			lista=service.buscarAlza(obj);
+		}
+		
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
 		Integer col;
-		String cole;
+		String colm;
 		for (int i = 0; i < cbo.length - 1; i++){
-			col=lista.get(i).getIdColmena();
-			cole=col.toString();
-			cbo[i+1] = new SelectItem(lista.get(i).getIdColmena(),cole);			
+			col=lista.get(i).getIdAlza();
+			colm=col.toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdAlza(),colm);			
 		}return cbo;
 	}
+	
+	public SelectItem[] getCboAlza() throws Exception { 
+		System.out.println("entro a alza");
+		SeleccionService service = new SeleccionService();
+		List<Alza> lista = service.listarTodosAlzas();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		Integer al;
+		String alz;
+		for (int i = 0; i < cbo.length - 1; i++){
+			al=lista.get(i).getIdAlza();
+			alz=al.toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdAlza(),alz);			
+		}return cbo;
+	}
+	
+//	public SelectItem[] getCboColmenaxApiario(Colmena instance) throws Exception { 
+//		System.out.println("entro a ColmenaxApiario");
+//		SeleccionService service = new SeleccionService();
+//		List<Colmena> lista = service.buscarColmena(instance);
+//		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+//		cbo[0] = new SelectItem(0, "Seleccione...");
+//		Integer col;
+//		String cole;
+//		for (int i = 0; i < cbo.length - 1; i++){
+//			col=lista.get(i).getIdColmena();
+//			cole=col.toString();
+//			cbo[i+1] = new SelectItem(lista.get(i).getIdColmena(),cole);			
+//		}return cbo;
+//	}
 	
 	public SelectItem[] getCboTipoAlimentacion() throws Exception { 
 		System.out.println("entro a tipoAlimentacion");
