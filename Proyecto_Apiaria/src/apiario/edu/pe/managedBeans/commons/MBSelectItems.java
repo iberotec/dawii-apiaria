@@ -31,7 +31,7 @@ public class MBSelectItems implements Serializable{
 		for (int i = 0; i < cbo.length - 1; i++){
 			api=lista.get(i).getIdApiario();
 			apia="Apiario "+api;
-			cbo[i+1] = new SelectItem(lista.get(i).getIdApiario(),apia);	
+			cbo[i+1] = new SelectItem(lista.get(i).getIdApiario(),apia);
 		}return cbo;
 	}
 	

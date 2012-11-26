@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:dataTable id="iPlanillaRevision">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Seleccion" />
+				</f:facet>
+				<p:selectBooleanCheckbox value="" />
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Colmena" />
+				</f:facet>
+			</p:column>
+		</p:dataTable>
+		
+		<table>
+			<tr>
+				<td>
+					<p:selectBooleanCheckbox>
+						<f:selectItem  value="Exitencia de Reina"/>
+						<f:selectItem value="Necesidad Alimentacion"/>
+						<f:selectItem value="Necesidad Curacion"/>
+						<f:selectItem value="Falta Espacio Camara"/>
+						<f:selectItem value="Falta Alza"/>	
+					</p:selectBooleanCheckbox>
+				</td>
+				<td>
+					<h:outputText value="Estado Cosecha" />
+					<p:selectOneMenu>
+						
+					</p:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<h:outputText value="Tipo Alimentacion" />
+					<p:selectOneMenu>
+					
+					</p:selectOneMenu>
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<h:outputText value="Tipo Enfermedad" />
+					<p:selectOneMenu>
+					
+					</p:selectOneMenu>
+				</td>
+			</tr>
+		</table>
+		
+		<h:outputText value="Comportamiento" />
+		<p:inputTextarea>
+		</p:inputTextarea>
+		
+		<br></br>
+		<h:commandButton action="A" value="Confirmar Revision" />
+		
+	</h:form>
+</h:body>
+	
+</html>
