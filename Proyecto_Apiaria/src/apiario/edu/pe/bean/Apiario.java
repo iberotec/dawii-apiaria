@@ -18,7 +18,7 @@ public class Apiario extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idapiario")
+	@Column(name="id_apiario")
 	private Integer idApiario;
 
 	//bi-directional many-to-one association to Colmena

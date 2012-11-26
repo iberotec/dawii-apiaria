@@ -11,5 +11,6 @@ public interface IAlzaDAO {
 	public abstract List<Alza> buscarAlza(Alza instance) throws Exception;
 	public abstract Alza obtenerPorIdAlza(int id) throws Exception;
 	public abstract Alza eliminarAlza(Alza instance) throws Exception;
+	public abstract List<Alza> listarAlzaporPiso(Integer codpiso);
 	
 }

@@ -19,13 +19,14 @@
 	<tr valign="top">
 		<td>
 		<h:outputText value="Apiario" />
-			<p:selectOneMenu id="cbo3" >
+			<p:selectOneMenu id="cbo3" value="">
 				<f:selectItems value="#{mBSelectItems.cboApiario}" />
+							
 			</p:selectOneMenu>
 		</td>
 		<td>
-			<h:outputText value="Estado Apiario" /><br/>
-			<p:inputText id="idEstado" value="" ></p:inputText>	
+			<h:outputText value="Estado Revisión" /><br/>
+			<p:inputText id="idEstado" value="#{mBEstadoRevisionEquipoTrabajo.idEstadoRevisionEquipamientoTrabajo}" ></p:inputText>	
 		</td>
 	</tr>
 	<tr>
@@ -35,7 +36,7 @@
 		</td>
 		<td>
 			<h:outputText value="Equipo Seguridad" />
-			<p:dataTable value="#{mBEstadoRevisionEquipoTrabajo.listaestadorevisionequiptrabajomodel}" var="data">
+			<p:dataTable id="listaequipo" value="#{mBEstadoRevisionEquipoTrabajo.listaestadorevisionequiptrabajomodel}" var="data">
 			
 				<p:column headerText="Código">
 					#{data.equipamientoTrabajo.idEquipamientoTrabajo}
@@ -51,87 +52,88 @@
 	</tr>
 	</table>
 	<h:form>  
-	<script type="text/javascript">
-		map = new GMaps({
-		  div: '#map',
-		  zoom: 16,
-		  lat: -12.043333,
-		  lng: -77.028333,
-		  click: function(e) {
-		    alert('click');
-		  },
-		  dragend: function(e) {
-		    alert('dragend');
-		  }
-		});
-	</script>  
-	
+<!--	<script type="text/javascript">-->
+<!--		map = new GMaps({-->
+<!--		  div: '#map',-->
+<!--		  zoom: 16,-->
+<!--		  lat: -12.043333,-->
+<!--		  lng: -77.028333,-->
+<!--		  click: function(e) {-->
+<!--		    alert('click');-->
+<!--		  },-->
+<!--		  dragend: function(e) {-->
+<!--		    alert('dragend');-->
+<!--		  }-->
+<!--		});-->
+<!--	</script>  -->
+<!--	-->
 	<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com.pe/maps?f=d&amp;source=s_d&amp;saddr=Cibertec+Miraflores,+Ernesto+Diez+Canseco,+Lima&amp;daddr=&amp;hl=es&amp;geocode=&amp;aq=3&amp;oq=cibertec&amp;sll=-11.980092,-77.074285&amp;sspn=0.023761,0.048752&amp;mra=ls&amp;ie=UTF8&amp;ll=-12.122294,-77.028404&amp;spn=0.006295,0.006439&amp;t=m&amp;output=embed"></iframe><br /><small><a href="http://maps.google.com.pe/maps?f=d&amp;source=embed&amp;saddr=Cibertec+Miraflores,+Ernesto+Diez+Canseco,+Lima&amp;daddr=&amp;hl=es&amp;geocode=&amp;aq=3&amp;oq=cibertec&amp;sll=-11.980092,-77.074285&amp;sspn=0.023761,0.048752&amp;mra=ls&amp;ie=UTF8&amp;ll=-12.122294,-77.028404&amp;spn=0.006295,0.006439&amp;t=m" style="color:#0000FF;text-align:left">Ver mapa más grande</a></small>
 	
 	
-    <p:growl id="messages" showDetail="true" life="2000" />  
+<!--    <p:growl id="messages" showDetail="true" life="2000" />  -->
+<!--  -->
+<!--    <p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" style="width:600px;height:400px">  -->
+<!--        <p:ajax event="stateChange" listener="#{mapBean.onStateChange}" update="messages" />  -->
+<!--        <p:ajax event="pointSelect" listener="#{mapBean.onPointSelect}" update="messages" />  -->
+<!--  -->
+<!--    </p:gmap>  -->
   
-    <p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" style="width:600px;height:400px">  
-        <p:ajax event="stateChange" listener="#{mapBean.onStateChange}" update="messages" />  
-        <p:ajax event="pointSelect" listener="#{mapBean.onPointSelect}" update="messages" />  
-  
-    </p:gmap>  
-  
-	</h:form> 
-	<h:outputText value="Colmena"/>
-	<p:selectOneMenu value="">
-		<f:selectItems value="" />
-		 <p:ajax update="" listener="#{success}" />  
-	</p:selectOneMenu>
-	<h:form  id="form3">
-		<p:growl id="mensajes" showDetail="true"/> 
-		<p:dataTable value="" var="">
-		<p:ajax event="rowEdit" listener="#{success}" update="" />  
-        <p:ajax event="rowEditCancel" listener="#{success}" update="" />  
+	</h:form>
+	<h:form  id="form3"> 
+	<h:outputText value="Colmena" />
+				<p:selectOneMenu id="cbo4" value="#{mBPlanillaRevision.colmena.idColmena}" >
+					<f:selectItems value="#{mBSelectItems.cboColmena}" />
+					<p:ajax update="lista" listener="#{mBPlanillaRevision.listarPlanillaRevision}" />
+				</p:selectOneMenu>
+	
+		<p:dataTable id="lista" value="#{mBPlanillaRevision.listaplanillarevisionmodel}" var="data">
+		
+		<p:ajax event="rowEdit" listener="#{mBPlanillaRevision.onEdit}" update=""/>  
+        <p:ajax event="rowEditCancel" listener="#{mBPlanillaRevision.onDelete}" update="" />  
 		
 		<p:column headerText="Id Planilla Revisión">
 			<p:cellEditor>
 				<f:facet name="output">  
-                    <h:outputText value="" />  
+                    <h:outputText value="#data.idPlanillaRevision" />  
                 </f:facet>  
                 <f:facet name="input">  
-                    <p:inputText value=""/>  
+                    <p:inputText value="#data.idPlanillaRevision"/>  
                 </f:facet>  
 			</p:cellEditor>
 		</p:column>
 		<p:column headerText="Estado Colmena">
 			<p:cellEditor>
 				<f:facet name="output">  
-                    <h:outputText value="" />  
+                    <h:outputText value="#data.estadoCosecha" />  
                 </f:facet>  
                 <f:facet name="input">  
-                    <p:inputText value=""/>  
+                    <p:inputText value="#data.estadoCosecha"/>  
                 </f:facet>  
 			</p:cellEditor>
 		</p:column>
 		<p:column headerText="Necesidad Alimentación">
 			<p:cellEditor>
 				<f:facet name="output">  
-                    <h:outputText value="" />  
+                    <h:outputText value="#data.necesidadAlimentacion" />  
                 </f:facet>  
                 <f:facet name="input">  
-                    <p:inputText value=""/>  
+                    <p:inputText value="#data.necesidadAlimentacion"/>  
                 </f:facet>  
 			</p:cellEditor>
 		</p:column>
 		<p:column headerText="Comportamiento">
 			<p:cellEditor>
 				<f:facet name="output">  
-                    <h:outputText value="" />  
+                    <h:outputText value="#data.comportamiento" />  
                 </f:facet>  
                 <f:facet name="input">  
-                    <p:inputText value=""/>  
+                    <p:inputText value="data.comportamiento"/>  
                 </f:facet>  
 			</p:cellEditor>
 		</p:column>
 		<p:column headerText="Opción">
 			<p:rowEditor/>
-		</p:column>
+			</p:column>
 		</p:dataTable>
 	</h:form>
 	</h:form>
