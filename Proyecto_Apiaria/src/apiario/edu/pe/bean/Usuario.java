@@ -26,6 +26,9 @@ public class Usuario implements Serializable {
 
 	@Column(name="nombre_usuario")
 	private String nombreUsuario;
+	
+	@Column(name="contrasenia_usuario")
+	private String contraseniaUsuario;
 
 	//bi-directional many-to-one association to UsuarioApiario
 	@OneToMany(mappedBy="usuario")
@@ -98,6 +101,14 @@ public class Usuario implements Serializable {
 
 	public void setTipoUsario(TipoUsario tipoUsario) {
 		this.tipoUsario = tipoUsario;
+	}
+
+	public String getContraseniaUsuario() {
+		return contraseniaUsuario;
+	}
+
+	public void setContraseniaUsuario(String contraseniaUsuario) {
+		this.contraseniaUsuario = contraseniaUsuario;
 	}
 	
 }
