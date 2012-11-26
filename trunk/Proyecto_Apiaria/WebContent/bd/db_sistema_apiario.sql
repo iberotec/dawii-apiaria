@@ -36,6 +36,38 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `db_sistema_apiario`.`reina`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`reina` ;
+
+CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`reina` (
+  `id_reina` INT NOT NULL AUTO_INCREMENT ,
+  `descripcion_reina` VARCHAR(45) NULL ,
+  `caracteristica_reina` VARCHAR(45) NULL ,
+  `id_colmena` INT NOT NULL ,
+  PRIMARY KEY (`id_reina`) ,
+  INDEX `fk_Reina_Colmena1` (`id_colmena` ASC) ,
+  CONSTRAINT `fk_Reina_Colmena1`
+    FOREIGN KEY (`id_colmena` )
+    REFERENCES `db_sistema_apiario`.`colmena` (`id_colmena` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db_sistema_apiario`.`estado_revision`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`estado_revision` ;
+
+CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`estado_revision` (
+  `id_estado_revision` INT NOT NULL ,
+  `descripcion_estado_revision` VARCHAR(45) NULL ,
+  PRIMARY KEY (`id_estado_revision`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`tipo_usario`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `db_sistema_apiario`.`tipo_usario` ;
@@ -69,38 +101,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_sistema_apiario`.`reina`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_sistema_apiario`.`reina` ;
-
-CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`reina` (
-  `id_reina` INT NOT NULL AUTO_INCREMENT ,
-  `descripcion_reina` VARCHAR(45) NULL ,
-  `caracteristica_reina` VARCHAR(45) NULL ,
-  `id_colmena` INT NOT NULL ,
-  PRIMARY KEY (`id_reina`) ,
-  INDEX `fk_Reina_Colmena1` (`id_colmena` ASC) ,
-  CONSTRAINT `fk_Reina_Colmena1`
-    FOREIGN KEY (`id_colmena` )
-    REFERENCES `db_sistema_apiario`.`colmena` (`id_colmena` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `db_sistema_apiario`.`estado_revision`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db_sistema_apiario`.`estado_revision` ;
-
-CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`estado_revision` (
-  `id_estado_revision` INT NOT NULL ,
-  `descripcion_estado_revision` VARCHAR(45) NULL ,
-  PRIMARY KEY (`id_estado_revision`) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`temporada`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `db_sistema_apiario`.`temporada` ;
@@ -115,6 +115,41 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `db_sistema_apiario`.`usuario_apiario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db_sistema_apiario`.`usuario_apiario` ;
+
+CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`usuario_apiario` (
+  `id_usuario_apiario` INT NOT NULL AUTO_INCREMENT ,
+  `id_apiario` INT NOT NULL ,
+  `id_usuario` INT NOT NULL ,
+  `id_temporada` INT NOT NULL ,
+  `estado_asignacion` VARCHAR(45) NULL ,
+  `fecha_asignacion` DATE NULL ,
+  `fecha_revision` DATE NULL ,
+  PRIMARY KEY (`id_usuario_apiario`) ,
+  INDEX `fk_usuario_apiario_apiario1` (`id_apiario` ASC) ,
+  INDEX `fk_usuario_apiario_usuario1` (`id_usuario` ASC) ,
+  INDEX `fk_usuario_apiario_temporada1` (`id_temporada` ASC) ,
+  CONSTRAINT `fk_usuario_apiario_apiario1`
+    FOREIGN KEY (`id_apiario` )
+    REFERENCES `db_sistema_apiario`.`apiario` (`id_apiario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_apiario_usuario1`
+    FOREIGN KEY (`id_usuario` )
+    REFERENCES `db_sistema_apiario`.`usuario` (`id_usuario` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_usuario_apiario_temporada1`
+    FOREIGN KEY (`id_temporada` )
+    REFERENCES `db_sistema_apiario`.`temporada` (`id_temporada` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `db_sistema_apiario`.`planilla_revision`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `db_sistema_apiario`.`planilla_revision` ;
@@ -122,7 +157,6 @@ DROP TABLE IF EXISTS `db_sistema_apiario`.`planilla_revision` ;
 CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision` (
   `id_planilla_revision` INT NOT NULL AUTO_INCREMENT ,
   `id_colmena` INT NOT NULL ,
-  `id_usuario` INT NOT NULL ,
   `existencia_reina` TINYINT(1)  NULL ,
   `id_reina` INT NOT NULL ,
   `estado_cosecha` VARCHAR(45) NULL ,
@@ -130,26 +164,17 @@ CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision` (
   `necesidad_curacion` TINYINT(1)  NULL ,
   `id_estado_revision` INT NOT NULL ,
   `falta_espacio_camara` TINYINT(1)  NULL ,
-  `falta_alza` VARCHAR(45) NULL ,
+  `falta_alza` TINYINT(1)  NULL ,
   `comportamiento` VARCHAR(100) NULL ,
-  `temporada_id_temporada` INT NOT NULL ,
-  `estado_planilla_revision` VARCHAR(45) NULL ,
-  `fecha_asignacion` DATE NULL ,
-  `fecha_revision` DATE NULL ,
+  `id_usuario_apiario` INT NOT NULL ,
   PRIMARY KEY (`id_planilla_revision`) ,
   INDEX `fk_Planilla_revision_Colmena1` (`id_colmena` ASC) ,
-  INDEX `fk_planilla_revision_usuario2` (`id_usuario` ASC) ,
   INDEX `fk_planilla_revision_reina2` (`id_reina` ASC) ,
   INDEX `fk_planilla_revision_estado_revision2` (`id_estado_revision` ASC) ,
-  INDEX `fk_planilla_revision_temporada1` (`temporada_id_temporada` ASC) ,
+  INDEX `fk_planilla_revision_usuario_apiario1` (`id_usuario_apiario` ASC) ,
   CONSTRAINT `fk_Planilla_revision_Colmena1`
     FOREIGN KEY (`id_colmena` )
     REFERENCES `db_sistema_apiario`.`colmena` (`id_colmena` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_planilla_revision_usuario2`
-    FOREIGN KEY (`id_usuario` )
-    REFERENCES `db_sistema_apiario`.`usuario` (`id_usuario` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_planilla_revision_reina2`
@@ -162,9 +187,9 @@ CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`planilla_revision` (
     REFERENCES `db_sistema_apiario`.`estado_revision` (`id_estado_revision` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_planilla_revision_temporada1`
-    FOREIGN KEY (`temporada_id_temporada` )
-    REFERENCES `db_sistema_apiario`.`temporada` (`id_temporada` )
+  CONSTRAINT `fk_planilla_revision_usuario_apiario1`
+    FOREIGN KEY (`id_usuario_apiario` )
+    REFERENCES `db_sistema_apiario`.`usuario_apiario` (`id_usuario_apiario` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -631,6 +656,7 @@ CREATE  TABLE IF NOT EXISTS `db_sistema_apiario`.`estado_revision_equipamiento_t
   `id_estado_revision_equipamiento_trabajo` INT NOT NULL AUTO_INCREMENT ,
   `id_equipamiento_trabajo` INT NOT NULL ,
   `id_estado_revision` INT NOT NULL ,
+  `cantidad` DOUBLE NULL ,
   PRIMARY KEY (`id_estado_revision_equipamiento_trabajo`) ,
   INDEX `fk_estado_revision_equipamiento_trabajo1` (`id_equipamiento_trabajo` ASC) ,
   INDEX `fk_estado_revision_estado_revision1` (`id_estado_revision` ASC) ,
