@@ -848,7 +848,7 @@ CREATE TABLE `usuario` (
   `ape_pater_usuario` varchar(45) DEFAULT NULL,
   `ape_mater_usuario` varchar(45) DEFAULT NULL,
   `id_tipo_usario` int(11) NOT NULL,
-  `contrasenia` varchar(45) DEFAULT NULL,
+  `contrasenia_usuario` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   KEY `fk_usuario_tipo_usario1` (`id_tipo_usario`),
   CONSTRAINT `fk_usuario_tipo_usario1` FOREIGN KEY (`id_tipo_usario`) REFERENCES `tipo_usario` (`id_tipo_usario`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -965,4 +965,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-11-26  0:41:37
+-- Dump completed on 2012-11-26  0:43:27
