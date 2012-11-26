@@ -14,10 +14,14 @@ import apiario.edu.pe.bean.PlanillaRevisionTipoEnfermedad;
 import apiario.edu.pe.bean.Reina;
 import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.Usuario;
+import apiario.edu.pe.service.SeleccionService;
+
 import java.util.UUID;  
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext; 
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 import org.primefaces.event.RowEditEvent;
 
@@ -48,6 +52,8 @@ public class MBPlanillaRevision implements Serializable{
 	private String estadoPlanillaRevision;
 	
 	private Colmena colmena;
+	
+	private int idcolmena;
 
 	private Usuario usuario;
 
@@ -64,18 +70,49 @@ public class MBPlanillaRevision implements Serializable{
 	private List<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedads;
 	
 	private List<PlanillaRevision> planillarevision;
+	
+	private DataModel<PlanillaRevision> listaplanillarevisionmodel;
+	
+	SeleccionService service = new SeleccionService();
+	
+	public MBPlanillaRevision() {
+		limpiar();
+	}
+	
+	public void limpiar(){
+		colmena=new Colmena();
+	}
+	
+	public void listarPlanillaRevision(){
+		
+		planillarevision = service.listaPlanillaRevision(idcolmena);
+		
+	}
+	
+	
+	public void setListaplanillarevisionmodel(
+			DataModel<PlanillaRevision> listaplanillarevisionmodel) {
+		this.listaplanillarevisionmodel = listaplanillarevisionmodel;
+	}
 
+	public DataModel<PlanillaRevision> getListaplanillarevisionmodel() {
+		
+		listaplanillarevisionmodel = new ListDataModel<PlanillaRevision>(service.listaPlanillaRevision(idcolmena));
+		
+		return listaplanillarevisionmodel;
+	}
+		
 	
 	public void onEdit(RowEditEvent event) {  
-//        FacesMessage msg = new FacesMessage("Car Edited", ((Car) event.getObject()).getModel());  
-  
-//        FacesContext.getCurrentInstance().addMessage(null, msg);  
+    //    FacesMessage msg = new FacesMessage("Planilla Edited", ((PlanillaRevision) event.getObject()).getModel());  
+		FacesMessage msg = new FacesMessage(event.getObject().toString());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     }  
       
-    public void onCancel(RowEditEvent event) {  
+    public void onDelete(RowEditEvent event) {  
 //        FacesMessage msg = new FacesMessage("Car Cancelled", ((Car) event.getObject()).getModel());  
-  
-//        FacesContext.getCurrentInstance().addMessage(null, msg);  
+    	FacesMessage msg= new FacesMessage(event.getObject().toString());
+    	FacesContext.getCurrentInstance().addMessage(null, msg);  
     }
 	
 	//Getter and Setter
@@ -241,4 +278,14 @@ public class MBPlanillaRevision implements Serializable{
 	public void setPlanillarevision(List<PlanillaRevision> planillarevision) {
 		this.planillarevision = planillarevision;
 	}
+
+	public void setIdcolmena(int idcolmena) {
+		this.idcolmena = idcolmena;
+	}
+
+	public int getIdcolmena() {
+		return idcolmena;
+	}
+
+
 }

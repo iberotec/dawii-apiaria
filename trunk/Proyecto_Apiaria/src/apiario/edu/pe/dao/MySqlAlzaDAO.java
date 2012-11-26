@@ -126,4 +126,21 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 		return instance;
 	}
 
+	@Override
+	public List<Alza> listarAlzaporPiso(Integer codpiso) {
+		List lista = null;
+		try {
+			em.getTransaction().begin();
+				Query sql = em.createQuery("select u from Alza u where u.piso=:xpiso");
+				sql.setParameter("xpiso", codpiso);
+				lista = sql.getResultList();
+				
+			em.getTransaction().commit();
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+		}
+		
+		return lista;
+	}
+
 }
