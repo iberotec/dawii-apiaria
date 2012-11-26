@@ -68,6 +68,11 @@ navegacion -->
    <from-outcome>successUbicacion</from-outcome>
    <to-view-id>/extraccion/mainExtraccion.xhtml</to-view-id>
   </navigation-case>
+  
+   <navigation-case>
+   <from-outcome>successNuevaAsignacion</from-outcome>
+   <to-view-id>/seleccion/temporadaSeleccion/nuevaAsignacion.xhtml</to-view-id>
+  </navigation-case>
  
  </navigation-rule>
  <!--navegacion -->

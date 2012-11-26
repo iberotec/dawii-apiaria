@@ -18,10 +18,10 @@ public class TipoAlimentacion extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_tipo_alimentacion")
+	@Column(name="idtipo_alimentacion")
 	private Integer idTipoAlimentacion;
 
-	@Column(name="descripcion_tipo_alimentacion")
+	@Column(name="descripcion")
 	private String descripcionTipoAlimentacion;
 
 	//bi-directional many-to-one association to PlanillaRevisionTipoAlimentacion

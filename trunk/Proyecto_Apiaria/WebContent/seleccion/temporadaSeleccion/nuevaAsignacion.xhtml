@@ -13,6 +13,14 @@
 </h:head>
 
 <h:body>
+<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MODULO DE SELECCION" />
+		</ui:define>
+		<ui:define name="content">
+			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
+				SELECCION</h1>
+
 	<h:form>
 		<table>
 			<tr>
@@ -20,8 +28,8 @@
 					<h:outputText value="Apiario"></h:outputText>
 				</td>
 				<td>
-					<p:selectOneMenu>
-						<f:selectItems value="#{mBSelectItems.cboApiario}"></f:selectItems>
+					<p:selectOneMenu id="iApiarioN">
+<!--						<f:selectItems value="#{mBSelectItems.cboApiario}"></f:selectItems>-->
 					</p:selectOneMenu>
 				</td>
 			</tr>
@@ -29,14 +37,51 @@
 				<td>
 					<h:outputText value="Ubicacion"></h:outputText>
 				</td>
+				<td>
+					<h:inputText value="" />
+				</td>
 			</tr>
 			<tr>
 				<td>
-					 
+					<h:outputText value="Nivel Peligro" />
+				</td>
+				<td>
+					<h:inputText value="" />
 				</td>
 			</tr>
 		</table>
+		
+		<p:dataTable>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Equipo" />
+				</f:facet>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Cantidad" />
+				</f:facet>
+			</p:column>
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Disponibilidad" />
+				</f:facet>
+			</p:column>
+		</p:dataTable>
+		
+		
+		<p:tabView id="tabContainer">
+			<p:tab id="iTabPlanillaRevision" title="Planilla Revision">
+				<ui:include src="planillaRevision.xhtml" />
+			</p:tab>
+			<p:tab id="iControldeCalidad" title="Control de Calidad">
+				<ui:include src="controlDeCalidad.xhtml" />
+			</p:tab>
+		</p:tabView>
 	</h:form>
+	
+	</ui:define>
+</ui:composition>	
 </h:body>
 	
 </html>

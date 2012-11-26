@@ -21,6 +21,11 @@ public class MBApiario implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String abrirNuevaAsignacion(){
+		System.out.println("Entro al metodo abrirNuevaAsignacion");
+		return "successNuevaAsignacion";
+	}
+	
 	public String getUbicacionApiario() {
 		return ubicacionApiario;
 	}

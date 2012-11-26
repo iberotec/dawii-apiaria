@@ -15,10 +15,10 @@ public class NormaSeguridad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_norma_seguridad")
+	@Column(name="idnorma_seguridad")
 	private int idNormaSeguridad;
 
-	@Column(name="descripcion_norma_seguridad")
+	@Column(name="descripcion")
 	private String descripcionNormaSeguridad;
 
 	//bi-directional many-to-one association to NormaSeguridadApiario
