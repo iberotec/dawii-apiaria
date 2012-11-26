@@ -16,7 +16,7 @@ import apiario.edu.pe.service.SeleccionService;
 
 @SuppressWarnings("serial")
 public class MBSelectItems implements Serializable{
-	
+	//lalalala
 	public MBSelectItems() {
 		
 	}
