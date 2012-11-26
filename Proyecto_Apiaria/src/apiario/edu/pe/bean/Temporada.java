@@ -33,9 +33,7 @@ public class Temporada extends BaseEntidades implements Serializable {
 	@Column(name="periodo_inicial")
 	private Date periodoInicial;
 
-	//bi-directional many-to-one association to PlanillaRevision
-	@OneToMany(mappedBy="temporada")
-	private Set<PlanillaRevision> planillaRevisions;
+
 
     public Temporada() {
     }
@@ -72,12 +70,6 @@ public class Temporada extends BaseEntidades implements Serializable {
 		this.periodoInicial = periodoInicial;
 	}
 
-	public Set<PlanillaRevision> getPlanillaRevisions() {
-		return this.planillaRevisions;
-	}
 
-	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
-		this.planillaRevisions = planillaRevisions;
-	}
 	
 }

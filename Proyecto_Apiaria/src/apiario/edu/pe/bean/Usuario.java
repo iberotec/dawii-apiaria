@@ -27,9 +27,9 @@ public class Usuario implements Serializable {
 	@Column(name="nombre_usuario")
 	private String nombreUsuario;
 
-	//bi-directional many-to-one association to PlanillaRevision
+	//bi-directional many-to-one association to UsuarioApiario
 	@OneToMany(mappedBy="usuario")
-	private Set<PlanillaRevision> planillaRevisions;
+	private Set<UsuarioApiario> usuarioApiarios;
 
 	//bi-directional many-to-one association to Tratamiento
 	@OneToMany(mappedBy="usuario")
@@ -75,14 +75,15 @@ public class Usuario implements Serializable {
 		this.nombreUsuario = nombreUsuario;
 	}
 
-	public Set<PlanillaRevision> getPlanillaRevisions() {
-		return this.planillaRevisions;
+	
+	public Set<UsuarioApiario> getUsuarioApiarios() {
+		return usuarioApiarios;
 	}
 
-	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
-		this.planillaRevisions = planillaRevisions;
+	public void setUsuarioApiarios(Set<UsuarioApiario> usuarioApiarios) {
+		this.usuarioApiarios = usuarioApiarios;
 	}
-	
+
 	public Set<Tratamiento> getTratamientos() {
 		return this.tratamientos;
 	}

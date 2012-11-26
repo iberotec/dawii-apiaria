@@ -18,7 +18,7 @@ public class TipoAlimentacion extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idtipo_alimentacion")
+	@Column(name="id_tipo_alimentacion")
 	private Integer idTipoAlimentacion;
 
 	@Column(name="descripcion")
