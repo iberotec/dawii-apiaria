@@ -9,6 +9,7 @@ import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.EstadoRevision;
+import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.TipoAlimentacion;
 import apiario.edu.pe.bean.TipoEnfermedad;
@@ -125,6 +126,17 @@ public class MBSelectItems implements Serializable{
 		cbo[0] = new SelectItem(0, "Seleccione...");
 		for (int i = 0; i < cbo.length - 1; i++){
 			cbo[i+1] = new SelectItem(lista.get(i).getIdEstadoRevision(),lista.get(i).getDescripcionEstadoRevision());			
+		}return cbo;
+	}
+	
+	public SelectItem[] getCboNormaSeguridad() throws Exception { 
+		System.out.println("entro a normaSeguridad");
+		SeleccionService service = new SeleccionService();
+		List<NormaSeguridad> lista = service.listaNormaSeguridad();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		for (int i = 0; i < cbo.length - 1; i++){
+			cbo[i+1] = new SelectItem(lista.get(i).getIdNormaSeguridad(),lista.get(i).getDescripcionNormaSeguridad());
 		}return cbo;
 	}
 	

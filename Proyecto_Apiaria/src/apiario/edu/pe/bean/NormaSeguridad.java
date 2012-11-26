@@ -2,6 +2,9 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 import java.util.Set;
 
 
@@ -11,14 +14,14 @@ import java.util.Set;
  */
 @Entity
 @Table(name="norma_seguridad")
-public class NormaSeguridad implements Serializable {
+public class NormaSeguridad extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id_norma_seguridad")
 	private int idNormaSeguridad;
 
-	@Column(name="descripcion")
+	@Column(name="descripcion_norma_seguridad")
 	private String descripcionNormaSeguridad;
 
 	//bi-directional many-to-one association to NormaSeguridadApiario

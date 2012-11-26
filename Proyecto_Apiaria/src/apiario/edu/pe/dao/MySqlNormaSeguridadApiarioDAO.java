@@ -12,48 +12,28 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.NormaSeguridad;
+import apiario.edu.pe.bean.NormaSeguridadApiario;
 
-public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
+public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 
 	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
 	EntityManager em=emf.createEntityManager();
 	
 	@Override
-	public List<NormaSeguridad> listaNormaSeguridad() {
+	public List<NormaSeguridadApiario> listarTodosNormaSeguridadApiarioes()
+			throws Exception {
 		EntityManagerFactory emf= Persistence.createEntityManagerFactory("Proyecto_Apiaria");
 		EntityManager em=emf.createEntityManager();
 		
-		Query q=em.createQuery("select a from NormaSeguridad a");
-		List<NormaSeguridad> lista=q.getResultList();
+		Query q=em.createQuery("select a from NormaSeguridadApiario a");
+		List<NormaSeguridadApiario> lista=q.getResultList();
 		return lista;
 	}
 
 	@Override
-	public List<NormaSeguridad> listarTodosNormaSeguridades() throws Exception {
-		List<NormaSeguridad> lista=null;
-		
-		try {
-			em.getTransaction().begin();
-			
-			Query sql=em.createQuery("select n from NormaSeguridad n");
-			lista=sql.getResultList();
-			
-			em.getTransaction().commit();
-		} catch (Exception e) {
-			em.getTransaction().rollback();
-		}finally{
-			em.close();
-			emf.close();
-		}
-		
-		return lista;
-	}
-
-	@Override
-	public NormaSeguridad guardarNormaSeguridad(NormaSeguridad instance)
-			throws Exception {
+	public NormaSeguridadApiario guardarNormaSeguridadApiario(
+			NormaSeguridadApiario instance) throws Exception {
 		try {
 			instance.setSuccess(false);
 			em.getTransaction().begin();
@@ -74,22 +54,18 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 	}
 
 	@Override
-	public List<NormaSeguridad> buscarNormaSeguridad(NormaSeguridad instance)
-			throws Exception {
+	public List<NormaSeguridadApiario> buscarNormaSeguridadApiario(
+			NormaSeguridadApiario instance) throws Exception {
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
-		CriteriaQuery<NormaSeguridad> criteria=builder.createQuery(NormaSeguridad.class);
-		Root<NormaSeguridad> colmenaRoot=criteria.from(NormaSeguridad.class);
+		CriteriaQuery<NormaSeguridadApiario> criteria=builder.createQuery(NormaSeguridadApiario.class);
+		Root<NormaSeguridadApiario> colmenaRoot=criteria.from(NormaSeguridadApiario.class);
 		
 		criteria.select(colmenaRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdNormaSeguridad()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idNormaSeguridad"),instance.getIdNormaSeguridad());
-				p.add(condition);
-			}
-			if(instance.getDescripcionNormaSeguridad() !=null && instance.getDescripcionNormaSeguridad().length()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("descripcionNormaSeguridad"),instance.getDescripcionNormaSeguridad());
+			if(instance.getIdNormaSeguridadApiario()>0){
+				Predicate condition=builder.equal(colmenaRoot.get("idNormaSeguridadApiario"),instance.getIdNormaSeguridadApiario());
 				p.add(condition);
 			}
 		}
@@ -97,15 +73,16 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 		p.toArray(predicates);
 		criteria.where(predicates);
 		
-		List<NormaSeguridad> lista=em.createQuery(criteria).getResultList();
+		List<NormaSeguridadApiario> lista=em.createQuery(criteria).getResultList();
 		em.close();
 		return lista;
 	}
 
 	@Override
-	public NormaSeguridad obtenerPorIdNormaSeguridad(int id) throws Exception {
+	public NormaSeguridadApiario obtenerPorIdNormaSeguridadApiario(int id)
+			throws Exception {
 		try {
-			NormaSeguridad instance=em.find(NormaSeguridad.class, id);
+			NormaSeguridadApiario instance=em.find(NormaSeguridadApiario.class, id);
 			return instance;
 		} catch (RuntimeException e) {
 			throw e;
@@ -116,8 +93,8 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 	}
 
 	@Override
-	public NormaSeguridad eliminarNormaSeguridad(NormaSeguridad instance)
-			throws Exception {
+	public NormaSeguridadApiario eliminarNormaSeguridadApiario(
+			NormaSeguridadApiario instance) throws Exception {
 		if(!(instance!=null && instance.getListaEliminar().size()>0)){
 			instance.setSuccess(false);
 			return instance;
@@ -127,7 +104,7 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 		try {
 			em.getTransaction().begin();
 			for (int i = 0; i < listaIds.size(); i++) {
-				String hql="delete from NormaSeguridad n where n.idNormaSeguridad in (:v_ids)";		
+				String hql="delete from NormaSeguridadApiario n where n.idNormaSeguridadApiario in (:v_ids)";		
 				em.createQuery(hql).setParameter("v_ids", listaIds.get(i)).executeUpdate();
 			}
 			em.getTransaction().commit();
@@ -144,6 +121,4 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 		return instance;
 	}
 
-
-	
 }

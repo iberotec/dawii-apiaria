@@ -69,7 +69,7 @@ public class MBApiario implements Serializable{
 		//faltaria un campo mas  por que en esta tabla habria varios "seleccion" y tendria que diferenciarse
 		//el seleccion activo
 		List<Temporada> lista = new ArrayList<Temporada>();
-		lista = service.listarTodosTemporada();
+//		lista = service.listarTodosTemporada();
 		Date fechaActual= new Date();
 		for (int i = 0; i < lista.size(); i++) {
 			System.out.println("periodo final" + lista.get(i).getPeriodoFinal()+" > "+fechaActual);

@@ -23,6 +23,17 @@ public class MBNormaSeguridad implements Serializable{
     private NormaSeguridad normaSeguridad;
     private List<NormaSeguridad>  listaNormaSeguridad=new ArrayList<NormaSeguridad>();
     
+    
+    public void grabarNormaSeguridad(){
+    	try {
+			service.guardarNormaSeguridad(normaSeguridad);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+    
+    
+    
     public List<NormaSeguridad> load(){
     	List<NormaSeguridad> lista=null;
     	lista=service.listaNormaSeguridad(); 
