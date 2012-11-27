@@ -7,6 +7,9 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+
+import apiario.edu.pe.bean.Apiario;
+import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.PlanillaRevision;
@@ -38,12 +41,14 @@ public class MBPlanillaRevisionAlza implements Serializable,SelectableDataModel<
 	
 	private List<Alza> listaAlza;
 	
-	DataModel<Alza> listaalzamodel;
+	DataModel<Alza> listaalzamodel; 
 	
 	private Piso piso;
 	
 	private Integer codpiso;
 		
+	
+	private Apiario apiario;
 	
 	public MBPlanillaRevisionAlza() {
 		limpiar();
@@ -52,13 +57,21 @@ public class MBPlanillaRevisionAlza implements Serializable,SelectableDataModel<
 	public void limpiar(){
 		
 		piso = new Piso();
+		planillaRevision=new PlanillaRevision();
+		planillaRevision.setColmena(new Colmena());
+		planillaRevision.getColmena().setApiario(new Apiario());
+		
 		
 	}
 	
-	public void listarAlzas(){
-		
-		listaAlza = service.listarAlzaporPiso(codpiso);
-		
+	public void listarAlzas() throws Exception{
+		alza = new Alza();
+//		piso.setIdPiso(getCodpiso());
+		alza.setPiso(new Piso());
+		alza.getPiso().setIdPiso(getCodpiso());
+//		listaAlza = service.listarAlzaporPiso(codpiso);
+		listaAlza = service.buscarAlza(alza);
+		System.out.println("Entro lista alzas");
 	}
 
 	public String registrarPlanillaRevisionAlza(){
@@ -170,6 +183,14 @@ public class MBPlanillaRevisionAlza implements Serializable,SelectableDataModel<
 		return piso;
 	}
 
+	public void setApiario(Apiario apiario) {
+		this.apiario = apiario;
+	}
+
+	public Apiario getApiario() {
+		return apiario;
+	}
+
 	public void setPiso(Piso piso) {
 		this.piso = piso;
 	}
@@ -184,8 +205,12 @@ public class MBPlanillaRevisionAlza implements Serializable,SelectableDataModel<
 
 	public DataModel<Alza> getListaalzamodel() {
 		
+		//piso = new Piso();
+		piso.setIdPiso(getCodpiso());
+		
 		listaalzamodel = new ListDataModel<Alza>(service.listarAlzaporPiso(codpiso));
 		
+		System.out.println("Entro lista model");
 		return listaalzamodel;
 	}
 
