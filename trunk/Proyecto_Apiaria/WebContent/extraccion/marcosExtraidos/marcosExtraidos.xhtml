@@ -18,38 +18,42 @@
 		<tr>
 			<td>
 				<h:outputText value="Apiario" />
-				<p:selectOneMenu id="cbo666" >
+				<p:selectOneMenu id="iApiarioM" value="#{mBPlanillaRevisionAlza.planillaRevision.colmena.apiario.idApiario}">
 					<f:selectItems value="#{mBSelectItems.cboApiario}" />
+					<p:ajax update="iColmenaM" event="change" ></p:ajax> <!-- aqui estamos poniendo con la etiqueta del primefaces para hacer el update a un elemnto que nosotros designemos,en este caso el iColmenaM -->
 				</p:selectOneMenu>
 			</td>
 		</tr>
 		<tr>
 			<td>					
 				<h:outputText value="Colmena" />
-				<p:selectOneMenu id="cbo4" >
-					<f:selectItems value="#{mBSelectItems.cboColmena}" />
+				<p:selectOneMenu id="iColmenaM" value="#{mBPlanillaRevisionAlza.planillaRevision.colmena.idColmena}">
+					<f:selectItems value="#{mBSelectItems.getCboColmenaxApiario(mBPlanillaRevisionAlza.planillaRevision.colmena.apiario.idApiario)}" />
+					<p:ajax update="iPisoM" event="change"></p:ajax>
 				</p:selectOneMenu>
+				
 			</td>
 		</tr>
 		<tr>
 			<td>		
 				<h:outputText value="Piso" />
-				<p:selectOneMenu id="cbo5" value="#{mBPlanillaRevisionAlza.piso.idPiso}">
-					<f:selectItems value="#{mBSelectItems.cboPiso}" />
-					<p:ajax update="listaalza" listener="#{mBPlanillaRevisionAlza.listaAlza}" />
+				<p:selectOneMenu id="iPisoM" value="#{mBPlanillaRevisionAlza.piso.idPiso}">
+					<f:selectItems value="#{mBSelectItems.getCboPisoxColmena(mBPlanillaRevisionAlza.planillaRevision.colmena.idColmena)}" />
+					<p:ajax update="listaalza" event="change" listener="#{mBPlanillaRevisionAlza.listarAlzas}" />
 				</p:selectOneMenu>
 			</td>
-		</tr>
+		</tr> 
 	</table>
-		<p:dataTable id="listaalza" value="#{mBPlanillaRevisionAlza.listaalzamodel}" var="data">
+	
+		<p:dataTable id="listaalza" value="#{mBPlanillaRevisionAlza.listaAlza}" var="data">
 			<f:facet name="header">  
   				Listado de Alzas  
         	</f:facet>  
   
         <p:column selectionMode="multiple" style="width:18px" />
         <p:column headerText="Alza">
-  			#{data.idAlza}      	
-        </p:column>
+  			#{data.idAlza}     
+        </p:column> 
         <p:column headerText="Estado Alza">
   			<p:selectOneMenu id="cboEstadoAlza">
 					<f:selectItem value="Cosechable" />
