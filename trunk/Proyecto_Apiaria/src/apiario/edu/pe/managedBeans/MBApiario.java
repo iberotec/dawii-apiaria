@@ -61,7 +61,13 @@ public class MBApiario implements Serializable{
 	public void setLista(List<Apiario> lista) {
 		this.lista = lista;
 	}
+	public void mandaComplete(){
+		System.out.println("mandao oncomplete");
+		setOnComplete("dlg2.show();");
+	}
+	
 	public String abrirAsignarApiario() throws Exception{
+		limpiar();
 		System.out.println("entrando a asignar apiario");
 		String retorno="successMainSeleccion";
 		//Se esta verificando si en la temporada hay alguna etapa de seleccion
@@ -69,7 +75,7 @@ public class MBApiario implements Serializable{
 		//faltaria un campo mas  por que en esta tabla habria varios "seleccion" y tendria que diferenciarse
 		//el seleccion activo
 		List<Temporada> lista = new ArrayList<Temporada>();
-//		lista = service.listarTodosTemporada();
+		lista = service.listarTodosTemporada();
 		Date fechaActual= new Date();
 		for (int i = 0; i < lista.size(); i++) {
 			System.out.println("periodo final" + lista.get(i).getPeriodoFinal()+" > "+fechaActual);
@@ -78,12 +84,12 @@ public class MBApiario implements Serializable{
 				System.out.println("correcto si esta en la etapa");
 				retorno="successMainSeleccion";
 			}else{
-				setOnComplete("alert('Ya paso la etapa');");
+				setOnComplete("dlg2.show();");
 				System.out.println("ya paso la etapa");
 			}
 		}
 		
-		limpiar();
+		
 		return retorno;
 	}
 	
