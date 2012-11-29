@@ -20,7 +20,7 @@
 				<h:outputText value="Apiario" />
 				<p:selectOneMenu id="iApiarioM" value="#{mBPlanillaRevisionAlza.planillaRevision.colmena.apiario.idApiario}">
 					<f:selectItems value="#{mBSelectItems.cboApiario}" />
-					<p:ajax update="iColmenaM" event="change" ></p:ajax> <!-- aqui estamos poniendo con la etiqueta del primefaces para hacer el update a un elemnto que nosotros designemos,en este caso el iColmenaM -->
+					<p:ajax update="iColmenaM" event="change" ></p:ajax>
 				</p:selectOneMenu>
 			</td>
 		</tr>

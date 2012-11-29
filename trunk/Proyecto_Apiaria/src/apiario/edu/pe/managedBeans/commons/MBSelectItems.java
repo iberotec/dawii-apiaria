@@ -39,15 +39,23 @@ public class MBSelectItems implements Serializable{
 	
 	public SelectItem[] getCboColmenaxApiario(int idApiario) throws Exception { 
 		System.out.println("entro a colmenaxapiario");
+		System.out.println("->"+idApiario);
 		SeleccionService service = new SeleccionService();
+		
 		Colmena obj=new Colmena();
+//		Apiario apiario = new Apiario();
+//		apiario.setIdApiario(idApiario);
+//		obj.setApiario(apiario);
+		
 		obj.setApiario(new Apiario());
 		obj.getApiario().setIdApiario(idApiario);
+		System.out.println("-->"+obj.getApiario().getIdApiario());
 		List<Colmena> lista = new ArrayList<Colmena>();
-		if(idApiario>0){
+//		if(idApiario>0){
 			lista=service.buscarColmena(obj);
-		}
-		
+			System.out.println("entro???");
+//		}
+		System.out.println("entro lista"+ lista.size());
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
 		Integer col;

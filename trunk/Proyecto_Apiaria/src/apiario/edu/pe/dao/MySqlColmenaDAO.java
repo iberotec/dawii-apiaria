@@ -63,16 +63,22 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 
 	@Override
 	public List<Colmena> buscarColmena(Colmena instance) throws Exception {
+		System.out.println("gggttt---"+instance);
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<Colmena> criteria=builder.createQuery(Colmena.class);
 		Root<Colmena> colmenaRoot=criteria.from(Colmena.class);
 		
+		System.out.println("entro aqui DAO?");
+		
 		criteria.select(colmenaRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
+		System.out.println("------------------->>>>"+instance.getIdColmena());
 		if(instance!=null){
 			if(instance.getIdColmena()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idcolmena"),instance.getIdColmena());
+				System.out.println("entro?????? DAO");
+				Predicate condition=builder.equal(colmenaRoot.get("idColmena"),instance.getIdColmena());
+				System.out.println("condition "+condition);
 				p.add(condition);
 			}
 		}
