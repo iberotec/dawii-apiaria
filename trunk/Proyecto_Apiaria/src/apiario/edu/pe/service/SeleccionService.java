@@ -21,6 +21,7 @@ import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.TipoAlimentacion;
 import apiario.edu.pe.bean.TipoEnfermedad;
 import apiario.edu.pe.bean.Usuario;
+import apiario.edu.pe.bean.UsuarioApiario;
 import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
@@ -37,11 +38,12 @@ import apiario.edu.pe.dao.ITemporadaDAO;
 import apiario.edu.pe.dao.ITipoAlimentacionDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
+import apiario.edu.pe.dao.IUsuarioApiarioDAO;
 import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
 @SuppressWarnings("serial")
-public class SeleccionService implements IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,
+public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,
 IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
 ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
@@ -62,7 +64,7 @@ ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
 	IPlanillaRevisionAlzaDAO daoPlanillaRevisionAlza = objDAOFactory.getIPlanillaRevisionAlza();
 	INormaSeguridadApiarioDAO daoNormaSeguidadApiario=objDAOFactory.getINormaSeguridadApiario();
 	ITemporadaDAO daoTemporada = objDAOFactory.getITemporadaDAO();
-	
+	IUsuarioApiarioDAO daoUsuarioApiarioDAO = objDAOFactory.getIUsuarioApiarioDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -405,6 +407,39 @@ ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
 
 	@Override
 	public Temporada eliminarTemporada(Temporada instance) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<UsuarioApiario> listarTodosUsuarioApiario() throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioApiarioDAO.listarTodosUsuarioApiario();
+	}
+
+	@Override
+	public UsuarioApiario guardarUsuarioApiario(UsuarioApiario instance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioApiarioDAO.guardarUsuarioApiario(instance);
+	}
+
+	@Override
+	public List<UsuarioApiario> buscarUsuarioApiario(UsuarioApiario instance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioApiarioDAO.buscarUsuarioApiario(instance);
+	}
+
+	@Override
+	public UsuarioApiario obtenerPorIdUsuarioApiario(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioApiarioDAO.obtenerPorIdUsuarioApiario(id);
+	}
+
+	@Override
+	public UsuarioApiario eliminarUsuarioApiario(UsuarioApiario instance)
+			throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}

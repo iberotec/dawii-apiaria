@@ -16,6 +16,7 @@ import apiario.edu.pe.dao.ITemporadaDAO;
 import apiario.edu.pe.dao.ITipoAlimentacionDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
+import apiario.edu.pe.dao.IUsuarioApiarioDAO;
 
 public abstract class DAOFactory {
 	public enum TipoFabrica {
@@ -39,6 +40,7 @@ public abstract class DAOFactory {
 	public abstract IPlanillaRevisionAlzaDAO getIPlanillaRevisionAlza();
 	public abstract INormaSeguridadApiarioDAO getINormaSeguridadApiario();
 	public abstract ITemporadaDAO getITemporadaDAO();
+	public abstract IUsuarioApiarioDAO getIUsuarioApiarioDAO();
 	
 	public static DAOFactory getDAOFactory(TipoFabrica tipo) {
 		switch (tipo) {

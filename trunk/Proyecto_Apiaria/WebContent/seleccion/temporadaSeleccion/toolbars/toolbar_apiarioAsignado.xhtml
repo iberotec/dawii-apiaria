@@ -17,8 +17,8 @@
 			
 	 <p:toolbar>  
     <p:toolbarGroup align="left">  
-        <p:commandButton  value="Nueva asignacion de Apiario" icon="ui-icon-document" action="#{mBApiario.mandaComplete}" oncomplete="#{mBApiario.onComplete}"/>  
-  
+        <p:commandButton  value="Nueva asignacion de Apiario" icon="ui-icon-document" actionListener="#{mBApiario.abrirRegistroAsignacionApiario}" oncomplete="#{mBApiario.onComplete}"/>  
+ 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" actionListener="#{mBApiario.abrirRegistroAsignacionApiario}" oncomplete="#{mBApiario.onComplete}"/>
         
     </p:toolbarGroup>  
     </p:toolbar>
