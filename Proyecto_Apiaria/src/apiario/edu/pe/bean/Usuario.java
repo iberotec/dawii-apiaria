@@ -16,7 +16,7 @@ public class Usuario implements Serializable {
 
 	@Id
 	@Column(name="id_usuario")
-	private int idUsuario;
+	private Integer idUsuario;
 
 	@Column(name="ape_mater_usuario")
 	private String apeMaterUsuario;
@@ -46,11 +46,11 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-	public int getIdUsuario() {
+	public Integer getIdUsuario() {
 		return this.idUsuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
+	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 

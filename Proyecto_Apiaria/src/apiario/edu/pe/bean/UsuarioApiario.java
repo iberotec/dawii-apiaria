@@ -11,13 +11,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import apiario.edu.pe.bean.base.BaseEntidades;
 /**
  * The persistent class for the usuario_apiario database table.
  * 
  */
 @Entity
 @Table(name="usuario_apiario")
-public class UsuarioApiario implements Serializable{
+public class UsuarioApiario extends BaseEntidades implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="id_usuario_apiario")
