@@ -19,7 +19,7 @@ import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.Usuario;
 import apiario.edu.pe.bean.UsuarioApiario;
-
+@SuppressWarnings(value={"unchecked"})
 public class MySqlUsuarioApiarioDAO implements IUsuarioApiarioDAO{
 	EntityManagerFactory emf;
 	EntityManager em;
@@ -44,7 +44,7 @@ public class MySqlUsuarioApiarioDAO implements IUsuarioApiarioDAO{
 			// TODO: handle exception
 		}
 		Close();
-		
+		System.out.println("lista??dAO "+lista);
 		return lista;
 	}
 	

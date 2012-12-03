@@ -19,7 +19,7 @@ public class MysqlUsuarioDAO implements IUsuario {
 		Usuario objusuario = new Usuario();
 		try {
 			em.getTransaction().begin();
-				Query sql = em.createQuery("select u from Usuario u where u.nomUsu=:xuser and u.clave=:xcla");
+				Query sql = em.createQuery("select u from Usuario u where u.nombreUsuario=:xuser and u.contraseniaUsuario=:xcla");
 				sql.setParameter("xuser", usuario);
 				sql.setParameter("xcla", clave);
 				List lista = sql.getResultList();

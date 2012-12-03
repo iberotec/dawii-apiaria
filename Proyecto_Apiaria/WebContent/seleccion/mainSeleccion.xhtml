@@ -22,37 +22,56 @@
 			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
 				SELECCION</h1>
 		<ui:include src="/seleccion/temporadaSeleccion/toolbars/toolbar_apiarioAsignado.xhtml"></ui:include>
-		
+		<p:commandLink action="#{mBUsuarioApiario.listarTodosUsuarioApiario}" value="listar"></p:commandLink>
 		
 			<div class="contenedor">		
-					<p:dataTable>
+					<p:dataTable value="#{mBUsuarioApiario.listaUsarioApiario}"
+								var="lista" 
+								rowIndexVar="fila" 
+								id="dtlista" 
+								rows="10"								
+								width="100%" >
+								
+							<f:facet name="header">
+								<h:outputText value="Listado de Apiarios ]Asignados" />
+							</f:facet>
+								
 						<p:column>
 							<f:facet name="header">
-								<h:outputText value="Item"></h:outputText>
+								<h:outputText value="" />
 							</f:facet>
-							<f:facet name="center">
-								<h:selectBooleanCheckbox></h:selectBooleanCheckbox>
+							<h:selectBooleanCheckbox value="#{lista.sel}" />
+						</p:column>
+								
+						<p:column>
+							<f:facet name="header">
+										<h:outputText value="Id" />
 							</f:facet>
+							<h:outputText value="#{fila+1}" />		
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Apiario"></h:outputText>
 							</f:facet>
+							<h:outputText value="Apiario #{lista.apiario.idApiario}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Provincia"></h:outputText>
 							</f:facet>
+							<h:outputText value="#{mBUsuarioApiario.obtenerProvincia(lista.apiario.planillaSeguimientos)}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Departamento"></h:outputText>
 							</f:facet>
+							<h:outputText value="#{mBUsuarioApiario.obtenerDepartamento(lista.apiario.planillaSeguimientos)}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Nivel Peligro"></h:outputText>
 							</f:facet>
+							<h:outputText value="#{mBUsuarioApiario.obtenerNivelPeligro(lista.planillaRevisions)}" />
 						</p:column>
 					</p:dataTable>
 			</div>

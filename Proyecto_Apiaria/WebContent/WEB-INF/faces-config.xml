@@ -18,7 +18,6 @@
   <managed-bean-class>apiario.edu.pe.managedBeans.MBApiarioAsignado</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
- 
   <managed-bean>
   <managed-bean-name>mBPlanillaRevision</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.managedBeans.MBPlanillaRevision</managed-bean-class>
@@ -45,29 +44,23 @@
   <managed-bean-class>apiario.edu.pe.managedBeans.MBDetalleEquipamientoTrabajo</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
-
   <managed-bean>
   <managed-bean-name>mBPlanillaRevisionAlza</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.managedBeans.MBPlanillaRevisionAlza</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean> 
- 
    <managed-bean>
   <managed-bean-name>mBNormaSeguridadApiario</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.managedBeans.MBNormaSeguridadApiario</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean> 
- 
-<!--  <managed-bean> -->
-<!--   <managed-bean-name>mapBean</managed-bean-name> -->
-<!--   <managed-bean-class>apiario.edu.pe.managedBeans.MapBean</managed-bean-class> -->
-<!--   <managed-bean-scope>session</managed-bean-scope> -->
-<!--  </managed-bean> -->
- <!-- Diego 
- ManageBean 
-navegacion -->
+  <managed-bean>
+  <managed-bean-name>mBUsuarioApiario</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBUsuarioApiario</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean> 
+ <!-- navegacion -->
  <navigation-rule>
-  <!-- Diego -->
   <navigation-case>
    <from-outcome>successBienvenida</from-outcome>
    <to-view-id>/UI_bienvenida.xhtml</to-view-id>
@@ -80,19 +73,18 @@ navegacion -->
    <from-outcome>successLogin</from-outcome>
    <to-view-id>/UI_login.xhtml</to-view-id>
   </navigation-case>
-  <!-- Diego -->
  <navigation-case>
    <from-outcome>successUbicacion</from-outcome>
    <to-view-id>/extraccion/mainExtraccion.xhtml</to-view-id>
   </navigation-case>
-  
    <navigation-case>
    <from-outcome>successNuevaAsignacion</from-outcome>
    <to-view-id>/seleccion/temporadaSeleccion/nuevaAsignacion.xhtml</to-view-id>
   </navigation-case>
- 
  </navigation-rule>
  <!--navegacion -->
+ 
+ 
  
  
  

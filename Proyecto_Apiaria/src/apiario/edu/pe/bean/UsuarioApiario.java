@@ -2,12 +2,14 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -51,10 +53,22 @@ public class UsuarioApiario extends BaseEntidades implements Serializable{
     @Column(name="fecha_revision")
     private Date fechaRevision;
 	
+  //bi-directional many-to-one association to PlanillaRevision
+	@OneToMany(mappedBy="usuarioApiario")
+	private Set<PlanillaRevision> planillaRevisions;
+	
 	public UsuarioApiario() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Set<PlanillaRevision> getPlanillaRevisions() {
+		return planillaRevisions;
+	}
+
+	public void setPlanillaRevisions(Set<PlanillaRevision> planillaRevisions) {
+		this.planillaRevisions = planillaRevisions;
+	}
+
 	public Apiario getApiario() {
 		return apiario;
 	}
