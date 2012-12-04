@@ -21,7 +21,7 @@ public class EstadoRevision extends BaseEntidades implements Serializable {
 	@Column(name="id_estado_revision")
 	private int idEstadoRevision;
 
-	@Column(name="descripcion")
+	@Column(name="descripcion_estado_revision")
 	private String descripcionEstadoRevision;
 
 	//bi-directional many-to-one association to EstadoRevisionEquipamientoTrabajo

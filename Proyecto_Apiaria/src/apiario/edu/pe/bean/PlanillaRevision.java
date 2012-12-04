@@ -27,19 +27,19 @@ public class PlanillaRevision implements Serializable {
 	private String estadoCosecha;
 
 	@Column(name="existencia_reina")
-	private byte existenciaReina;
+	private Boolean existenciaReina;
 
 	@Column(name="falta_alza")
-	private String faltaAlza;
+	private Boolean faltaAlza;
 
 	@Column(name="falta_espacio_camara")
-	private byte faltaEspacioCamara;
+	private Boolean faltaEspacioCamara;
 
 	@Column(name="necesidad_alimentacion")
-	private byte necesidadAlimentacion;
+	private Boolean necesidadAlimentacion;
 
 	@Column(name="necesidad_curacion")
-	private byte necesidadCuracion;
+	private Boolean necesidadCuracion;
 	
 	//bi-directional many-to-one association to Colmena
     @ManyToOne
@@ -107,43 +107,44 @@ public class PlanillaRevision implements Serializable {
 		this.estadoCosecha = estadoCosecha;
 	}
 
-	public byte getExistenciaReina() {
-		return this.existenciaReina;
+	
+	public Boolean getExistenciaReina() {
+		return existenciaReina;
 	}
 
-	public void setExistenciaReina(byte existenciaReina) {
+	public void setExistenciaReina(Boolean existenciaReina) {
 		this.existenciaReina = existenciaReina;
 	}
 
-	public String getFaltaAlza() {
-		return this.faltaAlza;
+	public Boolean getFaltaAlza() {
+		return faltaAlza;
 	}
 
-	public void setFaltaAlza(String faltaAlza) {
+	public void setFaltaAlza(Boolean faltaAlza) {
 		this.faltaAlza = faltaAlza;
 	}
 
-	public byte getFaltaEspacioCamara() {
-		return this.faltaEspacioCamara;
+	public Boolean getFaltaEspacioCamara() {
+		return faltaEspacioCamara;
 	}
 
-	public void setFaltaEspacioCamara(byte faltaEspacioCamara) {
+	public void setFaltaEspacioCamara(Boolean faltaEspacioCamara) {
 		this.faltaEspacioCamara = faltaEspacioCamara;
 	}
 
-	public byte getNecesidadAlimentacion() {
-		return this.necesidadAlimentacion;
+	public Boolean getNecesidadAlimentacion() {
+		return necesidadAlimentacion;
 	}
 
-	public void setNecesidadAlimentacion(byte necesidadAlimentacion) {
+	public void setNecesidadAlimentacion(Boolean necesidadAlimentacion) {
 		this.necesidadAlimentacion = necesidadAlimentacion;
 	}
 
-	public byte getNecesidadCuracion() {
-		return this.necesidadCuracion;
+	public Boolean getNecesidadCuracion() {
+		return necesidadCuracion;
 	}
 
-	public void setNecesidadCuracion(byte necesidadCuracion) {
+	public void setNecesidadCuracion(Boolean necesidadCuracion) {
 		this.necesidadCuracion = necesidadCuracion;
 	}
 
