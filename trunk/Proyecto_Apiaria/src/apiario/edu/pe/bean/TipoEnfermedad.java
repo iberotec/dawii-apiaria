@@ -21,7 +21,7 @@ public class TipoEnfermedad extends BaseEntidades implements Serializable {
 	@Column(name="id_tipo_enfermedad")
 	private Integer idTipoEnfermedad;
 
-	@Column(name="descripcion")
+	@Column(name="descripcion_tipo_enfermedad")
 	private String descripcionTipoEnfermedad;
 
 	//bi-directional many-to-one association to PlanillaRevisionTipoEnfermedad

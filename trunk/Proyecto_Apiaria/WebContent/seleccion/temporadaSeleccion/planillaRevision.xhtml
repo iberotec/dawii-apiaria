@@ -14,64 +14,93 @@
 
 <h:body>
 	<h:form>
-		<p:dataTable id="iPlanillaRevision">
+		<p:dataTable id="iPlanillaRevision" var="daColmena" value="#{mBPlanillaRevision.listaColmenas}">
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Seleccion" />
 				</f:facet>
-				<p:selectBooleanCheckbox value="" />
+				<p:selectBooleanCheckbox  />
 			</p:column>
 			<p:column>
 				<f:facet name="header">
 					<h:outputText value="Colmena" />
 				</f:facet>
+				<h:outputText value="#{daColmena.idColmena}" />
 			</p:column>
 		</p:dataTable>
 		
+		<br />
 		<table>
 			<tr>
 				<td>
-					<p:selectBooleanCheckbox>
-						<f:selectItem  value="Exitencia de Reina"/>
-						<f:selectItem value="Necesidad Alimentacion"/>
-						<f:selectItem value="Necesidad Curacion"/>
-						<f:selectItem value="Falta Espacio Camara"/>
-						<f:selectItem value="Falta Alza"/>	
-					</p:selectBooleanCheckbox>
+					<p:selectBooleanCheckbox value="#{mBPlanillaRevision.objplanillaRevision.existenciaReina}"></p:selectBooleanCheckbox>
+					<label>Existencia de Reina</label>
 				</td>
+				<td></td>
 				<td>
 					<h:outputText value="Estado Cosecha" />
-					<p:selectOneMenu>
-						
+				</td>
+				<td>
+					<p:selectOneMenu value="#{mBPlanillaRevision.objplanillaRevision.estadoCosecha}">
+						<f:selectItems value="#{mBSelectItems.cboEstadoCosecha}"/>
 					</p:selectOneMenu>
 				</td>
 			</tr>
 			<tr>
+				<td>
+					<p:selectBooleanCheckbox value="#{mBPlanillaRevision.objplanillaRevision.necesidadAlimentacion}"></p:selectBooleanCheckbox>
+					<label>Necesidad Alimentacion</label>
+				</td>
 				<td></td>
 				<td>
 					<h:outputText value="Tipo Alimentacion" />
-					<p:selectOneMenu>
-					
-					</p:selectOneMenu>
+				</td>
+				<td>
+					<p:selectManyMenu value="#{mBPlanillaRevision.objplanillaRevision.planillaRevisionTipoAlimentacions}">
+						<f:selectItems value="#{mBSelectItems.cboTipoAlimentacion}"/>
+					</p:selectManyMenu>
 				</td>
 			</tr>
 			<tr>
+				<td>
+					<p:selectBooleanCheckbox value="#{mBPlanillaRevision.objplanillaRevision.necesidadCuracion}"></p:selectBooleanCheckbox>
+					<label>Necesidad Curacion</label>
+				</td>
 				<td></td>
 				<td>
 					<h:outputText value="Tipo Enfermedad" />
-					<p:selectOneMenu>
-					
-					</p:selectOneMenu>
 				</td>
+				<td>
+					<p:selectManyMenu value="#{mBPlanillaRevision.objplanillaRevision.planillaRevisionTipoEnfermedads}">
+						<f:selectItems value="#{mBSelectItems.cboTipoEnfermedad}"/>
+					</p:selectManyMenu>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p:selectBooleanCheckbox value="#{mBPlanillaRevision.objplanillaRevision.faltaEspacioCamara}"></p:selectBooleanCheckbox>
+					<label>Falta Espacio Camara</label>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+					<p:selectBooleanCheckbox value="#{mBPlanillaRevision.objplanillaRevision.faltaAlza}"></p:selectBooleanCheckbox>
+					<label>Falta Alza</label>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
 			</tr>
 		</table>
 		
 		<h:outputText value="Comportamiento" />
-		<p:inputTextarea>
-		</p:inputTextarea>
+		<p:inputTextarea value="#{mBPlanillaRevision.objplanillaRevision.comportamiento}"></p:inputTextarea>
 		
 		<br></br>
-		<h:commandButton action="A" value="Confirmar Revision" />
+		<p:commandButton action="A" value="Confirmar Revision" />
 		
 	</h:form>
 </h:body>

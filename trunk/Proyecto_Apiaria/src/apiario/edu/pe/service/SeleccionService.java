@@ -383,65 +383,85 @@ ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
 
 	@Override
 	public List<Temporada> listarTodosTemporada() throws Exception {
-		// TODO Auto-generated method stub
 		return daoTemporada.listarTodosTemporada();
 	}
 
 	@Override
 	public Temporada guardarTemporada(Temporada instance) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return daoTemporada.guardarTemporada(instance);
 	}
 
 	@Override
 	public List<Temporada> buscarTemporada(Temporada instance) throws Exception {
-		// TODO Auto-generated method stub
 		return daoTemporada.buscarTemporada(instance);
 	}
 
 	@Override
 	public Temporada obtenerPorIdTemporada(int id) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return daoTemporada.obtenerPorIdTemporada(id);
 	}
 
 	@Override
 	public Temporada eliminarTemporada(Temporada instance) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return daoTemporada.eliminarTemporada(instance);
 	}
 
 	@Override
 	public List<UsuarioApiario> listarTodosUsuarioApiario() throws Exception {
-		// TODO Auto-generated method stub
 		return daoUsuarioApiarioDAO.listarTodosUsuarioApiario();
 	}
 
 	@Override
 	public UsuarioApiario guardarUsuarioApiario(UsuarioApiario instance)
 			throws Exception {
-		// TODO Auto-generated method stub
 		return daoUsuarioApiarioDAO.guardarUsuarioApiario(instance);
 	}
 
 	@Override
 	public List<UsuarioApiario> buscarUsuarioApiario(UsuarioApiario instance)
 			throws Exception {
-		// TODO Auto-generated method stub
 		return daoUsuarioApiarioDAO.buscarUsuarioApiario(instance);
 	}
 
 	@Override
 	public UsuarioApiario obtenerPorIdUsuarioApiario(int id) throws Exception {
-		// TODO Auto-generated method stub
 		return daoUsuarioApiarioDAO.obtenerPorIdUsuarioApiario(id);
 	}
 
 	@Override
 	public UsuarioApiario eliminarUsuarioApiario(UsuarioApiario instance)
 			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return daoUsuarioApiarioDAO.eliminarUsuarioApiario(instance);
+	}
+
+	@Override
+	public List<PlanillaRevision> listarTodosPlanillaRevisions()
+			throws Exception {
+		return daoPlanillaRevision.listarTodosPlanillaRevisions();
+	}
+
+	@Override
+	public PlanillaRevision guardarPlanillaRevision(PlanillaRevision instance)
+			throws Exception {
+		return daoPlanillaRevision.guardarPlanillaRevision(instance);
+	}
+
+	@Override
+	public List<PlanillaRevision> buscarPlanillaRevision(
+			PlanillaRevision instance) throws Exception {
+		return daoPlanillaRevision.buscarPlanillaRevision(instance);
+	}
+
+	@Override
+	public PlanillaRevision obtenerPorIdPlanillaRevision(int id)
+			throws Exception {
+		return daoPlanillaRevision.obtenerPorIdPlanillaRevision(id);
+	}
+
+	@Override
+	public PlanillaRevision eliminarPlanillaRevision(PlanillaRevision instance)
+			throws Exception {
+		return daoPlanillaRevision.eliminarPlanillaRevision(instance);
 	}
 
 }
