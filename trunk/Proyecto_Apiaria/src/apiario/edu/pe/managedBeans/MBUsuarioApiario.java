@@ -32,6 +32,10 @@ public class MBUsuarioApiario implements Serializable{
 	public MBUsuarioApiario() {
 		// TODO Auto-generated constructor stub
 	}
+	public String abrirNuevaAsignacion(){
+		System.out.println("abriendo nueva asignacion");
+		return "successNuevaAsignacion";
+	}
 	public void listarTodosUsuarioApiario() throws Exception{
 		System.out.println("entro a listartodos");
 		listaUsarioApiario = service.listarTodosUsuarioApiario();
@@ -46,6 +50,8 @@ public class MBUsuarioApiario implements Serializable{
 				System.out.println("entro al for");
 				if(planillaRevision!=null){
 					System.out.println("entro al segundo if");
+					System.out.println("id "+planillaRevision.getIdPlanillaRevision());
+					System.out.println("id reina "+planillaRevision.getReina().getIdReina());
 					if(planillaRevision.getEstadoRevision()!=null){
 						System.out.println("entro al tercer if");
 						if(planillaRevision.getEstadoRevision().getDescripcionEstadoRevision()!=null &&
