@@ -23,7 +23,7 @@
 				SELECCION</h1>
 		<ui:include src="/seleccion/temporadaSeleccion/toolbars/toolbar_apiarioAsignado.xhtml"></ui:include>
 		<p:commandLink action="#{mBUsuarioApiario.listarTodosUsuarioApiario}" value="listar"></p:commandLink>
-		<p:commandLink action="#{mBUsuarioApiario.abrirNuevaAsignacion}" value="nuevo"></p:commandLink>
+		<p:commandLink action="#{mBUsuarioApiario.abrirNuevaAsignacion}" value="nuevo" update="dtlista"></p:commandLink>
 			<div class="contenedor">		
 					<p:dataTable value="#{mBUsuarioApiario.listaUsarioApiario}"
 								var="lista" 

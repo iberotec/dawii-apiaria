@@ -64,7 +64,7 @@ ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
 	IPlanillaRevisionAlzaDAO daoPlanillaRevisionAlza = objDAOFactory.getIPlanillaRevisionAlza();
 	INormaSeguridadApiarioDAO daoNormaSeguidadApiario=objDAOFactory.getINormaSeguridadApiario();
 	ITemporadaDAO daoTemporada = objDAOFactory.getITemporadaDAO();
-	IUsuarioApiarioDAO daoUsuarioApiarioDAO = objDAOFactory.getIUsuarioApiarioDAO();
+	IUsuarioApiarioDAO daoUsuarioApiario = objDAOFactory.getIUsuarioApiarioDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -408,30 +408,33 @@ ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
 
 	@Override
 	public List<UsuarioApiario> listarTodosUsuarioApiario() throws Exception {
-		return daoUsuarioApiarioDAO.listarTodosUsuarioApiario();
+		return daoUsuarioApiario.listarTodosUsuarioApiario();
 	}
 
 	@Override
 	public UsuarioApiario guardarUsuarioApiario(UsuarioApiario instance)
 			throws Exception {
-		return daoUsuarioApiarioDAO.guardarUsuarioApiario(instance);
+		return daoUsuarioApiario.guardarUsuarioApiario(instance);
 	}
 
 	@Override
 	public List<UsuarioApiario> buscarUsuarioApiario(UsuarioApiario instance)
 			throws Exception {
-		return daoUsuarioApiarioDAO.buscarUsuarioApiario(instance);
+		return daoUsuarioApiario.buscarUsuarioApiario(instance);
 	}
 
 	@Override
 	public UsuarioApiario obtenerPorIdUsuarioApiario(int id) throws Exception {
-		return daoUsuarioApiarioDAO.obtenerPorIdUsuarioApiario(id);
+		return daoUsuarioApiario.obtenerPorIdUsuarioApiario(id);
 	}
 
 	@Override
 	public UsuarioApiario eliminarUsuarioApiario(UsuarioApiario instance)
 			throws Exception {
-		return daoUsuarioApiarioDAO.eliminarUsuarioApiario(instance);
+
+		// TODO Auto-generated method stub
+		return daoUsuarioApiario.eliminarUsuarioApiario(instance);
+
 	}
 
 	@Override
