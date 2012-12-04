@@ -75,11 +75,18 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 		
 		System.out.println("------------------->>>>"+instance.getIdColmena());
 		if(instance!=null){
-			if(instance.getIdColmena()>0){
+			if(instance.getIdColmena()!=null && instance.getIdColmena()>0){
 				System.out.println("entro?????? DAO");
 				Predicate condition=builder.equal(colmenaRoot.get("idColmena"),instance.getIdColmena());
 				System.out.println("condition "+condition);
 				p.add(condition);
+			}
+			System.out.println("Apiario??->"+instance.getApiario().getIdApiario());
+			if(instance.getApiario()!=null){
+				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario()>0){
+					Predicate condition=builder.equal(colmenaRoot.get("apiario.idApiario"),instance.getApiario().getIdApiario());
+					p.add(condition);
+				}
 			}
 		}
 		Predicate[] predicates=new Predicate[p.size()];

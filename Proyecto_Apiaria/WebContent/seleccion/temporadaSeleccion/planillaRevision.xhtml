@@ -19,7 +19,7 @@
 				<f:facet name="header">
 					<h:outputText value="Seleccion" />
 				</f:facet>
-				<p:selectBooleanCheckbox  />
+				<p:selectBooleanCheckbox value="#{daColmena.sel}" />
 			</p:column>
 			<p:column>
 				<f:facet name="header">
@@ -100,7 +100,8 @@
 		<p:inputTextarea value="#{mBPlanillaRevision.objplanillaRevision.comportamiento}"></p:inputTextarea>
 		
 		<br></br>
-		<p:commandButton action="A" value="Confirmar Revision" />
+		<p:commandButton action="#{mBPlanillaRevision.guardarPlanillaRevision}" value="Confirmar Revision" />
+		<p:commandLink action="#{mBPlanillaRevision.guardarPlanillaRevision}" value="Confirmar Revision" />
 		
 	</h:form>
 </h:body>
