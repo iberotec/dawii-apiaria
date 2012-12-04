@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.UsuarioApiario;
@@ -15,7 +16,15 @@ public class MBUsuarioApiario implements Serializable{
 	private UsuarioApiario usuarioApiario;
 	private List<UsuarioApiario> listaUsarioApiario = new ArrayList<UsuarioApiario>();
 	private SeleccionService service = new SeleccionService();
+	private String ubicacionApiario;
 	
+	
+	public String getUbicacionApiario() {
+		return ubicacionApiario;
+	}
+	public void setUbicacionApiario(String ubicacionApiario) {
+		this.ubicacionApiario = ubicacionApiario;
+	}
 	public UsuarioApiario getUsuarioApiario() {
 		return usuarioApiario;
 	}
@@ -32,8 +41,15 @@ public class MBUsuarioApiario implements Serializable{
 	public MBUsuarioApiario() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void limpiarNuevaAsignacion(){
+		System.out.println("limpiarNuevaAsignacion");
+		usuarioApiario= new UsuarioApiario();
+		usuarioApiario.setApiario(new Apiario());
+	}
 	public String abrirNuevaAsignacion(){
 		System.out.println("abriendo nueva asignacion");
+		limpiarNuevaAsignacion();
 		return "successNuevaAsignacion";
 	}
 	public void listarTodosUsuarioApiario() throws Exception{
@@ -125,5 +141,19 @@ public class MBUsuarioApiario implements Serializable{
 		
 		
 		return retorno;
+	}
+	
+	public void localizarApiario() throws Exception{
+		System.out.println("entrega ubicacion");
+		PlanillaSeguimiento obj= new PlanillaSeguimiento();
+		obj.setApiario(new Apiario());
+		obj.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		List<PlanillaSeguimiento> listaPlanillaSeguimiento = new ArrayList<PlanillaSeguimiento>();
+		listaPlanillaSeguimiento=service.buscarPlanillaSeguimiento(obj);
+		
+		for (int i = 0; i < listaPlanillaSeguimiento.size(); i++) {
+			obj=listaPlanillaSeguimiento.get(0);
+		}
+		ubicacionApiario=obj.getZona().getUbigeo().getDistrito();
 	}
 }
