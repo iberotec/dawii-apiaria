@@ -2,6 +2,7 @@ package apiario.edu.pe.managedBeans;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -75,18 +76,39 @@ public class MBPlanillaRevision implements Serializable{
 	
 	SeleccionService service = new SeleccionService();
 	
+	private List<Colmena> listaColmenas=new ArrayList<Colmena>();
+	private PlanillaRevision objplanillaRevision;
+	
+	public void listColmenas(){
+		System.out.println("Entro Colmenas");
+		try {
+			listaColmenas=service.listarTodosColmenas();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void guardarPlanillaRevision(){
+		try {
+			service.guardarPlanillaRevision(objplanillaRevision);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public MBPlanillaRevision() {
 		limpiar();
+		listColmenas();
 	}
 	
 	public void limpiar(){
 		colmena=new Colmena();
+		objplanillaRevision=new PlanillaRevision();
 	}
 	
 	public void listarPlanillaRevision(){
-		
 		planillarevision = service.listaPlanillaRevision(idcolmena);
-		
 	}
 	
 	
@@ -286,6 +308,26 @@ public class MBPlanillaRevision implements Serializable{
 	public int getIdcolmena() {
 		return idcolmena;
 	}
+
+
+	public List<Colmena> getListaColmenas() {
+		return listaColmenas;
+	}
+	public void setListaColmenas(List<Colmena> listaColmenas) {
+		this.listaColmenas = listaColmenas;
+	}
+
+
+	public void setObjplanillaRevision(PlanillaRevision objplanillaRevision) {
+		this.objplanillaRevision = objplanillaRevision;
+	}
+
+
+	public PlanillaRevision getObjplanillaRevision() {
+		return objplanillaRevision;
+	}
+
+
 
 
 }

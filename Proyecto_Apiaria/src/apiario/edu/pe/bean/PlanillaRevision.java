@@ -3,6 +3,8 @@ package apiario.edu.pe.bean;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 import java.sql.Date;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +16,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name="planilla_revision")
-public class PlanillaRevision implements Serializable {
+public class PlanillaRevision extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -107,9 +109,8 @@ public class PlanillaRevision implements Serializable {
 		this.estadoCosecha = estadoCosecha;
 	}
 
-	
 	public Boolean getExistenciaReina() {
-		return existenciaReina;
+		return this.existenciaReina;
 	}
 
 	public void setExistenciaReina(Boolean existenciaReina) {
@@ -125,7 +126,7 @@ public class PlanillaRevision implements Serializable {
 	}
 
 	public Boolean getFaltaEspacioCamara() {
-		return faltaEspacioCamara;
+		return this.faltaEspacioCamara;
 	}
 
 	public void setFaltaEspacioCamara(Boolean faltaEspacioCamara) {
@@ -133,7 +134,7 @@ public class PlanillaRevision implements Serializable {
 	}
 
 	public Boolean getNecesidadAlimentacion() {
-		return necesidadAlimentacion;
+		return this.necesidadAlimentacion;
 	}
 
 	public void setNecesidadAlimentacion(Boolean necesidadAlimentacion) {
@@ -141,7 +142,7 @@ public class PlanillaRevision implements Serializable {
 	}
 
 	public Boolean getNecesidadCuracion() {
-		return necesidadCuracion;
+		return this.necesidadCuracion;
 	}
 
 	public void setNecesidadCuracion(Boolean necesidadCuracion) {

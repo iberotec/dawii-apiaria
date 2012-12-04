@@ -14,11 +14,13 @@
 
 <h:body>
 	<h:form>
-		<p:selectOneMenu value="#{mBNormaSeguridadApiario.normaSeguridadApiario.apiario.idApiario}">
-			<f:selectItems value="#{mBSelectItems.cboApiario}"/>
-		</p:selectOneMenu>
+<!--		<p:selectOneMenu value="#{mBNormaSeguridadApiario.normaSeguridadApiario.apiario.idApiario}">-->
+<!--			<f:selectItems value="#{mBSelectItems.cboApiario}"/>-->
+<!--		</p:selectOneMenu>-->
 	
-	<br />
+	<h2 align="center">
+		<h:outputText value="Control de Calidad del Apiario(SENASA)" />
+	</h2>
 <!--	value="#{mBNormaSeguridadApiario.normaSeguridadApiario.normaSeguridad.idNormaSeguridad}"-->
 		<p:selectManyCheckbox layout="pageDirection" >
 			<f:selectItems value="#{mBSelectItems.cboNormaSeguridad}"/>
@@ -27,6 +29,7 @@
 		<br />
 		
 		<p:commandButton value="Registrar Control de Calidad" action="#{mBNormaSeguridadApiario.guardarNormaSeguridadApiario}"></p:commandButton>
+		<p:commandLink value="Registrar Control de Calidad" action="#{mBNormaSeguridadApiario.guardarNormaSeguridadApiario}"></p:commandLink>
 	</h:form>
 </h:body>
 	
