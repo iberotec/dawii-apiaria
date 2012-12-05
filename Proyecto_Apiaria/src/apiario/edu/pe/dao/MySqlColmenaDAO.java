@@ -19,8 +19,17 @@ import apiario.edu.pe.bean.PlanillaSeguimiento;
 
 public class MySqlColmenaDAO implements IColmenaDAO{
 
-	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-	EntityManager em=emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
+	
+	public void Open(){
+		emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
+		em=emf.createEntityManager();
+	}
+	public void Close(){
+		em.close();
+		emf.close();
+	}
 	
 	@Override
 	public List<Colmena> listarTodosColmenas() throws Exception {
@@ -67,6 +76,7 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 	@Override
 	public List<Colmena> buscarColmena(Colmena instance) throws Exception {
 		System.out.println("gggttt---"+instance);
+		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<Colmena> criteria=builder.createQuery(Colmena.class);
 		Root<Colmena> colmenaRoot=criteria.from(Colmena.class);
@@ -98,7 +108,7 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 		criteria.where(predicates);
 		
 		List<Colmena> lista=em.createQuery(criteria).getResultList();
-		em.close();
+		Close();
 		return lista;
 	}
 

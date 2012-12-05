@@ -21,8 +21,17 @@ import apiario.edu.pe.bean.UsuarioApiario;
 
 public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-	EntityManager em = emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
+	
+	public void Open(){
+		emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
+		em=emf.createEntityManager();
+	}
+	public void Close(){
+		em.close();
+		emf.close();
+	}
 	
 	@Override
 	public List<PlanillaRevision> listaPlanillaRevision(Integer colmena) {
@@ -90,6 +99,7 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 	@Override
 	public List<PlanillaRevision> buscarPlanillaRevision(
 			PlanillaRevision instance) throws Exception {
+		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<PlanillaRevision> criteria=builder.createQuery(PlanillaRevision.class);
 		Root<PlanillaRevision> planillarevisionRoot=criteria.from(PlanillaRevision.class);
@@ -117,7 +127,7 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 		criteria.where(predicates);
 		
 		List<PlanillaRevision> lista=em.createQuery(criteria).getResultList();
-		em.close();
+		Close();
 		return lista;
 	}
 

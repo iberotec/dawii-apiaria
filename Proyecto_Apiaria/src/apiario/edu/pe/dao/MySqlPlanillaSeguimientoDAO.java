@@ -113,7 +113,7 @@ public class MySqlPlanillaSeguimientoDAO implements IPlanillaSeguimientoDAO{
 	    criteria.where(predicates);
 	    
 	    List<PlanillaSeguimiento> lista = em.createQuery( criteria ).getResultList();
-	    em.close();
+	    Close();
 	    return lista;
 	}
 
