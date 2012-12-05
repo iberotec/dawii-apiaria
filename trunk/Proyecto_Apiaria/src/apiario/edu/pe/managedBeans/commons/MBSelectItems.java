@@ -224,6 +224,17 @@ public class MBSelectItems implements Serializable{
 		return cbo;
 	}
 	
+	public SelectItem[] getCboEstadoRevision() throws Exception { 
+		System.out.println("entro a estadoRevision");
+		SeleccionService service = new SeleccionService();
+		List<EstadoRevision> lista = service.listarTodosEstadoRevisiones();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		for (int i = 0; i < cbo.length - 1; i++){
+			cbo[i+1] = new SelectItem(lista.get(i).getIdEstadoRevision(),lista.get(i).getDescripcionEstadoRevision());
+		}return cbo;
+	}
+	
 	
 	
 }

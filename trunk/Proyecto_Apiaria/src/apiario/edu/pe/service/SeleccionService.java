@@ -17,6 +17,7 @@ import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
+import apiario.edu.pe.bean.Reina;
 import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.TipoAlimentacion;
 import apiario.edu.pe.bean.TipoEnfermedad;
@@ -34,6 +35,7 @@ import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
+import apiario.edu.pe.dao.IReinaDAO;
 import apiario.edu.pe.dao.ITemporadaDAO;
 import apiario.edu.pe.dao.ITipoAlimentacionDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
@@ -46,7 +48,7 @@ import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,
 IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
-ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
+ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -65,6 +67,7 @@ ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
 	INormaSeguridadApiarioDAO daoNormaSeguidadApiario=objDAOFactory.getINormaSeguridadApiario();
 	ITemporadaDAO daoTemporada = objDAOFactory.getITemporadaDAO();
 	IUsuarioApiarioDAO daoUsuarioApiario = objDAOFactory.getIUsuarioApiarioDAO();
+	IReinaDAO daoReina=objDAOFactory.getIReinaDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -465,6 +468,31 @@ ITemporadaDAO,INormaSeguridadApiarioDAO, Serializable{
 	public PlanillaRevision eliminarPlanillaRevision(PlanillaRevision instance)
 			throws Exception {
 		return daoPlanillaRevision.eliminarPlanillaRevision(instance);
+	}
+
+	@Override
+	public List<Reina> listarTodosReinas() throws Exception {
+		return daoReina.listarTodosReinas();
+	}
+
+	@Override
+	public Reina guardarReina(Reina instance) throws Exception {
+		return daoReina.guardarReina(instance);
+	}
+
+	@Override
+	public List<Reina> buscarReina(Reina instance) throws Exception {
+		return daoReina.buscarReina(instance);
+	}
+
+	@Override
+	public Reina obtenerPorIdReina(int id) throws Exception {
+		return daoReina.obtenerPorIdReina(id);
+	}
+
+	@Override
+	public Reina eliminarReina(Reina instance) throws Exception {
+		return daoReina.eliminarReina(instance);
 	}
 
 }

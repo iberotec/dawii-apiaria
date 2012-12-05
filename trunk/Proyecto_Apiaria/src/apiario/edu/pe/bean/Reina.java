@@ -2,6 +2,9 @@ package apiario.edu.pe.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 import java.util.Set;
 
 
@@ -11,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name="reina")
-public class Reina implements Serializable {
+public class Reina extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id

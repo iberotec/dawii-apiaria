@@ -7,8 +7,10 @@ import java.util.Set;
 
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
+import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
+import apiario.edu.pe.bean.Reina;
 import apiario.edu.pe.bean.UsuarioApiario;
 import apiario.edu.pe.service.SeleccionService;
 
@@ -25,6 +27,7 @@ public class MBUsuarioApiario implements Serializable{
 	private List<Colmena> listaColmenas=new ArrayList<Colmena>();
 	private PlanillaRevision objplanillaRevision;
 	private Colmena objColmena;
+//	private EstadoRevision objEstadoRevision;
 	
 	
 	public void limpiar(){
@@ -32,6 +35,7 @@ public class MBUsuarioApiario implements Serializable{
 
 		setColmena(new Colmena());
 		objplanillaRevision=new PlanillaRevision();
+		objplanillaRevision.setEstadoRevision(new EstadoRevision());
 		objColmena=new Colmena();
 		
 	}
@@ -52,16 +56,51 @@ public class MBUsuarioApiario implements Serializable{
 	
 	public void guardarPlanillaRevision(){
 		System.out.println("Llego al metodo de guardarPlanillaRevision");
-		
+		Reina objReina=new Reina();
+		List<Reina> listaReina=new ArrayList<Reina>();
+		int idReina=0;
 		try {
+			System.out.println("IdColmena->"+objplanillaRevision.getColmena().getIdColmena());
+			System.out.println("ExistenciaReina->"+objplanillaRevision.getExistenciaReina());
+			System.out.println("IdReina->"+objplanillaRevision.getReina().getIdReina());
+			System.out.println("EstadoCosecha->"+objplanillaRevision.getEstadoCosecha());
+			System.out.println("NecesidadAlimentacion->"+objplanillaRevision.getNecesidadAlimentacion());
+			System.out.println("NecesidadCuracion->"+objplanillaRevision.getNecesidadCuracion());
+			System.out.println("EstadoRevision->"+objplanillaRevision.getEstadoRevision().getIdEstadoRevision());
+			System.out.println("FaltaEspacioCamara->"+objplanillaRevision.getFaltaEspacioCamara());
+			System.out.println("FaltaAlza->"+objplanillaRevision.getFaltaAlza());
+			System.out.println("Comportamiento->"+objplanillaRevision.getComportamiento());
+			System.out.println("UsuarioApiario->"+objplanillaRevision.getUsuarioApiario());
 			for (int i = 0; i < listaColmenas.size(); i++) {
+				objplanillaRevision.setUsuarioApiario(new UsuarioApiario());
+				System.out.println("IDUsuarioApiario->"+usuarioApiario.getIdUsuarioApiario());
+				objplanillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+				
 				if(listaColmenas.get(i).isSel()){
 					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
 					objplanillaRevision.setColmena(new Colmena());
 					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
 				}
+					
+				objReina.setColmena(new Colmena());
+				objReina.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+				listaReina=service.buscarReina(objReina);
+					
+				for (int j = 0; j < listaReina.size(); j++) {
+//						listaReina.get(k).getColmena().setIdColmena(listaColmenas.get(j).getIdColmena());
+					
+					service.obtenerPorIdReina(listaReina.get(i).getIdReina());
+				}
+				objplanillaRevision.setEstadoRevision(new EstadoRevision());
+	//			System.out.println("EstadoRevision->"+objEstadoRevision.getIdEstadoRevision());
+				objplanillaRevision.getEstadoRevision().setIdEstadoRevision(objplanillaRevision.getEstadoRevision().getIdEstadoRevision());
+				
+				
+				objplanillaRevision.setReina(new Reina());
+				objplanillaRevision.getReina().setIdReina(idReina);
+				
+				service.guardarPlanillaRevision(objplanillaRevision);
 			}
-			service.guardarPlanillaRevision(objplanillaRevision);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -134,6 +173,14 @@ public class MBUsuarioApiario implements Serializable{
 	public void setObjColmena(Colmena objColmena) {
 		this.objColmena = objColmena;
 	}
+
+//	public void setObjEstadoRevision(EstadoRevision objEstadoRevision) {
+//		this.objEstadoRevision = objEstadoRevision;
+//	}
+//
+//	public EstadoRevision getObjEstadoRevision() {
+//		return objEstadoRevision;
+//	}
 
 	public MBUsuarioApiario() {
 		limpiar();
