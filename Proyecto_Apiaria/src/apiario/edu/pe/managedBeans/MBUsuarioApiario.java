@@ -46,6 +46,7 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("limpiarNuevaAsignacion");
 		usuarioApiario= new UsuarioApiario();
 		usuarioApiario.setApiario(new Apiario());
+		ubicacionApiario="";
 	}
 	public String abrirNuevaAsignacion(){
 		System.out.println("abriendo nueva asignacion");
@@ -147,13 +148,22 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("entrega ubicacion");
 		PlanillaSeguimiento obj= new PlanillaSeguimiento();
 		obj.setApiario(new Apiario());
+		System.out.println("entra el parametro "+usuarioApiario.getApiario().getIdApiario());
+		
 		obj.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		
+		System.out.println("dato encapsulado "+obj.getApiario().getIdApiario());
 		List<PlanillaSeguimiento> listaPlanillaSeguimiento = new ArrayList<PlanillaSeguimiento>();
 		listaPlanillaSeguimiento=service.buscarPlanillaSeguimiento(obj);
-		
+		System.out.println("la lista se lleno "+listaPlanillaSeguimiento.size());
+		//falta validar
+		if(listaPlanillaSeguimiento.size()>0){
 		for (int i = 0; i < listaPlanillaSeguimiento.size(); i++) {
 			obj=listaPlanillaSeguimiento.get(0);
 		}
+		System.out.println("del for salio el obj "+obj.getZona().getUbigeo().getDistrito());
 		ubicacionApiario=obj.getZona().getUbigeo().getDistrito();
+		System.out.println("el valor de ubicacionApiario es "+ubicacionApiario);
+		}
 	}
 }
