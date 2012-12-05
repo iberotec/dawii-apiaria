@@ -30,6 +30,13 @@
 		</p:dataTable>
 		
 		<br />
+		
+		<h:outputText value="Estado Revision"></h:outputText>
+		<p:selectOneMenu value="#{mBUsuarioApiario.objplanillaRevision.estadoRevision.idEstadoRevision}">
+			<f:selectItems value="#{mBSelectItems.cboEstadoRevision}"></f:selectItems>
+		</p:selectOneMenu>
+		
+		<br />
 		<table>
 			<tr>
 				<td>
@@ -100,8 +107,8 @@
 		<p:inputTextarea value="#{mBUsuarioApiario.objplanillaRevision.comportamiento}"></p:inputTextarea>
 		
 		<br></br>
-		<p:commandButton action="#{mBUsuarioApiario.guardarPlanillaRevision}" value="Confirmar Revision" />
-		<p:commandLink action="#{mBUsuarioApiario.guardarPlanillaRevision}" value="Confirmar Revision" />
+		<p:commandButton actionListener="#{mBUsuarioApiario.guardarPlanillaRevision}" value="Confirmar Revision"/>
+		<p:commandLink actionListener="#{mBUsuarioApiario.guardarPlanillaRevision}" immediate="true" value="Confirmar Revision" />
 		
 	</h:form>
 </h:body>
