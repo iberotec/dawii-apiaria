@@ -12,6 +12,7 @@ import javax.faces.model.ListDataModel;
 
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
+import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.factoria.DAOFactory;
@@ -27,17 +28,60 @@ public class MBApiarioAsignado implements Serializable {
 	private List<Apiario> oList2 = new ArrayList<Apiario>();
 	private SeleccionService serviceSeleccion = new SeleccionService();
 	private IApiarioDAO daoApiario;
-	private Colmena objColmena;
+//	private Colmena objColmena;
 	
 	private DataModel<Colmena> listaColmena;
 	
 	private List<Colmena> listaColmenta=new ArrayList<Colmena>();
 	
+	SeleccionService service = new SeleccionService();
+	private Colmena colmena;
+	private List<Colmena> listaColmenas=new ArrayList<Colmena>();
+	private PlanillaRevision objplanillaRevision;
+	private Colmena objColmena;
+	
+	public MBApiarioAsignado() {
+		limpiar();
+		listColmenas();
+	}
+	
 	public void limpiar(){
+//		objColmena=new Colmena();
+
+		setColmena(new Colmena());
+		objplanillaRevision=new PlanillaRevision();
 		objColmena=new Colmena();
 		
-		
 	}
+	
+	public void listColmenas(){
+		System.out.println("Entro Colmenas");
+		try {
+			objColmena.setApiario(new Apiario());
+			objColmena.getApiario().setIdApiario(1);
+			listaColmenas=service.buscarColmena(objColmena);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void guardarPlanillaRevision(){
+		System.out.println("Llego al metodo de guardarPlanillaRevision");
+		
+		try {
+			for (int i = 0; i < listaColmenas.size(); i++) {
+				if(listaColmenas.get(i).isSel()){
+					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
+					objplanillaRevision.setColmena(new Colmena());
+					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+				}
+			}
+			service.guardarPlanillaRevision(objplanillaRevision);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public void buscarColmenaxComboApiario() throws Exception{
 		listaColmenta=serviceSeleccion.buscarColmena(objColmena);
@@ -95,6 +139,46 @@ public class MBApiarioAsignado implements Serializable {
 
 	public DataModel<Colmena> getListaColmena() {
 		return listaColmena;
+	}
+
+	public List<Colmena> getListaColmenas() {
+		return listaColmenas;
+	}
+
+	public void setListaColmenas(List<Colmena> listaColmenas) {
+		this.listaColmenas = listaColmenas;
+	}
+
+	public PlanillaRevision getObjplanillaRevision() {
+		return objplanillaRevision;
+	}
+
+	public void setObjplanillaRevision(PlanillaRevision objplanillaRevision) {
+		this.objplanillaRevision = objplanillaRevision;
+	}
+
+	public Colmena getObjColmena() {
+		return objColmena;
+	}
+
+	public void setObjColmena(Colmena objColmena) {
+		this.objColmena = objColmena;
+	}
+
+	public void setColmena(Colmena colmena) {
+		this.colmena = colmena;
+	}
+
+	public Colmena getColmena() {
+		return colmena;
+	}
+
+	public SeleccionService getService() {
+		return service;
+	}
+
+	public void setService(SeleccionService service) {
+		this.service = service;
 	}
 
 
