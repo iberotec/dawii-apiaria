@@ -21,7 +21,7 @@ public class PlanillaRevision extends BaseEntidades implements Serializable {
 
 	@Id
 	@Column(name="id_planilla_revision")
-	private int idPlanillaRevision;
+	private Integer idPlanillaRevision;
 
 	private String comportamiento;
 
@@ -85,11 +85,11 @@ public class PlanillaRevision extends BaseEntidades implements Serializable {
 		this.usuarioApiario = usuarioApiario;
 	}
 
-	public int getIdPlanillaRevision() {
+	public Integer getIdPlanillaRevision() {
 		return this.idPlanillaRevision;
 	}
 
-	public void setIdPlanillaRevision(int idPlanillaRevision) {
+	public void setIdPlanillaRevision(Integer idPlanillaRevision) {
 		this.idPlanillaRevision = idPlanillaRevision;
 	}
 

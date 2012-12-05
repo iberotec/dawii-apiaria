@@ -19,7 +19,7 @@ public class EstadoRevision extends BaseEntidades implements Serializable {
 
 	@Id
 	@Column(name="id_estado_revision")
-	private int idEstadoRevision;
+	private Integer idEstadoRevision;
 
 	@Column(name="descripcion_estado_revision")
 	private String descripcionEstadoRevision;
@@ -35,11 +35,11 @@ public class EstadoRevision extends BaseEntidades implements Serializable {
     public EstadoRevision() {
     }
 
-	public int getIdEstadoRevision() {
+	public Integer getIdEstadoRevision() {
 		return this.idEstadoRevision;
 	}
 
-	public void setIdEstadoRevision(int idEstadoRevision) {
+	public void setIdEstadoRevision(Integer idEstadoRevision) {
 		this.idEstadoRevision = idEstadoRevision;
 	}
 

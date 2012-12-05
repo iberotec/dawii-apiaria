@@ -18,6 +18,7 @@ public class MBUsuarioApiario implements Serializable{
 	private List<UsuarioApiario> listaUsarioApiario = new ArrayList<UsuarioApiario>();
 	private SeleccionService service = new SeleccionService();
 	private String ubicacionApiario;
+	private String nivelPeligro;
 	
 //	SeleccionService service = new SeleccionService();
 	private Colmena colmena;
@@ -69,6 +70,12 @@ public class MBUsuarioApiario implements Serializable{
 	
 	
 	
+	public String getNivelPeligro() {
+		return nivelPeligro;
+	}
+	public void setNivelPeligro(String nivelPeligro) {
+		this.nivelPeligro = nivelPeligro;
+	}
 	public String getUbicacionApiario() {
 		return ubicacionApiario;
 	}
@@ -138,6 +145,7 @@ public class MBUsuarioApiario implements Serializable{
 		usuarioApiario= new UsuarioApiario();
 		usuarioApiario.setApiario(new Apiario());
 		ubicacionApiario="";
+		nivelPeligro="";
 	}
 	public String abrirNuevaAsignacion(){
 		System.out.println("abriendo nueva asignacion");
@@ -249,7 +257,8 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("la lista se lleno "+listaPlanillaSeguimiento.size());
 		if(listaPlanillaSeguimiento.size()>0){
 		for (int i = 0; i < listaPlanillaSeguimiento.size(); i++) {
-			obj=listaPlanillaSeguimiento.get(0);
+			
+			obj=listaPlanillaSeguimiento.get(i);
 		}
 		System.out.println("del for salio el obj "+obj.getZona().getUbigeo().getDistrito());
 		ubicacionApiario=obj.getZona().getUbigeo().getDistrito();
@@ -257,6 +266,36 @@ public class MBUsuarioApiario implements Serializable{
 		}else{
 			ubicacionApiario="";
 		}
+
+		
+		System.out.println("entraga el estado mayor de peligro");
+		 PlanillaRevision objRevision = new PlanillaRevision();
+		 objRevision.setUsuarioApiario(new UsuarioApiario());
+		 objRevision.getUsuarioApiario().setApiario(new Apiario());
+		 objRevision.getUsuarioApiario().getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		 
+		 List<PlanillaRevision> listaPlanillaRevision = new ArrayList<PlanillaRevision>();
+		 System.out.println("tamaño lista planilla de revision antes "+listaPlanillaRevision.size());
+		 listaPlanillaRevision=service.buscarPlanillaRevision(objRevision);
+		System.out.println("tamaño lista planilla de revision "+ listaPlanillaRevision.size());
+		 if(listaPlanillaRevision.size()>0){
+			 System.out.println("entro al if");
+			 for (int i = 0; i < listaPlanillaRevision.size(); i++) {
+				 System.out.println("entro al for");
+				if(listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue()==1){
+					System.out.println("es 1");
+					nivelPeligro=listaPlanillaRevision.get(i).getEstadoRevision().getDescripcionEstadoRevision();
+				}
+				if(listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue()==2){
+					System.out.println("es 2");
+					nivelPeligro=listaPlanillaRevision.get(i).getEstadoRevision().getDescripcionEstadoRevision();
+				}
+			}
+		 }else{
+			 nivelPeligro="";
+		 }
+
 		listColmenas();
+
 	}
 }
