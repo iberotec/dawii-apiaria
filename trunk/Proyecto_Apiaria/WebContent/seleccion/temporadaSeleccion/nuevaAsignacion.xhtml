@@ -31,7 +31,8 @@
 					<p:selectOneMenu id="iApiarioN" value="#{mBUsuarioApiario.usuarioApiario.apiario.idApiario}">
 						<f:selectItems value="#{mBSelectItems.cboApiario}" />
 		 				<p:ajax update="iUbicacion"  
-                        listener="#{mBApiario.localizarApiario}" /> 
+                        listener="#{mBUsuarioApiario.localizarApiario}" />  
+
 					</p:selectOneMenu>
 				</td>
 				<td>

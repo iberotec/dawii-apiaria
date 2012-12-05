@@ -88,14 +88,14 @@ public class MySqlPlanillaSeguimientoDAO implements IPlanillaSeguimientoDAO{
 			System.out.println("PlanillaSeguimiento");
 			if(instance.getIdPlanillaSeguimiento()!=null && instance.getIdPlanillaSeguimiento()>0){
 				System.out.println("PlanillaSeguimiento.getIdplanillaSeguimiento");
-				Predicate condition=builder.equal(planillaSeguimientoRoot.get("idplanillaSeguimiento"), instance.getIdPlanillaSeguimiento());
+				Predicate condition=builder.equal(planillaSeguimientoRoot.get("idPlanillaSeguimiento"), instance.getIdPlanillaSeguimiento());
 				p.add(condition);
 			}
 			if(instance.getApiario()!=null){
 				System.out.println("PlanillaSeguimiento.getApiario()");
 				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario()>0){
 					System.out.println("PlanillaSeguimiento.getApiario().getIdapiario");
-					Predicate condition=builder.equal(apiarioRoot.get("idapiario"), instance.getApiario().getIdApiario());
+					Predicate condition=builder.equal(apiarioRoot.get("idApiario"), instance.getApiario().getIdApiario());
 					p.add(condition);
 				}
 				
@@ -103,7 +103,7 @@ public class MySqlPlanillaSeguimientoDAO implements IPlanillaSeguimientoDAO{
 			if(instance.getZona()!=null){
 				System.out.println("instance.getZona()");
 				if(instance.getZona().getIdZona()!=null && instance.getZona().getIdZona()>0){
-				Predicate condition=builder.equal(zonaRoot.get("idzona"), instance.getZona().getIdZona());
+				Predicate condition=builder.equal(zonaRoot.get("idZona"), instance.getZona().getIdZona());
 				p.add(condition);
 				}
 			}

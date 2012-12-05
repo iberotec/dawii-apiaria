@@ -13,7 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Alza;
-
+@SuppressWarnings(value={"unchecked"})
 public class MySqlAlzaDAO  implements IAlzaDAO{
 
 	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
