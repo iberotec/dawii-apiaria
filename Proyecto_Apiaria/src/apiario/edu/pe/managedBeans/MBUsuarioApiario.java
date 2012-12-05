@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import apiario.edu.pe.bean.Apiario;
+import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.UsuarioApiario;
@@ -17,6 +18,55 @@ public class MBUsuarioApiario implements Serializable{
 	private List<UsuarioApiario> listaUsarioApiario = new ArrayList<UsuarioApiario>();
 	private SeleccionService service = new SeleccionService();
 	private String ubicacionApiario;
+	
+//	SeleccionService service = new SeleccionService();
+	private Colmena colmena;
+	private List<Colmena> listaColmenas=new ArrayList<Colmena>();
+	private PlanillaRevision objplanillaRevision;
+	private Colmena objColmena;
+	
+	
+	public void limpiar(){
+//		objColmena=new Colmena();
+
+		setColmena(new Colmena());
+		objplanillaRevision=new PlanillaRevision();
+		objColmena=new Colmena();
+		
+	}
+	
+	public void listColmenas(){
+		System.out.println("Entro Colmenas");
+		listaColmenas.clear();
+		try {
+			System.out.println();
+			objColmena.setApiario(new Apiario());
+			System.out.println(usuarioApiario.getApiario().getIdApiario());
+			objColmena.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+			listaColmenas=service.buscarColmena(objColmena);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void guardarPlanillaRevision(){
+		System.out.println("Llego al metodo de guardarPlanillaRevision");
+		
+		try {
+			for (int i = 0; i < listaColmenas.size(); i++) {
+				if(listaColmenas.get(i).isSel()){
+					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
+					objplanillaRevision.setColmena(new Colmena());
+					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+				}
+			}
+			service.guardarPlanillaRevision(objplanillaRevision);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
 	
 	
 	public String getUbicacionApiario() {
@@ -38,8 +88,49 @@ public class MBUsuarioApiario implements Serializable{
 		this.listaUsarioApiario = listaUsarioApiario;
 	}
 
+	public SeleccionService getService() {
+		return service;
+	}
+
+	public void setService(SeleccionService service) {
+		this.service = service;
+	}
+
+	public Colmena getColmena() {
+		return colmena;
+	}
+
+	public void setColmena(Colmena colmena) {
+		this.colmena = colmena;
+	}
+
+	public List<Colmena> getListaColmenas() {
+		return listaColmenas;
+	}
+
+	public void setListaColmenas(List<Colmena> listaColmenas) {
+		this.listaColmenas = listaColmenas;
+	}
+
+	public PlanillaRevision getObjplanillaRevision() {
+		return objplanillaRevision;
+	}
+
+	public void setObjplanillaRevision(PlanillaRevision objplanillaRevision) {
+		this.objplanillaRevision = objplanillaRevision;
+	}
+
+	public Colmena getObjColmena() {
+		return objColmena;
+	}
+
+	public void setObjColmena(Colmena objColmena) {
+		this.objColmena = objColmena;
+	}
+
 	public MBUsuarioApiario() {
-		// TODO Auto-generated constructor stub
+		limpiar();
+		
 	}
 	
 	public void limpiarNuevaAsignacion(){
@@ -166,5 +257,6 @@ public class MBUsuarioApiario implements Serializable{
 		}else{
 			ubicacionApiario="";
 		}
+		listColmenas();
 	}
 }

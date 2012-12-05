@@ -30,7 +30,7 @@
 				<td>
 					<p:selectOneMenu id="iApiarioN" value="#{mBUsuarioApiario.usuarioApiario.apiario.idApiario}">
 						<f:selectItems value="#{mBSelectItems.cboApiario}" />
-		 				<p:ajax update="iUbicacion"  
+		 				<p:ajax update="iUbicacion,tabContainer"  
                         listener="#{mBUsuarioApiario.localizarApiario}" />  
 
 					</p:selectOneMenu>
