@@ -156,7 +156,6 @@ public class MBUsuarioApiario implements Serializable{
 		List<PlanillaSeguimiento> listaPlanillaSeguimiento = new ArrayList<PlanillaSeguimiento>();
 		listaPlanillaSeguimiento=service.buscarPlanillaSeguimiento(obj);
 		System.out.println("la lista se lleno "+listaPlanillaSeguimiento.size());
-		//falta validar
 		if(listaPlanillaSeguimiento.size()>0){
 		for (int i = 0; i < listaPlanillaSeguimiento.size(); i++) {
 			obj=listaPlanillaSeguimiento.get(0);
@@ -164,6 +163,8 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("del for salio el obj "+obj.getZona().getUbigeo().getDistrito());
 		ubicacionApiario=obj.getZona().getUbigeo().getDistrito();
 		System.out.println("el valor de ubicacionApiario es "+ubicacionApiario);
+		}else{
+			ubicacionApiario="";
 		}
 	}
 }
