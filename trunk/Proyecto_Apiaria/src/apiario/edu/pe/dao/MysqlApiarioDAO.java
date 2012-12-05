@@ -79,9 +79,9 @@ public class MysqlApiarioDAO implements IApiarioDAO {
 		
 		if(instance!=null){
 			System.out.println("apiario");
-			if(instance.getIdApiario()>0){
+			if(instance.getIdApiario()!=null && instance.getIdApiario()>0){
 				System.out.println("apiario.getIdapiario");
-				Predicate condition=builder.equal(apiarioRoot.get("idapiario"), instance.getIdApiario());
+				Predicate condition=builder.equal(apiarioRoot.get("idApiario"), instance.getIdApiario());
 				p.add(condition);
 			}
 			
@@ -120,7 +120,7 @@ public class MysqlApiarioDAO implements IApiarioDAO {
 			Open();
 			em.getTransaction().begin();
 			for (int i = 0; i < listaIds.size(); i++) {
-				String hql="delete from Apiario a where a.idapiario in (:v_ids)";		
+				String hql="delete from Apiario a where a.idApiario in (:v_ids)";		
 				em.createQuery(hql).setParameter("v_ids", listaIds.get(i)).executeUpdate();
 			}
 			em.getTransaction().commit();

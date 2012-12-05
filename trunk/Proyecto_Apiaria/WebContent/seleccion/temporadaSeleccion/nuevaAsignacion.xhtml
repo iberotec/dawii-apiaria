@@ -30,7 +30,7 @@
 				<td>
 					<p:selectOneMenu id="iApiarioN" value="#{mBUsuarioApiario.usuarioApiario.apiario.idApiario}">
 						<f:selectItems value="#{mBSelectItems.cboApiario}" />
-		 				<p:ajax update="iUbicacion,tabContainer"  
+		 				<p:ajax update="iUbicacion,tabContainer,iNivelPeligro"  
                         listener="#{mBUsuarioApiario.localizarApiario}" />  
 
 					</p:selectOneMenu>
@@ -44,7 +44,7 @@
 					<h:outputText value="Ubicacion"></h:outputText>
 				</td>
 				<td>
-					<p:inputText id="iUbicacion" value="#{mBUsuarioApiario.ubicacionApiario}" ></p:inputText>
+					<p:inputText id="iUbicacion" value="#{mBUsuarioApiario.ubicacionApiario}" disabled="true"></p:inputText>
 				</td>
 				<td>
 					<p:commandButton value="Equipo de Seguridad"></p:commandButton>
@@ -55,7 +55,7 @@
 					<h:outputText value="Nivel Peligro" />
 				</td>
 				<td>
-					<h:inputText value="" />
+					<p:inputText id="iNivelPeligro" value="#{mBUsuarioApiario.nivelPeligro}" disabled="true"></p:inputText>
 				</td>
 				<td>
 					<p:commandButton value="Confirmar Atención"></p:commandButton>

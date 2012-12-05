@@ -9,11 +9,15 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.PlanillaSeguimiento;
+import apiario.edu.pe.bean.UsuarioApiario;
 
 public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 
@@ -88,15 +92,24 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 			PlanillaRevision instance) throws Exception {
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<PlanillaRevision> criteria=builder.createQuery(PlanillaRevision.class);
-		Root<PlanillaRevision> colmenaRoot=criteria.from(PlanillaRevision.class);
-		
-		criteria.select(colmenaRoot);
+		Root<PlanillaRevision> planillarevisionRoot=criteria.from(PlanillaRevision.class);
+		Join<PlanillaRevision,UsuarioApiario> usuarioApiarioRoot = planillarevisionRoot.join( "usuarioApiario" );
+		Join<UsuarioApiario,Apiario> apiarioRoot = usuarioApiarioRoot.join( "apiario" );
+		criteria.select(planillarevisionRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdPlanillaRevision()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idPlanillaRevision"),instance.getIdPlanillaRevision());
+			if(instance.getIdPlanillaRevision()!=null && instance.getIdPlanillaRevision()>0){
+				Predicate condition=builder.equal(planillarevisionRoot.get("idPlanillaRevision"),instance.getIdPlanillaRevision());
 				p.add(condition);
+			}
+			if(instance.getUsuarioApiario()!=null){
+				if(instance.getUsuarioApiario().getApiario()!=null){
+					if(instance.getUsuarioApiario().getApiario().getIdApiario()!=null && instance.getUsuarioApiario().getApiario().getIdApiario()>0){
+						Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getUsuarioApiario().getApiario().getIdApiario());
+						p.add(condition);
+					}
+				}
 			}
 		}
 		Predicate[] predicates=new Predicate[p.size()];

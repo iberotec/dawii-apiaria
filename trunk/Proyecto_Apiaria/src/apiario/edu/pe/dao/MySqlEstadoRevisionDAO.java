@@ -73,7 +73,7 @@ public class MySqlEstadoRevisionDAO implements IEstadoRevisionDAO {
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdEstadoRevision()>0){
+			if(instance.getIdEstadoRevision()!=null && instance.getIdEstadoRevision().intValue()>0){
 				Predicate condition=builder.equal(colmenaRoot.get("idEstadoRevision"),instance.getIdEstadoRevision());
 				p.add(condition);
 			}
