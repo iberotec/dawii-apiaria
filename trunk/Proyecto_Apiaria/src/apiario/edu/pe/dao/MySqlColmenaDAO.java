@@ -9,10 +9,13 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
+import apiario.edu.pe.bean.PlanillaSeguimiento;
 
 public class MySqlColmenaDAO implements IColmenaDAO{
 
@@ -67,6 +70,7 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<Colmena> criteria=builder.createQuery(Colmena.class);
 		Root<Colmena> colmenaRoot=criteria.from(Colmena.class);
+		Join<Colmena,Apiario> apiarioRoot = colmenaRoot.join("apiario");
 		
 		System.out.println("entro aqui DAO?");
 		
@@ -84,7 +88,7 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 			System.out.println("Apiario??->"+instance.getApiario().getIdApiario());
 			if(instance.getApiario()!=null){
 				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario()>0){
-					Predicate condition=builder.equal(colmenaRoot.get("apiario.idApiario"),instance.getApiario().getIdApiario());
+					Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getApiario().getIdApiario());
 					p.add(condition);
 				}
 			}
