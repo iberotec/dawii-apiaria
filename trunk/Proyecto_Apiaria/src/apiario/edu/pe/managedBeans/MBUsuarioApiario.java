@@ -44,13 +44,17 @@ public class MBUsuarioApiario implements Serializable{
 	
 	public void listColmenas(){
 		System.out.println("Entro Colmenas");
+		System.out.println("-->"+usuarioApiario.getApiario().getIdApiario());
 		listaColmenas.clear();
+		int apiarioId=0;
 		try {
 			System.out.println();
+			apiarioId=usuarioApiario.getApiario().getIdApiario();
 			objColmena.setApiario(new Apiario());
-			System.out.println(usuarioApiario.getApiario().getIdApiario());
+			System.out.println("IdUsuarioApiario->"+usuarioApiario.getApiario().getIdApiario());
+			System.out.println(">-->"+apiarioId);
 //			usuarioApiario.getApiario().getIdApiario()
-			objColmena.getApiario().setIdApiario(1);
+			objColmena.getApiario().setIdApiario(apiarioId);
 			listaColmenas=service.buscarColmena(objColmena);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,12 +75,12 @@ public class MBUsuarioApiario implements Serializable{
 //				usuarioApiario.getIdUsuarioApiario()
 				objplanillaRevision.getUsuarioApiario().setIdUsuarioApiario(1);
 				
-//				if(listaColmenas.get(i).isSel()){
-//					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
+				if(listaColmenas.get(i).isSel()){
+					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
 					objplanillaRevision.setColmena(new Colmena());
-//					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
-					objplanillaRevision.getColmena().setIdColmena(1);
-//				}
+					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+//					objplanillaRevision.getColmena().setIdColmena(1);
+				}
 					
 				objReina.setColmena(new Colmena());
 				objReina.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
