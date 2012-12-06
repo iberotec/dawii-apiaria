@@ -62,7 +62,7 @@ public class MBSelectItems implements Serializable{
 		String colm;
 		for (int i = 0; i < cbo.length - 1; i++){
 			col=lista.get(i).getIdColmena();
-			colm=col.toString();
+			colm="Colmena "+col;
 			cbo[i+1] = new SelectItem(lista.get(i).getIdColmena(),colm);			
 		}return cbo;
 	}
@@ -95,12 +95,12 @@ public class MBSelectItems implements Serializable{
 		
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
-		Integer col;
-		String colm;
+		Integer pis;
+		String piss;
 		for (int i = 0; i < cbo.length - 1; i++){
-			col=lista.get(i).getIdPiso();
-			colm=col.toString();
-			cbo[i+1] = new SelectItem(lista.get(i).getIdPiso(),colm);			
+			pis=lista.get(i).getIdPiso();
+			piss="Piso "+pis;
+			cbo[i+1] = new SelectItem(lista.get(i).getIdPiso(),piss);			
 		}return cbo;
 	}
 	
