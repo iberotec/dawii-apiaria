@@ -13,7 +13,7 @@
 </h:head>
 
 <h:body>
-	<h:form id="fPlanillaRevision">
+<!-- 	<h:form id="fPlanillaRevision"> -->
 		<p:dataTable id="iPlanillaRevision" var="daColmena" value="#{mBUsuarioApiario.listaColmenas}">
 			<p:column>
 				<f:facet name="header">
@@ -107,9 +107,9 @@
 		<p:inputTextarea value="#{mBUsuarioApiario.objplanillaRevision.comportamiento}"></p:inputTextarea>
 		
 		<br></br>
-		<p:commandButton actionListener="#{mBUsuarioApiario.guardarPlanillaRevision}" action="#{mBUsuarioApiario.guardarPlanillaRevision}" value="Confirmar Revision"/>
-		<p:commandLink actionListener="#{mBUsuarioApiario.guardarPlanillaRevision}" action="#{mBUsuarioApiario.guardarPlanillaRevision}" immediate="true"  value="Confirmar Revision" />
-	</h:form>
+		<p:commandButton action="#{mBUsuarioApiario.guardarPlanillaRevision}" value="Confirmar Revision"/>
+<!-- 		<p:commandLink actionListener="#{mBUsuarioApiario.guardarPlanillaRevision}" action="#{mBUsuarioApiario.guardarPlanillaRevision}" immediate="true"  value="Confirmar Revision" /> -->
+<!-- 	</h:form> -->
 </h:body>
 	
 </html>
