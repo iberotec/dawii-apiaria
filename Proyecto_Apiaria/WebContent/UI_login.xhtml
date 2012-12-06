@@ -31,14 +31,10 @@
 						<h:outputLabel for="user" value="USUARIO" />
 						<p:inputText id="user" required="true" value="#{mBLogueo.usuario}"  />
 						
-
 						<h:outputLabel for="password" value="CONTRASEÑA" />
 						<p:password id="password" required="true"  value="#{mBLogueo.pass}"/>
 					
-
-
-						<h:commandButton value="INGRESAR"  action="#{mBLogueo.ingresarSistema}">
-						</h:commandButton>
+						<p:commandButton value="INGRESAR"  action="#{mBLogueo.ingresarSistema}"></p:commandButton>
 						
 					</h:panelGrid>
 
