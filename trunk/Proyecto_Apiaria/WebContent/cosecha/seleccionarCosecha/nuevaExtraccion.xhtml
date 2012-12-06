@@ -9,29 +9,27 @@
 <h:body>
 <ui:composition template="/templates/templateLayoutContexto.xhtml">
 		<ui:define name="title">
-			<h:outputText value="MODULO DE COSECHA" />
+			<h:outputText value="MODULO DE SELECCION" />
 		</ui:define>
 		
 		<ui:define name="content">
-		<h:form>
-			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE COSECHA</h1>
-<!-- 	<h:form> -->
+ 	<h:form> 
 		<p:column>
-			<p:outputLabel value="Apiario"/>
+			<h:outputText value="Apiario" />
 			
-			<p:selectOneMenu id="idApiario" value="aa">
+			<p:selectOneMenu>
 <!-- 				<f:selectItems value="#{mBSelectItems.cboApiario}" /> -->
             </p:selectOneMenu>
             
 		</p:column>
 		<br/>
 		<p:column>
-			<p:outputLabel value="Nivel de Peligro"/>
+			<h:outputText value="Nivel de Peligro" />
 			<p:inputText value=""/>
 		</p:column>
 		<br/>
 		<p:column>
-			<p:outputLabel value="Ubicación"/>
+			<h:outputText value="Ubicacion" />
 			<p:inputText value=""/>
 		</p:column>
 		
@@ -41,11 +39,9 @@
 			</p:tab>
 		</p:tabView>
 		
-<!-- 	</h:form> -->
-</h:form>
-		</ui:define>
-		
-	</ui:composition>
+ 	</h:form> 
+ </ui:define>
+</ui:composition>
 </h:body>
 </h:head>
 </html>
