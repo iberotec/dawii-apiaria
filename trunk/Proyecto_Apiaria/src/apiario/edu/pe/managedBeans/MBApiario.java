@@ -110,6 +110,17 @@ public class MBApiario implements Serializable{
 		return "successUbicacion";
 	}
 	
+	public String abrirMainCosecha(){
+		System.out.println("Entrando a cosecha");
+		limpiar();
+		return "successMainCosecha";
+	}
+	
+	public String abrirNuevaAsignacionCosecha(){
+		System.out.println("Entro a nueva asignacion cosecha");
+		limpiar();
+		return "successNuevaAsignacionCosecha";
+	}
 	
 	public void localizarApiario() throws Exception{
 		System.out.println("entrega ubicacion");

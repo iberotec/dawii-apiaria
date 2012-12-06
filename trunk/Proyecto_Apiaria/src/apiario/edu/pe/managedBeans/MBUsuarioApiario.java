@@ -67,6 +67,8 @@ public class MBUsuarioApiario implements Serializable{
 		Reina objReina=new Reina();
 		List<Reina> listaReina=new ArrayList<Reina>();
 		int idReina=0;
+		List arregloEnfermedad;
+		List arregloAlimentacion;
 		try {
 			System.out.println("Entro al try catch");
 			for (int i = 0; i < listaColmenas.size(); i++) {
@@ -118,6 +120,16 @@ public class MBUsuarioApiario implements Serializable{
 				System.out.println("FaltaAlza->"+objplanillaRevision.getFaltaAlza());
 				System.out.println("Comportamiento->"+objplanillaRevision.getComportamiento());
 				System.out.println("IdUsuarioApiario->"+objplanillaRevision.getUsuarioApiario().getIdUsuarioApiario());
+
+				System.out.println("TipoAlimentacion->"+objplanillaRevision.getPlanillaRevisionTipoAlimentacions());
+				System.out.println("TipoEnfermedad->"+objplanillaRevision.getPlanillaRevisionTipoEnfermedads());
+				
+				
+				arregloAlimentacion=objplanillaRevision.getPlanillaRevisionTipoAlimentacions();
+				arregloEnfermedad=objplanillaRevision.getPlanillaRevisionTipoEnfermedads();
+				
+//				.get(i).getIdPlanillaRevisionTipoAlimentacion()
+//				.get(i).getIdPlanillaRevisionTipoEnfermedad()
 				
 				
 				service.guardarPlanillaRevision(objplanillaRevision);

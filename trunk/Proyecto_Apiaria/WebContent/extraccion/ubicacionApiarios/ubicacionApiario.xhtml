@@ -36,18 +36,27 @@
 		</td>
 		<td>
 			<h:outputText value="Equipo Seguridad" />
-			<p:dataTable id="listaequipo" value="#{mBEstadoRevisionEquipoTrabajo.listaestadorevisionequiptrabajomodel}" var="data">
+			<p:dataTable>
 			
 				<p:column headerText="Código">
-					#{data.equipamientoTrabajo.idEquipamientoTrabajo}
 				</p:column>
 				<p:column headerText="Equipo">
-					#{data.equipamientoTrabajo.descripcionEquipamientoTrabajo}
 				</p:column>
 				<p:column headerText="Cantidad">
-					#{data.cantidad}
 				</p:column>
 			</p:dataTable>
+<!-- 			<p:dataTable id="listaequipo" value="#{mBEstadoRevisionEquipoTrabajo.listaestadorevisionequiptrabajomodel}" var="data"> -->
+			
+<!-- 				<p:column headerText="Código"> -->
+<!-- 					#{data.equipamientoTrabajo.idEquipamientoTrabajo} -->
+<!-- 				</p:column> -->
+<!-- 				<p:column headerText="Equipo"> -->
+<!-- 					#{data.equipamientoTrabajo.descripcionEquipamientoTrabajo} -->
+<!-- 				</p:column> -->
+<!-- 				<p:column headerText="Cantidad"> -->
+<!-- 					#{data.cantidad} -->
+<!-- 				</p:column> -->
+<!-- 			</p:dataTable> -->
 		</td>
 	</tr>
 	</table>
@@ -83,10 +92,10 @@
 	<h:outputText value="Colmena" />
 				<p:selectOneMenu id="cbo4" value="#{mBPlanillaRevision.colmena.idColmena}" >
 					<f:selectItems value="#{mBSelectItems.cboColmena}" />
-					<p:ajax update="lista" listener="#{mBPlanillaRevision.listarPlanillaRevision}" />
+<!-- 					<p:ajax update="lista" listener="#{mBPlanillaRevision.listarPlanillaRevision}" /> -->
 				</p:selectOneMenu>
 	
-		<p:dataTable id="lista" value="#{mBPlanillaRevision.listaplanillarevisionmodel}" var="data">
+		<p:dataTable>
 		
 		<p:ajax event="rowEdit" listener="#{mBPlanillaRevision.onEdit}" update=""/>  
         <p:ajax event="rowEditCancel" listener="#{mBPlanillaRevision.onDelete}" update="" />  
@@ -94,40 +103,40 @@
 		<p:column headerText="Id Planilla Revisión">
 			<p:cellEditor>
 				<f:facet name="output">  
-                    <h:outputText value="#data.idPlanillaRevision" />  
+                    
                 </f:facet>  
                 <f:facet name="input">  
-                    <p:inputText value="#data.idPlanillaRevision"/>  
+                      
                 </f:facet>  
 			</p:cellEditor>
 		</p:column>
 		<p:column headerText="Estado Colmena">
 			<p:cellEditor>
 				<f:facet name="output">  
-                    <h:outputText value="#data.estadoCosecha" />  
+                    
                 </f:facet>  
                 <f:facet name="input">  
-                    <p:inputText value="#data.estadoCosecha"/>  
+                      
                 </f:facet>  
 			</p:cellEditor>
 		</p:column>
 		<p:column headerText="Necesidad Alimentación">
 			<p:cellEditor>
 				<f:facet name="output">  
-                    <h:outputText value="#data.necesidadAlimentacion" />  
+                      
                 </f:facet>  
                 <f:facet name="input">  
-                    <p:inputText value="#data.necesidadAlimentacion"/>  
+                      
                 </f:facet>  
 			</p:cellEditor>
 		</p:column>
 		<p:column headerText="Comportamiento">
 			<p:cellEditor>
 				<f:facet name="output">  
-                    <h:outputText value="#data.comportamiento" />  
+                      
                 </f:facet>  
                 <f:facet name="input">  
-                    <p:inputText value="data.comportamiento"/>  
+                      
                 </f:facet>  
 			</p:cellEditor>
 		</p:column>
@@ -135,6 +144,55 @@
 			<p:rowEditor/>
 			</p:column>
 		</p:dataTable>
+<!-- 		<p:dataTable id="lista" value="#{mBPlanillaRevision.listaplanillarevisionmodel}" var="data"> -->
+		
+<!-- 		<p:ajax event="rowEdit" listener="#{mBPlanillaRevision.onEdit}" update=""/>   -->
+<!--         <p:ajax event="rowEditCancel" listener="#{mBPlanillaRevision.onDelete}" update="" />   -->
+		
+<!-- 		<p:column headerText="Id Planilla Revisión"> -->
+<!-- 			<p:cellEditor> -->
+<!-- 				<f:facet name="output">   -->
+<!--                     <h:outputText value="#data.idPlanillaRevision" />   -->
+<!--                 </f:facet>   -->
+<!--                 <f:facet name="input">   -->
+<!--                     <p:inputText value="#data.idPlanillaRevision"/>   -->
+<!--                 </f:facet>   -->
+<!-- 			</p:cellEditor> -->
+<!-- 		</p:column> -->
+<!-- 		<p:column headerText="Estado Colmena"> -->
+<!-- 			<p:cellEditor> -->
+<!-- 				<f:facet name="output">   -->
+<!--                     <h:outputText value="#data.estadoCosecha" />   -->
+<!--                 </f:facet>   -->
+<!--                 <f:facet name="input">   -->
+<!--                     <p:inputText value="#data.estadoCosecha"/>   -->
+<!--                 </f:facet>   -->
+<!-- 			</p:cellEditor> -->
+<!-- 		</p:column> -->
+<!-- 		<p:column headerText="Necesidad Alimentación"> -->
+<!-- 			<p:cellEditor> -->
+<!-- 				<f:facet name="output">   -->
+<!--                     <h:outputText value="#data.necesidadAlimentacion" />   -->
+<!--                 </f:facet>   -->
+<!--                 <f:facet name="input">   -->
+<!--                     <p:inputText value="#data.necesidadAlimentacion"/>   -->
+<!--                 </f:facet>   -->
+<!-- 			</p:cellEditor> -->
+<!-- 		</p:column> -->
+<!-- 		<p:column headerText="Comportamiento"> -->
+<!-- 			<p:cellEditor> -->
+<!-- 				<f:facet name="output">   -->
+<!--                     <h:outputText value="#data.comportamiento" />   -->
+<!--                 </f:facet>   -->
+<!--                 <f:facet name="input">   -->
+<!--                     <p:inputText value="data.comportamiento"/>   -->
+<!--                 </f:facet>   -->
+<!-- 			</p:cellEditor> -->
+<!-- 		</p:column> -->
+<!-- 		<p:column headerText="Opción"> -->
+<!-- 			<p:rowEditor/> -->
+<!-- 			</p:column> -->
+<!-- 		</p:dataTable> -->
 	</h:form>
 	</h:form>
 </h:body>

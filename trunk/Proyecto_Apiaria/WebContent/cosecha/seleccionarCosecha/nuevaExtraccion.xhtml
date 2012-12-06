@@ -7,15 +7,22 @@
       
 <h:head>
 <h:body>
-	<h:form>
+<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MODULO DE COSECHA" />
+		</ui:define>
+		
+		<ui:define name="content">
+		<h:form>
+			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE COSECHA</h1>
+<!-- 	<h:form> -->
 		<p:column>
 			<p:outputLabel value="Apiario"/>
 			
-			<p:selectOneMenu id="idApiario" value="#{mBUsuarioApiario.usuarioApiario.apiario.idApiario}">
-				<f:selectItems value="#{mBSelectItems.cboApiario}" />
-		 		<p:ajax update="iUbicacion,tabContainer,iNivelPeligro"  
-                        listener="#{mBUsuarioApiario.localizarApiario}" />
+			<p:selectOneMenu id="idApiario" value="aa">
+<!-- 				<f:selectItems value="#{mBSelectItems.cboApiario}" /> -->
             </p:selectOneMenu>
+            
 		</p:column>
 		<br/>
 		<p:column>
@@ -27,7 +34,18 @@
 			<p:outputLabel value="Ubicación"/>
 			<p:inputText value=""/>
 		</p:column>
-	</h:form>
+		
+		<p:tabView id="tabContainer">
+			<p:tab id="iTabPlanillaExtraccion" title="Planilla Extraccion">
+				<ui:include src="planillaExtraccion.xhtml" />
+			</p:tab>
+		</p:tabView>
+		
+<!-- 	</h:form> -->
+</h:form>
+		</ui:define>
+		
+	</ui:composition>
 </h:body>
 </h:head>
 </html>

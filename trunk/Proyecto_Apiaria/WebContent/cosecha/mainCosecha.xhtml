@@ -4,6 +4,27 @@
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://java.sun.com/jsf/core">
 
-   
-   
+   <h:head>
+</h:head>
+
+<h:body>
+
+	<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MODULO DE COSECHA" />
+		</ui:define>
+		
+		<ui:define name="content">
+		<h:form>
+			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE COSECHA</h1>
+			<div class="contenedor">	
+				<ui:include src="seleccionarCosecha/listadoCosecha.xhtml" />
+   			</div>
+		
+		</h:form>
+		</ui:define>
+		
+	</ui:composition>
+	
+</h:body>
 </html>
