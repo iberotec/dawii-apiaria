@@ -36,7 +36,7 @@ public class MySqlDetalleEquipoTrabajoDAO implements IDetalleEquipoTrabajo {
 	
 	@Override
 	public List<EstadoRevisionEquipamientoTrabajo> listarDetalleEquipoTrabajo(Integer codEstadoRevision) {
-
+		Open();
 		List lista = null;
 		try {
 			em.getTransaction().begin();
@@ -48,6 +48,8 @@ public class MySqlDetalleEquipoTrabajoDAO implements IDetalleEquipoTrabajo {
 			em.getTransaction().commit();
 		} catch (Exception e) {
 			em.getTransaction().rollback();
+		}finally{
+			Close();
 		}
 		
 		return lista;
