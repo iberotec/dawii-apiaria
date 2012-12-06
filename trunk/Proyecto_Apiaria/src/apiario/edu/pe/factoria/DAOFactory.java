@@ -12,6 +12,8 @@ import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
+import apiario.edu.pe.dao.IPlanillaRevisionTipoAlimentacionDAO;
+import apiario.edu.pe.dao.IPlanillaRevisionTipoEnfermedadDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.IReinaDAO;
 import apiario.edu.pe.dao.ITemporadaDAO;
@@ -44,6 +46,8 @@ public abstract class DAOFactory {
 	public abstract ITemporadaDAO getITemporadaDAO();
 	public abstract IUsuarioApiarioDAO getIUsuarioApiarioDAO();
 	public abstract IReinaDAO getIReinaDAO();
+	public abstract IPlanillaRevisionTipoAlimentacionDAO getiPlanillaRevisionTipoAlimentacionDAO();
+	public abstract IPlanillaRevisionTipoEnfermedadDAO getPlanillaTipoRevisionEnfermedadDAO();
 	
 	
 	public static DAOFactory getDAOFactory(TipoFabrica tipo) {

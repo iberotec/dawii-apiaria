@@ -16,6 +16,8 @@ import apiario.edu.pe.bean.NormaSeguridadApiario;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
+import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
+import apiario.edu.pe.bean.PlanillaRevisionTipoEnfermedad;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.Reina;
 import apiario.edu.pe.bean.Temporada;
@@ -34,6 +36,8 @@ import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
+import apiario.edu.pe.dao.IPlanillaRevisionTipoAlimentacionDAO;
+import apiario.edu.pe.dao.IPlanillaRevisionTipoEnfermedadDAO;
 import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.IReinaDAO;
 import apiario.edu.pe.dao.ITemporadaDAO;
@@ -48,7 +52,8 @@ import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,
 IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
-ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, Serializable{
+ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
+IPlanillaRevisionTipoEnfermedadDAO, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -68,6 +73,8 @@ ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, Serializable{
 	ITemporadaDAO daoTemporada = objDAOFactory.getITemporadaDAO();
 	IUsuarioApiarioDAO daoUsuarioApiario = objDAOFactory.getIUsuarioApiarioDAO();
 	IReinaDAO daoReina=objDAOFactory.getIReinaDAO();
+	IPlanillaRevisionTipoEnfermedadDAO daoPlanillaTipoEnfermedad=objDAOFactory.getPlanillaTipoRevisionEnfermedadDAO();
+	IPlanillaRevisionTipoAlimentacionDAO daoPlanillaRevisionTipoAlimentacion=objDAOFactory.getiPlanillaRevisionTipoAlimentacionDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -434,8 +441,6 @@ ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, Serializable{
 	@Override
 	public UsuarioApiario eliminarUsuarioApiario(UsuarioApiario instance)
 			throws Exception {
-
-		// TODO Auto-generated method stub
 		return daoUsuarioApiario.eliminarUsuarioApiario(instance);
 
 	}
@@ -498,36 +503,91 @@ ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, Serializable{
 	@Override
 	public List<EstadoRevisionEquipamientoTrabajo> listarTodosEstadoRevisionEquipamientoTrabajo()
 			throws Exception {
-		// TODO Auto-generated method stub
 		return daoDetalleEquipoTrabajo.listarTodosEstadoRevisionEquipamientoTrabajo();
 	}
 
 	@Override
 	public EstadoRevisionEquipamientoTrabajo guardarEstadoRevisionEquipamientoTrabajo(
 			EstadoRevisionEquipamientoTrabajo instance) throws Exception {
-		// TODO Auto-generated method stub
 		return daoDetalleEquipoTrabajo.guardarEstadoRevisionEquipamientoTrabajo(instance);
 	}
 
 	@Override
 	public List<EstadoRevisionEquipamientoTrabajo> buscarEstadoRevisionEquipamientoTrabajo(
 			EstadoRevisionEquipamientoTrabajo instance) throws Exception {
-		// TODO Auto-generated method stub
 		return daoDetalleEquipoTrabajo.buscarEstadoRevisionEquipamientoTrabajo(instance);
 	}
 
 	@Override
 	public EstadoRevisionEquipamientoTrabajo obtenerPorIdEstadoRevisionEquipamientoTrabajo(
 			int id) throws Exception {
-		// TODO Auto-generated method stub
 		return daoDetalleEquipoTrabajo.obtenerPorIdEstadoRevisionEquipamientoTrabajo(id);
 	}
 
 	@Override
 	public EstadoRevisionEquipamientoTrabajo eliminarEstadoRevisionEquipamientoTrabajo(
 			EstadoRevisionEquipamientoTrabajo instance) throws Exception {
-		// TODO Auto-generated method stub
 		return daoDetalleEquipoTrabajo.eliminarEstadoRevisionEquipamientoTrabajo(instance);
+	}
+
+	@Override
+	public List<PlanillaRevisionTipoEnfermedad> listarTodosPlanillaRevisionTipoEnfermedads()
+			throws Exception {
+		return daoPlanillaTipoEnfermedad.listarTodosPlanillaRevisionTipoEnfermedads();
+	}
+
+	@Override
+	public PlanillaRevisionTipoEnfermedad guardarPlanillaRevisionTipoEnfermedad(
+			PlanillaRevisionTipoEnfermedad instance) throws Exception {
+		return daoPlanillaTipoEnfermedad.guardarPlanillaRevisionTipoEnfermedad(instance);
+	}
+
+	@Override
+	public List<PlanillaRevisionTipoEnfermedad> buscarPlanillaRevisionTipoEnfermedad(
+			PlanillaRevisionTipoEnfermedad instance) throws Exception {
+		return daoPlanillaTipoEnfermedad.buscarPlanillaRevisionTipoEnfermedad(instance);
+	}
+
+	@Override
+	public PlanillaRevisionTipoEnfermedad obtenerPorIdPlanillaRevisionTipoEnfermedad(
+			int id) throws Exception {
+		return daoPlanillaTipoEnfermedad.obtenerPorIdPlanillaRevisionTipoEnfermedad(id);
+	}
+
+	@Override
+	public PlanillaRevisionTipoEnfermedad eliminarPlanillaRevisionTipoEnfermedad(
+			PlanillaRevisionTipoEnfermedad instance) throws Exception {
+		return daoPlanillaTipoEnfermedad.eliminarPlanillaRevisionTipoEnfermedad(instance);
+	}
+
+	@Override
+	public List<PlanillaRevisionTipoAlimentacion> listarTodosPlanillaRevisionTipoAlimentacions()
+			throws Exception {
+		return daoPlanillaRevisionTipoAlimentacion.listarTodosPlanillaRevisionTipoAlimentacions();
+	}
+
+	@Override
+	public PlanillaRevisionTipoAlimentacion guardarPlanillaRevisionTipoAlimentacion(
+			PlanillaRevisionTipoAlimentacion instance) throws Exception {
+		return daoPlanillaRevisionTipoAlimentacion.guardarPlanillaRevisionTipoAlimentacion(instance);
+	}
+
+	@Override
+	public List<PlanillaRevisionTipoAlimentacion> buscarPlanillaRevisionTipoAlimentacion(
+			PlanillaRevisionTipoAlimentacion instance) throws Exception {
+		return daoPlanillaRevisionTipoAlimentacion.buscarPlanillaRevisionTipoAlimentacion(instance);
+	}
+
+	@Override
+	public PlanillaRevisionTipoAlimentacion obtenerPorIdPlanillaRevisionTipoAlimentacion(
+			int id) throws Exception {
+		return daoPlanillaRevisionTipoAlimentacion.obtenerPorIdPlanillaRevisionTipoAlimentacion(id);
+	}
+
+	@Override
+	public PlanillaRevisionTipoAlimentacion eliminarPlanillaRevisionTipoAlimentacion(
+			PlanillaRevisionTipoAlimentacion instance) throws Exception {
+		return daoPlanillaRevisionTipoAlimentacion.eliminarPlanillaRevisionTipoAlimentacion(instance);
 	}
 
 }
