@@ -66,7 +66,7 @@ public class MBUsuarioApiario implements Serializable{
 		listColmenas();
 		Reina objReina=new Reina();
 		List<Reina> listaReina=new ArrayList<Reina>();
-//		int idReina=0;
+		int idReina=0;
 		try {
 			System.out.println("Entro al try catch");
 			for (int i = 0; i < listaColmenas.size(); i++) {
@@ -74,11 +74,15 @@ public class MBUsuarioApiario implements Serializable{
 				objplanillaRevision.setUsuarioApiario(new UsuarioApiario());
 //				usuarioApiario.getIdUsuarioApiario()
 				objplanillaRevision.getUsuarioApiario().setIdUsuarioApiario(1);
-				
-				if(listaColmenas.get(i).isSel()){
+				System.out.println("ListaSize->"+listaColmenas.size());
+				System.out.println("->"+listaColmenas.get(i).isSel());
+				System.out.println("->"+listaColmenas.get(i).getIdColmena());
+				if(listaColmenas.get(i).isSel()==false){
+					System.out.println("Entro a los seleccionados???");
 					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
 					objplanillaRevision.setColmena(new Colmena());
 					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+					System.out.println("DespuesColmena->"+listaColmenas.get(i).getIdColmena());
 //					objplanillaRevision.getColmena().setIdColmena(1);
 				}
 					
@@ -89,10 +93,10 @@ public class MBUsuarioApiario implements Serializable{
 					
 				for (int j = 0; j < listaReina.size(); j++) {
 //					listaColmenas.get(i).getIdColmena()
-					service.obtenerPorIdReina(1);
+					objReina=service.obtenerPorIdReina(listaColmenas.get(i).getIdColmena());
 //					listaReina.get(j).getIdReina()
 					objplanillaRevision.setReina(new Reina());
-					objplanillaRevision.getReina().setIdReina(1);
+					objplanillaRevision.getReina().setIdReina(objReina.getIdReina());
 				}
 				
 				objplanillaRevision.setEstadoRevision(new EstadoRevision());
@@ -103,7 +107,7 @@ public class MBUsuarioApiario implements Serializable{
 //				objplanillaRevision.getReina().setIdReina(idReina);
 				
 				
-//				System.out.println("IdColmena->"+objplanillaRevision.getColmena().getIdColmena());
+				System.out.println("IdColmena->"+objplanillaRevision.getColmena().getIdColmena());
 				System.out.println("ExistenciaReina->"+objplanillaRevision.getExistenciaReina());
 				System.out.println("IdReina->"+objplanillaRevision.getReina().getIdReina());
 				System.out.println("EstadoCosecha->"+objplanillaRevision.getEstadoCosecha());
@@ -124,7 +128,13 @@ public class MBUsuarioApiario implements Serializable{
 		}
 	}
 
-	
+	public void guardarControldeCalidad(){
+		try {
+			
+		} catch (Exception e) {
+			System.out.println("Error al guardar el control de calidad");
+		}
+	}
 	
 	
 
