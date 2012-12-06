@@ -2,8 +2,13 @@ package apiario.edu.pe.managedBeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
+
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
 
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
@@ -12,6 +17,8 @@ import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.Reina;
+import apiario.edu.pe.bean.Temporada;
+import apiario.edu.pe.bean.Usuario;
 import apiario.edu.pe.bean.UsuarioApiario;
 import apiario.edu.pe.service.SeleccionService;
 
@@ -255,6 +262,8 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("limpiarNuevaAsignacion");
 		usuarioApiario= new UsuarioApiario();
 		usuarioApiario.setApiario(new Apiario());
+		usuarioApiario.setUsuario(new Usuario());
+		usuarioApiario.setTemporada(new Temporada());
 		ubicacionApiario="";
 		nivelPeligro="";
 	}
@@ -421,6 +430,36 @@ public class MBUsuarioApiario implements Serializable{
 		
 		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
 		System.out.println("tamaño de lista obtenerEquipoSeguridad "+listaERET.size());
+		
+	}
+	public void guardarUsuarioApiario() throws Exception{
+		usuarioApiario.setUsuario((Usuario) ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).getAttribute("usuario"));
+		System.out.println("aver???? "+usuarioApiario.getUsuario().getNombreUsuario());
+		usuarioApiario.setEstadoAsignacion("asignado");
+		usuarioApiario.setFechaAsignacion(new Date());
+		
+
+		List<Temporada> listaTemporada = new ArrayList<Temporada>();
+		listaTemporada = service.listarTodosTemporada();
+		Date fechaActual= new Date();
+		for (int i = 0; i < listaTemporada.size(); i++) {
+			if(listaTemporada.get(i).getEstadoEtapa().equals("seleccion") && listaTemporada.get(i).getPeriodoFinal().getTime()>fechaActual.getTime()){
+			usuarioApiario.getTemporada().setIdTemporada(listaTemporada.get(i).getIdTemporada());
+			}
+
+		}
+
+		UsuarioApiario confirm = null;
+		try {
+			confirm = service.guardarUsuarioApiario(usuarioApiario);
+			if(confirm.isSuccess()){
+				System.out.println("grabo");
+			}else{
+				System.out.println("error al grabar");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		
 	}
