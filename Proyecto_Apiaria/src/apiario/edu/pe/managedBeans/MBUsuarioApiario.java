@@ -82,6 +82,7 @@ public class MBUsuarioApiario implements Serializable{
 //					objplanillaRevision.getColmena().setIdColmena(1);
 				}
 					
+				System.out.println("ColemnaID para la Reina->"+listaColmenas.get(i).getIdColmena());
 				objReina.setColmena(new Colmena());
 				objReina.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
 				listaReina=service.buscarReina(objReina);
@@ -102,7 +103,7 @@ public class MBUsuarioApiario implements Serializable{
 //				objplanillaRevision.getReina().setIdReina(idReina);
 				
 				
-				System.out.println("IdColmena->"+objplanillaRevision.getColmena().getIdColmena());
+//				System.out.println("IdColmena->"+objplanillaRevision.getColmena().getIdColmena());
 				System.out.println("ExistenciaReina->"+objplanillaRevision.getExistenciaReina());
 				System.out.println("IdReina->"+objplanillaRevision.getReina().getIdReina());
 				System.out.println("EstadoCosecha->"+objplanillaRevision.getEstadoCosecha());
