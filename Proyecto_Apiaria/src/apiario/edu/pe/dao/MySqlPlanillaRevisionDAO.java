@@ -78,6 +78,14 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 	public PlanillaRevision guardarPlanillaRevision(PlanillaRevision instance)
 			throws Exception {
 		try {
+			Open();
+			
+			instance.setExistenciaReina(null);
+			instance.setNecesidadAlimentacion(null);
+			instance.setNecesidadCuracion(null);
+			instance.setFaltaEspacioCamara(null);
+			instance.setFaltaAlza(null);
+			
 			instance.setSuccess(false);
 			em.getTransaction().begin();
 			em.merge(instance);
@@ -91,8 +99,7 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 			em.getTransaction().rollback();
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 

@@ -18,8 +18,17 @@ import apiario.edu.pe.bean.Reina;
 
 public class MySqlReinaDAO implements IReinaDAO{
 
-	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-	EntityManager em=emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
+	
+	public void Open(){
+		emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
+		em=emf.createEntityManager();
+	}
+	public void Close(){
+		em.close();
+		emf.close();
+	}
 	
 	@Override
 	public List<Reina> listarTodosReinas() throws Exception {
@@ -65,6 +74,7 @@ public class MySqlReinaDAO implements IReinaDAO{
 
 	@Override
 	public List<Reina> buscarReina(Reina instance) throws Exception {
+		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<Reina> criteria=builder.createQuery(Reina.class);
 		Root<Reina> reinaRoot=criteria.from(Reina.class);
@@ -89,20 +99,20 @@ public class MySqlReinaDAO implements IReinaDAO{
 		criteria.where(predicates);
 		
 		List<Reina> lista=em.createQuery(criteria).getResultList();
-		em.close();
+		Close();
 		return lista;
 	}
 
 	@Override
 	public Reina obtenerPorIdReina(int id) throws Exception {
 		try {
+			Open();
 			Reina instance=em.find(Reina.class, id);
 			return instance;
 		} catch (RuntimeException e) {
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 

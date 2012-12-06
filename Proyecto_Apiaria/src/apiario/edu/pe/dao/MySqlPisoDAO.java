@@ -9,9 +9,12 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import apiario.edu.pe.bean.Apiario;
+import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.Piso;
 
 public class MySqlPisoDAO implements IPisoDAO{
@@ -65,15 +68,22 @@ public class MySqlPisoDAO implements IPisoDAO{
 	public List<Piso> buscarPiso(Piso instance) throws Exception {
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<Piso> criteria=builder.createQuery(Piso.class);
-		Root<Piso> colmenaRoot=criteria.from(Piso.class);
+		Root<Piso> pisoRoot=criteria.from(Piso.class);
+		Join<Piso,Colmena> colmenaRoot = pisoRoot.join("colmena");
 		
-		criteria.select(colmenaRoot);
+		criteria.select(pisoRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdPiso()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idpiso"),instance.getIdPiso());
+			if(instance.getIdPiso()!=null && instance.getIdPiso()>0){
+				Predicate condition=builder.equal(pisoRoot.get("idPiso"),instance.getIdPiso());
 				p.add(condition);
+			}
+			if(instance.getColmena() !=null){
+				if(instance.getColmena().getIdColmena()!=null && instance.getColmena().getIdColmena()>0){
+					Predicate condition=builder.equal(colmenaRoot.get("idColmena"),instance.getColmena().getIdColmena());
+					p.add(condition);
+				}
 			}
 		}
 		Predicate[] predicates=new Predicate[p.size()];

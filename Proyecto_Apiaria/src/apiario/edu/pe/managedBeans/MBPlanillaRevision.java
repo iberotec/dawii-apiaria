@@ -111,10 +111,10 @@ public class MBPlanillaRevision implements Serializable{
 //	}
 //	
 //	
-//	public MBPlanillaRevision() {
-//		limpiar();
+	public MBPlanillaRevision() {
+		limpiar();
 //		listColmenas();
-//	}
+	}
 	
 	public void limpiar(){
 		colmena=new Colmena();
