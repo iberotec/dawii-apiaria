@@ -81,6 +81,14 @@
    <from-outcome>successNuevaAsignacion</from-outcome>
    <to-view-id>/seleccion/temporadaSeleccion/nuevaAsignacion.xhtml</to-view-id>
   </navigation-case>
+   <navigation-case>
+   <from-outcome>successMainCosecha</from-outcome>
+   <to-view-id>/cosecha/mainCosecha.xhtml</to-view-id>
+  </navigation-case>
+   <navigation-case>
+   <from-outcome>successNuevaAsignacionCosecha</from-outcome>
+   <to-view-id>/cosecha/seleccionarCosecha/nuevaExtraccion.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
  <!--navegacion -->
  
