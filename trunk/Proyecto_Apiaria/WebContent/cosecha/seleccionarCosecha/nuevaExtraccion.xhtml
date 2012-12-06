@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+      
+<h:head>
+<h:body>
+	<h:form>
+		<p:column>
+			<p:outputLabel value="Apiario"/>
+			
+			<p:selectOneMenu id="idApiario" value="#{mBUsuarioApiario.usuarioApiario.apiario.idApiario}">
+				<f:selectItems value="#{mBSelectItems.cboApiario}" />
+		 		<p:ajax update="iUbicacion,tabContainer,iNivelPeligro"  
+                        listener="#{mBUsuarioApiario.localizarApiario}" />
+            </p:selectOneMenu>
+		</p:column>
+		<br/>
+		<p:column>
+			<p:outputLabel value="Nivel de Peligro"/>
+			<p:inputText value=""/>
+		</p:column>
+		<br/>
+		<p:column>
+			<p:outputLabel value="Ubicación"/>
+			<p:inputText value=""/>
+		</p:column>
+	</h:form>
+</h:body>
+</h:head>
+</html>
