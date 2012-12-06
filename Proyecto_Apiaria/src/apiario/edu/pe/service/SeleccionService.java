@@ -495,4 +495,39 @@ ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, Serializable{
 		return daoReina.eliminarReina(instance);
 	}
 
+	@Override
+	public List<EstadoRevisionEquipamientoTrabajo> listarTodosEstadoRevisionEquipamientoTrabajo()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoDetalleEquipoTrabajo.listarTodosEstadoRevisionEquipamientoTrabajo();
+	}
+
+	@Override
+	public EstadoRevisionEquipamientoTrabajo guardarEstadoRevisionEquipamientoTrabajo(
+			EstadoRevisionEquipamientoTrabajo instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoDetalleEquipoTrabajo.guardarEstadoRevisionEquipamientoTrabajo(instance);
+	}
+
+	@Override
+	public List<EstadoRevisionEquipamientoTrabajo> buscarEstadoRevisionEquipamientoTrabajo(
+			EstadoRevisionEquipamientoTrabajo instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoDetalleEquipoTrabajo.buscarEstadoRevisionEquipamientoTrabajo(instance);
+	}
+
+	@Override
+	public EstadoRevisionEquipamientoTrabajo obtenerPorIdEstadoRevisionEquipamientoTrabajo(
+			int id) throws Exception {
+		// TODO Auto-generated method stub
+		return daoDetalleEquipoTrabajo.obtenerPorIdEstadoRevisionEquipamientoTrabajo(id);
+	}
+
+	@Override
+	public EstadoRevisionEquipamientoTrabajo eliminarEstadoRevisionEquipamientoTrabajo(
+			EstadoRevisionEquipamientoTrabajo instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoDetalleEquipoTrabajo.eliminarEstadoRevisionEquipamientoTrabajo(instance);
+	}
+
 }

@@ -18,7 +18,7 @@ import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.UsuarioApiario;
-
+@SuppressWarnings(value={"unchecked"})
 public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 
 	EntityManagerFactory emf;

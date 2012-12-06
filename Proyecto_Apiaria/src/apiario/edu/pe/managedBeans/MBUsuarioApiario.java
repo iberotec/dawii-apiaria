@@ -8,6 +8,7 @@ import java.util.Set;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.EstadoRevision;
+import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.Reina;
@@ -21,7 +22,8 @@ public class MBUsuarioApiario implements Serializable{
 	private SeleccionService service = new SeleccionService();
 	private String ubicacionApiario;
 	private String nivelPeligro;
-	
+	private int nivelPeligroId;
+	private List<EstadoRevisionEquipamientoTrabajo> listaERET = new ArrayList<EstadoRevisionEquipamientoTrabajo>();
 //	SeleccionService service = new SeleccionService();
 	private Colmena colmena;
 	private List<Colmena> listaColmenas=new ArrayList<Colmena>();
@@ -109,6 +111,22 @@ public class MBUsuarioApiario implements Serializable{
 	
 	
 	
+
+
+	public List<EstadoRevisionEquipamientoTrabajo> getListaERET() {
+		return listaERET;
+	}
+
+	public void setListaERET(List<EstadoRevisionEquipamientoTrabajo> listaERET) {
+		this.listaERET = listaERET;
+	}
+
+	public int getNivelPeligroId() {
+		return nivelPeligroId;
+	}
+	public void setNivelPeligroId(int nivelPeligroId) {
+		this.nivelPeligroId = nivelPeligroId;
+	}
 	public String getNivelPeligro() {
 		return nivelPeligro;
 	}
@@ -291,6 +309,7 @@ public class MBUsuarioApiario implements Serializable{
 	}
 	
 	public void localizarApiario() throws Exception{
+		listaERET= new ArrayList<EstadoRevisionEquipamientoTrabajo>();
 		System.out.println("entrega ubicacion");
 		PlanillaSeguimiento obj= new PlanillaSeguimiento();
 		obj.setApiario(new Apiario());
@@ -332,10 +351,12 @@ public class MBUsuarioApiario implements Serializable{
 				if(listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue()==1){
 					System.out.println("es 1");
 					nivelPeligro=listaPlanillaRevision.get(i).getEstadoRevision().getDescripcionEstadoRevision();
+					nivelPeligroId=listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue();
 				}
 				if(listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue()==2){
 					System.out.println("es 2");
 					nivelPeligro=listaPlanillaRevision.get(i).getEstadoRevision().getDescripcionEstadoRevision();
+					nivelPeligroId=listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue();
 				}
 			}
 		 }else{
@@ -344,5 +365,17 @@ public class MBUsuarioApiario implements Serializable{
 
 		listColmenas();
 
+	}
+	public void obtenerEquipoSeguridad() throws Exception{
+		System.out.println("obtenerEquipoSeguridad");
+		EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
+		objERET.setEstadoRevision(new EstadoRevision());
+		objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
+		
+		
+		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
+		System.out.println("tamaño de lista obtenerEquipoSeguridad "+listaERET.size());
+		
+		
 	}
 }
