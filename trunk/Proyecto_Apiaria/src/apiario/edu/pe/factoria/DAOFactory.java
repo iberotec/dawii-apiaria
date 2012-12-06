@@ -1,5 +1,6 @@
 package apiario.edu.pe.factoria;
 
+import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
@@ -43,6 +44,7 @@ public abstract class DAOFactory {
 	public abstract ITemporadaDAO getITemporadaDAO();
 	public abstract IUsuarioApiarioDAO getIUsuarioApiarioDAO();
 	public abstract IReinaDAO getIReinaDAO();
+	
 	
 	public static DAOFactory getDAOFactory(TipoFabrica tipo) {
 		switch (tipo) {

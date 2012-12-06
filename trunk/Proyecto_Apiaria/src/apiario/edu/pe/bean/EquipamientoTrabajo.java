@@ -16,7 +16,7 @@ public class EquipamientoTrabajo implements Serializable {
 
 	@Id
 	@Column(name="id_equipamiento_trabajo")
-	private int idEquipamientoTrabajo;
+	private Integer idEquipamientoTrabajo;
 
 	@Column(name="descripcion_equipo_trabajo")
 	private String descripcionEquipoTrabajo;
@@ -28,11 +28,11 @@ public class EquipamientoTrabajo implements Serializable {
     public EquipamientoTrabajo() {
     }
 
-	public int getIdEquipamientoTrabajo() {
+	public Integer getIdEquipamientoTrabajo() {
 		return this.idEquipamientoTrabajo;
 	}
 
-	public void setIdEquipamientoTrabajo(int idEquipamientoTrabajo) {
+	public void setIdEquipamientoTrabajo(Integer idEquipamientoTrabajo) {
 		this.idEquipamientoTrabajo = idEquipamientoTrabajo;
 	}
 

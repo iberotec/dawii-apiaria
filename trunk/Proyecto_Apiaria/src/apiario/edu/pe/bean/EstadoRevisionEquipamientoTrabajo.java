@@ -3,6 +3,8 @@ package apiario.edu.pe.bean;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 
 /**
  * The persistent class for the estado_revision_equipamiento_trabajo database table.
@@ -10,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="estado_revision_equipamiento_trabajo")
-public class EstadoRevisionEquipamientoTrabajo implements Serializable {
+public class EstadoRevisionEquipamientoTrabajo extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
