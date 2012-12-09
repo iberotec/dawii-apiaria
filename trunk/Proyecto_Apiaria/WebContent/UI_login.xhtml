@@ -34,7 +34,7 @@
 						<h:outputLabel for="password" value="CONTRASEÑA" />
 						<p:password id="password" required="true"  value="#{mBLogueo.pass}"/>
 					
-						<p:commandButton value="INGRESAR"  action="#{mBLogueo.ingresarSistema}"></p:commandButton>
+						<p:commandButton value="INGRESAR"  action="#{mBLogueo.ingresarSistema}" ajax="false"></p:commandButton>
 						
 					</h:panelGrid>
 

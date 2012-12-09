@@ -6,8 +6,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
+
+import org.primefaces.event.SelectEvent;
 
 
 import apiario.edu.pe.bean.Apiario;
@@ -37,7 +41,7 @@ public class MBUsuarioApiario implements Serializable{
 	private PlanillaRevision objplanillaRevision;
 	private Colmena objColmena;
 	private EstadoRevision objEstadoRevision;
-	
+	private int p_indice_usuarioApiario;
 	
 	public void limpiar(){
 //		objColmena=new Colmena();
@@ -253,6 +257,14 @@ public class MBUsuarioApiario implements Serializable{
 		return objEstadoRevision;
 	}
 
+	public int getP_indice_usuarioApiario() {
+		return p_indice_usuarioApiario;
+	}
+
+	public void setP_indice_usuarioApiario(int p_indice_usuarioApiario) {
+		this.p_indice_usuarioApiario = p_indice_usuarioApiario;
+	}
+
 	public MBUsuarioApiario() {
 		limpiar();
 		
@@ -463,4 +475,16 @@ public class MBUsuarioApiario implements Serializable{
 		
 		
 	}
+	public void abrirModificarUsuarioApiario(Integer id){
+		System.out.println("abrirModificarUsuarioApiario");
+		System.out.println("indice "+p_indice_usuarioApiario);
+		System.out.println("id "+id);
+	}
+//	public void onRowSelect(SelectEvent event) {  
+//		System.out.println("1");
+//	        FacesMessage msg = new FacesMessage("Car Selected", ((UsuarioApiario) event.getObject()).getEstadoAsignacion());  
+//	  System.out.println("2");
+//	       FacesContext.getCurrentInstance().addMessage(null, msg);  
+//	System.out.println("3");
+//	}  
 }
