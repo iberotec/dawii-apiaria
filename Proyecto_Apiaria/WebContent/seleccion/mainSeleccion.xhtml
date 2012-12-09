@@ -23,20 +23,26 @@
 			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
 				SELECCION</h1>
 		<ui:include src="/seleccion/temporadaSeleccion/toolbars/toolbar_apiarioAsignado.xhtml"></ui:include>
-		<p:commandLink action="#{mBUsuarioApiario.listarTodosUsuarioApiario}" value="listar" update="dtlista"></p:commandLink>
+		<p:commandLink action="#{mBUsuarioApiario.listarTodosUsuarioApiario}" value="listar" update="dtlista" ajax="false"></p:commandLink>
 		<p:commandLink action="#{mBUsuarioApiario.abrirNuevaAsignacion}" value="nuevo"  ajax="false"></p:commandLink>
 			<div class="contenedor">		
 					<p:dataTable value="#{mBUsuarioApiario.listaUsarioApiario}"
 								var="lista" 
-								rowIndexVar="fila" 
+								rowIndexVar="fila"
 								id="dtlista" 
-								rows="10"								
+								rows="10"
+								paginator="true"								
 								width="100%" 
-								selectionMode="single"
-								selection="#{mBUsuarioApiario.usuarioApiario}">
+								rowKey="#{lista.idUsuarioApiario}" selection="#{mBUsuarioApiario.usuarioApiario}"
+								selectionMode="single">
+								
+								
+								<p:ajax event="rowSelect" listener="#{mBUsuarioApiario.abrirModificarUsuarioApiario(fila)}" />
+									
+								
 								
 							<f:facet name="header">
-								<h:outputText value="Listado de Apiarios ]Asignados" />
+								<h:outputText value="Listado de Apiarios Asignados" />
 							</f:facet>
 								
 						<p:column>
@@ -50,7 +56,7 @@
 							<f:facet name="header">
 										<h:outputText value="Id" />
 							</f:facet>
-							<h:outputText value="#{fila+1}" />		
+							<h:outputText value="#{lista.idUsuarioApiario}" />		
 						</p:column>
 						<p:column>
 							<f:facet name="header">
