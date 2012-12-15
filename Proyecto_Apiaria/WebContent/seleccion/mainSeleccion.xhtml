@@ -4,8 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
-	xmlns:sec="http://www.springframework.org/security/tags">
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es">
 
 
 <h:head>
@@ -22,26 +21,24 @@
 		<h:form>
 			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
 				SELECCION</h1>
-		<ui:include src="/seleccion/temporadaSeleccion/toolbars/toolbar_apiarioAsignado.xhtml"></ui:include>
+		
 		<p:commandLink action="#{mBUsuarioApiario.listarTodosUsuarioApiario}" value="listar" update="dtlista" ajax="false"></p:commandLink>
 		<p:commandLink action="#{mBUsuarioApiario.abrirNuevaAsignacion}" value="nuevo"  ajax="false"></p:commandLink>
 			<div class="contenedor">		
-					<p:dataTable value="#{mBUsuarioApiario.listaUsarioApiario}"
-								var="lista" 
-								rowIndexVar="fila"
-								id="dtlista" 
-								rows="10"
-								paginator="true"								
-								width="100%" 
-								rowKey="#{lista.idUsuarioApiario}" selection="#{mBUsuarioApiario.usuarioApiario}"
-								selectionMode="single">
-								
-								
-								<p:ajax event="rowSelect" listener="#{mBUsuarioApiario.abrirModificarUsuarioApiario(fila)}" />
-									
-								
-								
-							<f:facet name="header">
+					<p:dataTable id="dtlista" var="listado" value="#{mBUsuarioApiario.listaUsarioApiario}" 
+				    widgetVar="Seleccion" 
+		            emptyMessage="No se encontraron colmenares" 
+		            paginator="true" 
+		            rows="5" 
+		            paginatorPosition="bottom" 
+		            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+		            selection="#{mBUsuarioApiario.usuarioApiario}" 
+		            selectionMode="single" 
+		            rowKey="#{listado.idUsuarioApiario}">
+				    <p:ajax event="rowSelect" 
+				            listener="#{mBUsuarioApiario.aver(mBUsuarioApiario.usuarioApiario.idUsuarioApiario)}"
+				            />
+				       <f:facet name="header">
 								<h:outputText value="Listado de Apiarios Asignados" />
 							</f:facet>
 								
@@ -49,46 +46,46 @@
 							<f:facet name="header">
 								<h:outputText value="" />
 							</f:facet>
-							<h:selectBooleanCheckbox value="#{lista.sel}" />
+							<h:selectBooleanCheckbox value="#{listado.sel}" />
 						</p:column>
 								
 						<p:column>
 							<f:facet name="header">
 										<h:outputText value="Id" />
 							</f:facet>
-							<h:outputText value="#{lista.idUsuarioApiario}" />		
+							<h:outputText value="#{listado.idUsuarioApiario}" />		
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Apiario"></h:outputText>
 							</f:facet>
-							<h:outputText value="Apiario #{lista.apiario.idApiario}" />
+							<h:outputText value="Apiario #{listado.apiario.idApiario}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Provincia"></h:outputText>
 							</f:facet>
-							<h:outputText value="#{mBUsuarioApiario.obtenerProvincia(lista.apiario.planillaSeguimientos)}" />
+							<h:outputText value="#{mBUsuarioApiario.obtenerProvincia(listado.apiario.planillaSeguimientos)}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Departamento"></h:outputText>
 							</f:facet>
-							<h:outputText value="#{mBUsuarioApiario.obtenerDepartamento(lista.apiario.planillaSeguimientos)}" />
+							<h:outputText value="#{mBUsuarioApiario.obtenerDepartamento(listado.apiario.planillaSeguimientos)}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputText value="Nivel Peligro"></h:outputText>
 							</f:facet>
-							<h:outputText value="#{mBUsuarioApiario.obtenerNivelPeligro(lista.planillaRevisions)}" />
+							<h:outputText value="#{mBUsuarioApiario.obtenerNivelPeligro(listado.planillaRevisions)}" />
 						</p:column>
-					</p:dataTable>
+		   			</p:dataTable>
 			</div>
 
 
 		<!-- 	<p:growl id="growl" showDetail="true" life="5000" /> -->
 	
-		<ui:include src="/seleccion/temporadaSeleccion/modals/modal_AlertaTemporada.xhtml"></ui:include>
+		
 		</h:form>
 		</ui:define>
 		
