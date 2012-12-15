@@ -28,6 +28,9 @@ public class PlanillaSeguimiento extends BaseEntidades implements Serializable {
 	@Column(name="motivo_ubicacion")
 	private String motivoUbicacion;
 
+	@Column(name="estado")
+	private Integer estado;
+	
 	//bi-directional many-to-one association to Apiario
     @ManyToOne
 	@JoinColumn(name="id_apiario")
@@ -79,6 +82,14 @@ public class PlanillaSeguimiento extends BaseEntidades implements Serializable {
 
 	public void setZona(Zona zona) {
 		this.zona = zona;
+	}
+
+	public Integer getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Integer estado) {
+		this.estado = estado;
 	}
 	
 }

@@ -475,14 +475,40 @@ public class MBUsuarioApiario implements Serializable{
 		
 		
 	}
-	public void aver(int dato){
-		System.out.println("entro oeoeoeoe");
-		System.out.println("datos "+dato);
-	}
-	public void abrirModificarUsuarioApiario(int id){
+	public String abrirModificarUsuarioApiario(int id) throws Exception{
 		System.out.println("abrirModificarUsuarioApiario");
-		System.out.println("indice "+p_indice_usuarioApiario);
 		System.out.println("id "+id);
+		UsuarioApiario objUA = new UsuarioApiario();
+		objUA= service.obtenerPorIdUsuarioApiario(id);
+		usuarioApiario =objUA;
+		PlanillaSeguimiento objPS = new PlanillaSeguimiento();
+		objPS.setEstado(1);
+		objPS.setApiario(new Apiario());
+		objPS.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		List<PlanillaSeguimiento> listaPS = new ArrayList<PlanillaSeguimiento>();
+		listaPS=service.buscarPlanillaSeguimiento(objPS);
+		ubicacionApiario=listaPS.get(0).getZona().getUbigeo().getDistrito();
+		
+		PlanillaRevision objPR = new PlanillaRevision();
+		objPR.setUsuarioApiario(new UsuarioApiario());
+		objPR.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+		List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
+		listaPR = service.buscarPlanillaRevision(objPR);
+		nivelPeligro = listaPR.get(0).getEstadoRevision().getDescripcionEstadoRevision();
+		nivelPeligroId= listaPR.get(0).getEstadoRevision().getIdEstadoRevision();
+		
+		
+		EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
+		objERET.setEstadoRevision(new EstadoRevision());
+		objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
+		
+		
+		System.out.println("ubicacionApiario "+ubicacionApiario);
+		System.out.println("nivelPeligro "+nivelPeligro);
+		System.out.println("nivelPeligroId "+nivelPeligroId);
+		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
+		
+		return "successNuevaAsignacion";
 	}
 //	public void onRowSelect(SelectEvent event) {  
 //		System.out.println("1");

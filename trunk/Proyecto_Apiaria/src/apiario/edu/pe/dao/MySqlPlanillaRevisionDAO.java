@@ -121,6 +121,11 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 				p.add(condition);
 			}
 			if(instance.getUsuarioApiario()!=null){
+				if(instance.getUsuarioApiario().getIdUsuarioApiario()!=null && instance.getUsuarioApiario().getIdUsuarioApiario().intValue()>0){
+					Predicate condition=builder.equal(usuarioApiarioRoot.get("idUsuarioApiario"),instance.getUsuarioApiario().getIdUsuarioApiario());
+					p.add(condition);
+				}
+				
 				if(instance.getUsuarioApiario().getApiario()!=null){
 					if(instance.getUsuarioApiario().getApiario().getIdApiario()!=null && instance.getUsuarioApiario().getApiario().getIdApiario()>0){
 						Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getUsuarioApiario().getApiario().getIdApiario());
