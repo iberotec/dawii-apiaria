@@ -91,6 +91,11 @@ public class MySqlPlanillaSeguimientoDAO implements IPlanillaSeguimientoDAO{
 				Predicate condition=builder.equal(planillaSeguimientoRoot.get("idPlanillaSeguimiento"), instance.getIdPlanillaSeguimiento());
 				p.add(condition);
 			}
+			if(instance.getEstado()!=null && instance.getEstado().intValue()>0){
+				System.out.println("instance.getEstado()");
+				Predicate condition=builder.equal(planillaSeguimientoRoot.get("estado"), instance.getEstado());
+				p.add(condition);
+			}
 			if(instance.getApiario()!=null){
 				System.out.println("PlanillaSeguimiento.getApiario()");
 				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario()>0){
