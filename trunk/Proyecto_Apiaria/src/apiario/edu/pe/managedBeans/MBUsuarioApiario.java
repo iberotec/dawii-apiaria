@@ -267,7 +267,7 @@ public class MBUsuarioApiario implements Serializable{
 
 	public MBUsuarioApiario() {
 		limpiar();
-		
+
 	}
 	
 	public void limpiarNuevaAsignacion(){
@@ -475,7 +475,11 @@ public class MBUsuarioApiario implements Serializable{
 		
 		
 	}
-	public void abrirModificarUsuarioApiario(Integer id){
+	public void aver(int dato){
+		System.out.println("entro oeoeoeoe");
+		System.out.println("datos "+dato);
+	}
+	public void abrirModificarUsuarioApiario(int id){
 		System.out.println("abrirModificarUsuarioApiario");
 		System.out.println("indice "+p_indice_usuarioApiario);
 		System.out.println("id "+id);
