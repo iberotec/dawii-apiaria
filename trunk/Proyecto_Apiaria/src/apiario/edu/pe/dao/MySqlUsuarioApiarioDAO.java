@@ -164,5 +164,21 @@ public class MySqlUsuarioApiarioDAO implements IUsuarioApiarioDAO{
 		}
 		return instance;
 	}
+	@Override
+	public List<Integer> obtenerMaximoIdUsuarioApiario()
+			throws Exception {
+		List<Integer> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select MAX(model.idUsuarioApiario) from UsuarioApiario model");
+			lista = q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
+		}
+		Close();
+		System.out.println("lista??dAO "+lista);
+		return lista;
+	}
 
 }

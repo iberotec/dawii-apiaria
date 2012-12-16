@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
@@ -59,7 +61,8 @@ public class MBUsuarioApiario implements Serializable{
 	private List<NormaSeguridad> listaNS = new ArrayList<NormaSeguridad>();
 	private NormaSeguridad normaSeguridad;
 	private NormaSeguridadApiario normaSeguridadApiario;
-	List<NormaSeguridadApiario> listaNSA = new ArrayList<NormaSeguridadApiario>();
+	private List<NormaSeguridadApiario> listaNSA = new ArrayList<NormaSeguridadApiario>();
+	private List<String> listaString = new ArrayList<String>();
 //	public void limpiar(){
 ////		objColmena=new Colmena();
 //
@@ -70,111 +73,111 @@ public class MBUsuarioApiario implements Serializable{
 //		objEstadoRevision=new EstadoRevision();
 //	}
 	
-	public void listColmenas(){
-		System.out.println("Entro Colmenas");
-		System.out.println("-->"+usuarioApiario.getApiario().getIdApiario());
-		listaColmenas.clear();
-		int apiarioId=0;
-		try {
-			System.out.println();
-			apiarioId=usuarioApiario.getApiario().getIdApiario();
-			objColmena.setApiario(new Apiario());
-			System.out.println("IdUsuarioApiario->"+usuarioApiario.getApiario().getIdApiario());
-			System.out.println(">-->"+apiarioId);
-//			usuarioApiario.getApiario().getIdApiario()
-			objColmena.getApiario().setIdApiario(apiarioId);
-			listaColmenas=service.buscarColmena(objColmena);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public void listColmenas(){
+//		System.out.println("Entro Colmenas");
+//		System.out.println("-->"+usuarioApiario.getApiario().getIdApiario());
+//		listaColmenas.clear();
+//		int apiarioId=0;
+//		try {
+//			System.out.println();
+//			apiarioId=usuarioApiario.getApiario().getIdApiario();
+//			objColmena.setApiario(new Apiario());
+//			System.out.println("IdUsuarioApiario->"+usuarioApiario.getApiario().getIdApiario());
+//			System.out.println(">-->"+apiarioId);
+////			usuarioApiario.getApiario().getIdApiario()
+//			objColmena.getApiario().setIdApiario(apiarioId);
+//			listaColmenas=service.buscarColmena(objColmena);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
-	public void guardarPlanillaRevision(){
-		System.out.println("Llego al metodo de guardarPlanillaRevision");
-		listColmenas();
-		Reina objReina=new Reina();
-		List<Reina> listaReina=new ArrayList<Reina>();
-		int idReina=0;
-		List arregloEnfermedad;
-		List arregloAlimentacion;
-		try {
-			System.out.println("Entro al try catch");
-			for (int i = 0; i < listaColmenas.size(); i++) {
-				System.out.println("IDUsuarioApiario->"+usuarioApiario.getIdUsuarioApiario());
-				objplanillaRevision.setUsuarioApiario(new UsuarioApiario());
-//				usuarioApiario.getIdUsuarioApiario()
-				objplanillaRevision.getUsuarioApiario().setIdUsuarioApiario(1);
-				System.out.println("ListaSize->"+listaColmenas.size());
-				System.out.println("->"+listaColmenas.get(i).isSel());
-				System.out.println("->"+listaColmenas.get(i).getIdColmena());
-				if(listaColmenas.get(i).isSel()==false){
-					System.out.println("Entro a los seleccionados???");
-					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
-					objplanillaRevision.setColmena(new Colmena());
-					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
-					System.out.println("DespuesColmena->"+listaColmenas.get(i).getIdColmena());
-//					objplanillaRevision.getColmena().setIdColmena(1);
-				}
-					
-				System.out.println("ColemnaID para la Reina->"+listaColmenas.get(i).getIdColmena());
-				objReina.setColmena(new Colmena());
-				objReina.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
-				listaReina=service.buscarReina(objReina);
-					
-				for (int j = 0; j < listaReina.size(); j++) {
-//					listaColmenas.get(i).getIdColmena()
-					objReina=service.obtenerPorIdReina(listaColmenas.get(i).getIdColmena());
-//					listaReina.get(j).getIdReina()
-					objplanillaRevision.setReina(new Reina());
-					objplanillaRevision.getReina().setIdReina(objReina.getIdReina());
-				}
-				
-				objplanillaRevision.setEstadoRevision(new EstadoRevision());
-				objplanillaRevision.getEstadoRevision().setIdEstadoRevision(objEstadoRevision.getIdEstadoRevision());
-				
-				
-//				objplanillaRevision.setReina(new Reina());
-//				objplanillaRevision.getReina().setIdReina(idReina);
-				
-				
-				System.out.println("IdColmena->"+objplanillaRevision.getColmena().getIdColmena());
-				System.out.println("ExistenciaReina->"+objplanillaRevision.getExistenciaReina());
-				System.out.println("IdReina->"+objplanillaRevision.getReina().getIdReina());
-				System.out.println("EstadoCosecha->"+objplanillaRevision.getEstadoCosecha());
-				System.out.println("NecesidadAlimentacion->"+objplanillaRevision.getNecesidadAlimentacion());
-				System.out.println("NecesidadCuracion->"+objplanillaRevision.getNecesidadCuracion());
-				System.out.println("IdEstadoRevision->"+objplanillaRevision.getEstadoRevision().getIdEstadoRevision());
-				System.out.println("FaltaEspacioCamara->"+objplanillaRevision.getFaltaEspacioCamara());
-				System.out.println("FaltaAlza->"+objplanillaRevision.getFaltaAlza());
-				System.out.println("Comportamiento->"+objplanillaRevision.getComportamiento());
-				System.out.println("IdUsuarioApiario->"+objplanillaRevision.getUsuarioApiario().getIdUsuarioApiario());
+//	public void guardarPlanillaRevision(){
+//		System.out.println("Llego al metodo de guardarPlanillaRevision");
+//		listColmenas();
+//		Reina objReina=new Reina();
+//		List<Reina> listaReina=new ArrayList<Reina>();
+//		int idReina=0;
+//		List arregloEnfermedad;
+//		List arregloAlimentacion;
+//		try {
+//			System.out.println("Entro al try catch");
+//			for (int i = 0; i < listaColmenas.size(); i++) {
+//				System.out.println("IDUsuarioApiario->"+usuarioApiario.getIdUsuarioApiario());
+//				objplanillaRevision.setUsuarioApiario(new UsuarioApiario());
+////				usuarioApiario.getIdUsuarioApiario()
+//				objplanillaRevision.getUsuarioApiario().setIdUsuarioApiario(1);
+//				System.out.println("ListaSize->"+listaColmenas.size());
+//				System.out.println("->"+listaColmenas.get(i).isSel());
+//				System.out.println("->"+listaColmenas.get(i).getIdColmena());
+//				if(listaColmenas.get(i).isSel()==false){
+//					System.out.println("Entro a los seleccionados???");
+//					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
+//					objplanillaRevision.setColmena(new Colmena());
+//					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+//					System.out.println("DespuesColmena->"+listaColmenas.get(i).getIdColmena());
+////					objplanillaRevision.getColmena().setIdColmena(1);
+//				}
+//					
+//				System.out.println("ColemnaID para la Reina->"+listaColmenas.get(i).getIdColmena());
+//				objReina.setColmena(new Colmena());
+//				objReina.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+//				listaReina=service.buscarReina(objReina);
+//					
+//				for (int j = 0; j < listaReina.size(); j++) {
+////					listaColmenas.get(i).getIdColmena()
+//					objReina=service.obtenerPorIdReina(listaColmenas.get(i).getIdColmena());
+////					listaReina.get(j).getIdReina()
+//					objplanillaRevision.setReina(new Reina());
+//					objplanillaRevision.getReina().setIdReina(objReina.getIdReina());
+//				}
+//				
+//				objplanillaRevision.setEstadoRevision(new EstadoRevision());
+//				objplanillaRevision.getEstadoRevision().setIdEstadoRevision(objEstadoRevision.getIdEstadoRevision());
+//				
+//				
+////				objplanillaRevision.setReina(new Reina());
+////				objplanillaRevision.getReina().setIdReina(idReina);
+//				
+//				
+//				System.out.println("IdColmena->"+objplanillaRevision.getColmena().getIdColmena());
+//				System.out.println("ExistenciaReina->"+objplanillaRevision.getExistenciaReina());
+//				System.out.println("IdReina->"+objplanillaRevision.getReina().getIdReina());
+//				System.out.println("EstadoCosecha->"+objplanillaRevision.getEstadoCosecha());
+//				System.out.println("NecesidadAlimentacion->"+objplanillaRevision.getNecesidadAlimentacion());
+//				System.out.println("NecesidadCuracion->"+objplanillaRevision.getNecesidadCuracion());
+//				System.out.println("IdEstadoRevision->"+objplanillaRevision.getEstadoRevision().getIdEstadoRevision());
+//				System.out.println("FaltaEspacioCamara->"+objplanillaRevision.getFaltaEspacioCamara());
+//				System.out.println("FaltaAlza->"+objplanillaRevision.getFaltaAlza());
+//				System.out.println("Comportamiento->"+objplanillaRevision.getComportamiento());
+//				System.out.println("IdUsuarioApiario->"+objplanillaRevision.getUsuarioApiario().getIdUsuarioApiario());
+//
+//				System.out.println("TipoAlimentacion->"+objplanillaRevision.getPlanillaRevisionTipoAlimentacions());
+//				System.out.println("TipoEnfermedad->"+objplanillaRevision.getPlanillaRevisionTipoEnfermedads());
+//				
+//				
+//				arregloAlimentacion=objplanillaRevision.getPlanillaRevisionTipoAlimentacions();
+//				arregloEnfermedad=objplanillaRevision.getPlanillaRevisionTipoEnfermedads();
+//				
+////				.get(i).getIdPlanillaRevisionTipoAlimentacion()
+////				.get(i).getIdPlanillaRevisionTipoEnfermedad()
+//				
+//				
+//				service.guardarPlanillaRevision(objplanillaRevision);
+//				System.out.println("------------------------------------guardar satisfactoriamente");
+//			}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
-				System.out.println("TipoAlimentacion->"+objplanillaRevision.getPlanillaRevisionTipoAlimentacions());
-				System.out.println("TipoEnfermedad->"+objplanillaRevision.getPlanillaRevisionTipoEnfermedads());
-				
-				
-				arregloAlimentacion=objplanillaRevision.getPlanillaRevisionTipoAlimentacions();
-				arregloEnfermedad=objplanillaRevision.getPlanillaRevisionTipoEnfermedads();
-				
-//				.get(i).getIdPlanillaRevisionTipoAlimentacion()
-//				.get(i).getIdPlanillaRevisionTipoEnfermedad()
-				
-				
-				service.guardarPlanillaRevision(objplanillaRevision);
-				System.out.println("------------------------------------guardar satisfactoriamente");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void guardarControldeCalidad(){
-		try {
-			
-		} catch (Exception e) {
-			System.out.println("Error al guardar el control de calidad");
-		}
-	}
+//	public void guardarControldeCalidad(){
+//		try {
+//			
+//		} catch (Exception e) {
+//			System.out.println("Error al guardar el control de calidad");
+//		}
+//	}
 	
 	
 
@@ -402,6 +405,14 @@ public class MBUsuarioApiario implements Serializable{
 		this.listaNSA = listaNSA;
 	}
 
+	public List<String> getListaString() {
+		return listaString;
+	}
+
+	public void setListaString(List<String> listaString) {
+		this.listaString = listaString;
+	}
+
 	public MBUsuarioApiario() {
 //		limpiar();
 
@@ -415,6 +426,7 @@ public class MBUsuarioApiario implements Serializable{
 		usuarioApiario.setTemporada(new Temporada());
 		listaERET = new ArrayList<EstadoRevisionEquipamientoTrabajo>();
 		listaPR = new ArrayList<PlanillaRevision>();
+		listaString= new ArrayList<String>();
 		ubicacionApiario="";
 		nivelPeligro="";
 		mostrarEquipoSeguridad=false;
@@ -571,7 +583,7 @@ public class MBUsuarioApiario implements Serializable{
 			 nivelPeligro="";
 		 }
 
-		listColmenas();
+//		listColmenas();
 
 	}
 	public void obtenerEquipoSeguridad() throws Exception{
@@ -607,6 +619,17 @@ public class MBUsuarioApiario implements Serializable{
 		UsuarioApiario confirm = null;
 		try {
 			confirm = service.guardarUsuarioApiario(usuarioApiario);
+			
+			List<Integer> listaIdApiario = new ArrayList<Integer>();
+			listaIdApiario=service.obtenerMaximoIdUsuarioApiario();
+			System.out.println("tamaño listaUsuApi "+listaIdApiario.size());
+			if(listaIdApiario.size()>0){
+				for (int i = 0; i < listaIdApiario.size(); i++) {
+					System.out.println("id?? "+listaIdApiario.get(i));
+					usuarioApiario.setIdUsuarioApiario(listaIdApiario.get(i));
+				}
+			}
+			System.out.println("usarioApiario id "+usuarioApiario.getIdUsuarioApiario());
 			if(confirm.isSuccess()){
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva asignacion"));  
 				System.out.println("grabo");
@@ -659,12 +682,16 @@ public class MBUsuarioApiario implements Serializable{
 		objNSA.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
 		
 		listaNSA = service.buscarNormaSeguridadApiario(objNSA);
-//		for (int i = 0; i < listaNSA.size(); i++) {
-//			normaSeguridadApiario =new NormaSeguridadApiario();
-//			normaSeguridadApiario.setNormaSeguridad(new NormaSeguridad());
-//			normaSeguridadApiario.getNormaSeguridad().setIdNormaSeguridad(listaNSA.get(i).getNormaSeguridad().getIdNormaSeguridad());
-//		}
-		
+		System.out.println("tamaño listaNSA "+listaNSA.size());
+		if(listaNSA.size()>0){
+			for (int i = 0; i < listaNSA.size(); i++) {
+				String idNormaSeguridad=listaNSA.get(i).getNormaSeguridad().getIdNormaSeguridad().toString();
+				System.out.println("id NormaSeguridad "+idNormaSeguridad);
+				System.out.println("listaString antes "+listaString.size());
+				listaString.add(idNormaSeguridad);
+				System.out.println("listaString despues "+listaString.size());
+			}
+		}
 		
 		mostrarEquipoSeguridad=true;
 		ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) FacesContext
@@ -721,6 +748,23 @@ public class MBUsuarioApiario implements Serializable{
 		objC.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
 		listaColmenas = service.buscarColmena(objC);
 	}
-
+	
+	public void guardarControlCalidad(){
+		System.out.println("guardarControlCalidad");
+		System.out.println("tamaño lista NS "+listaNS.size());
+		System.out.println("tamaño listaString "+listaString.size());
+		if(listaString.size()>0){
+			for (int i = 0; i < listaString.size(); i++) {
+				System.out.println("listaString.get(i) "+listaString.get(i));
+			}
+		}
+		
+		if(listaNS.size()>0){
+			for (int i = 0; i < listaNS.size(); i++) {
+				System.out.println("id norma "+listaNS.get(i).getDescripcionNormaSeguridad());
+				System.out.println("sel ?"+listaNS.get(i).isSel());
+			}
+		}
+	}
 
 }

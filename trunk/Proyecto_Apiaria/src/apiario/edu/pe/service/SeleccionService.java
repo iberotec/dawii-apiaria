@@ -590,4 +590,11 @@ IPlanillaRevisionTipoEnfermedadDAO, Serializable{
 		return daoPlanillaRevisionTipoAlimentacion.eliminarPlanillaRevisionTipoAlimentacion(instance);
 	}
 
+	@Override
+	public List<Integer> obtenerMaximoIdUsuarioApiario()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioApiario.obtenerMaximoIdUsuarioApiario();
+	}
+
 }

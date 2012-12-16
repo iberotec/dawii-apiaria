@@ -7,6 +7,7 @@ import apiario.edu.pe.bean.UsuarioApiario;
 
 public interface IUsuarioApiarioDAO {
 	public abstract List<UsuarioApiario> listarTodosUsuarioApiario() throws Exception;
+	public abstract List<Integer> obtenerMaximoIdUsuarioApiario() throws Exception;
 	public abstract UsuarioApiario guardarUsuarioApiario(UsuarioApiario instance) throws Exception;
 	public abstract List<UsuarioApiario> buscarUsuarioApiario(UsuarioApiario instance) throws Exception;
 	public abstract UsuarioApiario obtenerPorIdUsuarioApiario(int id) throws Exception;
