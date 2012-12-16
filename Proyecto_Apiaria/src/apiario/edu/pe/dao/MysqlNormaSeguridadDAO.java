@@ -14,19 +14,33 @@ import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.NormaSeguridad;
-
+@SuppressWarnings(value={"unchecked"})
 public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 
-	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-	EntityManager em=emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
+	
+	public void Open(){
+		emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
+		em=emf.createEntityManager();
+	}
+	public void Close(){
+		em.close();
+		emf.close();
+	}
 	
 	@Override
 	public List<NormaSeguridad> listaNormaSeguridad() {
-		EntityManagerFactory emf= Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-		EntityManager em=emf.createEntityManager();
-		
-		Query q=em.createQuery("select a from NormaSeguridad a");
-		List<NormaSeguridad> lista=q.getResultList();
+		List<NormaSeguridad> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select a from NormaSeguridad a");
+			 lista=q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
+		}
+		Close();
 		return lista;
 	}
 

@@ -208,10 +208,10 @@ public class MBSelectItems implements Serializable{
 		System.out.println("entro a normaSeguridad");
 		SeleccionService service = new SeleccionService();
 		List<NormaSeguridad> lista = service.listaNormaSeguridad();
-		SelectItem[] cbo = new SelectItem[lista.size() + 1];
-		cbo[0] = new SelectItem(0, "Seleccione...");
-		for (int i = 0; i < cbo.length - 1; i++){
-			cbo[i+1] = new SelectItem(lista.get(i).getIdNormaSeguridad(),lista.get(i).getDescripcionNormaSeguridad());
+		SelectItem[] cbo = new SelectItem[lista.size()];
+//		cbo[0] = new SelectItem(0, "Seleccione...");
+		for (int i = 0; i < cbo.length; i++){
+			cbo[i] = new SelectItem(lista.get(i).getIdNormaSeguridad(),lista.get(i).getDescripcionNormaSeguridad());
 		}return cbo;
 	}
 	

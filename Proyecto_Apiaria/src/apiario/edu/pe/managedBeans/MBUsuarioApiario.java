@@ -19,6 +19,8 @@ import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
+import apiario.edu.pe.bean.NormaSeguridad;
+import apiario.edu.pe.bean.NormaSeguridadApiario;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.Reina;
@@ -54,7 +56,10 @@ public class MBUsuarioApiario implements Serializable{
 	private boolean muestraFaltaAlza;
 	private String muestraComportamiento;
 	private boolean muestraListaColmenas;
-	
+	private List<NormaSeguridad> listaNS = new ArrayList<NormaSeguridad>();
+	private NormaSeguridad normaSeguridad;
+	private NormaSeguridadApiario normaSeguridadApiario;
+	List<NormaSeguridadApiario> listaNSA = new ArrayList<NormaSeguridadApiario>();
 //	public void limpiar(){
 ////		objColmena=new Colmena();
 //
@@ -364,6 +369,38 @@ public class MBUsuarioApiario implements Serializable{
 	public void setMuestraListaColmenas(boolean muestraListaColmenas) {
 		this.muestraListaColmenas = muestraListaColmenas;
 	}
+	
+	public List<NormaSeguridad> getListaNS() {
+		return listaNS;
+	}
+
+	public void setListaNS(List<NormaSeguridad> listaNS) {
+		this.listaNS = listaNS;
+	}
+	
+	public NormaSeguridad getNormaSeguridad() {
+		return normaSeguridad;
+	}
+
+	public void setNormaSeguridad(NormaSeguridad normaSeguridad) {
+		this.normaSeguridad = normaSeguridad;
+	}
+
+	public NormaSeguridadApiario getNormaSeguridadApiario() {
+		return normaSeguridadApiario;
+	}
+
+	public void setNormaSeguridadApiario(NormaSeguridadApiario normaSeguridadApiario) {
+		this.normaSeguridadApiario = normaSeguridadApiario;
+	}
+
+	public List<NormaSeguridadApiario> getListaNSA() {
+		return listaNSA;
+	}
+
+	public void setListaNSA(List<NormaSeguridadApiario> listaNSA) {
+		this.listaNSA = listaNSA;
+	}
 
 	public MBUsuarioApiario() {
 //		limpiar();
@@ -382,9 +419,10 @@ public class MBUsuarioApiario implements Serializable{
 		nivelPeligro="";
 		mostrarEquipoSeguridad=false;
 	}
-	public String abrirNuevaAsignacion(){
+	public String abrirNuevaAsignacion() throws Exception{
 		System.out.println("abriendo nueva asignacion");
 		limpiarNuevaAsignacion();
+		
 		return "successNuevaAsignacion";
 	}
 	public void listarTodosUsuarioApiario() throws Exception{
@@ -615,6 +653,18 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("nivelPeligro "+nivelPeligro);
 		System.out.println("nivelPeligroId "+nivelPeligroId);
 		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
+		
+		NormaSeguridadApiario objNSA= new NormaSeguridadApiario();
+		objNSA.setApiario(new Apiario());
+		objNSA.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		
+		listaNSA = service.buscarNormaSeguridadApiario(objNSA);
+//		for (int i = 0; i < listaNSA.size(); i++) {
+//			normaSeguridadApiario =new NormaSeguridadApiario();
+//			normaSeguridadApiario.setNormaSeguridad(new NormaSeguridad());
+//			normaSeguridadApiario.getNormaSeguridad().setIdNormaSeguridad(listaNSA.get(i).getNormaSeguridad().getIdNormaSeguridad());
+//		}
+		
 		
 		mostrarEquipoSeguridad=true;
 		ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) FacesContext

@@ -9,16 +9,29 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadApiario;
+import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.UsuarioApiario;
 
 public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 
-	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-	EntityManager em=emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
+	
+	public void Open(){
+		emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
+		em=emf.createEntityManager();
+	}
+	public void Close(){
+		em.close();
+		emf.close();
+	}
 	
 	@Override
 	public List<NormaSeguridadApiario> listarTodosNormaSeguridadApiarioes()
@@ -56,17 +69,25 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 	@Override
 	public List<NormaSeguridadApiario> buscarNormaSeguridadApiario(
 			NormaSeguridadApiario instance) throws Exception {
+		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<NormaSeguridadApiario> criteria=builder.createQuery(NormaSeguridadApiario.class);
-		Root<NormaSeguridadApiario> colmenaRoot=criteria.from(NormaSeguridadApiario.class);
+		Root<NormaSeguridadApiario> normaSeguridadApiarioRoot=criteria.from(NormaSeguridadApiario.class);
+		Join<NormaSeguridadApiario,Apiario> apiarioRoot = normaSeguridadApiarioRoot.join( "apiario" );
 		
-		criteria.select(colmenaRoot);
+		criteria.select(normaSeguridadApiarioRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdNormaSeguridadApiario()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idNormaSeguridadApiario"),instance.getIdNormaSeguridadApiario());
+			if(instance.getIdNormaSeguridadApiario()!=null && instance.getIdNormaSeguridadApiario().intValue()>0){
+				Predicate condition=builder.equal(normaSeguridadApiarioRoot.get("idNormaSeguridadApiario"),instance.getIdNormaSeguridadApiario());
 				p.add(condition);
+			}
+			if(instance.getApiario()!=null){
+				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario().intValue()>0){
+					Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getApiario().getIdApiario());
+					p.add(condition);
+				}
 			}
 		}
 		Predicate[] predicates=new Predicate[p.size()];
@@ -74,7 +95,7 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 		criteria.where(predicates);
 		
 		List<NormaSeguridadApiario> lista=em.createQuery(criteria).getResultList();
-		em.close();
+		Close();
 		return lista;
 	}
 

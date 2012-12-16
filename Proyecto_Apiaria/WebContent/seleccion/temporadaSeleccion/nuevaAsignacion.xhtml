@@ -110,7 +110,7 @@
 		
 		<br/>
 		<br/>
-		<p:tabView id="tabContainer">
+		<p:tabView id="tabContainer" rendered="#{(mBUsuarioApiario.usuarioApiario.idUsuarioApiario != null and mBUsuarioApiario.usuarioApiario.idUsuarioApiario > 0) ? 'true' : 'false'}">
 			<p:tab id="iTabPlanillaRevision" title="Planilla Revision">
 				<ui:include src="planillaRevision.xhtml" />
 			</p:tab>

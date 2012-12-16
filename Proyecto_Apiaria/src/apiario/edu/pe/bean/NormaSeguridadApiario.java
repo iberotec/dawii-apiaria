@@ -19,9 +19,9 @@ public class NormaSeguridadApiario extends BaseEntidades implements Serializable
 
 	@Id
 	@Column(name="id_norma_seguridad_apiario")
-	private int idNormaSeguridadApiario;
+	private Integer idNormaSeguridadApiario;
 
-	private byte estado;
+	private Boolean estado;
 
     @Temporal( TemporalType.DATE)
 	@Column(name="fecha_registro")
@@ -40,19 +40,19 @@ public class NormaSeguridadApiario extends BaseEntidades implements Serializable
     public NormaSeguridadApiario() {
     }
 
-	public int getIdNormaSeguridadApiario() {
+	public Integer getIdNormaSeguridadApiario() {
 		return this.idNormaSeguridadApiario;
 	}
 
-	public void setIdNormaSeguridadApiario(int idNormaSeguridadApiario) {
+	public void setIdNormaSeguridadApiario(Integer idNormaSeguridadApiario) {
 		this.idNormaSeguridadApiario = idNormaSeguridadApiario;
 	}
 
-	public byte getEstado() {
+	public Boolean getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(byte estado) {
+	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
 
