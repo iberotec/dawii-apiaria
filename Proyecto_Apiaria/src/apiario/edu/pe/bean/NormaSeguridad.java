@@ -19,7 +19,7 @@ public class NormaSeguridad extends BaseEntidades implements Serializable {
 
 	@Id
 	@Column(name="id_norma_seguridad")
-	private int idNormaSeguridad;
+	private Integer idNormaSeguridad;
 
 	@Column(name="descripcion_norma_seguridad")
 	private String descripcionNormaSeguridad;
@@ -31,11 +31,11 @@ public class NormaSeguridad extends BaseEntidades implements Serializable {
     public NormaSeguridad() {
     }
 
-	public int getIdNormaSeguridad() {
+	public Integer getIdNormaSeguridad() {
 		return this.idNormaSeguridad;
 	}
 
-	public void setIdNormaSeguridad(int idNormaSeguridad) {
+	public void setIdNormaSeguridad(Integer idNormaSeguridad) {
 		this.idNormaSeguridad = idNormaSeguridad;
 	}
 

@@ -25,7 +25,7 @@
 	
 	<p:toolbar>  
     <p:toolbarGroup align="left">  
-        <p:commandButton  value="Confirmar Atención" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarUsuarioApiario}" update="mensajon"/>  
+        <p:commandButton  value="Confirmar Atención" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarUsuarioApiario}" update="mensajon,tabContainer" ajax="false"/>  
  	    <p:commandButton  value="Equipo de Seguridad" icon="ui-icon-print" action="#{mBUsuarioApiario.obtenerEquipoSeguridad}" update="dtEquipoSeguridad" ajax="false"/>
  	    <p:commandButton  value="Mapa" icon="ui-icon-print"/>
     </p:toolbarGroup>  
