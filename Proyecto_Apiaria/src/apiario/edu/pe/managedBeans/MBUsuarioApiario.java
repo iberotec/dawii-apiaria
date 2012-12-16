@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -276,6 +277,7 @@ public class MBUsuarioApiario implements Serializable{
 		usuarioApiario.setApiario(new Apiario());
 		usuarioApiario.setUsuario(new Usuario());
 		usuarioApiario.setTemporada(new Temporada());
+		listaERET = new ArrayList<EstadoRevisionEquipamientoTrabajo>();
 		ubicacionApiario="";
 		nivelPeligro="";
 	}
@@ -475,7 +477,7 @@ public class MBUsuarioApiario implements Serializable{
 		
 		
 	}
-	public String abrirModificarUsuarioApiario(int id) throws Exception{
+	public void abrirModificarUsuarioApiario(int id) throws Exception{
 		System.out.println("abrirModificarUsuarioApiario");
 		System.out.println("id "+id);
 		UsuarioApiario objUA = new UsuarioApiario();
@@ -508,13 +510,11 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("nivelPeligroId "+nivelPeligroId);
 		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
 		
-		return "successNuevaAsignacion";
+		ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) FacesContext
+        .getCurrentInstance().getApplication()
+        .getNavigationHandler();
+		handler.performNavigation("successNuevaAsignacion");
+
 	}
-//	public void onRowSelect(SelectEvent event) {  
-//		System.out.println("1");
-//	        FacesMessage msg = new FacesMessage("Car Selected", ((UsuarioApiario) event.getObject()).getEstadoAsignacion());  
-//	  System.out.println("2");
-//	       FacesContext.getCurrentInstance().addMessage(null, msg);  
-//	System.out.println("3");
-//	}  
+
 }
