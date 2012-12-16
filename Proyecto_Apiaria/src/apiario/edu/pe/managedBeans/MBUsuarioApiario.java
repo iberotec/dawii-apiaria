@@ -51,6 +51,9 @@ public class MBUsuarioApiario implements Serializable{
 	private List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
 	private PlanillaRevision planillaRevision;
 	private Boolean muestraExistenciaReina;
+	//prueba
+//	private Integer muestraIexistenciaReina;
+	//prueba
 	private String muestraEstadoCosecha;
 	private boolean muestraNecesidadAlimentacion;
 	private boolean muestraNecesidadCuracion;
@@ -412,6 +415,14 @@ public class MBUsuarioApiario implements Serializable{
 	public void setListaString(List<String> listaString) {
 		this.listaString = listaString;
 	}
+	
+//	public Integer getMuestraIexistenciaReina() {
+//		return muestraIexistenciaReina;
+//	}
+//
+//	public void setMuestraIexistenciaReina(Integer muestraIexistenciaReina) {
+//		this.muestraIexistenciaReina = muestraIexistenciaReina;
+//	}
 
 	public MBUsuarioApiario() {
 //		limpiar();
@@ -730,6 +741,9 @@ public class MBUsuarioApiario implements Serializable{
 		planillaRevision=objPR;
 		System.out.println("existencia reina "+planillaRevision.getExistenciaReina());
 		muestraExistenciaReina=planillaRevision.getExistenciaReina();
+		
+//		muestraIexistenciaReina=planillaRevision.getExistenciaReina();
+		
 		System.out.println("muestraExistenciaReina "+muestraExistenciaReina);
 		System.out.println("cosechable? "+planillaRevision.getEstadoCosecha());
 		muestraEstadoCosecha=planillaRevision.getEstadoCosecha();
