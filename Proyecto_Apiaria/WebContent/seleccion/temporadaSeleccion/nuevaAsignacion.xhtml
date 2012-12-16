@@ -22,6 +22,17 @@
 				SELECCION</h1>
 
 	<h:form id="fNuevaAsignacion">
+	
+	<p:toolbar>  
+    <p:toolbarGroup align="left">  
+        <p:commandButton  value="Confirmar Atención" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarUsuarioApiario}" update="mensajon"/>  
+ 	    <p:commandButton  value="Equipo de Seguridad" icon="ui-icon-print" action="#{mBUsuarioApiario.obtenerEquipoSeguridad}" update="dtEquipoSeguridad" ajax="false"/>
+ 	    <p:commandButton  value="Mapa" icon="ui-icon-print"/>
+    </p:toolbarGroup>  
+    </p:toolbar>
+      
+      <p:messages id="mensajon" closable="true" showDetail="true" autoUpdate="true"></p:messages>
+	<br/>
 		<table>
 			<tr>
 				<td>
@@ -35,9 +46,6 @@
 
 					</p:selectOneMenu>
 				</td>
-				<td>
-					<p:commandButton value="Mapa"></p:commandButton>
-				</td>
 			</tr>
 			<tr>
 				<td>
@@ -45,9 +53,6 @@
 				</td>
 				<td>
 					<p:inputText id="iUbicacion" value="#{mBUsuarioApiario.ubicacionApiario}" disabled="true"></p:inputText>
-				</td>
-				<td>
-					<p:commandButton value="Equipo de Seguridad" action="#{mBUsuarioApiario.obtenerEquipoSeguridad}" update="dtEquipoSeguridad"></p:commandButton>
 				</td>
 			</tr>
 			<tr>
@@ -57,18 +62,16 @@
 				<td>
 					<p:inputText id="iNivelPeligro" value="#{mBUsuarioApiario.nivelPeligro}" disabled="true"></p:inputText>
 				</td>
-				<td>
-					<p:commandButton value="Confirmar Atención" action="#{mBUsuarioApiario.guardarUsuarioApiario}"></p:commandButton>
-				</td>
 			</tr>
 		</table>
-		
+		<br/>
 		<p:dataTable id="dtEquipoSeguridad" 
 					value="#{mBUsuarioApiario.listaERET}"
 								var="lista" 
 								rowIndexVar="fila" 
-								rows="10"								
-								width="100%" >
+								rows="10"
+								emptyMessage="No se encontraron Equipos de Seguridad"								
+								width="100%" rendered="#{mBUsuarioApiario.mostrarEquipoSeguridad}">
 			<f:facet name="header">
 								<h:outputText value="Listado de Apiarios Equipos de Trabajo" />
 			</f:facet>
@@ -105,7 +108,8 @@
 			</p:column>
 		</p:dataTable>
 		
-		
+		<br/>
+		<br/>
 		<p:tabView id="tabContainer">
 			<p:tab id="iTabPlanillaRevision" title="Planilla Revision">
 				<ui:include src="planillaRevision.xhtml" />

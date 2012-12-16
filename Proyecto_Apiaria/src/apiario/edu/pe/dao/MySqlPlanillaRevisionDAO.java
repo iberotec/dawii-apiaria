@@ -147,13 +147,13 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 	public PlanillaRevision obtenerPorIdPlanillaRevision(int id)
 			throws Exception {
 		try {
+			Open();
 			PlanillaRevision instance=em.find(PlanillaRevision.class, id);
 			return instance;
 		} catch (RuntimeException e) {
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
