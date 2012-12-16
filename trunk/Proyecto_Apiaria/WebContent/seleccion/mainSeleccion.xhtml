@@ -21,13 +21,21 @@
 		<h:form>
 			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
 				SELECCION</h1>
-		
-		<p:commandLink action="#{mBUsuarioApiario.listarTodosUsuarioApiario}" value="listar" update="dtlista" ajax="false"></p:commandLink>
-		<p:commandLink action="#{mBUsuarioApiario.abrirNuevaAsignacion}" value="nuevo"  ajax="false"></p:commandLink>
+				
+				
+    <p:toolbar>  
+    <p:toolbarGroup align="left">  
+        <p:commandButton  value="Nueva asignacion de Apiario" icon="ui-icon-document" action="#{mBUsuarioApiario.abrirNuevaAsignacion}" ajax="false"/>  
+ 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" action="#{mBUsuarioApiario.listarTodosUsuarioApiario}" update="dtlista" ajax="false"/>
+    </p:toolbarGroup>  
+    </p:toolbar>
+    
+    
+    
 			<div class="contenedor">		
 					<p:dataTable id="dtlista" var="listado" value="#{mBUsuarioApiario.listaUsarioApiario}" 
 				    widgetVar="Seleccion" 
-		            emptyMessage="No se encontraron colmenares" 
+		            emptyMessage="No se encontraron Asignaciones" 
 		            paginator="true" 
 		            rows="5" 
 		            paginatorPosition="bottom" 
@@ -35,9 +43,12 @@
 		            selection="#{mBUsuarioApiario.usuarioApiario}" 
 		            selectionMode="single" 
 		            rowKey="#{listado.idUsuarioApiario}">
+		            
+		            
 				    <p:ajax event="rowSelect" 
 				            listener="#{mBUsuarioApiario.abrirModificarUsuarioApiario(mBUsuarioApiario.usuarioApiario.idUsuarioApiario)}"
-				           />
+				          />
+				          
 				       <f:facet name="header">
 								<h:outputText value="Listado de Apiarios Asignados" />
 							</f:facet>
