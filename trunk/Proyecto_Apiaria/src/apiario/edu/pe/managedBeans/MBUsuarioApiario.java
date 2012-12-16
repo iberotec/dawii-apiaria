@@ -43,16 +43,27 @@ public class MBUsuarioApiario implements Serializable{
 	private Colmena objColmena;
 	private EstadoRevision objEstadoRevision;
 	private int p_indice_usuarioApiario;
+	private boolean mostrarEquipoSeguridad;
+	private List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
+	private PlanillaRevision planillaRevision;
+	private Boolean muestraExistenciaReina;
+	private String muestraEstadoCosecha;
+	private boolean muestraNecesidadAlimentacion;
+	private boolean muestraNecesidadCuracion;
+	private boolean muestraFaltaEspacioCamara;
+	private boolean muestraFaltaAlza;
+	private String muestraComportamiento;
+	private boolean muestraListaColmenas;
 	
-	public void limpiar(){
+//	public void limpiar(){
+////		objColmena=new Colmena();
+//
+//		setColmena(new Colmena());
+//		objplanillaRevision=new PlanillaRevision();
+//		objplanillaRevision.setEstadoRevision(new EstadoRevision());
 //		objColmena=new Colmena();
-
-		setColmena(new Colmena());
-		objplanillaRevision=new PlanillaRevision();
-		objplanillaRevision.setEstadoRevision(new EstadoRevision());
-		objColmena=new Colmena();
-		objEstadoRevision=new EstadoRevision();
-	}
+//		objEstadoRevision=new EstadoRevision();
+//	}
 	
 	public void listColmenas(){
 		System.out.println("Entro Colmenas");
@@ -265,9 +276,97 @@ public class MBUsuarioApiario implements Serializable{
 	public void setP_indice_usuarioApiario(int p_indice_usuarioApiario) {
 		this.p_indice_usuarioApiario = p_indice_usuarioApiario;
 	}
+	
+	public boolean isMostrarEquipoSeguridad() {
+		return mostrarEquipoSeguridad;
+	}
+
+	public void setMostrarEquipoSeguridad(boolean mostrarEquipoSeguridad) {
+		this.mostrarEquipoSeguridad = mostrarEquipoSeguridad;
+	}
+	
+	public List<PlanillaRevision> getListaPR() {
+		return listaPR;
+	}
+
+	public void setListaPR(List<PlanillaRevision> listaPR) {
+		this.listaPR = listaPR;
+	}
+	
+	public PlanillaRevision getPlanillaRevision() {
+		return planillaRevision;
+	}
+
+	public void setPlanillaRevision(PlanillaRevision planillaRevision) {
+		this.planillaRevision = planillaRevision;
+	}
+
+	public Boolean getMuestraExistenciaReina() {
+		return muestraExistenciaReina;
+	}
+	
+	public String getMuestraEstadoCosecha() {
+		return muestraEstadoCosecha;
+	}
+
+	public void setMuestraEstadoCosecha(String muestraEstadoCosecha) {
+		this.muestraEstadoCosecha = muestraEstadoCosecha;
+	}
+
+	public void setMuestraExistenciaReina(Boolean muestraExistenciaReina) {
+		this.muestraExistenciaReina = muestraExistenciaReina;
+	}
+	
+	public boolean isMuestraNecesidadAlimentacion() {
+		return muestraNecesidadAlimentacion;
+	}
+
+	public void setMuestraNecesidadAlimentacion(boolean muestraNecesidadAlimentacion) {
+		this.muestraNecesidadAlimentacion = muestraNecesidadAlimentacion;
+	}
+
+	public boolean isMuestraNecesidadCuracion() {
+		return muestraNecesidadCuracion;
+	}
+
+	public void setMuestraNecesidadCuracion(boolean muestraNecesidadCuracion) {
+		this.muestraNecesidadCuracion = muestraNecesidadCuracion;
+	}
+
+	public boolean isMuestraFaltaEspacioCamara() {
+		return muestraFaltaEspacioCamara;
+	}
+
+	public void setMuestraFaltaEspacioCamara(boolean muestraFaltaEspacioCamara) {
+		this.muestraFaltaEspacioCamara = muestraFaltaEspacioCamara;
+	}
+
+	public boolean isMuestraFaltaAlza() {
+		return muestraFaltaAlza;
+	}
+
+	public void setMuestraFaltaAlza(boolean muestraFaltaAlza) {
+		this.muestraFaltaAlza = muestraFaltaAlza;
+	}
+
+	public String getMuestraComportamiento() {
+		return muestraComportamiento;
+	}
+
+	public void setMuestraComportamiento(String muestraComportamiento) {
+		this.muestraComportamiento = muestraComportamiento;
+	}
+	
+	public boolean isMuestraListaColmenas() {
+		return muestraListaColmenas;
+	}
+
+	public void setMuestraListaColmenas(boolean muestraListaColmenas) {
+		this.muestraListaColmenas = muestraListaColmenas;
+	}
 
 	public MBUsuarioApiario() {
-		limpiar();
+//		limpiar();
 
 	}
 	
@@ -278,8 +377,10 @@ public class MBUsuarioApiario implements Serializable{
 		usuarioApiario.setUsuario(new Usuario());
 		usuarioApiario.setTemporada(new Temporada());
 		listaERET = new ArrayList<EstadoRevisionEquipamientoTrabajo>();
+		listaPR = new ArrayList<PlanillaRevision>();
 		ubicacionApiario="";
 		nivelPeligro="";
+		mostrarEquipoSeguridad=false;
 	}
 	public String abrirNuevaAsignacion(){
 		System.out.println("abriendo nueva asignacion");
@@ -441,9 +542,11 @@ public class MBUsuarioApiario implements Serializable{
 		objERET.setEstadoRevision(new EstadoRevision());
 		objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
 		
-		
+		mostrarEquipoSeguridad=true;
 		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
 		System.out.println("tamaño de lista obtenerEquipoSeguridad "+listaERET.size());
+		
+		
 		
 	}
 	public void guardarUsuarioApiario() throws Exception{
@@ -467,11 +570,14 @@ public class MBUsuarioApiario implements Serializable{
 		try {
 			confirm = service.guardarUsuarioApiario(usuarioApiario);
 			if(confirm.isSuccess()){
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva asignacion"));  
 				System.out.println("grabo");
 			}else{
+				  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la asignacion")); 
 				System.out.println("error al grabar");
 			}
 		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();
 		}
 		
@@ -510,11 +616,61 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("nivelPeligroId "+nivelPeligroId);
 		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
 		
+		mostrarEquipoSeguridad=true;
 		ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) FacesContext
         .getCurrentInstance().getApplication()
         .getNavigationHandler();
 		handler.performNavigation("successNuevaAsignacion");
 
 	}
+	
+	public void listarTodosPlanillaRevision() throws Exception{
+		PlanillaRevision objPR= new PlanillaRevision();
+		objPR.setUsuarioApiario(new UsuarioApiario());
+		objPR.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+		listaPR = service.buscarPlanillaRevision(objPR);
+	}
+	public void limpiarPLanillaRevision(){
+		System.out.println("limpiarPLanillaRevision");
+		planillaRevision = new PlanillaRevision();
+		listaColmenas= new ArrayList<Colmena>();
+		muestraExistenciaReina=false;
+		muestraNecesidadAlimentacion=false;
+		muestraNecesidadCuracion=false;
+		muestraFaltaEspacioCamara=false;
+		muestraFaltaAlza=false;
+		muestraEstadoCosecha="";
+		muestraComportamiento="";
+		muestraListaColmenas=true;
+		
+	}
+	public void abrirModificarPlanillaRevision(int id) throws Exception{
+		System.out.println("abrirModificarPlanillaRevision");
+		muestraListaColmenas=false;
+		System.out.println("id PR "+id);
+		PlanillaRevision objPR = new PlanillaRevision();
+		objPR = service.obtenerPorIdPlanillaRevision(id);
+		planillaRevision=objPR;
+		System.out.println("existencia reina "+planillaRevision.getExistenciaReina());
+		muestraExistenciaReina=planillaRevision.getExistenciaReina();
+		System.out.println("muestraExistenciaReina "+muestraExistenciaReina);
+		System.out.println("cosechable? "+planillaRevision.getEstadoCosecha());
+		muestraEstadoCosecha=planillaRevision.getEstadoCosecha();
+		System.out.println("muestraEstadoCosecha "+muestraEstadoCosecha);
+		muestraNecesidadAlimentacion=planillaRevision.getNecesidadAlimentacion();
+		muestraNecesidadCuracion=planillaRevision.getNecesidadCuracion();
+		muestraFaltaEspacioCamara=planillaRevision.getFaltaEspacioCamara();
+		muestraFaltaAlza=planillaRevision.getFaltaAlza();
+		muestraComportamiento=planillaRevision.getComportamiento();
+	}
+	public void abrirRegistrarPlanillaRevision() throws Exception{
+		limpiarPLanillaRevision();
+		System.out.println("abrirRegistrarPlanillaRevision");
+		Colmena objC = new Colmena();
+		objC.setApiario(new Apiario());
+		objC.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		listaColmenas = service.buscarColmena(objC);
+	}
+
 
 }
