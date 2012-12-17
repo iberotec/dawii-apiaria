@@ -60,12 +60,14 @@ public class MBUsuarioApiario implements Serializable{
 	private boolean muestraFaltaEspacioCamara;
 	private boolean muestraFaltaAlza;
 	private String muestraComportamiento;
+	private Integer muestraEstadoRevision;
 	private boolean muestraListaColmenas;
 	private List<NormaSeguridad> listaNS = new ArrayList<NormaSeguridad>();
 	private NormaSeguridad normaSeguridad;
 	private NormaSeguridadApiario normaSeguridadApiario;
 	private List<NormaSeguridadApiario> listaNSA = new ArrayList<NormaSeguridadApiario>();
 	private List<String> listaString = new ArrayList<String>();
+	private boolean muestraCajaTexto;
 //	public void limpiar(){
 ////		objColmena=new Colmena();
 //
@@ -424,6 +426,22 @@ public class MBUsuarioApiario implements Serializable{
 //		this.muestraIexistenciaReina = muestraIexistenciaReina;
 //	}
 
+	public boolean isMuestraCajaTexto() {
+		return muestraCajaTexto;
+	}
+
+	public void setMuestraCajaTexto(boolean muestraCajaTexto) {
+		this.muestraCajaTexto = muestraCajaTexto;
+	}
+
+	public Integer getMuestraEstadoRevision() {
+		return muestraEstadoRevision;
+	}
+
+	public void setMuestraEstadoRevision(Integer muestraEstadoRevision) {
+		this.muestraEstadoRevision = muestraEstadoRevision;
+	}
+
 	public MBUsuarioApiario() {
 //		limpiar();
 
@@ -721,6 +739,10 @@ public class MBUsuarioApiario implements Serializable{
 	public void limpiarPLanillaRevision(){
 		System.out.println("limpiarPLanillaRevision");
 		planillaRevision = new PlanillaRevision();
+		planillaRevision.setColmena(new Colmena());
+		planillaRevision.setEstadoRevision(new EstadoRevision());
+		planillaRevision.setUsuarioApiario(new UsuarioApiario());
+		planillaRevision.setReina(new Reina());
 		listaColmenas= new ArrayList<Colmena>();
 		muestraExistenciaReina=false;
 		muestraNecesidadAlimentacion=false;
@@ -730,29 +752,44 @@ public class MBUsuarioApiario implements Serializable{
 		muestraEstadoCosecha="";
 		muestraComportamiento="";
 		muestraListaColmenas=true;
-		
+		muestraCajaTexto=false;
 	}
 	public void abrirModificarPlanillaRevision(int id) throws Exception{
 		System.out.println("abrirModificarPlanillaRevision");
 		muestraListaColmenas=false;
+		muestraCajaTexto=true;
 		System.out.println("id PR "+id);
 		PlanillaRevision objPR = new PlanillaRevision();
 		objPR = service.obtenerPorIdPlanillaRevision(id);
 		planillaRevision=objPR;
 		System.out.println("existencia reina "+planillaRevision.getExistenciaReina());
 		muestraExistenciaReina=planillaRevision.getExistenciaReina();
+		System.out.println("muestraExistenciaReina "+muestraExistenciaReina);
 		
 //		muestraIexistenciaReina=planillaRevision.getExistenciaReina();
 		
-		System.out.println("muestraExistenciaReina "+muestraExistenciaReina);
 		System.out.println("cosechable? "+planillaRevision.getEstadoCosecha());
 		muestraEstadoCosecha=planillaRevision.getEstadoCosecha();
 		System.out.println("muestraEstadoCosecha "+muestraEstadoCosecha);
+		
+		System.out.println("planillaRevision.getNecesidadAlimentacion() "+planillaRevision.getNecesidadAlimentacion());
 		muestraNecesidadAlimentacion=planillaRevision.getNecesidadAlimentacion();
+		System.out.println("muestraNecesidadAlimentacion "+muestraNecesidadAlimentacion);
+		
+		System.out.println("planillaRevision.getNecesidadCuracion() "+planillaRevision.getNecesidadCuracion());
 		muestraNecesidadCuracion=planillaRevision.getNecesidadCuracion();
+		System.out.println("muestraNecesidadCuracion "+muestraNecesidadCuracion);
+		
+		System.out.println("planillaRevision.getFaltaEspacioCamara() "+planillaRevision.getFaltaEspacioCamara());
 		muestraFaltaEspacioCamara=planillaRevision.getFaltaEspacioCamara();
+		System.out.println("muestraFaltaEspacioCamara "+muestraFaltaEspacioCamara);
+		
+		System.out.println("planillaRevision.getFaltaAlza() "+planillaRevision.getFaltaAlza());
 		muestraFaltaAlza=planillaRevision.getFaltaAlza();
+		System.out.println("muestraFaltaAlza "+muestraFaltaAlza);
+		
 		muestraComportamiento=planillaRevision.getComportamiento();
+		
 	}
 	public void abrirRegistrarPlanillaRevision() throws Exception{
 		limpiarPLanillaRevision();
@@ -761,6 +798,42 @@ public class MBUsuarioApiario implements Serializable{
 		objC.setApiario(new Apiario());
 		objC.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
 		listaColmenas = service.buscarColmena(objC);
+	}
+	public void guardarPlanillaRevision() throws Exception{
+		PlanillaRevision confirm=null;
+		try {
+			if(listaColmenas.size()>0){
+				for (int i = 0; i < listaColmenas.size(); i++) {
+					if(listaColmenas.get(i).isSel()){
+						planillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+						planillaRevision.setExistenciaReina(muestraExistenciaReina);
+						
+						Reina objR= new Reina();
+						objR = service.obtenerPorIdReina(listaColmenas.get(i).getIdColmena());
+						planillaRevision.getReina().setIdReina(objR.getIdReina());
+						planillaRevision.setEstadoCosecha(muestraEstadoCosecha);
+						planillaRevision.setNecesidadAlimentacion(muestraNecesidadAlimentacion);
+						planillaRevision.setNecesidadCuracion(muestraNecesidadCuracion);
+						planillaRevision.setFaltaEspacioCamara(muestraFaltaEspacioCamara);
+						planillaRevision.setFaltaAlza(muestraFaltaAlza);
+						planillaRevision.setComportamiento(muestraComportamiento);
+						planillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+						planillaRevision.getEstadoRevision().setIdEstadoRevision(muestraEstadoRevision);
+						confirm=service.guardarPlanillaRevision(planillaRevision);
+					}
+				}
+				if(confirm.isSuccess()){
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva planilla de revision"));  
+					System.out.println("grabo");
+				}else{
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la planilla de revision")); 
+					System.out.println("error al grabar");
+				}
+			}
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
+			e.printStackTrace();
+		}	
 	}
 	
 	public void guardarControlCalidad(){

@@ -86,9 +86,12 @@
               height="600" width="700" showEffect="clip" hideEffect="fold">  
  <p:toolbar>  
     <p:toolbarGroup align="left">  
-        <p:commandButton  value="Guardar Seleccion" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarUsuarioApiario}"/>  
+        <p:commandButton  value="Guardar Seleccion" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarPlanillaRevision}" update="mensajeConfirm" ajax="false"/>  
     </p:toolbarGroup>  
     </p:toolbar>
+    
+     <p:messages id="mensajeConfirm" closable="true" showDetail="true" autoUpdate="true"></p:messages>
+     
     	  <h:panelGrid id="panelLista" columns="1" cellpadding="2" >
     	   <p:dataTable id="dtColmenas" 
             value="#{mBUsuarioApiario.listaColmenas}"
@@ -122,12 +125,12 @@
     	  <br />
        	  <h:panelGrid id="panel" columns="2" cellpadding="2">  
 
-   		   <h:outputText value="Colmena"/>
-   		   <p:inputText value="Colmena #{mBUsuarioApiario.planillaRevision.colmena.idColmena}" disabled="true"/>
+   		   <h:outputText value="Colmena" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		   <p:inputText value="Colmena #{mBUsuarioApiario.planillaRevision.colmena.idColmena}" disabled="true" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
    		   <h:outputText value="Existencia de Reina" />
    		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraExistenciaReina}" />
-   		   <h:outputText value="Reina"/>
-   		   <p:inputText value="Reina #{mBUsuarioApiario.planillaRevision.reina.idReina}" disabled="true"/>
+   		   <h:outputText value="Reina" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		   <p:inputText value="Reina #{mBUsuarioApiario.planillaRevision.reina.idReina}" disabled="true" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
    		   <h:outputText value="Colmena"/>
    		   <p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoCosecha}">
 						<f:selectItems value="#{mBSelectItems.cboEstadoCosecha}"/>
@@ -142,6 +145,10 @@
    		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraFaltaAlza}"/>
   		   <h:outputText value="Comportamiento de Colmena" />
   		   <p:inputText value="#{mBUsuarioApiario.muestraComportamiento}"/>
+  		   <h:outputText value="Nivel de Peligro" />
+  		   <p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoRevision}">
+  		   				<f:selectItems value="#{mBSelectItems.cboEstadoRevision}"/>
+  		   </p:selectOneMenu>
              </h:panelGrid>  
    		   </p:dialog> 
    		   
