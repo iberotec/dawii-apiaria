@@ -80,11 +80,11 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 		try {
 			Open();
 			
-			instance.setExistenciaReina(null);
-			instance.setNecesidadAlimentacion(null);
-			instance.setNecesidadCuracion(null);
-			instance.setFaltaEspacioCamara(null);
-			instance.setFaltaAlza(null);
+//			instance.setExistenciaReina(null);
+//			instance.setNecesidadAlimentacion(null);
+//			instance.setNecesidadCuracion(null);
+//			instance.setFaltaEspacioCamara(null);
+//			instance.setFaltaAlza(null);
 			
 			instance.setSuccess(false);
 			em.getTransaction().begin();

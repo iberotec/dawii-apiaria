@@ -13,30 +13,32 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.EstadoRevision;
-
+@SuppressWarnings(value={"unchecked"})
 public class MySqlEstadoRevisionDAO implements IEstadoRevisionDAO {
 
-	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-	EntityManager em=emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
+	
+	public void Open(){
+		emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
+		em=emf.createEntityManager();
+	}
+	public void Close(){
+		em.close();
+		emf.close();
+	}
 	
 	@Override
 	public List<EstadoRevision> listarTodosEstadoRevisiones() throws Exception {
 		List<EstadoRevision> lista=null;
-		
+		Open();
 		try {
-			em.getTransaction().begin();
-			
 			Query sql=em.createQuery("select e from EstadoRevision e");
 			lista=sql.getResultList();
-			
-			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().rollback();
-		}finally{
-			em.close();
-			emf.close();
+			System.out.println("DAO "+e.getMessage());
 		}
-		
+		Close();
 		return lista;
 	}
 
