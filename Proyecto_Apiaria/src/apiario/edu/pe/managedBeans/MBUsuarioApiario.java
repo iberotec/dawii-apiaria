@@ -803,8 +803,12 @@ public class MBUsuarioApiario implements Serializable{
 		PlanillaRevision confirm=null;
 		try {
 			if(listaColmenas.size()>0){
+				System.out.println("tamñao lista "+listaColmenas.size());
 				for (int i = 0; i < listaColmenas.size(); i++) {
 					if(listaColmenas.get(i).isSel()){
+						System.out.println("activo? "+listaColmenas.get(i).isSel());
+						System.out.println("id colmena "+listaColmenas.get(i).getIdColmena());
+						
 						planillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
 						planillaRevision.setExistenciaReina(muestraExistenciaReina);
 						
