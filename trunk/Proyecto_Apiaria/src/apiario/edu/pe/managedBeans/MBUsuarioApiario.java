@@ -68,6 +68,13 @@ public class MBUsuarioApiario implements Serializable{
 	private List<NormaSeguridadApiario> listaNSA = new ArrayList<NormaSeguridadApiario>();
 	private List<String> listaString = new ArrayList<String>();
 	private boolean muestraCajaTexto;
+	private PlanillaRevision planillaRevisionSeleccionada;
+	private Integer muestraTipoEnfermedad;
+	private Integer muestraTipoAlimentacion;
+	private boolean activarTipoEnfermedad;
+	private boolean activarTipoAlimentacion;
+	private boolean activarCajaVaciaEnfermedad;
+	private boolean activarCajaVaciaAlimentacion;
 //	public void limpiar(){
 ////		objColmena=new Colmena();
 //
@@ -442,6 +449,63 @@ public class MBUsuarioApiario implements Serializable{
 		this.muestraEstadoRevision = muestraEstadoRevision;
 	}
 
+	public PlanillaRevision getPlanillaRevisionSeleccionada() {
+		return planillaRevisionSeleccionada;
+	}
+
+	public void setPlanillaRevisionSeleccionada(
+			PlanillaRevision planillaRevisionSeleccionada) {
+		this.planillaRevisionSeleccionada = planillaRevisionSeleccionada;
+	}
+	
+	public Integer getMuestraTipoEnfermedad() {
+		return muestraTipoEnfermedad;
+	}
+
+	public void setMuestraTipoEnfermedad(Integer muestraTipoEnfermedad) {
+		this.muestraTipoEnfermedad = muestraTipoEnfermedad;
+	}
+
+	public Integer getMuestraTipoAlimentacion() {
+		return muestraTipoAlimentacion;
+	}
+
+	public void setMuestraTipoAlimentacion(Integer muestraTipoAlimentacion) {
+		this.muestraTipoAlimentacion = muestraTipoAlimentacion;
+	}
+
+	public boolean isActivarTipoEnfermedad() {
+		return activarTipoEnfermedad;
+	}
+
+	public void setActivarTipoEnfermedad(boolean activarTipoEnfermedad) {
+		this.activarTipoEnfermedad = activarTipoEnfermedad;
+	}
+
+	public boolean isActivarTipoAlimentacion() {
+		return activarTipoAlimentacion;
+	}
+
+	public void setActivarTipoAlimentacion(boolean activarTipoAlimentacion) {
+		this.activarTipoAlimentacion = activarTipoAlimentacion;
+	}
+
+	public boolean isActivarCajaVaciaEnfermedad() {
+		return activarCajaVaciaEnfermedad;
+	}
+
+	public void setActivarCajaVaciaEnfermedad(boolean activarCajaVaciaEnfermedad) {
+		this.activarCajaVaciaEnfermedad = activarCajaVaciaEnfermedad;
+	}
+
+	public boolean isActivarCajaVaciaAlimentacion() {
+		return activarCajaVaciaAlimentacion;
+	}
+
+	public void setActivarCajaVaciaAlimentacion(boolean activarCajaVaciaAlimentacion) {
+		this.activarCajaVaciaAlimentacion = activarCajaVaciaAlimentacion;
+	}
+
 	public MBUsuarioApiario() {
 //		limpiar();
 
@@ -753,6 +817,13 @@ public class MBUsuarioApiario implements Serializable{
 		muestraComportamiento="";
 		muestraListaColmenas=true;
 		muestraCajaTexto=false;
+		muestraEstadoRevision=0;
+		muestraTipoAlimentacion=0;
+		muestraTipoEnfermedad=0;
+		activarTipoEnfermedad=false;
+		activarTipoAlimentacion=false;
+		activarCajaVaciaAlimentacion=true;
+		activarCajaVaciaEnfermedad=true;
 	}
 	public void abrirModificarPlanillaRevision(int id) throws Exception{
 		System.out.println("abrirModificarPlanillaRevision");
@@ -798,6 +869,7 @@ public class MBUsuarioApiario implements Serializable{
 		objC.setApiario(new Apiario());
 		objC.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
 		listaColmenas = service.buscarColmena(objC);
+		System.out.println("id planilla revision al abrir registrar"+planillaRevision.getIdPlanillaRevision());
 	}
 	public void guardarPlanillaRevision() throws Exception{
 		PlanillaRevision confirm=null;
@@ -806,6 +878,7 @@ public class MBUsuarioApiario implements Serializable{
 				System.out.println("tamñao lista "+listaColmenas.size());
 				for (int i = 0; i < listaColmenas.size(); i++) {
 					if(listaColmenas.get(i).isSel()){
+//						System.out.println("id de planilla de revision al guardar "+planillaRevision.getIdPlanillaRevision());
 						System.out.println("activo? "+listaColmenas.get(i).isSel());
 						System.out.println("id colmena "+listaColmenas.get(i).getIdColmena());
 						
@@ -857,5 +930,28 @@ public class MBUsuarioApiario implements Serializable{
 			}
 		}
 	}
-
+	public void mostrarComboTipoEnfermedad(){
+		System.out.println("mostrarComboTipoEnfermedad");
+		if(muestraNecesidadCuracion){
+			System.out.println("if");
+			activarTipoEnfermedad=true;
+			activarCajaVaciaEnfermedad=false;
+		}else{
+			System.out.println("else");
+			activarTipoEnfermedad=false;
+			activarCajaVaciaEnfermedad=true;
+		}
+	}
+	public void mostrarComboTipoAlimentacion(){
+		System.out.println("mostrarComboTipoAlimentacion");
+		if(muestraNecesidadAlimentacion){
+			System.out.println("if");
+			activarTipoAlimentacion=true;
+			activarCajaVaciaAlimentacion=false;
+		}else{
+			System.out.println("else");
+			activarTipoAlimentacion=false;
+			activarCajaVaciaAlimentacion=true;
+		}
+	}
 }
