@@ -8,9 +8,12 @@
 <h:head>
 <h:body>
 	<h:form>
-		<p:commandButton value="Nueva Extracción" action="#{aa}"></p:commandButton>
+<!--		<p:commandButton value="Nueva Extracción" action="#{aa}"></p:commandButton>-->
 	
-		<p:dataTable value="" var="data">
+		<p:dataTable id="dtlista" value="" var="data">
+			<f:facet name="header">
+				<h:outputText value="Listado de Cosechas" />
+			</f:facet>
 			<p:column headerText="Apiario">
 					<h:outputText value="" />
 			</p:column>
