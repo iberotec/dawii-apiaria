@@ -1,12 +1,19 @@
 package apiario.edu.pe.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
+import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
 import apiario.edu.pe.bean.PlanillaRevisionTipoEnfermedad;
 
@@ -49,6 +56,7 @@ public class MySqlPlanillaRevisionTipoEnfermedadDAO implements
 	public PlanillaRevisionTipoEnfermedad guardarPlanillaRevisionTipoEnfermedad(
 			PlanillaRevisionTipoEnfermedad instance) throws Exception {
 		try {
+			Open();
 			instance.setSuccess(false);
 			em.getTransaction().begin();
 			em.merge(instance);
@@ -62,15 +70,41 @@ public class MySqlPlanillaRevisionTipoEnfermedadDAO implements
 			em.getTransaction().rollback();
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
 	@Override
 	public List<PlanillaRevisionTipoEnfermedad> buscarPlanillaRevisionTipoEnfermedad(
 			PlanillaRevisionTipoEnfermedad instance) throws Exception {
-		return null;
+		Open();
+		CriteriaBuilder builder=emf.getCriteriaBuilder();
+		CriteriaQuery<PlanillaRevisionTipoEnfermedad> criteria=builder.createQuery(PlanillaRevisionTipoEnfermedad.class);
+		Root<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedadRoot=criteria.from(PlanillaRevisionTipoEnfermedad.class);
+		Join<PlanillaRevisionTipoEnfermedad,PlanillaRevision> planillaRevisionRoot = planillaRevisionTipoEnfermedadRoot.join("planillaRevision");
+		
+		criteria.select(planillaRevisionTipoEnfermedadRoot);
+		List<Predicate> p=new ArrayList<Predicate>();
+		
+		if(instance!=null){
+			if(instance.getIdPlanillaRevisionTipoEnfermedad()!=null && instance.getIdPlanillaRevisionTipoEnfermedad().intValue()>0){
+				Predicate condition=builder.equal(planillaRevisionTipoEnfermedadRoot.get("idPlanillaRevisionTipoEnfermedad"),instance.getIdPlanillaRevisionTipoEnfermedad());
+				p.add(condition);
+			}
+			if(instance.getPlanillaRevision()!=null){
+				if(instance.getPlanillaRevision().getIdPlanillaRevision()!=null && instance.getPlanillaRevision().getIdPlanillaRevision().intValue()>0){
+					Predicate condition=builder.equal(planillaRevisionRoot.get("idPlanillaRevision"),instance.getPlanillaRevision().getIdPlanillaRevision());
+					p.add(condition);
+				}
+			}
+		}
+		Predicate[] predicates=new Predicate[p.size()];
+		p.toArray(predicates);
+		criteria.where(predicates);
+		
+		List<PlanillaRevisionTipoEnfermedad> lista=em.createQuery(criteria).getResultList();
+		Close();
+		return lista;
 	}
 
 	@Override

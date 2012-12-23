@@ -105,9 +105,13 @@
 		           
 		            rendered="#{mBUsuarioApiario.muestraListaColmenas}"
             >
+            <p:ajax event="rowToggle"   />
              <f:facet name="header">
 								<h:outputText value="Listado de Colmenas" />
 			</f:facet>
+			 <p:column>  
+            <p:rowToggler />  
+       		 </p:column>  
 			<p:column width="100">
 							<f:facet name="header">
 								<h:outputText value="" />
@@ -120,75 +124,189 @@
 							</f:facet>
 							<h:outputText value="Colmena #{listado.idColmena}" />
 			</p:column>
+			
+			
+		<p:rowExpansion>  
+            <h:panelGrid id="display" columns="2" cellpadding="4" style="width:300px;"  
+                            styleClass=" ui-widget-content grid">  
+  			<p:dataTable id="dtAlzas" value="#{mBUsuarioApiario.listaAlza}"
+  					var="listadoAlza"
+  					emptyMessage="No se encontraron Colmenas" 
+		            paginator="true" 
+		            rows="5" 
+		            paginatorPosition="bottom" 
+		            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+  						>
+  			 <f:facet name="header">
+								<h:outputText value="Listado de Alzas" />
+			</f:facet>
+			<p:column width="100">
+							<f:facet name="header">
+								<h:outputText value="" />
+							</f:facet>
+							<h:selectBooleanCheckbox value="" />
+			</p:column>
+			<p:column width="520">
+							<f:facet name="header">
+								<h:outputText value="Alza" />
+							</f:facet>
+							<h:outputText value="" />
+			</p:column>
+  			</p:dataTable>
+
+            </h:panelGrid>  
+        </p:rowExpansion>  
+			
 			</p:dataTable>
     	  </h:panelGrid>
     	  <br />
-       	  <h:panelGrid id="panel" columns="4" cellpadding="2" >  
+       	  <p:panelGrid id="panel" styleClass="ui-panelgrid ui-panelgrid" >  
+       	  <p:row>
+       	  <p:column>
    		   <h:outputText value="Colmena" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		   </p:column>
+   		   
+   		   <p:column>
    		   <p:inputText value="Colmena #{mBUsuarioApiario.planillaRevision.colmena.idColmena}" disabled="true" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		 </p:column>
+   		  </p:row> 
+   		    <!-- para hacer espacio -->
+   		  
+   		   <!-- para hacer espacio -->
+   		   <p:row>
+   		   <p:column>
    		   <h:outputText value="Existencia de Reina" />
+   		   </p:column>
+   		    
+   		   <p:column>
    		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraExistenciaReina}" />
+   		   </p:column>
+   		   </p:row>
    		   <!-- para hacer espacio -->
-   		   <h:outputText value="" />
-   		   <h:outputText value="" />
+   		 
    		   <!-- para hacer espacio -->
+   		   <p:row>
+   		   <p:column>
    		   <h:outputText value="Reina" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		   </p:column>
+   		     
+   		   <p:column>
    		   <p:inputText value="Reina #{mBUsuarioApiario.planillaRevision.reina.idReina}" disabled="true" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		   </p:column>
+   		   </p:row>
+   		    <!-- para hacer espacio -->
+   		 
+   		   <!-- para hacer espacio -->
+   		   <p:row>
+   		   <p:column>
    		   <h:outputText value="Colmena"/>
+   		   </p:column>
+   		   
+   		   <p:column>
    		   <p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoCosecha}">
 						<f:selectItems value="#{mBSelectItems.cboEstadoCosecha}"/>
 		   </p:selectOneMenu>
+		   </p:column>
+		   </p:row>
 		    <!-- para hacer espacio -->
-   		   <h:outputText value="" />
-   		   <h:outputText value="" />
+   		 
    		   <!-- para hacer espacio -->
+   		   <p:row>
+   		   <p:column>
    		   <h:outputText value="Necesidad de Alimentacion" />
+   		   </p:column>
+   		   
+   		   <p:column>
    		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraNecesidadAlimentacion}">
    		   <p:ajax event="change" listener="#{mBUsuarioApiario.mostrarComboTipoAlimentacion}" update=":fNuevaAsignacion:tabContainer:panel"></p:ajax>
    		   </p:selectBooleanCheckbox>
-   		   <!-- para hacer espacio -->
-   		   <h:outputText value="" rendered="#{mBUsuarioApiario.activarCajaVaciaAlimentacion}"/>
-   		   <h:outputText value="" rendered="#{mBUsuarioApiario.activarCajaVaciaAlimentacion}"/>
-   		   <!-- para hacer espacio -->
+   		   </p:column>
+   		    <p:column>
    		   <h:outputText id="iTipoAlimentacion" value="Tipo Alimentacion" rendered="#{mBUsuarioApiario.activarTipoAlimentacion}"/>
+   		   </p:column>
+   		     
+   		   <p:column>
    		   <p:selectOneMenu id="iCboTipoAlimentacion" value="#{mBUsuarioApiario.muestraTipoAlimentacion}" rendered="#{mBUsuarioApiario.activarTipoAlimentacion}">
    		   				<f:selectItems value="#{mBSelectItems.cboTipoAlimentacion}"/>
    		   </p:selectOneMenu>
+   		   </p:column>
+   		   </p:row>
+   		   <!-- para hacer espacio -->
+   		  
+   		   <!-- para hacer espacio -->
+   		   <p:row>
+   		   <p:column>
    		   <h:outputText value="Necesidad de Curacion" />
+   		   </p:column>
+   		     
+   		    <p:column>
    		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraNecesidadCuracion}">
    		   <p:ajax event="change" listener="#{mBUsuarioApiario.mostrarComboTipoEnfermedad}" update=":fNuevaAsignacion:tabContainer:panel"></p:ajax>
    		   </p:selectBooleanCheckbox>
-   		   <!-- para hacer espacio -->
-   		   <h:outputText value="" rendered="#{mBUsuarioApiario.activarCajaVaciaEnfermedad}"/>
-   		   <h:outputText value="" rendered="#{mBUsuarioApiario.activarCajaVaciaEnfermedad}"/>
-   		   <!-- para hacer espacio -->
+   		   </p:column>
+   		    
+   		    <p:column>
    		   <h:outputText id="iTipoEnfermedad" value="Tipo Enfermedad" rendered="#{mBUsuarioApiario.activarTipoEnfermedad}"/>
+   		    </p:column>
+   		    
+   		     <p:column>
    		   <p:selectOneMenu id="iCboTipoEnfermedad" value="#{mBUsuarioApiario.muestraTipoEnfermedad}" rendered="#{mBUsuarioApiario.activarTipoEnfermedad}">
    		   				<f:selectItems value="#{mBSelectItems.cboTipoEnfermedad}"/>
    		   </p:selectOneMenu>
+   		    </p:column>
+   		   </p:row>
+   		   <!-- para hacer espacio -->
+   		  
+   		   <!-- para hacer espacio -->
+   		   <p:row>
+   		     <p:column>
    		   <h:outputText value="Falta de Espacio en Camara" />
+   		    </p:column>
+   		     <p:column>
    		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraFaltaEspacioCamara}"/>
+   		   </p:column>
+   		   </p:row>
    		    <!-- para hacer espacio -->
-   		   <h:outputText value="" />
-   		   <h:outputText value="" />
+   		  
    		   <!-- para hacer espacio -->
+   		   <p:row>
+   		    <p:column>
    		   <h:outputText value="Falta de Alzas" />
+   		    </p:column>
+   		    
+   		     <p:column>
    		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraFaltaAlza}"/>
+   		   </p:column>
+   		   </p:row>
    		    <!-- para hacer espacio -->
-   		   <h:outputText value="" />
-   		   <h:outputText value="" />
+   		 
    		   <!-- para hacer espacio -->
+   		   <p:row>
+   		    <p:column>
   		   <h:outputText value="Comportamiento de Colmena" />
+  		   </p:column>
+  		     
+  		    <p:column>
   		   <p:inputText value="#{mBUsuarioApiario.muestraComportamiento}"/>
+  		   </p:column>
+  		   </p:row>
   		   <!-- para hacer espacio -->
-   		   <h:outputText value="" />
-   		   <h:outputText value="" />
+   		  
    		   <!-- para hacer espacio -->
+   		   <p:row>
+   		    <p:column>
   		   <h:outputText value="Nivel de Peligro" />
+  		   </p:column>
+  		 
+  		    <p:column>
   		   <p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoRevision}">
   		   				<f:selectItems value="#{mBSelectItems.cboEstadoRevision}"/>
   		   </p:selectOneMenu>
-             </h:panelGrid>  
+  		   </p:column>
+  		   </p:row>
+             </p:panelGrid>  
+             
+    
    		   </p:dialog> 
    		   
    				

@@ -17,7 +17,7 @@ public class PlanillaRevisionTipoEnfermedad extends BaseEntidades implements Ser
 
 	@Id
 	@Column(name="id_planilla_revision_tipo_enfermedad")
-	private int idPlanillaRevisionTipoEnfermedad;
+	private Integer idPlanillaRevisionTipoEnfermedad;
 
 	//bi-directional many-to-one association to PlanillaRevision
     @ManyToOne
@@ -32,11 +32,11 @@ public class PlanillaRevisionTipoEnfermedad extends BaseEntidades implements Ser
     public PlanillaRevisionTipoEnfermedad() {
     }
 
-	public int getIdPlanillaRevisionTipoEnfermedad() {
+	public Integer getIdPlanillaRevisionTipoEnfermedad() {
 		return this.idPlanillaRevisionTipoEnfermedad;
 	}
 
-	public void setIdPlanillaRevisionTipoEnfermedad(int idPlanillaRevisionTipoEnfermedad) {
+	public void setIdPlanillaRevisionTipoEnfermedad(Integer idPlanillaRevisionTipoEnfermedad) {
 		this.idPlanillaRevisionTipoEnfermedad = idPlanillaRevisionTipoEnfermedad;
 	}
 

@@ -12,6 +12,6 @@ public interface IPlanillaRevisionDAO {
 	public abstract List<PlanillaRevision> buscarPlanillaRevision(PlanillaRevision instance) throws Exception;
 	public abstract PlanillaRevision obtenerPorIdPlanillaRevision(int id) throws Exception;
 	public abstract PlanillaRevision eliminarPlanillaRevision(PlanillaRevision instance) throws Exception;
-	
+	public abstract List<Integer> obtenerMaximoIdPlanillaRevision() throws Exception;
 	
 }
