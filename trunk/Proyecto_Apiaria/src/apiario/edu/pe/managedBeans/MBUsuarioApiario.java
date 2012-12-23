@@ -17,6 +17,7 @@ import org.primefaces.event.SelectEvent;
 //import com.sun.org.apache.bcel.internal.generic.NEW;
 
 
+import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.EstadoRevision;
@@ -24,9 +25,13 @@ import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadApiario;
 import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
+import apiario.edu.pe.bean.PlanillaRevisionTipoEnfermedad;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.Reina;
 import apiario.edu.pe.bean.Temporada;
+import apiario.edu.pe.bean.TipoAlimentacion;
+import apiario.edu.pe.bean.TipoEnfermedad;
 import apiario.edu.pe.bean.Usuario;
 import apiario.edu.pe.bean.UsuarioApiario;
 import apiario.edu.pe.service.SeleccionService;
@@ -73,8 +78,7 @@ public class MBUsuarioApiario implements Serializable{
 	private Integer muestraTipoAlimentacion;
 	private boolean activarTipoEnfermedad;
 	private boolean activarTipoAlimentacion;
-	private boolean activarCajaVaciaEnfermedad;
-	private boolean activarCajaVaciaAlimentacion;
+	private List<Alza> listaAlza = new ArrayList<Alza>();
 //	public void limpiar(){
 ////		objColmena=new Colmena();
 //
@@ -490,20 +494,12 @@ public class MBUsuarioApiario implements Serializable{
 		this.activarTipoAlimentacion = activarTipoAlimentacion;
 	}
 
-	public boolean isActivarCajaVaciaEnfermedad() {
-		return activarCajaVaciaEnfermedad;
+	public List<Alza> getListaAlza() {
+		return listaAlza;
 	}
 
-	public void setActivarCajaVaciaEnfermedad(boolean activarCajaVaciaEnfermedad) {
-		this.activarCajaVaciaEnfermedad = activarCajaVaciaEnfermedad;
-	}
-
-	public boolean isActivarCajaVaciaAlimentacion() {
-		return activarCajaVaciaAlimentacion;
-	}
-
-	public void setActivarCajaVaciaAlimentacion(boolean activarCajaVaciaAlimentacion) {
-		this.activarCajaVaciaAlimentacion = activarCajaVaciaAlimentacion;
+	public void setListaAlza(List<Alza> listaAlza) {
+		this.listaAlza = listaAlza;
 	}
 
 	public MBUsuarioApiario() {
@@ -822,8 +818,7 @@ public class MBUsuarioApiario implements Serializable{
 		muestraTipoEnfermedad=0;
 		activarTipoEnfermedad=false;
 		activarTipoAlimentacion=false;
-		activarCajaVaciaAlimentacion=true;
-		activarCajaVaciaEnfermedad=true;
+
 	}
 	public void abrirModificarPlanillaRevision(int id) throws Exception{
 		System.out.println("abrirModificarPlanillaRevision");
@@ -861,6 +856,37 @@ public class MBUsuarioApiario implements Serializable{
 		
 		muestraComportamiento=planillaRevision.getComportamiento();
 		
+		if(muestraNecesidadAlimentacion){
+			System.out.println("if");
+			activarTipoAlimentacion=true;
+			PlanillaRevisionTipoAlimentacion obj = new PlanillaRevisionTipoAlimentacion();
+			obj.setPlanillaRevision(new PlanillaRevision());
+			obj.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+			List<PlanillaRevisionTipoAlimentacion> lista = new ArrayList<PlanillaRevisionTipoAlimentacion>();
+			lista = service.buscarPlanillaRevisionTipoAlimentacion(obj);
+			muestraTipoAlimentacion=lista.get(0).getIdPlanillaRevisionTipoAlimentacion();
+
+		}else{
+			System.out.println("else");
+			activarTipoAlimentacion=false;
+
+		}
+		if(muestraNecesidadCuracion){
+			System.out.println("if");
+			activarTipoEnfermedad=true;
+			PlanillaRevisionTipoEnfermedad obj = new PlanillaRevisionTipoEnfermedad();
+			obj.setPlanillaRevision(new PlanillaRevision());
+			obj.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+			List<PlanillaRevisionTipoEnfermedad> lista = new ArrayList<PlanillaRevisionTipoEnfermedad>();
+			lista = service.buscarPlanillaRevisionTipoEnfermedad(obj);
+			muestraTipoEnfermedad=lista.get(0).getIdPlanillaRevisionTipoEnfermedad();
+			
+		}else{
+			System.out.println("else");
+			activarTipoEnfermedad=false;
+
+		}
+		
 	}
 	public void abrirRegistrarPlanillaRevision() throws Exception{
 		limpiarPLanillaRevision();
@@ -870,6 +896,7 @@ public class MBUsuarioApiario implements Serializable{
 		objC.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
 		listaColmenas = service.buscarColmena(objC);
 		System.out.println("id planilla revision al abrir registrar"+planillaRevision.getIdPlanillaRevision());
+
 	}
 	public void guardarPlanillaRevision() throws Exception{
 		PlanillaRevision confirm=null;
@@ -897,6 +924,42 @@ public class MBUsuarioApiario implements Serializable{
 						planillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 						planillaRevision.getEstadoRevision().setIdEstadoRevision(muestraEstadoRevision);
 						confirm=service.guardarPlanillaRevision(planillaRevision);
+						
+						List<Integer> listaIdPlanillaRevision= new ArrayList<Integer>();
+						listaIdPlanillaRevision = service.obtenerMaximoIdPlanillaRevision();
+						if(muestraTipoAlimentacion.intValue()>0){
+							System.out.println("grabando PlanillaRevisionTipoAlimentacion");
+							PlanillaRevisionTipoAlimentacion objPRTA= new PlanillaRevisionTipoAlimentacion();
+							objPRTA.setPlanillaRevision(new PlanillaRevision());
+							objPRTA.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+							objPRTA.setTipoAlimentacion(new TipoAlimentacion());
+							objPRTA.getTipoAlimentacion().setIdTipoAlimentacion(muestraTipoAlimentacion);
+							
+							PlanillaRevisionTipoAlimentacion confirmPRTA= null;
+							confirmPRTA=service.guardarPlanillaRevisionTipoAlimentacion(objPRTA);
+							if(confirmPRTA.isSuccess()){
+								System.out.println("grabo PRTA");
+							}else{
+								System.out.println("error PRTA");
+							}
+						}
+						if(muestraTipoEnfermedad.intValue()>0){
+							System.out.println("grabando PlanillaRevisionTipoEnfermedad");
+							PlanillaRevisionTipoEnfermedad objPRTE= new PlanillaRevisionTipoEnfermedad();
+							objPRTE.setPlanillaRevision(new PlanillaRevision());
+							objPRTE.setTipoEnfermedad(new TipoEnfermedad());
+							objPRTE.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+							objPRTE.getTipoEnfermedad().setIdTipoEnfermedad(muestraTipoEnfermedad);
+							
+							PlanillaRevisionTipoEnfermedad confirmPRTE= null;
+							confirmPRTE=service.guardarPlanillaRevisionTipoEnfermedad(objPRTE);
+							if(confirmPRTE.isSuccess()){
+								System.out.println("grabo PRTE");
+							}else{
+								System.out.println("error PRTE");
+							}
+						}
+						
 					}
 				}
 				if(confirm.isSuccess()){
@@ -935,11 +998,11 @@ public class MBUsuarioApiario implements Serializable{
 		if(muestraNecesidadCuracion){
 			System.out.println("if");
 			activarTipoEnfermedad=true;
-			activarCajaVaciaEnfermedad=false;
+
 		}else{
 			System.out.println("else");
 			activarTipoEnfermedad=false;
-			activarCajaVaciaEnfermedad=true;
+
 		}
 	}
 	public void mostrarComboTipoAlimentacion(){
@@ -947,11 +1010,11 @@ public class MBUsuarioApiario implements Serializable{
 		if(muestraNecesidadAlimentacion){
 			System.out.println("if");
 			activarTipoAlimentacion=true;
-			activarCajaVaciaAlimentacion=false;
+
 		}else{
 			System.out.println("else");
 			activarTipoAlimentacion=false;
-			activarCajaVaciaAlimentacion=true;
+
 		}
 	}
 }

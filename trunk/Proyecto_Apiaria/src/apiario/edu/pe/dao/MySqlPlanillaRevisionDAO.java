@@ -14,9 +14,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Apiario;
-import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.PlanillaRevision;
-import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.UsuarioApiario;
 @SuppressWarnings(value={"unchecked"})
 public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
@@ -184,6 +182,21 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 			em.close();
 		}
 		return instance;
+	}
+	@Override
+	public List<Integer> obtenerMaximoIdPlanillaRevision() throws Exception {
+		List<Integer> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select MAX(model.idPlanillaRevision) from PlanillaRevision model");
+			lista = q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
+		}
+		Close();
+		System.out.println("lista??dAO "+lista);
+		return lista;
 	}
 
 }

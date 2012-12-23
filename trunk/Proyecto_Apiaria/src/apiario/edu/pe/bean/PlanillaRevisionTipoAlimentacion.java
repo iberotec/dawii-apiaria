@@ -17,7 +17,7 @@ public class PlanillaRevisionTipoAlimentacion extends BaseEntidades implements S
 
 	@Id
 	@Column(name="id_planilla_revision_tipo_alimentacion")
-	private int idPlanillaRevisionTipoAlimentacion;
+	private Integer idPlanillaRevisionTipoAlimentacion;
 
 	//bi-directional many-to-one association to PlanillaRevision
     @ManyToOne
@@ -32,11 +32,11 @@ public class PlanillaRevisionTipoAlimentacion extends BaseEntidades implements S
     public PlanillaRevisionTipoAlimentacion() {
     }
 
-	public int getIdPlanillaRevisionTipoAlimentacion() {
+	public Integer getIdPlanillaRevisionTipoAlimentacion() {
 		return this.idPlanillaRevisionTipoAlimentacion;
 	}
 
-	public void setIdPlanillaRevisionTipoAlimentacion(int idPlanillaRevisionTipoAlimentacion) {
+	public void setIdPlanillaRevisionTipoAlimentacion(Integer idPlanillaRevisionTipoAlimentacion) {
 		this.idPlanillaRevisionTipoAlimentacion = idPlanillaRevisionTipoAlimentacion;
 	}
 

@@ -597,4 +597,10 @@ IPlanillaRevisionTipoEnfermedadDAO, Serializable{
 		return daoUsuarioApiario.obtenerMaximoIdUsuarioApiario();
 	}
 
+	@Override
+	public List<Integer> obtenerMaximoIdPlanillaRevision() throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaRevision.obtenerMaximoIdPlanillaRevision();
+	}
+
 }

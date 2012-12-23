@@ -13,6 +13,7 @@ import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
 
 public class MySqlPlanillaRevisionTipoAlimentacionDAO implements
@@ -54,6 +55,7 @@ public class MySqlPlanillaRevisionTipoAlimentacionDAO implements
 	public PlanillaRevisionTipoAlimentacion guardarPlanillaRevisionTipoAlimentacion(
 			PlanillaRevisionTipoAlimentacion instance) throws Exception {
 		try {
+			Open();
 			instance.setSuccess(false);
 			em.getTransaction().begin();
 			em.merge(instance);
@@ -67,46 +69,41 @@ public class MySqlPlanillaRevisionTipoAlimentacionDAO implements
 			em.getTransaction().rollback();
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
 	@Override
 	public List<PlanillaRevisionTipoAlimentacion> buscarPlanillaRevisionTipoAlimentacion(
 			PlanillaRevisionTipoAlimentacion instance) throws Exception {
-//		Open();
-//		CriteriaBuilder builder=emf.getCriteriaBuilder();
-//		CriteriaQuery<Colmena> criteria=builder.createQuery(Colmena.class);
-//		Root<Colmena> colmenaRoot=criteria.from(Colmena.class);
-//		Join<Colmena,Apiario> apiarioRoot = colmenaRoot.join("apiario");
-//		
-//		System.out.println("entro aqui DAO?");
-//		
-//		criteria.select(colmenaRoot);
-//		List<Predicate> p=new ArrayList<Predicate>();
-//		
-//		if(instance!=null){
-//			if(instance.getIdColmena()!=null && instance.getIdColmena()>0){
-//				System.out.println("entro?????? DAO");
-//				Predicate condition=builder.equal(colmenaRoot.get("idColmena"),instance.getIdColmena());
-//				p.add(condition);
-//			}
-//			if(instance.getApiario()!=null){
-//				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario()>0){
-//					Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getApiario().getIdApiario());
-//					p.add(condition);
-//				}
-//			}
-//		}
-//		Predicate[] predicates=new Predicate[p.size()];
-//		p.toArray(predicates);
-//		criteria.where(predicates);
-//		
-//		List<Colmena> lista=em.createQuery(criteria).getResultList();
-//		Close();
-//		return lista;
-		return null;
+		Open();
+		CriteriaBuilder builder=emf.getCriteriaBuilder();
+		CriteriaQuery<PlanillaRevisionTipoAlimentacion> criteria=builder.createQuery(PlanillaRevisionTipoAlimentacion.class);
+		Root<PlanillaRevisionTipoAlimentacion> planillaRevisionTipoAlimentacionRoot=criteria.from(PlanillaRevisionTipoAlimentacion.class);
+		Join<PlanillaRevisionTipoAlimentacion,PlanillaRevision> planillaRevisionRoot = planillaRevisionTipoAlimentacionRoot.join("planillaRevision");
+		
+		criteria.select(planillaRevisionTipoAlimentacionRoot);
+		List<Predicate> p=new ArrayList<Predicate>();
+		
+		if(instance!=null){
+			if(instance.getIdPlanillaRevisionTipoAlimentacion()!=null && instance.getIdPlanillaRevisionTipoAlimentacion().intValue()>0){
+				Predicate condition=builder.equal(planillaRevisionTipoAlimentacionRoot.get("idPlanillaRevisionTipoAlimentacion"),instance.getIdPlanillaRevisionTipoAlimentacion());
+				p.add(condition);
+			}
+			if(instance.getPlanillaRevision()!=null){
+				if(instance.getPlanillaRevision().getIdPlanillaRevision()!=null && instance.getPlanillaRevision().getIdPlanillaRevision().intValue()>0){
+					Predicate condition=builder.equal(planillaRevisionRoot.get("idPlanillaRevision"),instance.getPlanillaRevision().getIdPlanillaRevision());
+					p.add(condition);
+				}
+			}
+		}
+		Predicate[] predicates=new Predicate[p.size()];
+		p.toArray(predicates);
+		criteria.where(predicates);
+		
+		List<PlanillaRevisionTipoAlimentacion> lista=em.createQuery(criteria).getResultList();
+		Close();
+		return lista;
 	}
 
 	@Override

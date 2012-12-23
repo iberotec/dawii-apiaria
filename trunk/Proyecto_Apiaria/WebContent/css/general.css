@@ -89,7 +89,9 @@ margin-right: 5px !important;
 	display: block;
 	
 }
-
+.ui-panelgrid tr, .ui-panelgrid td {
+border:0 !important;
+}
 
 /*FIN ESTILOS PARA TOP*/
 
