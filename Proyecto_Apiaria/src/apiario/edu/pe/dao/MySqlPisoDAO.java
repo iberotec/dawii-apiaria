@@ -19,8 +19,17 @@ import apiario.edu.pe.bean.Piso;
 
 public class MySqlPisoDAO implements IPisoDAO{
 
-	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-	EntityManager em=emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
+	
+	public void Open(){
+		emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
+		em=emf.createEntityManager();
+	}
+	public void Close(){
+		em.close();
+		emf.close();
+	}
 	
 	@Override
 	public List<Piso> listarTodosPisos() throws Exception {
@@ -66,6 +75,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 
 	@Override
 	public List<Piso> buscarPiso(Piso instance) throws Exception {
+		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<Piso> criteria=builder.createQuery(Piso.class);
 		Root<Piso> pisoRoot=criteria.from(Piso.class);
@@ -75,12 +85,12 @@ public class MySqlPisoDAO implements IPisoDAO{
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdPiso()!=null && instance.getIdPiso()>0){
+			if(instance.getIdPiso()!=null && instance.getIdPiso().intValue()>0){
 				Predicate condition=builder.equal(pisoRoot.get("idPiso"),instance.getIdPiso());
 				p.add(condition);
 			}
 			if(instance.getColmena() !=null){
-				if(instance.getColmena().getIdColmena()!=null && instance.getColmena().getIdColmena()>0){
+				if(instance.getColmena().getIdColmena()!=null && instance.getColmena().getIdColmena().intValue()>0){
 					Predicate condition=builder.equal(colmenaRoot.get("idColmena"),instance.getColmena().getIdColmena());
 					p.add(condition);
 				}
@@ -91,7 +101,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 		criteria.where(predicates);
 		
 		List<Piso> lista=em.createQuery(criteria).getResultList();
-		em.close();
+		Close();
 		return lista;
 	}
 

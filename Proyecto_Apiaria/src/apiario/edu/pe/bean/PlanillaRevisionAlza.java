@@ -3,6 +3,8 @@ package apiario.edu.pe.bean;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import apiario.edu.pe.bean.base.BaseEntidades;
+
 
 /**
  * The persistent class for the planilla_revision_alza database table.
@@ -10,18 +12,18 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="planilla_revision_alza")
-public class PlanillaRevisionAlza implements Serializable {
+public class PlanillaRevisionAlza extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id_planilla_revision_alza")
-	private int idPlanillaRevisionAlza;
+	private Integer idPlanillaRevisionAlza;
 
 	@Column(name="estado_alza")
 	private String estadoAlza;
 
 	@Column(name="estado_deterioro_alza")
-	private byte estadoDeterioroAlza;
+	private Boolean estadoDeterioroAlza;
 
 	@Column(name="porcentaje_miel")
 	private double porcentajeMiel;
@@ -39,11 +41,11 @@ public class PlanillaRevisionAlza implements Serializable {
     public PlanillaRevisionAlza() {
     }
 
-	public int getIdPlanillaRevisionAlza() {
+	public Integer getIdPlanillaRevisionAlza() {
 		return this.idPlanillaRevisionAlza;
 	}
 
-	public void setIdPlanillaRevisionAlza(int idPlanillaRevisionAlza) {
+	public void setIdPlanillaRevisionAlza(Integer idPlanillaRevisionAlza) {
 		this.idPlanillaRevisionAlza = idPlanillaRevisionAlza;
 	}
 
@@ -55,11 +57,11 @@ public class PlanillaRevisionAlza implements Serializable {
 		this.estadoAlza = estadoAlza;
 	}
 
-	public byte getEstadoDeterioroAlza() {
+	public Boolean getEstadoDeterioroAlza() {
 		return this.estadoDeterioroAlza;
 	}
 
-	public void setEstadoDeterioroAlza(byte estadoDeterioroAlza) {
+	public void setEstadoDeterioroAlza(Boolean estadoDeterioroAlza) {
 		this.estadoDeterioroAlza = estadoDeterioroAlza;
 	}
 
