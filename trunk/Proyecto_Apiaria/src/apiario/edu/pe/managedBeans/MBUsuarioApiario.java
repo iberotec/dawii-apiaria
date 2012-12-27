@@ -24,7 +24,9 @@ import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadApiario;
+import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.PlanillaRevisionAlza;
 import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
 import apiario.edu.pe.bean.PlanillaRevisionTipoEnfermedad;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
@@ -79,6 +81,17 @@ public class MBUsuarioApiario implements Serializable{
 	private boolean activarTipoEnfermedad;
 	private boolean activarTipoAlimentacion;
 	private List<Alza> listaAlza = new ArrayList<Alza>();
+	private Colmena colmenaSeleccionada;
+	private List<PlanillaRevisionAlza> listaPlanillaRevisionAlza= new ArrayList<PlanillaRevisionAlza>();
+	private PlanillaRevisionAlza planillaRevisionAlzaSeleccionada;
+	private PlanillaRevisionAlza planillaRevisionAlza;
+	private String muestraEstadoAlza;
+	private boolean muestraEstadoDeterioroAlza;
+	private boolean muestraCajaIdAlza;
+	private double muestraPorcentajeMiel;
+	private boolean activaTabAlza;
+	private boolean activaListadoAlza;
+	private Integer muestraIdAlza;
 //	public void limpiar(){
 ////		objColmena=new Colmena();
 //
@@ -502,6 +515,96 @@ public class MBUsuarioApiario implements Serializable{
 		this.listaAlza = listaAlza;
 	}
 
+	public Colmena getColmenaSeleccionada() {
+		return colmenaSeleccionada;
+	}
+
+	public void setColmenaSeleccionada(Colmena colmenaSeleccionada) {
+		this.colmenaSeleccionada = colmenaSeleccionada;
+	}
+
+	public List<PlanillaRevisionAlza> getListaPlanillaRevisionAlza() {
+		return listaPlanillaRevisionAlza;
+	}
+
+	public void setListaPlanillaRevisionAlza(
+			List<PlanillaRevisionAlza> listaPlanillaRevisionAlza) {
+		this.listaPlanillaRevisionAlza = listaPlanillaRevisionAlza;
+	}
+
+	public PlanillaRevisionAlza getPlanillaRevisionAlzaSeleccionada() {
+		return planillaRevisionAlzaSeleccionada;
+	}
+
+	public void setPlanillaRevisionAlzaSeleccionada(
+			PlanillaRevisionAlza planillaRevisionAlzaSeleccionada) {
+		this.planillaRevisionAlzaSeleccionada = planillaRevisionAlzaSeleccionada;
+	}
+
+	public PlanillaRevisionAlza getPlanillaRevisionAlza() {
+		return planillaRevisionAlza;
+	}
+
+	public void setPlanillaRevisionAlza(PlanillaRevisionAlza planillaRevisionAlza) {
+		this.planillaRevisionAlza = planillaRevisionAlza;
+	}
+	
+	public String getMuestraEstadoAlza() {
+		return muestraEstadoAlza;
+	}
+
+	public void setMuestraEstadoAlza(String muestraEstadoAlza) {
+		this.muestraEstadoAlza = muestraEstadoAlza;
+	}
+
+	public boolean isMuestraEstadoDeterioroAlza() {
+		return muestraEstadoDeterioroAlza;
+	}
+
+	public void setMuestraEstadoDeterioroAlza(boolean muestraEstadoDeterioroAlza) {
+		this.muestraEstadoDeterioroAlza = muestraEstadoDeterioroAlza;
+	}
+
+	public boolean isMuestraCajaIdAlza() {
+		return muestraCajaIdAlza;
+	}
+
+	public void setMuestraCajaIdAlza(boolean muestraCajaIdAlza) {
+		this.muestraCajaIdAlza = muestraCajaIdAlza;
+	}
+
+	public double getMuestraPorcentajeMiel() {
+		return muestraPorcentajeMiel;
+	}
+
+	public void setMuestraPorcentajeMiel(double muestraPorcentajeMiel) {
+		this.muestraPorcentajeMiel = muestraPorcentajeMiel;
+	}
+
+	public boolean isActivaTabAlza() {
+		return activaTabAlza;
+	}
+
+	public void setActivaTabAlza(boolean activaTabAlza) {
+		this.activaTabAlza = activaTabAlza;
+	}
+
+	public boolean isActivaListadoAlza() {
+		return activaListadoAlza;
+	}
+
+	public void setActivaListadoAlza(boolean activaListadoAlza) {
+		this.activaListadoAlza = activaListadoAlza;
+	}
+
+	public Integer getMuestraIdAlza() {
+		return muestraIdAlza;
+	}
+
+	public void setMuestraIdAlza(Integer muestraIdAlza) {
+		this.muestraIdAlza = muestraIdAlza;
+	}
+
 	public MBUsuarioApiario() {
 //		limpiar();
 
@@ -798,6 +901,7 @@ public class MBUsuarioApiario implements Serializable{
 	}
 	public void limpiarPLanillaRevision(){
 		System.out.println("limpiarPLanillaRevision");
+		planillaRevisionSeleccionada = new PlanillaRevision();
 		planillaRevision = new PlanillaRevision();
 		planillaRevision.setColmena(new Colmena());
 		planillaRevision.setEstadoRevision(new EstadoRevision());
@@ -818,12 +922,15 @@ public class MBUsuarioApiario implements Serializable{
 		muestraTipoEnfermedad=0;
 		activarTipoEnfermedad=false;
 		activarTipoAlimentacion=false;
+		activaTabAlza=false;
 
 	}
 	public void abrirModificarPlanillaRevision(int id) throws Exception{
 		System.out.println("abrirModificarPlanillaRevision");
+		listaPlanillaRevisionAlza= new ArrayList<PlanillaRevisionAlza>();
 		muestraListaColmenas=false;
 		muestraCajaTexto=true;
+		activaTabAlza=true;
 		System.out.println("id PR "+id);
 		PlanillaRevision objPR = new PlanillaRevision();
 		objPR = service.obtenerPorIdPlanillaRevision(id);
@@ -853,6 +960,8 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("planillaRevision.getFaltaAlza() "+planillaRevision.getFaltaAlza());
 		muestraFaltaAlza=planillaRevision.getFaltaAlza();
 		System.out.println("muestraFaltaAlza "+muestraFaltaAlza);
+		
+		muestraEstadoRevision=planillaRevision.getEstadoRevision().getIdEstadoRevision();
 		
 		muestraComportamiento=planillaRevision.getComportamiento();
 		
@@ -900,6 +1009,7 @@ public class MBUsuarioApiario implements Serializable{
 	}
 	public void guardarPlanillaRevision() throws Exception{
 		PlanillaRevision confirm=null;
+//		double porcentajeMiel;
 		try {
 			if(listaColmenas.size()>0){
 				System.out.println("tamñao lista "+listaColmenas.size());
@@ -959,6 +1069,38 @@ public class MBUsuarioApiario implements Serializable{
 								System.out.println("error PRTE");
 							}
 						}
+//						if(listaAlza.size()>0){
+//							System.out.println("primer if la lista es mayor a 0");
+//							PlanillaRevisionAlza confirmPRA =null;
+//							for (int j = 0; j < listaAlza.size(); j++) {
+//								System.out.println("recorriendo for");
+//								if(listaAlza.get(j).isSel()){
+//									System.out.println("segundo if se encontro seleccionados");
+//									System.out.println("id de alaza "+listaAlza.get(j).getIdAlza());
+//									PlanillaRevisionAlza obj = new PlanillaRevisionAlza();
+//									obj.setPlanillaRevision(new PlanillaRevision());
+//									obj.setAlza(new Alza());
+//									obj.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+//									obj.getAlza().setIdAlza(listaAlza.get(j).getIdAlza());
+//									if(listaAlza.get(i).getMsgResult()!=null && listaAlza.get(i).getMsgResult().length()>0){
+//										System.out.println("entro al if");
+//										porcentajeMiel= Double.parseDouble(listaAlza.get(i).getMsgResult());
+//										System.out.println("porcentaje miel "+porcentajeMiel);
+//										obj.setPorcentajeMiel(porcentajeMiel);
+//									}
+//									confirmPRA = service.guardarPlanillaRevisionAlza(obj);
+//									if(confirmPRA.isSuccess()){
+//										System.out.println("grabo planilla revision-alza");
+//									}else{
+//										System.out.println("error no grabo planilla revision-alza");
+//									}
+//								}
+//								
+//							}
+//							
+//							
+//						}
+						
 						
 					}
 				}
@@ -980,18 +1122,40 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("guardarControlCalidad");
 		System.out.println("tamaño lista NS "+listaNS.size());
 		System.out.println("tamaño listaString "+listaString.size());
-		if(listaString.size()>0){
-			for (int i = 0; i < listaString.size(); i++) {
-				System.out.println("listaString.get(i) "+listaString.get(i));
+		NormaSeguridadApiario obj = new NormaSeguridadApiario();
+		NormaSeguridadApiario confirm =null;
+		try {
+			if(listaString.size()>0){
+				for (int i = 0; i < listaString.size(); i++) {
+					System.out.println("listaString.get(i) "+listaString.get(i));
+					obj.setNormaSeguridad(new NormaSeguridad());
+					obj.setApiario(new Apiario());
+					obj.getNormaSeguridad().setIdNormaSeguridad(Integer.parseInt(listaString.get(i)));
+					obj.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+					confirm = service.guardarNormaSeguridadApiario(obj);
+					
+				}
+				if(confirm.isSuccess()){
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una la Planilla de Normas de Seguridad"));  
+					System.out.println("grabo");
+				}else{
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Planilla de Normas de Seguridad")); 
+					System.out.println("error al grabar");
+				}
 			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
+			e.printStackTrace();
 		}
 		
-		if(listaNS.size()>0){
-			for (int i = 0; i < listaNS.size(); i++) {
-				System.out.println("id norma "+listaNS.get(i).getDescripcionNormaSeguridad());
-				System.out.println("sel ?"+listaNS.get(i).isSel());
-			}
-		}
+		
+//		if(listaNS.size()>0){
+//			for (int i = 0; i < listaNS.size(); i++) {
+//				System.out.println("id norma "+listaNS.get(i).getDescripcionNormaSeguridad());
+//				System.out.println("sel ?"+listaNS.get(i).isSel());
+//			}
+//		}
 	}
 	public void mostrarComboTipoEnfermedad(){
 		System.out.println("mostrarComboTipoEnfermedad");
@@ -1016,5 +1180,98 @@ public class MBUsuarioApiario implements Serializable{
 			activarTipoAlimentacion=false;
 
 		}
+	}
+//	public void obtenerAlzasxColmena(int id) throws Exception{
+//		Alza obj = new Alza();
+//		obj.setPiso(new Piso());
+//		obj.getPiso().setColmena(new Colmena());
+//		obj.getPiso().getColmena().setIdColmena(id);
+//		if(obj.getPiso().getColmena().getIdColmena()!=null && obj.getPiso().getColmena().getIdColmena().intValue()>0){
+//			listaAlza = service.buscarAlza(obj);
+//		}
+//	}
+	public void limpiarPlanillaRevisionAlza(){
+		System.out.println("limpiarPlanillaRevisionAlza");
+		planillaRevisionAlzaSeleccionada = new PlanillaRevisionAlza();
+		planillaRevisionAlza = new PlanillaRevisionAlza();
+		planillaRevisionAlza.setAlza(new Alza());
+		planillaRevisionAlza.setPlanillaRevision(new PlanillaRevision());
+		listaAlza= new ArrayList<Alza>();
+		muestraEstadoAlza="";
+		muestraEstadoDeterioroAlza=false;
+		muestraCajaIdAlza=false;
+		muestraPorcentajeMiel=0;
+		activaListadoAlza=true;
+		muestraIdAlza=0;
+		
+	}
+	public void listarTodosPlanillaRevisionAlza() throws Exception{
+		System.out.println("listarTodosRevisionAlza");
+		PlanillaRevisionAlza obj = new PlanillaRevisionAlza();
+		obj.setAlza(new Alza());
+		obj.getAlza().setPiso(new Piso());
+		obj.getAlza().getPiso().setColmena(new Colmena());
+		obj.getAlza().getPiso().getColmena().setIdColmena(planillaRevision.getColmena().getIdColmena());
+		listaPlanillaRevisionAlza = service.buscarPlanillaRevisionAlza(obj);
+	}
+	public void abrirModificarPlanillaRevisionAlza(int id) throws Exception{
+		System.out.println("abrirModificarPlanillaRevisionAlzaAAAAAAAAAAA");
+		activaListadoAlza=false;
+		System.out.println("id de planillarevisonalza "+id);
+		muestraCajaIdAlza=true;
+		PlanillaRevisionAlza obj = new PlanillaRevisionAlza();
+		obj.setIdPlanillaRevisionAlza(id);
+		planillaRevisionAlza=service.obtenerPorIdPlanillaRevisionAlza(obj.getIdPlanillaRevisionAlza());
+		muestraIdAlza=planillaRevisionAlza.getAlza().getIdAlza();
+		muestraEstadoAlza=planillaRevisionAlza.getEstadoAlza();
+		muestraEstadoDeterioroAlza=planillaRevisionAlza.getEstadoDeterioroAlza();
+		muestraPorcentajeMiel= planillaRevisionAlza.getPorcentajeMiel();
+		
+	}
+	public void abrirRegistrarPlanillaRevisionAlza() throws Exception{
+		System.out.println("abrirRegistrarRevisionAlza");
+		System.out.println("porcent miel "+muestraPorcentajeMiel);
+		limpiarPlanillaRevisionAlza();
+		System.out.println("id colmena "+planillaRevision.getColmena().getIdColmena());
+		Alza obj = new Alza();
+		obj.setPiso(new Piso());
+		obj.getPiso().setColmena(new Colmena());
+		obj.getPiso().getColmena().setIdColmena(planillaRevision.getColmena().getIdColmena());
+		System.out.println("obj id colmena "+obj.getPiso().getColmena().getIdColmena());
+		listaAlza = service.buscarAlza(obj);
+		System.out.println("tamaño lista alza "+listaAlza.size());
+		
+	}
+	public void guardarPlanillaRevisionAlza(){
+		System.out.println("guardarPlanillaRevisionAlza");
+		PlanillaRevisionAlza confirm=null;
+		try {
+			if(listaAlza.size()>0){
+				for (int i = 0; i < listaAlza.size(); i++) {
+					if(listaAlza.get(i).isSel()){
+						planillaRevisionAlza.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+						planillaRevisionAlza.getAlza().setIdAlza(listaAlza.get(i).getIdAlza());
+						planillaRevisionAlza.setEstadoAlza(muestraEstadoAlza);
+						planillaRevisionAlza.setEstadoDeterioroAlza(muestraEstadoDeterioroAlza);
+						planillaRevisionAlza.setPorcentajeMiel(muestraPorcentajeMiel);
+						
+						confirm=service.guardarPlanillaRevisionAlza(planillaRevisionAlza);
+						
+					}
+				}
+				if(confirm.isSuccess()){
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una revision de alza"));  
+					System.out.println("grabo");
+				}else{
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la revision de alza")); 
+					System.out.println("error al grabar");
+				}
+			}
+		} catch (Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
+			e.printStackTrace();
+		}
+	
+		
 	}
 }

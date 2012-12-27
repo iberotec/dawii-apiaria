@@ -9,15 +9,29 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Alza;
+import apiario.edu.pe.bean.Colmena;
+import apiario.edu.pe.bean.Piso;
+import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.UsuarioApiario;
 @SuppressWarnings(value={"unchecked"})
 public class MySqlAlzaDAO  implements IAlzaDAO{
 
-	EntityManagerFactory emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-	EntityManager em=emf.createEntityManager();
+	EntityManagerFactory emf;
+	EntityManager em;
+	
+	public void Open(){
+		emf=Persistence.createEntityManagerFactory("Proyecto_Apiaria");
+		em=emf.createEntityManager();
+	}
+	public void Close(){
+		em.close();
+		emf.close();
+	}
 	
 	@Override
 	public List<Alza> listarTodosAlzas() throws Exception {
@@ -63,17 +77,29 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 
 	@Override
 	public List<Alza> buscarAlza(Alza instance) throws Exception {
+		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<Alza> criteria=builder.createQuery(Alza.class);
-		Root<Alza> colmenaRoot=criteria.from(Alza.class);
+		Root<Alza> alzaRoot=criteria.from(Alza.class);
+		Join<Alza,Piso> pisoRoot = alzaRoot.join( "piso" );
+		Join<Piso,Colmena> colmenaRoot = pisoRoot.join( "colmena" );
 		
-		criteria.select(colmenaRoot);
+		
+		criteria.select(alzaRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdAlza()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idalza"),instance.getIdAlza());
+			if(instance.getIdAlza()!=null && instance.getIdAlza().intValue()>0){
+				Predicate condition=builder.equal(alzaRoot.get("idalza"),instance.getIdAlza());
 				p.add(condition);
+			}
+			if(instance.getPiso()!=null){
+				if(instance.getPiso().getColmena()!=null){
+					if(instance.getPiso().getColmena().getIdColmena()!=null && instance.getPiso().getColmena().getIdColmena().intValue()>0){
+						Predicate condition=builder.equal(colmenaRoot.get("idColmena"),instance.getPiso().getColmena().getIdColmena());
+						p.add(condition);
+					}
+				}
 			}
 		}
 		Predicate[] predicates=new Predicate[p.size()];
@@ -81,7 +107,7 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 		criteria.where(predicates);
 		
 		List<Alza> lista=em.createQuery(criteria).getResultList();
-		em.close();
+		Close();
 		return lista;
 	}
 

@@ -223,7 +223,14 @@ public class MBSelectItems implements Serializable{
 		cbo[2] = new SelectItem("no cosechable", "no cosechable");
 		return cbo;
 	}
-	
+	public SelectItem[] getCboEstadoAlza() throws Exception { 
+		System.out.println("entro a estadoAlza");
+		SelectItem[] cbo = new SelectItem[3];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		cbo[1] = new SelectItem("extraido", "extraido");
+		cbo[2] = new SelectItem("en colmena", "en colmena");
+		return cbo;
+	}
 	public SelectItem[] getCboEstadoRevision() throws Exception { 
 		System.out.println("entro a estadoRevision");
 		SeleccionService service = new SeleccionService();

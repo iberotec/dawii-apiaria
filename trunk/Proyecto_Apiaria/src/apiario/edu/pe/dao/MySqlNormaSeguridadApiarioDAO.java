@@ -18,7 +18,7 @@ import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadApiario;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.UsuarioApiario;
-
+@SuppressWarnings(value={"unchecked"})
 public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 
 	EntityManagerFactory emf;
@@ -36,11 +36,18 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 	@Override
 	public List<NormaSeguridadApiario> listarTodosNormaSeguridadApiarioes()
 			throws Exception {
-		EntityManagerFactory emf= Persistence.createEntityManagerFactory("Proyecto_Apiaria");
-		EntityManager em=emf.createEntityManager();
+		List<NormaSeguridadApiario> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select a from NormaSeguridadApiario a");
+			lista=q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
+		}
 		
-		Query q=em.createQuery("select a from NormaSeguridadApiario a");
-		List<NormaSeguridadApiario> lista=q.getResultList();
+		
+		Close();
 		return lista;
 	}
 
@@ -48,6 +55,7 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 	public NormaSeguridadApiario guardarNormaSeguridadApiario(
 			NormaSeguridadApiario instance) throws Exception {
 		try {
+			Open();
 			instance.setSuccess(false);
 			em.getTransaction().begin();
 			em.merge(instance);
@@ -61,8 +69,7 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 			em.getTransaction().rollback();
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
@@ -103,13 +110,13 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 	public NormaSeguridadApiario obtenerPorIdNormaSeguridadApiario(int id)
 			throws Exception {
 		try {
+			Open();
 			NormaSeguridadApiario instance=em.find(NormaSeguridadApiario.class, id);
 			return instance;
 		} catch (RuntimeException e) {
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
@@ -123,6 +130,7 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 		List<Integer> listaIds = instance.getListaEliminar();
 		instance.setSuccess(false);
 		try {
+			Open();
 			em.getTransaction().begin();
 			for (int i = 0; i < listaIds.size(); i++) {
 				String hql="delete from NormaSeguridadApiario n where n.idNormaSeguridadApiario in (:v_ids)";		
@@ -136,8 +144,7 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 			instance.setMsgResult("No se puede eliminar por estar relacionado con otra(s) Tablas");
 			re.printStackTrace();
 		}finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 		return instance;
 	}

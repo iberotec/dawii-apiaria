@@ -15,7 +15,7 @@
 <h:body>
 <p:toolbar>  
     <p:toolbarGroup align="left">  
-        <p:commandButton  value="Nueva Planilla de Revion" icon="ui-icon-document" action="#{mBUsuarioApiario.abrirRegistrarPlanillaRevision}"  update=":fNuevaAsignacion:tabContainer:panel :fNuevaAsignacion:tabContainer:panelLista" oncomplete="prDialog.show()"/>  
+        <p:commandButton  value="Nueva Planilla de Revision" icon="ui-icon-document" action="#{mBUsuarioApiario.abrirRegistrarPlanillaRevision}"  update=":fNuevaAsignacion:tabContainer:panel :fNuevaAsignacion:tabContainer:panelLista :fNuevaAsignacion:tabContainer:dialog" oncomplete="prDialog.show()"/>  
  	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" action="#{mBUsuarioApiario.listarTodosPlanillaRevision}" update="dtlistaPR" ajax="false"/>
     </p:toolbarGroup>  
     </p:toolbar>
@@ -34,7 +34,7 @@
 		            
 				    <p:ajax event="rowSelect" 
 				            listener="#{mBUsuarioApiario.abrirModificarPlanillaRevision(mBUsuarioApiario.planillaRevisionSeleccionada.idPlanillaRevision)}"
-				         update=":fNuevaAsignacion:tabContainer:panel :fNuevaAsignacion:tabContainer:panelLista"
+				         update=":fNuevaAsignacion:tabContainer:panel :fNuevaAsignacion:tabContainer:panelLista :fNuevaAsignacion:tabContainer:dialog"
             oncomplete="prDialog.show()"/>
 				          
 				       <f:facet name="header">
@@ -102,23 +102,25 @@
 		            rows="5" 
 		            paginatorPosition="bottom" 
 		            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
-		           
-		            rendered="#{mBUsuarioApiario.muestraListaColmenas}"
-            >
-            <p:ajax event="rowToggle"   />
+					rendered="#{mBUsuarioApiario.muestraListaColmenas}">
+<!--		           selection="#{mBUsuarioApiario.colmenaSeleccionada}" -->
+<!--		            selectionMode="single" -->
+<!--		            rowKey="#{listado.idColmena}"-->
+		            
+<!--            <p:ajax event="rowToggle"  listener="#{mBUsuarioApiario.obtenerAlzasxColmena(mBUsuarioApiario.colmenaSeleccionada.idColmena)}" />-->
              <f:facet name="header">
 								<h:outputText value="Listado de Colmenas" />
 			</f:facet>
-			 <p:column>  
-            <p:rowToggler />  
-       		 </p:column>  
-			<p:column width="100">
+<!--			 <p:column>  -->
+<!--            <p:rowToggler />  -->
+<!--       		 </p:column>  -->
+			<p:column width="90">
 							<f:facet name="header">
 								<h:outputText value="" />
 							</f:facet>
 							<h:selectBooleanCheckbox value="#{listado.sel}" />
 			</p:column>
-			<p:column width="520">
+			<p:column width="510">
 							<f:facet name="header">
 								<h:outputText value="Colmena" />
 							</f:facet>
@@ -126,36 +128,37 @@
 			</p:column>
 			
 			
-		<p:rowExpansion>  
-            <h:panelGrid id="display" columns="2" cellpadding="4" style="width:300px;"  
-                            styleClass=" ui-widget-content grid">  
-  			<p:dataTable id="dtAlzas" value="#{mBUsuarioApiario.listaAlza}"
-  					var="listadoAlza"
-  					emptyMessage="No se encontraron Colmenas" 
-		            paginator="true" 
-		            rows="5" 
-		            paginatorPosition="bottom" 
-		            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
-  						>
-  			 <f:facet name="header">
-								<h:outputText value="Listado de Alzas" />
-			</f:facet>
-			<p:column width="100">
-							<f:facet name="header">
-								<h:outputText value="" />
-							</f:facet>
-							<h:selectBooleanCheckbox value="" />
-			</p:column>
-			<p:column width="520">
-							<f:facet name="header">
-								<h:outputText value="Alza" />
-							</f:facet>
-							<h:outputText value="" />
-			</p:column>
-  			</p:dataTable>
-
-            </h:panelGrid>  
-        </p:rowExpansion>  
+<!--		<p:rowExpansion>  -->
+<!--            <h:panelGrid id="display" columns="1" cellpadding="2" >  -->
+<!--  			<p:dataTable id="dtAlzas" value="#{mBUsuarioApiario.listaAlza}"-->
+<!--  					var="listadoAlza"-->
+<!--  					emptyMessage="No se encontraron Alzas" -->
+<!--		            paginator="true" -->
+<!--		            rows="5" -->
+<!--		            paginatorPosition="bottom" -->
+<!--  						>-->
+<!--			<p:column>-->
+<!--							<f:facet name="header">-->
+<!--								<h:outputText value="" />-->
+<!--							</f:facet>-->
+<!--							<p:selectBooleanCheckbox value="#{listadoAlza.sel}" />-->
+<!--			</p:column>-->
+<!--			<p:column >-->
+<!--							<f:facet name="header">-->
+<!--								<h:outputText value="Alza" />-->
+<!--							</f:facet>-->
+<!--							<h:outputText value="Alza #{listadoAlza.idAlza}" />-->
+<!--			</p:column>-->
+<!--			<p:column>-->
+<!--							<f:facet name="header">-->
+<!--								<h:outputText value="Alza" />-->
+<!--							</f:facet>-->
+<!--							<h:inputText value="#{listadoAlza.msgResult}" />-->
+<!--			</p:column>-->
+<!--  			</p:dataTable>-->
+<!---->
+<!--            </h:panelGrid>  -->
+<!--        </p:rowExpansion>  -->
 			
 			</p:dataTable>
     	  </h:panelGrid>
@@ -306,7 +309,151 @@
   		   </p:row>
              </p:panelGrid>  
              
-    
+             
+            
+          
+           <p:tabView id="tabConteinerAlza" rendered="#{mBUsuarioApiario.activaTabAlza}">
+			<p:tab title="Revision de Alzas">
+				<p:toolbar>  
+		    <p:toolbarGroup align="left">  
+		        <p:commandButton  value="Nueva Revision de Alza" icon="ui-icon-document" actionListener="#{mBUsuarioApiario.abrirRegistrarPlanillaRevisionAlza}" update=":fNuevaAsignacion:tabContainer:tabConteinerAlza:dialogAlza" oncomplete="alzaDialog.show()"/>  
+		 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" actionListener="#{mBUsuarioApiario.listarTodosPlanillaRevisionAlza}" update=":fNuevaAsignacion:tabContainer:tabConteinerAlza:dtPrAlza" />
+		    </p:toolbarGroup>  
+		    </p:toolbar>
+				
+				
+			<p:dataTable id="dtPrAlza" value="#{mBUsuarioApiario.listaPlanillaRevisionAlza}"
+  					var="listadoPRA"
+  					emptyMessage="No se encontraron Revisiones de Alzas" 
+		            paginator="true" 
+		            rows="5" 
+		            paginatorPosition="bottom"
+		            selection="#{mBUsuarioApiario.planillaRevisionAlzaSeleccionada}" 
+		            selectionMode="single" 
+		            rowKey="#{listadoPRA.idPlanillaRevisionAlza}" 
+  						>
+  					 <p:ajax event="rowSelect" 
+				            listener="#{mBUsuarioApiario.abrirModificarPlanillaRevisionAlza(mBUsuarioApiario.planillaRevisionAlzaSeleccionada.idPlanillaRevisionAlza)}"
+				         update=":fNuevaAsignacion:tabContainer:tabConteinerAlza:dialogAlza"
+            oncomplete="alzaDialog.show()"/>	
+  						
+			<p:column>
+							<f:facet name="header">
+								<h:outputText value="" />
+							</f:facet>
+							<p:selectBooleanCheckbox value="#{listadoPRA.sel}" />
+			</p:column>
+			<p:column >
+							<f:facet name="header">
+								<h:outputText value="Id" />
+							</f:facet>
+							<h:outputText value="#{listadoPRA.idPlanillaRevisionAlza}" />
+			</p:column>
+			<p:column >
+							<f:facet name="header">
+								<h:outputText value="Alza" />
+							</f:facet>
+							<h:outputText value="Alza #{listadoPRA.alza.idAlza}" />
+			</p:column>
+			<p:column width="50">
+							<f:facet name="header">
+								<h:outputText value="%" />
+							</f:facet>
+							<h:outputText value="#{listadoPRA.porcentajeMiel}" />
+			</p:column>
+  			</p:dataTable>
+				
+				
+				<p:dialog id="dialogAlza" header="Revision de Alzas" widgetVar="alzaDialog" resizable="false"  
+              height="400" width="500" showEffect="clip" hideEffect="fold">
+              
+              <p:toolbar>  
+		    <p:toolbarGroup align="left">  
+		        <p:commandButton  value="Guardar Revision de Alza" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarPlanillaRevisionAlza}" />  
+		    </p:toolbarGroup>  
+		    </p:toolbar>
+		    <p:messages id="mensajePRAlza" closable="true" showDetail="true" autoUpdate="true"></p:messages>
+					<p:dataTable id="dtAlza" 
+          		    value="#{mBUsuarioApiario.listaAlza}"
+            		var="listadoAlza"
+             
+		            emptyMessage="No se encontraron Alzas" 
+		            paginator="true" 
+		            rows="5" 
+		            paginatorPosition="bottom" 
+		            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+					rendered="#{mBUsuarioApiario.activaListadoAlza}"
+					>
+					
+					
+					<p:column>
+							<f:facet name="header">
+								<h:outputText value="" />
+							</f:facet>
+							<p:selectBooleanCheckbox value="#{listadoAlza.sel}" />
+					</p:column>
+					<p:column >
+									<f:facet name="header">
+										<h:outputText value="Id" />
+									</f:facet>
+									<h:outputText value="#{listadoAlza.idAlza}" />
+					</p:column>
+					<p:column >
+									<f:facet name="header">
+										<h:outputText value="Alza" />
+									</f:facet>
+									<h:outputText value="Alza #{listadoAlza.idAlza}" />
+					</p:column>
+					
+					</p:dataTable>
+					
+					<p:panelGrid id="iPanelPrAlza">
+					<p:row>
+					<p:column>
+					<h:outputText value="Alza" rendered="#{mBUsuarioApiario.muestraCajaIdAlza}"/>
+					</p:column>
+					<p:column>
+					<p:inputText value="Alza #{mBUsuarioApiario.muestraIdAlza}" rendered="#{mBUsuarioApiario.muestraCajaIdAlza}" disabled="true"/>
+					</p:column>
+					</p:row>
+					<p:row>
+					<p:column>
+					<h:outputText value="Estado" />
+					</p:column>
+					<p:column>
+					<p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoAlza}">
+						<f:selectItems value="#{mBSelectItems.cboEstadoAlza}" ></f:selectItems>
+					</p:selectOneMenu>
+					</p:column>
+					</p:row>
+					<p:row>
+					<p:column>
+					<h:outputText value="Porcentaje de Miel" />
+					</p:column>
+					<p:column>
+					<p:inputText value="#{mBUsuarioApiario.muestraPorcentajeMiel}"></p:inputText>
+					</p:column>
+					</p:row>
+					<p:row>
+					<p:column>
+					<h:outputText value="Alza deteriorada" />
+					</p:column>
+					<p:column>
+					<p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraEstadoDeterioroAlza}"></p:selectBooleanCheckbox>
+					</p:column>
+					</p:row>
+					</p:panelGrid>
+					
+				</p:dialog>
+				
+				
+			</p:tab>
+			</p:tabView>
+              
+            
+            
+             
+    				
    		   </p:dialog> 
    		   
    				

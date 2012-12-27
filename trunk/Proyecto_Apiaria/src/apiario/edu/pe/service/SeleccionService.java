@@ -320,12 +320,6 @@ IPlanillaRevisionTipoEnfermedadDAO, Serializable{
 	}
 
 	@Override
-	public int registrarPlanillaRevisionAlza(PlanillaRevisionAlza obj) {
-		
-		return daoPlanillaRevisionAlza.registrarPlanillaRevisionAlza(obj);
-	}
-
-	@Override
 	public List<Alza> listarAlzaporPiso(Integer codpiso) {
 		
 		return daoAlza.listarAlzaporPiso(codpiso);
@@ -601,6 +595,47 @@ IPlanillaRevisionTipoEnfermedadDAO, Serializable{
 	public List<Integer> obtenerMaximoIdPlanillaRevision() throws Exception {
 		// TODO Auto-generated method stub
 		return daoPlanillaRevision.obtenerMaximoIdPlanillaRevision();
+	}
+
+	@Override
+	public List<PlanillaRevisionAlza> listarTodosPlanillaRevisionAlza()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaRevisionAlza.listarTodosPlanillaRevisionAlza();
+	}
+
+	@Override
+	public PlanillaRevisionAlza guardarPlanillaRevisionAlza(
+			PlanillaRevisionAlza instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaRevisionAlza.guardarPlanillaRevisionAlza(instance);
+	}
+
+	@Override
+	public List<PlanillaRevisionAlza> buscarPlanillaRevisionAlza(
+			PlanillaRevisionAlza instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaRevisionAlza.buscarPlanillaRevisionAlza(instance);
+	}
+
+	@Override
+	public PlanillaRevisionAlza obtenerPorIdPlanillaRevisionAlza(int id)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaRevisionAlza.obtenerPorIdPlanillaRevisionAlza(id);
+	}
+
+	@Override
+	public PlanillaRevisionAlza eliminarPlanillaRevisionAlza(
+			PlanillaRevisionAlza instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaRevisionAlza.eliminarPlanillaRevisionAlza(instance);
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdPlanillaRevisionAlza() throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaRevisionAlza.obtenerMaximoIdPlanillaRevisionAlza();
 	}
 
 }

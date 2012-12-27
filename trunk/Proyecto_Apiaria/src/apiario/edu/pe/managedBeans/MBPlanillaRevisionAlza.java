@@ -87,7 +87,7 @@ public class MBPlanillaRevisionAlza implements Serializable,SelectableDataModel<
 		obj.setPorcentajeMiel(getPorcentajeMiel());
 		obj.setEstadoAlza(getEstadoAlza());
 		
-		service.registrarPlanillaRevisionAlza(obj);
+//		service.registrarPlanillaRevisionAlza(obj);
 		
 		if(resultado==1){
 			
