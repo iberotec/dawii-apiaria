@@ -135,6 +135,20 @@ public class MysqlApiarioDAO implements IApiarioDAO {
 		}
 		return instance;
 	}
+	@Override
+	public List<Integer> obtenerMaximoIdApiario() throws Exception {
+		List<Integer> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select MAX(a.idApiario) from Apiario a");
+			lista = q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO aPiario"+e.getMessage());
+		}
+		Close();
+		System.out.println("Tamaño lista DAO "+lista.size());
+		return lista;
+	}
 
 	
 

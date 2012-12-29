@@ -13,6 +13,7 @@ import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.TipoAlimentacion;
+import apiario.edu.pe.bean.TipoAlza;
 import apiario.edu.pe.bean.TipoEnfermedad;
 import apiario.edu.pe.service.SeleccionService;
 
@@ -34,7 +35,8 @@ public class MBSelectItems implements Serializable{
 			api=lista.get(i).getIdApiario();
 			apia="Apiario "+api;
 			cbo[i+1] = new SelectItem(lista.get(i).getIdApiario(),apia);
-		}return cbo;
+		}
+		return cbo;
 	}
 	
 	public SelectItem[] getCboColmenaxApiario(int idApiario) throws Exception { 
@@ -89,9 +91,9 @@ public class MBSelectItems implements Serializable{
 		obj.setColmena(new Colmena());
 		obj.getColmena().setIdColmena(idColmena);
 		List<Piso> lista = new ArrayList<Piso>();
-		if(idColmena>0){
+//		if(idColmena>0){
 			lista=service.buscarPiso(obj);
-		}
+//		}
 		
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
@@ -242,6 +244,31 @@ public class MBSelectItems implements Serializable{
 		}return cbo;
 	}
 	
+	public SelectItem[] getCboTipoAlza() throws Exception{
+		SeleccionService service = new SeleccionService();
+		List<TipoAlza> lista = service.listarTodosTipoAlzas();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		for (int i = 0; i < cbo.length - 1; i++){
+			cbo[i+1] = new SelectItem(lista.get(i).getIdTipoAlza(),lista.get(i).getDescripcionTipoAlza());
+		}
+		return cbo;
+	}
 	
+	
+//	public SelectItem[] getCboDepartamento(int pais_id) {
+//		GnUbigeoDAO dao = (GnUbigeoDAO) ServiceFinder.findBean("GnUbigeoDAO");
+//		GnPais pais = new GnPais();
+//		pais.setPaisId(pais_id);
+//		List<GnUbigeo> listaDepartamentos = dao.listDpto(pais);
+//		SelectItem[] cboDepartamento = new SelectItem[listaDepartamentos.size() + 1];
+//		cboDepartamento[0] = new SelectItem("000000", "Seleccione...");
+//		for (int i = 0; i < cboDepartamento.length - 1; i++) {
+//			cboDepartamento[i + 1] = new SelectItem(listaDepartamentos.get(i)
+//					.getUbigeoCodigo(), listaDepartamentos.get(i)
+//					.getUbigeoDescripcion());
+//		}
+//		return cboDepartamento;
+//	}
 	
 }

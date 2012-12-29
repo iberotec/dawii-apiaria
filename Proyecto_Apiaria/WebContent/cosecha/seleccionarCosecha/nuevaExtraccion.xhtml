@@ -5,43 +5,58 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
       
-<h:head>
+<h:head></h:head>
 <h:body>
-<ui:composition template="/templates/templateLayoutContexto.xhtml">
+	<ui:composition template="/templates/templateLayoutContexto.xhtml">
 		<ui:define name="title">
 			<h:outputText value="MODULO DE COSECHA" />
 		</ui:define>
 		
 		<ui:define name="content">
- 	<h:form> 
-		<p:column>
-			<h:outputText value="Apiario" />
-			
-			<p:selectOneMenu>
- 				<f:selectItems value="#{mBSelectItems.cboApiario}" /> 
-            </p:selectOneMenu>
-            
-		</p:column>
-		<br/>
-		<p:column>
-			<h:outputText value="Nivel de Peligro" />
-			<p:inputText value=""/>
-		</p:column>
-		<br/>
-		<p:column>
-			<h:outputText value="Ubicacion" />
-			<p:inputText value=""/>
-		</p:column>
-		
-		<p:tabView id="tabContainer">
-			<p:tab id="iTabPlanillaExtraccion" title="Planilla Extraccion">
-				<ui:include src="planillaExtraccion.xhtml" />
-			</p:tab>
-		</p:tabView>
-		
- 	</h:form> 
- </ui:define>
-</ui:composition>
+			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE COSECHA</h1>
+	 	
+		 	<h:form id="fNuevaExtraccion">
+			 	<p:toolbar>
+			 		<p:toolbarGroup align="left">  
+				        <p:commandButton  value="Confirmar Extracción" icon="ui-icon-document" ajax="false"/>
+			    	</p:toolbarGroup>  
+			 	</p:toolbar>
+		 	 
+		 	 	<table>
+		 	 		<tr>
+		 	 			<td>
+		 	 				<h:outputText value="Apiario" />
+		 	 			</td>
+		 	 			<td>
+		 	 				<p:selectOneMenu>
+				 				<f:selectItems value="#{mBSelectItems.cboApiario}" /> 
+				            </p:selectOneMenu>
+		 	 			</td>
+		 	 		</tr>
+		 	 		<tr>
+		 	 			<td>
+		 	 				<h:outputText value="Nivel de Peligro" />
+		 	 			</td>
+		 	 			<td>
+		 	 				<p:inputText value=""/>
+		 	 			</td>
+		 	 		</tr>
+		 	 		<tr>
+		 	 			<td>
+		 	 				<h:outputText value="Ubicacion" />
+		 	 			</td>
+		 	 			<td>
+		 	 				<p:inputText value=""/>
+		 	 			</td>
+		 	 		</tr>
+		 	 	</table>
+				<p:tabView id="tabContainer">
+					<p:tab id="iTabPlanillaExtraccion" title="Planilla Extraccion">
+						<ui:include src="planillaExtraccion.xhtml" />
+					</p:tab>
+				</p:tabView>
+		 	</h:form> 
+		</ui:define>
+	</ui:composition>
 </h:body>
-</h:head>
 </html>

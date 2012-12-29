@@ -9,20 +9,24 @@
 	<!-- <p:growl id="messages" autoUpdate="true" /> -->
 	<h:form>
 		<p:panelMenu style="width:200px">
+			<p:submenu label="TABLAS">
+				<p:menuitem value="Mantenimiento Apiario" action="#{mBMantenimientoApiario.abrirMantenimientoApiario()}" icon="ui-icon-star" ajax="false"/>
+				<p:menuitem value="Mantenimiento Colmena" action="#{mBMantenimientoColmena.abrirMantenimientoColmena()}" icon="ui-icon-star" ajax="false"/>
+				<p:menuitem value="Mantenimiento Piso" action="#{mBMantenimientoPiso.abrirMantenimientoPiso()}" icon="ui-icon-star" ajax="false"/>
+				<p:menuitem value="Mantenimiento Alza" action="#{mBMantenimientoAlza.abrirMantenimientoAlza()}" icon="ui-icon-star" ajax="false"/>
+			</p:submenu>
 			<p:submenu label="MODULO DE SELECCION">
-				<p:menuitem value="Asignacion de Apiarios" action="#{mBApiario.abrirAsignarApiario}"
-					 icon="ui-icon-star" ajax="false"/>
+				<p:menuitem value="Asignacion de Apiarios" action="#{mBApiario.abrirAsignarApiario}" icon="ui-icon-star" ajax="false"/>
 			</p:submenu>
 			<p:submenu label="MODULO DE EXTRACCION">
-				<p:menuitem value="Ubicacion Apiarios" action="#{mBApiario.abrirUbicacionApiario}"
-					 icon="ui-icon-star" ajax="false"/>
+				<p:menuitem value="Ubicacion Apiarios" action="#{mBApiario.abrirUbicacionApiario}" icon="ui-icon-star" ajax="false"/>
+				<p:menuitem value="Planilla Extracción" action="#{mBExtraccion.abrirMainExtraccion()}" icon="ui-icon-star" ajax="false"/>
 			</p:submenu>
 			<p:separator />
 			<p:submenu label="MODULO DE COSECHA">
-				<p:menuitem value="Listado" action="#{mBApiario.abrirMainCosecha}"
-					 icon="ui-icon-star" ajax="false"/>
-				<p:menuitem value="Nueva Asignacion" action="#{mBApiario.abrirNuevaAsignacionCosecha}"
-					 icon="ui-icon-star" ajax="false"/>
+				<p:menuitem value="Planilla Cosecha" action="#{mBCosecha.abrirMainCosecha()}" icon="ui-icon-star" ajax="false"/>
+<!--				<p:menuitem value="Listado" action="#{mBApiario.abrirMainCosecha}" icon="ui-icon-star" ajax="false"/>-->
+<!--				<p:menuitem value="Nueva Asignacion" action="#{mBApiario.abrirNuevaAsignacionCosecha}" icon="ui-icon-star" ajax="false"/>-->
 			</p:submenu>
 			<p:submenu label="ENVASADO">
 				<p:submenu label="Links" icon="ui-icon-extlink"></p:submenu>

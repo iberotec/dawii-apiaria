@@ -11,5 +11,6 @@ public interface IColmenaDAO {
 	public abstract List<Colmena> buscarColmena(Colmena instance) throws Exception;
 	public abstract Colmena obtenerPorIdColmena(int id) throws Exception;
 	public abstract Colmena eliminarColmena(Colmena instance) throws Exception;
+	public abstract List<Integer> obtenerMaximoIdColmena() throws Exception;
 	
 }

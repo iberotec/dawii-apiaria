@@ -38,6 +38,7 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 		List<Alza> lista=null;
 		
 		try {
+			Open();
 			em.getTransaction().begin();
 			
 			Query sql=em.createQuery("select a from Alza a");
@@ -47,8 +48,7 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 		}finally{
-			em.close();
-			emf.close();
+			Close();
 		}
 		
 		return lista;
@@ -57,6 +57,7 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 	@Override
 	public Alza guardarAlza(Alza instance) throws Exception {
 		try {
+			Open();
 			instance.setSuccess(false);
 			em.getTransaction().begin();
 			em.merge(instance);
@@ -70,8 +71,7 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 			em.getTransaction().rollback();
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
@@ -135,7 +135,7 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 		try {
 			em.getTransaction().begin();
 			for (int i = 0; i < listaIds.size(); i++) {
-				String hql="delete from Alza a where a.idalza in (:v_ids)";		
+				String hql="delete from Alza a where a.idAlza in (:v_ids)";		
 				em.createQuery(hql).setParameter("v_ids", listaIds.get(i)).executeUpdate();
 			}
 			em.getTransaction().commit();
@@ -166,6 +166,20 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 			em.getTransaction().rollback();
 		}
 		
+		return lista;
+	}
+	@Override
+	public List<Integer> obtenerMaximoIdAlza() throws Exception {
+		List<Integer> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select MAX(a.idAlza) from Alza a");
+			lista = q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO alza "+e.getMessage());
+		}
+		Close();
+		System.out.println("Tamaño lista DAO "+lista.size());
 		return lista;
 	}
 

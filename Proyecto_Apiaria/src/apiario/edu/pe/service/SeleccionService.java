@@ -22,6 +22,7 @@ import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.Reina;
 import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.TipoAlimentacion;
+import apiario.edu.pe.bean.TipoAlza;
 import apiario.edu.pe.bean.TipoEnfermedad;
 import apiario.edu.pe.bean.Usuario;
 import apiario.edu.pe.bean.UsuarioApiario;
@@ -42,6 +43,7 @@ import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.IReinaDAO;
 import apiario.edu.pe.dao.ITemporadaDAO;
 import apiario.edu.pe.dao.ITipoAlimentacionDAO;
+import apiario.edu.pe.dao.ITipoAlzaDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.dao.IUsuarioApiarioDAO;
@@ -53,7 +55,7 @@ public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanill
 IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
 ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
-IPlanillaRevisionTipoEnfermedadDAO, Serializable{
+IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -75,6 +77,7 @@ IPlanillaRevisionTipoEnfermedadDAO, Serializable{
 	IReinaDAO daoReina=objDAOFactory.getIReinaDAO();
 	IPlanillaRevisionTipoEnfermedadDAO daoPlanillaTipoEnfermedad=objDAOFactory.getPlanillaTipoRevisionEnfermedadDAO();
 	IPlanillaRevisionTipoAlimentacionDAO daoPlanillaRevisionTipoAlimentacion=objDAOFactory.getiPlanillaRevisionTipoAlimentacionDAO();
+	ITipoAlzaDAO daoTipoAlza=objDAOFactory.getTipoAlzaDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -595,6 +598,51 @@ IPlanillaRevisionTipoEnfermedadDAO, Serializable{
 	public List<Integer> obtenerMaximoIdPlanillaRevision() throws Exception {
 		// TODO Auto-generated method stub
 		return daoPlanillaRevision.obtenerMaximoIdPlanillaRevision();
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdApiario() throws Exception {
+		return daoApiario.obtenerMaximoIdApiario();
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdAlza() throws Exception {
+		return daoAlza.obtenerMaximoIdAlza();
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdPiso() throws Exception {
+		return daoPiso.obtenerMaximoIdPiso();
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdColmena() throws Exception {
+		return daoColmena.obtenerMaximoIdColmena();
+	}
+
+	@Override
+	public List<TipoAlza> listarTodosTipoAlzas() throws Exception {
+		return daoTipoAlza.listarTodosTipoAlzas();
+	}
+
+	@Override
+	public TipoAlza guardarTipoAlza(TipoAlza instance) throws Exception {
+		return daoTipoAlza.guardarTipoAlza(instance);
+	}
+
+	@Override
+	public List<TipoAlza> buscarTipoAlza(TipoAlza instance) throws Exception {
+		return daoTipoAlza.buscarTipoAlza(instance);
+	}
+
+	@Override
+	public TipoAlza obtenerPorIdTipoAlza(int id) throws Exception {
+		return daoTipoAlza.obtenerPorIdTipoAlza(id);
+	}
+
+	@Override
+	public TipoAlza eliminarTipoAlza(TipoAlza instance) throws Exception {
+		return daoTipoAlza.eliminarTipoAlza(instance);
 	}
 
 	@Override

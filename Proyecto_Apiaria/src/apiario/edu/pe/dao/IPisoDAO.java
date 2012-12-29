@@ -11,5 +11,6 @@ public interface IPisoDAO {
 	public abstract List<Piso> buscarPiso(Piso instance) throws Exception;
 	public abstract Piso obtenerPorIdPiso(int id) throws Exception;
 	public abstract Piso eliminarPiso(Piso instance) throws Exception;
+	public abstract List<Integer> obtenerMaximoIdPiso() throws Exception;
 	
 }

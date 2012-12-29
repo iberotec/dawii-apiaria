@@ -53,6 +53,7 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 	@Override
 	public Colmena guardarColmena(Colmena instance) throws Exception {
 		try {
+			Open();
 			instance.setSuccess(false);
 			em.getTransaction().begin();
 			em.merge(instance);
@@ -66,8 +67,7 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 			em.getTransaction().rollback();
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
@@ -134,7 +134,7 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 		try {
 			em.getTransaction().begin();
 			for (int i = 0; i < listaIds.size(); i++) {
-				String hql="delete from Colmena c where c.idcolmena in (:v_ids)";		
+				String hql="delete from Colmena c where c.idColmena in (:v_ids)";		
 				em.createQuery(hql).setParameter("v_ids", listaIds.get(i)).executeUpdate();
 			}
 			em.getTransaction().commit();
@@ -149,6 +149,20 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 			em.close();
 		}
 		return instance;
+	}
+	@Override
+	public List<Integer> obtenerMaximoIdColmena() throws Exception {
+		List<Integer> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select MAX(c.idColmena) from Colmena c");
+			lista = q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO colmena "+e.getMessage());
+		}
+		Close();
+		System.out.println("Tamaño lista DAO "+lista.size());
+		return lista;
 	}
 
 }

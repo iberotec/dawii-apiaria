@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   
+<h:head></h:head>
+<h:body>
+	<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MANTENIMIENTO PISO" />
+		</ui:define>
+		
+		<ui:define name="content">
+			<h:form>
+				<h1 class="titlePage ui-widget-header ui-corner-all">MANTENIMIENTO PISO</h1>
+			    <p:toolbar>  
+			    <p:toolbarGroup align="left">  
+			        <p:commandButton  value="Grabar" icon="ui-icon-disk" action="#{mBMantenimientoPiso.guardar()}" update="messages" ajax="false"/>  
+			 	    <p:commandButton  value="Limpiar" action="#{mBMantenimientoPiso.limpiar()}" update="tNuevoPiso" ajax="false"/>
+			    </p:toolbarGroup>  
+			    </p:toolbar>
+	    
+				<div class="contenedor">	
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+					<table>
+						<tr>
+							<td>
+								<h:outputLabel value="Apiario" />
+							</td>
+							<td>
+								<p:selectOneMenu value="#{mBMantenimientoPiso.objPiso.colmena.apiario.idApiario}">
+									<f:selectItems value="#{mBSelectItems.cboApiario}"/>
+									<p:ajax update="idColmena"></p:ajax>
+								</p:selectOneMenu>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel value="Colmena" />
+							</td>
+							<td>
+								<p:selectOneMenu id="idColmena" value="#{mBMantenimientoPiso.objPiso.colmena.idColmena}">
+									<f:selectItems value="#{mBSelectItems.getCboColmenaxApiario(mBMantenimientoPiso.objPiso.colmena.apiario.idApiario)}"/>
+								</p:selectOneMenu>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel value="Piso" />
+							</td>
+							<td>
+								<p:inputText value="Piso #{mBMantenimientoPiso.objPiso.idPiso}" disabled="true"></p:inputText>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+   
+</html>
