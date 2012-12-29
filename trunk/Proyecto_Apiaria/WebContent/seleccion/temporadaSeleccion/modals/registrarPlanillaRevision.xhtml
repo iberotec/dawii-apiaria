@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" lang="es">
+
+
+ 			<p:dialog id="dialog" header="PLanilla Revision" widgetVar="prDialog" resizable="false"  
+              height="600" width="700" showEffect="clip" hideEffect="fold">  
+              <h:form id="fPr">
+ <p:toolbar>  
+    <p:toolbarGroup align="left">  
+        <p:commandButton  value="Guardar Seleccion" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarPlanillaRevision}" update="mensajeConfirm" ajax="false"/>  
+    </p:toolbarGroup>  
+    </p:toolbar>
+    
+     <p:messages id="mensajeConfirm" closable="true" showDetail="true" autoUpdate="true"></p:messages>
+     
+    	  <h:panelGrid id="panelLista" columns="1" cellpadding="2" >
+    	   <p:dataTable id="dtColmenas" 
+            value="#{mBUsuarioApiario.listaColmenas}"
+            var="listado"
+             
+		            emptyMessage="No se encontraron Colmenas" 
+		            paginator="true" 
+		            rows="5" 
+		            paginatorPosition="bottom" 
+		            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+					rendered="#{mBUsuarioApiario.muestraListaColmenas}">
+
+             <f:facet name="header">
+								<h:outputText value="Listado de Colmenas" />
+			</f:facet>
+
+			<p:column width="90">
+							<f:facet name="header">
+								<h:outputText value="" />
+							</f:facet>
+							<h:selectBooleanCheckbox value="#{listado.sel}" />
+			</p:column>
+			<p:column width="510">
+							<f:facet name="header">
+								<h:outputText value="Colmena" />
+							</f:facet>
+							<h:outputText value="Colmena #{listado.idColmena}" />
+			</p:column>
+			</p:dataTable>
+    	  </h:panelGrid>
+    	  <br />
+       	  <p:panelGrid id="panel" styleClass="ui-panelgrid ui-panelgrid" >  
+       	  <p:row>
+       	  <p:column>
+   		   <h:outputText value="Colmena" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		   </p:column>
+   		   
+   		   <p:column>
+   		   <p:inputText value="Colmena #{mBUsuarioApiario.planillaRevision.colmena.idColmena}" disabled="true" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		 </p:column>
+   		  </p:row> 
+
+   		   <p:row>
+   		   <p:column>
+   		   <h:outputText value="Existencia de Reina" />
+   		   </p:column>
+   		    
+   		   <p:column>
+   		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraExistenciaReina}" />
+   		   </p:column>
+   		   </p:row>
+
+   		   <p:row>
+   		   <p:column>
+   		   <h:outputText value="Reina" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		   </p:column>
+   		     
+   		   <p:column>
+   		   <p:inputText value="Reina #{mBUsuarioApiario.planillaRevision.reina.idReina}" disabled="true" rendered="#{mBUsuarioApiario.muestraCajaTexto}"/>
+   		   </p:column>
+   		   </p:row>
+
+   		   <p:row>
+   		   <p:column>
+   		   <h:outputText value="Colmena"/>
+   		   </p:column>
+   		   
+   		   <p:column>
+   		   <p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoCosecha}">
+						<f:selectItems value="#{mBSelectItems.cboEstadoCosecha}"/>
+		   </p:selectOneMenu>
+		   </p:column>
+		   </p:row>
+
+   		   <p:row>
+   		   <p:column>
+   		   <h:outputText value="Necesidad de Alimentacion" />
+   		   </p:column>
+   		   
+   		   <p:column>
+   		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraNecesidadAlimentacion}">
+   		   <p:ajax event="change" listener="#{mBUsuarioApiario.mostrarComboTipoAlimentacion}" update=":fPr:panel"></p:ajax>
+   		   </p:selectBooleanCheckbox>
+   		   </p:column>
+   		    <p:column>
+   		   <h:outputText id="iTipoAlimentacion" value="Tipo Alimentacion" rendered="#{mBUsuarioApiario.activarTipoAlimentacion}"/>
+   		   </p:column>
+   		     
+   		   <p:column>
+   		   <p:selectOneMenu id="iCboTipoAlimentacion" value="#{mBUsuarioApiario.muestraTipoAlimentacion}" rendered="#{mBUsuarioApiario.activarTipoAlimentacion}">
+   		   				<f:selectItems value="#{mBSelectItems.cboTipoAlimentacion}"/>
+   		   </p:selectOneMenu>
+   		   </p:column>
+   		   </p:row>
+
+   		   <p:row>
+   		   <p:column>
+   		   <h:outputText value="Necesidad de Curacion" />
+   		   </p:column>
+   		     
+   		    <p:column>
+   		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraNecesidadCuracion}">
+   		   <p:ajax event="change" listener="#{mBUsuarioApiario.mostrarComboTipoEnfermedad}" update=":fPr:panel"></p:ajax>
+   		   </p:selectBooleanCheckbox>
+   		   </p:column>
+   		    
+   		    <p:column>
+   		   <h:outputText id="iTipoEnfermedad" value="Tipo Enfermedad" rendered="#{mBUsuarioApiario.activarTipoEnfermedad}"/>
+   		    </p:column>
+   		    
+   		     <p:column>
+   		   <p:selectOneMenu id="iCboTipoEnfermedad" value="#{mBUsuarioApiario.muestraTipoEnfermedad}" rendered="#{mBUsuarioApiario.activarTipoEnfermedad}">
+   		   				<f:selectItems value="#{mBSelectItems.cboTipoEnfermedad}"/>
+   		   </p:selectOneMenu>
+   		    </p:column>
+   		   </p:row>
+
+   		   <p:row>
+   		     <p:column>
+   		   <h:outputText value="Falta de Espacio en Camara" />
+   		    </p:column>
+   		     <p:column>
+   		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraFaltaEspacioCamara}"/>
+   		   </p:column>
+   		   </p:row>
+
+   		   <p:row>
+   		    <p:column>
+   		   <h:outputText value="Falta de Alzas" />
+   		    </p:column>
+   		    
+   		     <p:column>
+   		   <p:selectBooleanCheckbox value="#{mBUsuarioApiario.muestraFaltaAlza}"/>
+   		   </p:column>
+   		   </p:row>
+
+   		   <p:row>
+   		    <p:column>
+  		   <h:outputText value="Comportamiento de Colmena" />
+  		   </p:column>
+  		     
+  		    <p:column>
+  		   <p:inputText value="#{mBUsuarioApiario.muestraComportamiento}"/>
+  		   </p:column>
+  		   </p:row>
+
+   		   <p:row>
+   		    <p:column>
+  		   <h:outputText value="Nivel de Peligro" />
+  		   </p:column>
+  		 
+  		    <p:column>
+  		   <p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoRevision}">
+  		   				<f:selectItems value="#{mBSelectItems.cboEstadoRevision}"/>
+  		   </p:selectOneMenu>
+  		   </p:column>
+  		   </p:row>
+             </p:panelGrid>  
+             
+             
+            
+          
+           <p:tabView id="tabConteinerAlza" rendered="#{mBUsuarioApiario.activaTabAlza}">
+			<p:tab title="Revision de Alzas">
+				<p:toolbar>  
+		    <p:toolbarGroup align="left">  
+		        <p:commandButton  value="Nueva Revision de Alza" icon="ui-icon-document" actionListener="#{mBUsuarioApiario.abrirRegistrarPlanillaRevisionAlza}" update=":fPrAlza" oncomplete="alzaDialog.show()"/>  
+		 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" actionListener="#{mBUsuarioApiario.listarTodosPlanillaRevisionAlza}" update=":fPr:tabConteinerAlza:dtPrAlza" />
+		    </p:toolbarGroup>  
+		    </p:toolbar>
+				
+				
+			<p:dataTable id="dtPrAlza" value="#{mBUsuarioApiario.listaPlanillaRevisionAlza}"
+  					var="listadoPRA"
+  					emptyMessage="No se encontraron Revisiones de Alzas" 
+		            paginator="true" 
+		            rows="5" 
+		            paginatorPosition="bottom"
+		            selection="#{mBUsuarioApiario.planillaRevisionAlzaSeleccionada}" 
+		            selectionMode="single" 
+		            rowKey="#{listadoPRA.idPlanillaRevisionAlza}" 
+  						>
+  					 <p:ajax event="rowSelect" 
+				            listener="#{mBUsuarioApiario.abrirModificarPlanillaRevisionAlza(mBUsuarioApiario.planillaRevisionAlzaSeleccionada.idPlanillaRevisionAlza)}"
+				         update=":fPrAlza"
+            oncomplete="alzaDialog.show()"/>	
+  						
+			<p:column>
+							<f:facet name="header">
+								<h:outputText value="" />
+							</f:facet>
+							<p:selectBooleanCheckbox value="#{listadoPRA.sel}" />
+			</p:column>
+			<p:column >
+							<f:facet name="header">
+								<h:outputText value="Id" />
+							</f:facet>
+							<h:outputText value="#{listadoPRA.idPlanillaRevisionAlza}" />
+			</p:column>
+			<p:column >
+							<f:facet name="header">
+								<h:outputText value="Alza" />
+							</f:facet>
+							<h:outputText value="Alza #{listadoPRA.alza.idAlza}" />
+			</p:column>
+			<p:column width="50">
+							<f:facet name="header">
+								<h:outputText value="%" />
+							</f:facet>
+							<h:outputText value="#{listadoPRA.porcentajeMiel}" />
+			</p:column>
+  			</p:dataTable>
+				
+			</p:tab>
+			</p:tabView>
+              
+            
+            
+             </h:form>
+    				
+   		   </p:dialog> 
+</ui:composition>
