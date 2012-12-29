@@ -112,10 +112,10 @@
 		<br/>
 		<p:tabView id="tabContainer" rendered="#{(mBUsuarioApiario.usuarioApiario.idUsuarioApiario != null and mBUsuarioApiario.usuarioApiario.idUsuarioApiario > 0) ? 'true' : 'false'}">
 			<p:tab id="iTabPlanillaRevision" title="Planilla Revision">
-				<ui:include src="listarPlanillaRevision.xhtml" />
+				<ui:include src="tabs/listarPlanillaRevision.xhtml" />
 			</p:tab>
 			<p:tab id="iControldeCalidad" title="Control de Calidad">
-				<ui:include src="registrarControldeCalidad.xhtml" />
+				<ui:include src="tabs/registrarControldeCalidad.xhtml" />
 			</p:tab>
 		</p:tabView>
 	
