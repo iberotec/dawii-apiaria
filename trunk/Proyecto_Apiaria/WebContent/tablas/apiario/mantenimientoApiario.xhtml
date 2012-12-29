@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MANTENIMIENTO APIARIO" />
+		</ui:define>
+		
+		<ui:define name="content">
+		<h:form>
+			<h1 class="titlePage ui-widget-header ui-corner-all">MANTENIMIENTO APIARIO</h1>
+		    <p:toolbar>  
+		    <p:toolbarGroup align="left">  
+		        <p:commandButton  value="Nuevo Apiario" icon="ui-icon-document" action="#{mBMantenimientoApiario.abrirNuevoApiario()}" ajax="false"/>  
+		 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" action="#{mBMantenimientoApiario.listarTodos()}" update="dtlista" ajax="false"/>
+		 	    <p:commandButton  value="Eliminar" icon="ui-icon-trash" action="#{mBMantenimientoApiario.eliminar()}" update="dtlista,messages" ajax="false"/>
+		    </p:toolbarGroup>  
+		    </p:toolbar>
+    
+			<div class="contenedor">	
+				<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+				
+				<p:dataTable id="dtlista" value="#{mBMantenimientoApiario.listaApiario}" var="data" 
+								widgetVar="Apiario" 
+					            emptyMessage="No se encontraron Apiarios" 
+					            paginator="true" 
+					            rows="5" 
+					            paginatorPosition="bottom" 
+					            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+					            selectionMode="single" 
+					            rowKey="lista">
+					<f:facet name="header">
+						<h:outputText value="Listado de Apiarios" />
+					</f:facet>
+					            
+					<p:column>
+						<f:facet name="header"></f:facet>
+						<p:selectBooleanCheckbox value="#{data.sel}"></p:selectBooleanCheckbox>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Apiario" />
+						</f:facet>
+						<h:outputLabel value="Apiario #{data.idApiario}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Departamento" />
+						</f:facet>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Provincia" />
+						</f:facet>
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputLabel value="Distrito" />
+						</f:facet>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+   
+</html>

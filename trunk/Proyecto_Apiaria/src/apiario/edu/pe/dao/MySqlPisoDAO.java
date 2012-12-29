@@ -36,6 +36,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 		List<Piso> lista=null;
 		
 		try {
+			Open();
 			em.getTransaction().begin();
 			
 			Query sql=em.createQuery("select p from Piso p");
@@ -45,8 +46,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 		}finally{
-			em.close();
-			emf.close();
+			Close();
 		}
 		
 		return lista;
@@ -55,6 +55,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 	@Override
 	public Piso guardarPiso(Piso instance) throws Exception {
 		try {
+			Open();
 			instance.setSuccess(false);
 			em.getTransaction().begin();
 			em.merge(instance);
@@ -68,8 +69,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 			em.getTransaction().rollback();
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
@@ -129,7 +129,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 		try {
 			em.getTransaction().begin();
 			for (int i = 0; i < listaIds.size(); i++) {
-				String hql="delete from Piso p where c.idpsio in (:v_ids)";		
+				String hql="delete from Piso p where c.idPiso in (:v_ids)";		
 				em.createQuery(hql).setParameter("v_ids", listaIds.get(i)).executeUpdate();
 			}
 			em.getTransaction().commit();
@@ -144,5 +144,19 @@ public class MySqlPisoDAO implements IPisoDAO{
 			em.close();
 		}
 		return instance;
+	}
+	@Override
+	public List<Integer> obtenerMaximoIdPiso() throws Exception {
+		List<Integer> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select MAX(c.idPiso) from Piso c");
+			lista = q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO piso "+e.getMessage());
+		}
+		Close();
+		System.out.println("Tamaño lista DAO "+lista.size());
+		return lista;
 	}
 }

@@ -17,6 +17,7 @@ import apiario.edu.pe.dao.IPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.IReinaDAO;
 import apiario.edu.pe.dao.ITemporadaDAO;
 import apiario.edu.pe.dao.ITipoAlimentacionDAO;
+import apiario.edu.pe.dao.ITipoAlzaDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.dao.IUsuarioApiarioDAO;
@@ -34,6 +35,7 @@ import apiario.edu.pe.dao.MySqlPlanillaSeguimientoDAO;
 import apiario.edu.pe.dao.MySqlReinaDAO;
 import apiario.edu.pe.dao.MySqlTemporadaDAO;
 import apiario.edu.pe.dao.MySqlTipoAlimentacionDAO;
+import apiario.edu.pe.dao.MySqlTipoAlzaDAO;
 import apiario.edu.pe.dao.MySqlTipoEnfermedadDAO;
 import apiario.edu.pe.dao.MySqlUsuarioApiarioDAO;
 import apiario.edu.pe.dao.MysqlApiarioDAO;
@@ -144,6 +146,11 @@ public class MySqlDAOFactory extends DAOFactory{
 	@Override
 	public IPlanillaRevisionTipoEnfermedadDAO getPlanillaTipoRevisionEnfermedadDAO() {
 		return new MySqlPlanillaRevisionTipoEnfermedadDAO();
+	}
+
+	@Override
+	public ITipoAlzaDAO getTipoAlzaDAO() {
+		return new MySqlTipoAlzaDAO();
 	}
 
 

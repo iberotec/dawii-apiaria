@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MODULO DE COSECHA" />
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE COSECHA</h1>
+				<p:toolbar>  
+			    <p:toolbarGroup align="left">  
+			        <p:commandButton  value="Grabar" icon="ui-icon-document" action="#" ajax="false"/>  
+			 	    <p:commandButton  value="Limpiar" icon="ui-icon-print" action="#" ajax="false"/>
+			    </p:toolbarGroup>  
+			    </p:toolbar>
+				<div class="contenedor">	
+					<table>
+						<tr>
+							<td>
+								<h:outputLabel value="Centrigugadora" />
+							</td>
+							<td>
+								<p:selectOneMenu>
+									
+								</p:selectOneMenu>
+							</td>
+						</tr>
+					</table>
+					<p:tabView>
+						<p:tab title="Alzas">
+							<p:dataTable>
+								<p:column>
+									<f:facet name="header">
+										<h:outputLabel value="ID" />
+									</f:facet>
+								</p:column>
+								<p:column>
+									<f:facet name="header">
+										<h:outputLabel value="Alzas" />
+									</f:facet>
+								</p:column>
+							</p:dataTable>
+							<table>
+								<tr>
+									<td>
+										<h:outputLabel value="Kilos Obtenidos" />
+									</td>
+									<td>
+										<p:inputText></p:inputText>
+									</td>
+								</tr>
+							</table>
+							<p:commandButton value="Confirmar"></p:commandButton>
+						</p:tab>
+					</p:tabView>
+					<p:tabView>
+						<p:tab title="Decantado">
+							<table>
+								<tr>
+									<td>
+										<h:outputLabel value="Kilos" />
+									</td>
+									<td>
+										<p:inputText></p:inputText>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<h:outputLabel value="Decantado" />
+									</td>
+									<td>
+										<p:selectOneMenu>
+											
+										</p:selectOneMenu>
+									</td>
+								</tr>
+							</table>
+							<p:commandButton value="Confirmar"></p:commandButton>
+						</p:tab>
+					</p:tabView>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+   
+</html>

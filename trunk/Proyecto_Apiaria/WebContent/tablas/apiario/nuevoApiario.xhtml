@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<h:body>
+	<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MANTENIMIENTO APIARIO" />
+		</ui:define>
+		
+		<ui:define name="content">
+			<h:form>
+				<h1 class="titlePage ui-widget-header ui-corner-all">MANTENIMIENTO APIARIO</h1>
+			    <p:toolbar>  
+			    <p:toolbarGroup align="left">  
+			        <p:commandButton  value="Grabar" icon="ui-icon-disk" action="#{mBMantenimientoApiario.guardar()}" update="messages" ajax="false"/>  
+			 	    <p:commandButton  value="Limpiar" action="#{mBMantenimientoApiario.limpiar()}" update="tNuevoApiario" ajax="false"/>
+			    </p:toolbarGroup>  
+			    </p:toolbar>
+	    
+				<div class="contenedor">	
+					<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+					<table id="tNuevoApiario">
+						<tr>
+							<td>
+								<h:outputLabel value="Apiario"></h:outputLabel>
+							</td>
+							<td>
+								<p:inputText value="Apiario #{mBMantenimientoApiario.objApiario.idApiario}" disabled="true"></p:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel value="Departamento"></h:outputLabel>
+							</td>
+							<td>
+								<p:selectOneMenu></p:selectOneMenu>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel value="Provincia"></h:outputLabel>
+							</td>
+							<td>
+								<p:selectOneMenu></p:selectOneMenu>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputLabel value="Distrito"></h:outputLabel>
+							</td>
+							<td>
+								<p:selectOneMenu></p:selectOneMenu>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>   
+   
+</html>
