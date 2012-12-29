@@ -184,55 +184,7 @@
           
            <p:tabView id="tabConteinerAlza" rendered="#{mBUsuarioApiario.activaTabAlza}">
 			<p:tab title="Revision de Alzas">
-				<p:toolbar>  
-		    <p:toolbarGroup align="left">  
-		        <p:commandButton  value="Nueva Revision de Alza" icon="ui-icon-document" actionListener="#{mBUsuarioApiario.abrirRegistrarPlanillaRevisionAlza}" update=":fPrAlza" oncomplete="alzaDialog.show()"/>  
-		 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" actionListener="#{mBUsuarioApiario.listarTodosPlanillaRevisionAlza}" update=":fPr:tabConteinerAlza:dtPrAlza" />
-		    </p:toolbarGroup>  
-		    </p:toolbar>
-				
-				
-			<p:dataTable id="dtPrAlza" value="#{mBUsuarioApiario.listaPlanillaRevisionAlza}"
-  					var="listadoPRA"
-  					emptyMessage="No se encontraron Revisiones de Alzas" 
-		            paginator="true" 
-		            rows="5" 
-		            paginatorPosition="bottom"
-		            selection="#{mBUsuarioApiario.planillaRevisionAlzaSeleccionada}" 
-		            selectionMode="single" 
-		            rowKey="#{listadoPRA.idPlanillaRevisionAlza}" 
-  						>
-  					 <p:ajax event="rowSelect" 
-				            listener="#{mBUsuarioApiario.abrirModificarPlanillaRevisionAlza(mBUsuarioApiario.planillaRevisionAlzaSeleccionada.idPlanillaRevisionAlza)}"
-				         update=":fPrAlza"
-            oncomplete="alzaDialog.show()"/>	
-  						
-			<p:column>
-							<f:facet name="header">
-								<h:outputText value="" />
-							</f:facet>
-							<p:selectBooleanCheckbox value="#{listadoPRA.sel}" />
-			</p:column>
-			<p:column >
-							<f:facet name="header">
-								<h:outputText value="Id" />
-							</f:facet>
-							<h:outputText value="#{listadoPRA.idPlanillaRevisionAlza}" />
-			</p:column>
-			<p:column >
-							<f:facet name="header">
-								<h:outputText value="Alza" />
-							</f:facet>
-							<h:outputText value="Alza #{listadoPRA.alza.idAlza}" />
-			</p:column>
-			<p:column width="50">
-							<f:facet name="header">
-								<h:outputText value="%" />
-							</f:facet>
-							<h:outputText value="#{listadoPRA.porcentajeMiel}" />
-			</p:column>
-  			</p:dataTable>
-				
+			<ui:include src="/seleccion/temporadaSeleccion/tabs/listarPlanillaRevisionAlza.xhtml" />				
 			</p:tab>
 			</p:tabView>
               
