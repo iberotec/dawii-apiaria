@@ -106,10 +106,10 @@
 		<br/>
 		<p:tabView id="tabContainer" rendered="#{(mBUsuarioApiario.usuarioApiario.idUsuarioApiario != null and mBUsuarioApiario.usuarioApiario.idUsuarioApiario > 0) ? 'true' : 'false'}">
 			<p:tab id="iTabPlanillaRevision" title="Planilla Revision">
-				<ui:include src="tabs/listarPlanillaRevision.xhtml" />
+				<ui:include src="tabs/content_tab_mantenimientoPlanillaRevision.xhtml" />
 			</p:tab>
 			<p:tab id="iControldeCalidad" title="Control de Calidad">
-				<ui:include src="tabs/registrarControldeCalidad.xhtml" />
+				<ui:include src="tabs/content_tab_registrarControldeCalidad.xhtml" />
 			</p:tab>
 		</p:tabView>
 	
@@ -117,8 +117,8 @@
 	
 	</ui:define>
 	<ui:define name="modalPanel">
-		<ui:include src="/seleccion/modals/registrarPlanillaRevisionAlza.xhtml" />
-		<ui:include src="/seleccion/modals/registrarPlanillaRevision.xhtml" />
+		<ui:include src="/seleccion/modals/modal_registrarPlanillaRevisionAlza.xhtml" />
+		<ui:include src="/seleccion/modals/modal_registrarPlanillaRevision.xhtml" />
 	</ui:define>
 </ui:composition>	
 </h:body>
