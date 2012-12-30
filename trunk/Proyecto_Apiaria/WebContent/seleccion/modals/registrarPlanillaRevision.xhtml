@@ -12,11 +12,8 @@
  			<p:dialog id="dialog" header="PLanilla Revision" widgetVar="prDialog" resizable="false"  
               height="600" width="700" showEffect="clip" hideEffect="fold">  
               <h:form id="fPr">
- <p:toolbar>  
-    <p:toolbarGroup align="left">  
-        <p:commandButton  value="Guardar Seleccion" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarPlanillaRevision}" update="mensajeConfirm" ajax="false"/>  
-    </p:toolbarGroup>  
-    </p:toolbar>
+              <ui:include src="/seleccion/toolbars/toolbar_registrarPlanillaRevision.xhtml"></ui:include>
+
     
      <p:messages id="mensajeConfirm" closable="true" showDetail="true" autoUpdate="true"></p:messages>
      

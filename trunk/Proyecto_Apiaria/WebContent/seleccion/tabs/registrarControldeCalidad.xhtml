@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -13,29 +14,22 @@
 </h:head>
 
 <h:body>
-	<p:toolbar>  
-    <p:toolbarGroup align="left">  
-        <p:commandButton  value="Guardar Control de calidad" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarControlCalidad}" />  
-    </p:toolbarGroup>  
-    </p:toolbar>
-<!-- 	<h:form> -->
-<!--		<p:selectOneMenu value="#{mBNormaSeguridadApiario.normaSeguridadApiario.apiario.idApiario}">-->
-<!--			<f:selectItems value="#{mBSelectItems.cboApiario}"/>-->
-<!--		</p:selectOneMenu>-->
+
+
+    			<ui:include src="/seleccion/toolbars/toolbar_registrarControldeCalidad.xhtml"></ui:include>
+
 	
 	<h2 align="center">
 		<h:outputText value="Control de Calidad del Apiario(SENASA)" />
 	</h2>
-<!--	value="#{mBNormaSeguridadApiario.normaSeguridadApiario.normaSeguridad.idNormaSeguridad}"-->
+
 		<p:selectManyCheckbox layout="pageDirection" value="#{mBUsuarioApiario.listaString}">
 			<f:selectItems value="#{mBSelectItems.cboNormaSeguridad}"/>
 		</p:selectManyCheckbox>
 		
 		<br />
 		
-<!-- 	<p:commandButton value="Registrar Control de Calidad" action="#{mBNormaSeguridadApiario.guardarNormaSeguridadApiario}"></p:commandButton> -->	
-<!--		<p:commandLink value="Registrar Control de Calidad" action="#{mBNormaSeguridadApiario.guardarNormaSeguridadApiario}"></p:commandLink>-->
-<!-- 	</h:form> -->
+
 </h:body>
 	
-</html>
+</ui:composition>

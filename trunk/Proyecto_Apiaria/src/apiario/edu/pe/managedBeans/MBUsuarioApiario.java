@@ -800,10 +800,15 @@ public class MBUsuarioApiario implements Serializable{
 
 		List<Temporada> listaTemporada = new ArrayList<Temporada>();
 		listaTemporada = service.listarTodosTemporada();
+		System.out.println("tamaño lista temporada "+listaTemporada.size());
 		Date fechaActual= new Date();
 		for (int i = 0; i < listaTemporada.size(); i++) {
+			System.out.println("etapa "+listaTemporada.get(i).getEstadoEtapa()+" "+"Fecha Final "+listaTemporada.get(i).getPeriodoFinal());
+			System.out.println("fecha actual "+fechaActual);
 			if(listaTemporada.get(i).getEstadoEtapa().equals("seleccion") && listaTemporada.get(i).getPeriodoFinal().getTime()>fechaActual.getTime()){
-			usuarioApiario.getTemporada().setIdTemporada(listaTemporada.get(i).getIdTemporada());
+				System.out.println("entro al if");
+				System.out.println("id temporada "+listaTemporada.get(i).getIdTemporada());
+				usuarioApiario.getTemporada().setIdTemporada(listaTemporada.get(i).getIdTemporada());
 			}
 
 		}

@@ -12,11 +12,7 @@
  			<p:dialog id="dialogAlza" header="Revision de Alzas" widgetVar="alzaDialog" resizable="false"  
               height="400" width="500" showEffect="clip" hideEffect="fold">
 <h:form id="fPrAlza">
-              <p:toolbar>  
-		    <p:toolbarGroup align="left">  
-		        <p:commandButton  value="Guardar Revision de Alza" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarPlanillaRevisionAlza}" />  
-		    </p:toolbarGroup>  
-		    </p:toolbar>
+             <ui:include src="/seleccion/toolbars/toolbar_registrarPlanillaRevisionAlza.xhtml"></ui:include>
 		    <p:messages id="mensajePRAlza" closable="true" showDetail="true" autoUpdate="true"></p:messages>
 					<p:dataTable id="dtAlza" 
           		    value="#{mBUsuarioApiario.listaAlza}"
