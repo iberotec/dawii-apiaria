@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
@@ -13,12 +14,7 @@
 </h:head>
 
 <h:body>
-<p:toolbar>  
-    <p:toolbarGroup align="left">  
-        <p:commandButton  value="Nueva Planilla de Revision" icon="ui-icon-document" action="#{mBUsuarioApiario.abrirRegistrarPlanillaRevision}" update=":fPr"  oncomplete="prDialog.show()"/>  
- 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" action="#{mBUsuarioApiario.listarTodosPlanillaRevision}" update="dtlistaPR" ajax="false"/>
-    </p:toolbarGroup>  
-    </p:toolbar>
+<ui:include src="/seleccion/toolbars/toolbar_listarPlanillaRevision.xhtml"></ui:include>
 
 <p:dataTable id="dtlistaPR" var="listado" value="#{mBUsuarioApiario.listaPR}" 
 				    widgetVar="Seleccion" 
@@ -83,4 +79,4 @@
 		   			
 </h:body>
 	
-</html>
+</ui:composition>

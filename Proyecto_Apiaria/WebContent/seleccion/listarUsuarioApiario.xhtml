@@ -16,22 +16,13 @@
 		<ui:define name="title">
 			<h:outputText value="MODULO DE SELECCION" />
 		</ui:define>
-		
 		<ui:define name="content">
 		<h:form>
 			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
 				SELECCION</h1>
 				
+				<ui:include src="toolbars/toolbar_listarUsuarioApiario.xhtml"></ui:include>	
 				
-    <p:toolbar>  
-    <p:toolbarGroup align="left">  
-        <p:commandButton  value="Nueva asignacion de Apiario" icon="ui-icon-document" action="#{mBUsuarioApiario.abrirNuevaAsignacion}" ajax="false"/>  
- 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" action="#{mBUsuarioApiario.listarTodosUsuarioApiario}" update="dtlista" ajax="false"/>
-    </p:toolbarGroup>  
-    </p:toolbar>
-    
-    
-    
 			<div class="contenedor">		
 					<p:dataTable id="dtlista" var="listado" value="#{mBUsuarioApiario.listaUsarioApiario}" 
 				    widgetVar="Seleccion" 
