@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
 
-//import com.sun.org.apache.bcel.internal.generic.NEW;
+
 
 
 import apiario.edu.pe.bean.Alza;
@@ -47,7 +47,6 @@ public class MBUsuarioApiario implements Serializable{
 	private String nivelPeligro;
 	private int nivelPeligroId;
 	private List<EstadoRevisionEquipamientoTrabajo> listaERET = new ArrayList<EstadoRevisionEquipamientoTrabajo>();
-//	SeleccionService service = new SeleccionService();
 	private Colmena colmena;
 	private List<Colmena> listaColmenas=new ArrayList<Colmena>();
 	private PlanillaRevision objplanillaRevision;
@@ -58,9 +57,6 @@ public class MBUsuarioApiario implements Serializable{
 	private List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
 	private PlanillaRevision planillaRevision;
 	private Boolean muestraExistenciaReina;
-	//prueba
-//	private Integer muestraIexistenciaReina;
-	//prueba
 	private String muestraEstadoCosecha;
 	private boolean muestraNecesidadAlimentacion;
 	private boolean muestraNecesidadCuracion;
@@ -92,123 +88,6 @@ public class MBUsuarioApiario implements Serializable{
 	private boolean activaTabAlza;
 	private boolean activaListadoAlza;
 	private Integer muestraIdAlza;
-//	public void limpiar(){
-////		objColmena=new Colmena();
-//
-//		setColmena(new Colmena());
-//		objplanillaRevision=new PlanillaRevision();
-//		objplanillaRevision.setEstadoRevision(new EstadoRevision());
-//		objColmena=new Colmena();
-//		objEstadoRevision=new EstadoRevision();
-//	}
-	
-//	public void listColmenas(){
-//		System.out.println("Entro Colmenas");
-//		System.out.println("-->"+usuarioApiario.getApiario().getIdApiario());
-//		listaColmenas.clear();
-//		int apiarioId=0;
-//		try {
-//			System.out.println();
-//			apiarioId=usuarioApiario.getApiario().getIdApiario();
-//			objColmena.setApiario(new Apiario());
-//			System.out.println("IdUsuarioApiario->"+usuarioApiario.getApiario().getIdApiario());
-//			System.out.println(">-->"+apiarioId);
-////			usuarioApiario.getApiario().getIdApiario()
-//			objColmena.getApiario().setIdApiario(apiarioId);
-//			listaColmenas=service.buscarColmena(objColmena);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
-//	public void guardarPlanillaRevision(){
-//		System.out.println("Llego al metodo de guardarPlanillaRevision");
-//		listColmenas();
-//		Reina objReina=new Reina();
-//		List<Reina> listaReina=new ArrayList<Reina>();
-//		int idReina=0;
-//		List arregloEnfermedad;
-//		List arregloAlimentacion;
-//		try {
-//			System.out.println("Entro al try catch");
-//			for (int i = 0; i < listaColmenas.size(); i++) {
-//				System.out.println("IDUsuarioApiario->"+usuarioApiario.getIdUsuarioApiario());
-//				objplanillaRevision.setUsuarioApiario(new UsuarioApiario());
-////				usuarioApiario.getIdUsuarioApiario()
-//				objplanillaRevision.getUsuarioApiario().setIdUsuarioApiario(1);
-//				System.out.println("ListaSize->"+listaColmenas.size());
-//				System.out.println("->"+listaColmenas.get(i).isSel());
-//				System.out.println("->"+listaColmenas.get(i).getIdColmena());
-//				if(listaColmenas.get(i).isSel()==false){
-//					System.out.println("Entro a los seleccionados???");
-//					System.out.println("Colmena->"+listaColmenas.get(i).getIdColmena());
-//					objplanillaRevision.setColmena(new Colmena());
-//					objplanillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
-//					System.out.println("DespuesColmena->"+listaColmenas.get(i).getIdColmena());
-////					objplanillaRevision.getColmena().setIdColmena(1);
-//				}
-//					
-//				System.out.println("ColemnaID para la Reina->"+listaColmenas.get(i).getIdColmena());
-//				objReina.setColmena(new Colmena());
-//				objReina.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
-//				listaReina=service.buscarReina(objReina);
-//					
-//				for (int j = 0; j < listaReina.size(); j++) {
-////					listaColmenas.get(i).getIdColmena()
-//					objReina=service.obtenerPorIdReina(listaColmenas.get(i).getIdColmena());
-////					listaReina.get(j).getIdReina()
-//					objplanillaRevision.setReina(new Reina());
-//					objplanillaRevision.getReina().setIdReina(objReina.getIdReina());
-//				}
-//				
-//				objplanillaRevision.setEstadoRevision(new EstadoRevision());
-//				objplanillaRevision.getEstadoRevision().setIdEstadoRevision(objEstadoRevision.getIdEstadoRevision());
-//				
-//				
-////				objplanillaRevision.setReina(new Reina());
-////				objplanillaRevision.getReina().setIdReina(idReina);
-//				
-//				
-//				System.out.println("IdColmena->"+objplanillaRevision.getColmena().getIdColmena());
-//				System.out.println("ExistenciaReina->"+objplanillaRevision.getExistenciaReina());
-//				System.out.println("IdReina->"+objplanillaRevision.getReina().getIdReina());
-//				System.out.println("EstadoCosecha->"+objplanillaRevision.getEstadoCosecha());
-//				System.out.println("NecesidadAlimentacion->"+objplanillaRevision.getNecesidadAlimentacion());
-//				System.out.println("NecesidadCuracion->"+objplanillaRevision.getNecesidadCuracion());
-//				System.out.println("IdEstadoRevision->"+objplanillaRevision.getEstadoRevision().getIdEstadoRevision());
-//				System.out.println("FaltaEspacioCamara->"+objplanillaRevision.getFaltaEspacioCamara());
-//				System.out.println("FaltaAlza->"+objplanillaRevision.getFaltaAlza());
-//				System.out.println("Comportamiento->"+objplanillaRevision.getComportamiento());
-//				System.out.println("IdUsuarioApiario->"+objplanillaRevision.getUsuarioApiario().getIdUsuarioApiario());
-//
-//				System.out.println("TipoAlimentacion->"+objplanillaRevision.getPlanillaRevisionTipoAlimentacions());
-//				System.out.println("TipoEnfermedad->"+objplanillaRevision.getPlanillaRevisionTipoEnfermedads());
-//				
-//				
-//				arregloAlimentacion=objplanillaRevision.getPlanillaRevisionTipoAlimentacions();
-//				arregloEnfermedad=objplanillaRevision.getPlanillaRevisionTipoEnfermedads();
-//				
-////				.get(i).getIdPlanillaRevisionTipoAlimentacion()
-////				.get(i).getIdPlanillaRevisionTipoEnfermedad()
-//				
-//				
-//				service.guardarPlanillaRevision(objplanillaRevision);
-//				System.out.println("------------------------------------guardar satisfactoriamente");
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-//	public void guardarControldeCalidad(){
-//		try {
-//			
-//		} catch (Exception e) {
-//			System.out.println("Error al guardar el control de calidad");
-//		}
-//	}
-	
-	
 
 
 	public List<EstadoRevisionEquipamientoTrabajo> getListaERET() {
@@ -289,14 +168,6 @@ public class MBUsuarioApiario implements Serializable{
 	public void setObjColmena(Colmena objColmena) {
 		this.objColmena = objColmena;
 	}
-
-//	public void setObjEstadoRevision(EstadoRevision objEstadoRevision) {
-//		this.objEstadoRevision = objEstadoRevision;
-//	}
-//
-//	public EstadoRevision getObjEstadoRevision() {
-//		return objEstadoRevision;
-//	}
 
 	public void setObjEstadoRevision(EstadoRevision objEstadoRevision) {
 		this.objEstadoRevision = objEstadoRevision;
@@ -441,14 +312,6 @@ public class MBUsuarioApiario implements Serializable{
 	public void setListaString(List<String> listaString) {
 		this.listaString = listaString;
 	}
-	
-//	public Integer getMuestraIexistenciaReina() {
-//		return muestraIexistenciaReina;
-//	}
-//
-//	public void setMuestraIexistenciaReina(Integer muestraIexistenciaReina) {
-//		this.muestraIexistenciaReina = muestraIexistenciaReina;
-//	}
 
 	public boolean isMuestraCajaTexto() {
 		return muestraCajaTexto;
@@ -606,10 +469,12 @@ public class MBUsuarioApiario implements Serializable{
 	}
 
 	public MBUsuarioApiario() {
-//		limpiar();
+
 
 	}
-	
+	public String abrirMantenimientoUsuarioApiario() throws Exception{
+		return "successMantenimientoUsuarioApiario";
+	}
 	public void limpiarNuevaAsignacion(){
 		System.out.println("limpiarNuevaAsignacion");
 		usuarioApiario= new UsuarioApiario();
@@ -775,7 +640,7 @@ public class MBUsuarioApiario implements Serializable{
 			 nivelPeligro="";
 		 }
 
-//		listColmenas();
+
 
 	}
 	public void obtenerEquipoSeguridad() throws Exception{
@@ -944,8 +809,6 @@ public class MBUsuarioApiario implements Serializable{
 		muestraExistenciaReina=planillaRevision.getExistenciaReina();
 		System.out.println("muestraExistenciaReina "+muestraExistenciaReina);
 		
-//		muestraIexistenciaReina=planillaRevision.getExistenciaReina();
-		
 		System.out.println("cosechable? "+planillaRevision.getEstadoCosecha());
 		muestraEstadoCosecha=planillaRevision.getEstadoCosecha();
 		System.out.println("muestraEstadoCosecha "+muestraEstadoCosecha);
@@ -1014,13 +877,11 @@ public class MBUsuarioApiario implements Serializable{
 	}
 	public void guardarPlanillaRevision() throws Exception{
 		PlanillaRevision confirm=null;
-//		double porcentajeMiel;
 		try {
 			if(listaColmenas.size()>0){
 				System.out.println("tamñao lista "+listaColmenas.size());
 				for (int i = 0; i < listaColmenas.size(); i++) {
 					if(listaColmenas.get(i).isSel()){
-//						System.out.println("id de planilla de revision al guardar "+planillaRevision.getIdPlanillaRevision());
 						System.out.println("activo? "+listaColmenas.get(i).isSel());
 						System.out.println("id colmena "+listaColmenas.get(i).getIdColmena());
 						
@@ -1074,39 +935,6 @@ public class MBUsuarioApiario implements Serializable{
 								System.out.println("error PRTE");
 							}
 						}
-//						if(listaAlza.size()>0){
-//							System.out.println("primer if la lista es mayor a 0");
-//							PlanillaRevisionAlza confirmPRA =null;
-//							for (int j = 0; j < listaAlza.size(); j++) {
-//								System.out.println("recorriendo for");
-//								if(listaAlza.get(j).isSel()){
-//									System.out.println("segundo if se encontro seleccionados");
-//									System.out.println("id de alaza "+listaAlza.get(j).getIdAlza());
-//									PlanillaRevisionAlza obj = new PlanillaRevisionAlza();
-//									obj.setPlanillaRevision(new PlanillaRevision());
-//									obj.setAlza(new Alza());
-//									obj.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
-//									obj.getAlza().setIdAlza(listaAlza.get(j).getIdAlza());
-//									if(listaAlza.get(i).getMsgResult()!=null && listaAlza.get(i).getMsgResult().length()>0){
-//										System.out.println("entro al if");
-//										porcentajeMiel= Double.parseDouble(listaAlza.get(i).getMsgResult());
-//										System.out.println("porcentaje miel "+porcentajeMiel);
-//										obj.setPorcentajeMiel(porcentajeMiel);
-//									}
-//									confirmPRA = service.guardarPlanillaRevisionAlza(obj);
-//									if(confirmPRA.isSuccess()){
-//										System.out.println("grabo planilla revision-alza");
-//									}else{
-//										System.out.println("error no grabo planilla revision-alza");
-//									}
-//								}
-//								
-//							}
-//							
-//							
-//						}
-						
-						
 					}
 				}
 				if(confirm.isSuccess()){
@@ -1149,18 +977,9 @@ public class MBUsuarioApiario implements Serializable{
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();
 		}
-		
-		
-//		if(listaNS.size()>0){
-//			for (int i = 0; i < listaNS.size(); i++) {
-//				System.out.println("id norma "+listaNS.get(i).getDescripcionNormaSeguridad());
-//				System.out.println("sel ?"+listaNS.get(i).isSel());
-//			}
-//		}
 	}
 	public void mostrarComboTipoEnfermedad(){
 		System.out.println("mostrarComboTipoEnfermedad");
@@ -1186,15 +1005,6 @@ public class MBUsuarioApiario implements Serializable{
 
 		}
 	}
-//	public void obtenerAlzasxColmena(int id) throws Exception{
-//		Alza obj = new Alza();
-//		obj.setPiso(new Piso());
-//		obj.getPiso().setColmena(new Colmena());
-//		obj.getPiso().getColmena().setIdColmena(id);
-//		if(obj.getPiso().getColmena().getIdColmena()!=null && obj.getPiso().getColmena().getIdColmena().intValue()>0){
-//			listaAlza = service.buscarAlza(obj);
-//		}
-//	}
 	public void limpiarPlanillaRevisionAlza(){
 		System.out.println("limpiarPlanillaRevisionAlza");
 		planillaRevisionAlzaSeleccionada = new PlanillaRevisionAlza();
