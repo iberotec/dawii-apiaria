@@ -4,21 +4,6 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
  <!-- ManageBean -->
  <managed-bean>
-  <managed-bean-name>mBapiaria</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.managedBeans.MBVerficaApiaria</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>mBNormaSeguridad</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.managedBeans.MBNormaSeguridad</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>mBApiariaAsignada</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.managedBeans.MBApiarioAsignado</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
   <managed-bean-name>mBPlanillaRevision</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.managedBeans.MBPlanillaRevision</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
@@ -47,11 +32,6 @@
  <managed-bean>
   <managed-bean-name>mBPlanillaRevisionAlza</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.managedBeans.MBPlanillaRevisionAlza</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
- </managed-bean>
- <managed-bean>
-  <managed-bean-name>mBNormaSeguridadApiario</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.managedBeans.MBNormaSeguridadApiario</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
