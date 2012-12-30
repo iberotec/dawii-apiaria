@@ -77,7 +77,7 @@
    <to-view-id>/UI_bienvenida.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>successMainSeleccion</from-outcome>
+   <from-outcome>successMantenimientoUsuarioApiario</from-outcome>
    <to-view-id>/seleccion/UI_mantenimientoUsuarioApiario.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
