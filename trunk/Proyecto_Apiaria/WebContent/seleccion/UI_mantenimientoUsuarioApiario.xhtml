@@ -81,6 +81,12 @@
 							</f:facet>
 							<h:outputText value="#{mBUsuarioApiario.obtenerNivelPeligro(listado.planillaRevisions)}" />
 						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Estado"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{listado.estadoAsignacion}" />
+						</p:column>
 		   			</p:dataTable>
 			</div>
 

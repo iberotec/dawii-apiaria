@@ -22,9 +22,12 @@ public class Temporada extends BaseEntidades implements Serializable {
 	@Column(name="id_temporada")
 	private Integer idTemporada;
 
-	@Column(name="estado_etapa")
-	private String estadoEtapa;
+	@Column(name="etapa_temporada")
+	private String etapaTemporada;
 
+	@Column(name="estado_temporada")
+	private Boolean estadoTemporada;
+	
     @Temporal( TemporalType.DATE)
 	@Column(name="periodo_final")
 	private Date periodoFinal;
@@ -46,14 +49,6 @@ public class Temporada extends BaseEntidades implements Serializable {
 		this.idTemporada = idTemporada;
 	}
 
-	public String getEstadoEtapa() {
-		return this.estadoEtapa;
-	}
-
-	public void setEstadoEtapa(String estadoEtapa) {
-		this.estadoEtapa = estadoEtapa;
-	}
-
 	public Date getPeriodoFinal() {
 		return this.periodoFinal;
 	}
@@ -68,6 +63,22 @@ public class Temporada extends BaseEntidades implements Serializable {
 
 	public void setPeriodoInicial(Date periodoInicial) {
 		this.periodoInicial = periodoInicial;
+	}
+
+	public String getEtapaTemporada() {
+		return etapaTemporada;
+	}
+
+	public void setEtapaTemporada(String etapaTemporada) {
+		this.etapaTemporada = etapaTemporada;
+	}
+
+	public Boolean getEstadoTemporada() {
+		return estadoTemporada;
+	}
+
+	public void setEstadoTemporada(Boolean estadoTemporada) {
+		this.estadoTemporada = estadoTemporada;
 	}
 
 

@@ -496,11 +496,30 @@ public class MBUsuarioApiario implements Serializable{
 	}
 	public void listarTodosUsuarioApiario() throws Exception{
 		System.out.println("entro a listartodos");
-		listaUsarioApiario = service.listarTodosUsuarioApiario();
-		System.out.println("tamaño de la lista en listarTodos"+listaUsarioApiario.size());
+		Date fechaActual= new Date();
+		Temporada objT = new Temporada();
+		objT.setEtapaTemporada("seleccion");
+		objT.setEstadoTemporada(true);
+		List<Temporada> listaT = new ArrayList<Temporada>();
+		listaT= service.buscarTemporada(objT);
+		if(listaT.size()>0){
+			System.out.println("entro al if 1");
+			if(listaT.get(0).getPeriodoFinal().getTime()>=fechaActual.getTime()){
+				System.out.println("entro al if 2");
+				UsuarioApiario objUA =new UsuarioApiario();
+				objUA.setUsuario(new Usuario());
+				objUA.setTemporada(new Temporada());
+				objUA.setUsuario((Usuario) ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).getAttribute("usuario"));
+				objUA.getTemporada().setIdTemporada(listaT.get(0).getIdTemporada());
+				listaUsarioApiario=service.buscarUsuarioApiario(objUA);
+				System.out.println("tamaño de la lista en listarTodos"+listaUsarioApiario.size());
+			}
+		}
+	
+		
 	}
 	public String obtenerNivelPeligro(Set<PlanillaRevision> set){
-		String retorno="";
+		String retorno="No precisa";
 		System.out.println("tamaño lista nivel peligro "+set.size());
 		if(set.size()>0){
 			System.out.println("paso primer if");
@@ -621,6 +640,7 @@ public class MBUsuarioApiario implements Serializable{
 		 System.out.println("tamaño lista planilla de revision antes "+listaPlanillaRevision.size());
 		 listaPlanillaRevision=service.buscarPlanillaRevision(objRevision);
 		System.out.println("tamaño lista planilla de revision "+ listaPlanillaRevision.size());
+		nivelPeligroId=0;
 		 if(listaPlanillaRevision.size()>0){
 			 System.out.println("entro al if");
 			 for (int i = 0; i < listaPlanillaRevision.size(); i++) {
@@ -637,7 +657,7 @@ public class MBUsuarioApiario implements Serializable{
 				}
 			}
 		 }else{
-			 nivelPeligro="";
+			 nivelPeligro="No precisa";
 		 }
 
 
@@ -645,18 +665,43 @@ public class MBUsuarioApiario implements Serializable{
 	}
 	public void obtenerEquipoSeguridad() throws Exception{
 		System.out.println("obtenerEquipoSeguridad");
-		EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
-		objERET.setEstadoRevision(new EstadoRevision());
-		objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
+		if(nivelPeligroId!=0){
+			EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
+			objERET.setEstadoRevision(new EstadoRevision());
+			objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
+			
+			mostrarEquipoSeguridad=true;
+			listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
+			System.out.println("tamaño de lista obtenerEquipoSeguridad "+listaERET.size());
+		}else{
+			mostrarEquipoSeguridad=false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No precisa Nivel de Peligro consulte a su Superior para saber que equipo llevar o utilize su criterio")); 
+			System.out.println("error al grabar");
+		}
 		
-		mostrarEquipoSeguridad=true;
-		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
-		System.out.println("tamaño de lista obtenerEquipoSeguridad "+listaERET.size());
 		
 		
 		
 	}
+	public boolean validarUsuarioApiarioUnico(UsuarioApiario obj) throws Exception{
+		boolean resultado=false;
+		if(obj!=null){
+		List<UsuarioApiario> lista = new ArrayList<UsuarioApiario>();
+		lista=service.listarTodosUsuarioApiario();
+		if(lista.size()>0){
+			for (int i = 0; i < lista.size(); i++) {
+				if(obj.getApiario().getIdApiario()!=lista.get(i).getApiario().getIdApiario() && obj.getTemporada().getIdTemporada()!=lista.get(i).getTemporada().getIdTemporada()){
+					resultado=true;
+				}
+			}
+
+		}
+		}
+		System.out.println("sale "+resultado);
+		return resultado;
+	}
 	public void guardarUsuarioApiario() throws Exception{
+		boolean validacion=false;
 		usuarioApiario.setUsuario((Usuario) ((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).getAttribute("usuario"));
 		System.out.println("aver???? "+usuarioApiario.getUsuario().getNombreUsuario());
 		usuarioApiario.setEstadoAsignacion("asignado");
@@ -668,9 +713,9 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("tamaño lista temporada "+listaTemporada.size());
 		Date fechaActual= new Date();
 		for (int i = 0; i < listaTemporada.size(); i++) {
-			System.out.println("etapa "+listaTemporada.get(i).getEstadoEtapa()+" "+"Fecha Final "+listaTemporada.get(i).getPeriodoFinal());
+			System.out.println("etapa "+listaTemporada.get(i).getEtapaTemporada()+" "+"Fecha Final "+listaTemporada.get(i).getPeriodoFinal());
 			System.out.println("fecha actual "+fechaActual);
-			if(listaTemporada.get(i).getEstadoEtapa().equals("seleccion") && listaTemporada.get(i).getPeriodoFinal().getTime()>fechaActual.getTime()){
+			if(listaTemporada.get(i).getEtapaTemporada().equals("seleccion") && listaTemporada.get(i).getPeriodoFinal().getTime()>=fechaActual.getTime() && listaTemporada.get(i).getEstadoTemporada()){
 				System.out.println("entro al if");
 				System.out.println("id temporada "+listaTemporada.get(i).getIdTemporada());
 				usuarioApiario.getTemporada().setIdTemporada(listaTemporada.get(i).getIdTemporada());
@@ -680,25 +725,32 @@ public class MBUsuarioApiario implements Serializable{
 
 		UsuarioApiario confirm = null;
 		try {
-			confirm = service.guardarUsuarioApiario(usuarioApiario);
-			
-			List<Integer> listaIdApiario = new ArrayList<Integer>();
-			listaIdApiario=service.obtenerMaximoIdUsuarioApiario();
-			System.out.println("tamaño listaUsuApi "+listaIdApiario.size());
-			if(listaIdApiario.size()>0){
-				for (int i = 0; i < listaIdApiario.size(); i++) {
-					System.out.println("id?? "+listaIdApiario.get(i));
-					usuarioApiario.setIdUsuarioApiario(listaIdApiario.get(i));
+			validacion=validarUsuarioApiarioUnico(usuarioApiario);
+			if(validacion){
+				confirm = service.guardarUsuarioApiario(usuarioApiario);
+				
+				List<Integer> listaIdUsuarioApiario = new ArrayList<Integer>();
+				listaIdUsuarioApiario=service.obtenerMaximoIdUsuarioApiario();
+				System.out.println("tamaño listaUsuApi "+listaIdUsuarioApiario.size());
+				if(listaIdUsuarioApiario.size()>0){
+					for (int i = 0; i < listaIdUsuarioApiario.size(); i++) {
+						System.out.println("id?? "+listaIdUsuarioApiario.get(i));
+						usuarioApiario.setIdUsuarioApiario(listaIdUsuarioApiario.get(i));
+					}
 				}
-			}
-			System.out.println("usarioApiario id "+usuarioApiario.getIdUsuarioApiario());
-			if(confirm.isSuccess()){
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva asignacion"));  
-				System.out.println("grabo");
+				System.out.println("usarioApiario id "+usuarioApiario.getIdUsuarioApiario());
+				if(confirm.isSuccess()){
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva asignacion"));  
+					System.out.println("grabo");
+				}else{
+					  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la asignacion")); 
+					System.out.println("error al grabar");
+				}
 			}else{
-				  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la asignacion")); 
-				System.out.println("error al grabar");
+				 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "El Apiario "+usuarioApiario.getApiario().getIdApiario()+" ya fue asignado")); 
+					System.out.println("error al grabar");
 			}
+			
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();
@@ -725,19 +777,38 @@ public class MBUsuarioApiario implements Serializable{
 		objPR.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 		List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
 		listaPR = service.buscarPlanillaRevision(objPR);
-		nivelPeligro = listaPR.get(0).getEstadoRevision().getDescripcionEstadoRevision();
-		nivelPeligroId= listaPR.get(0).getEstadoRevision().getIdEstadoRevision();
+		if(listaPR.size()>0){
+			if(listaPR.get(0).getEstadoRevision()!=null){
+				if(listaPR.get(0).getEstadoRevision().getIdEstadoRevision()!=null && 
+						listaPR.get(0).getEstadoRevision().getIdEstadoRevision().intValue()>0){
+					nivelPeligroId= listaPR.get(0).getEstadoRevision().getIdEstadoRevision();
+				}
+				if(listaPR.get(0).getEstadoRevision().getDescripcionEstadoRevision()!=null &&
+						listaPR.get(0).getEstadoRevision().getDescripcionEstadoRevision().length()>0){
+					nivelPeligro = listaPR.get(0).getEstadoRevision().getDescripcionEstadoRevision();
+				}
+			}
+		}else{
+			nivelPeligroId=0;
+			nivelPeligro="No precisa";
+		}
+	
 		
 		
-		EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
-		objERET.setEstadoRevision(new EstadoRevision());
-		objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
 		
+		if(nivelPeligroId!=0){
+			EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
+			objERET.setEstadoRevision(new EstadoRevision());
+			objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
+			
+			listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
+			mostrarEquipoSeguridad=true;
+		}else{
+			System.out.println("no se esta mostrnado el listado -.-!");
+			listaERET= new ArrayList<EstadoRevisionEquipamientoTrabajo>();
+			mostrarEquipoSeguridad=false;
+		}
 		
-		System.out.println("ubicacionApiario "+ubicacionApiario);
-		System.out.println("nivelPeligro "+nivelPeligro);
-		System.out.println("nivelPeligroId "+nivelPeligroId);
-		listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
 		
 		NormaSeguridadApiario objNSA= new NormaSeguridadApiario();
 		objNSA.setApiario(new Apiario());
@@ -755,7 +826,7 @@ public class MBUsuarioApiario implements Serializable{
 			}
 		}
 		
-		mostrarEquipoSeguridad=true;
+		
 		ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) FacesContext
         .getCurrentInstance().getApplication()
         .getNavigationHandler();

@@ -83,15 +83,22 @@ public class MySqlTemporadaDAO implements ITemporadaDAO{
 			}
 			if(instance.getPeriodoInicial()!=null){
 				System.out.println("temporada.periodoInicial");
-				Predicate condition=builder.equal(temporadaRoot.get("periodoInicial"), instance.getIdTemporada());
+				Predicate condition=builder.equal(temporadaRoot.get("periodoInicial"), instance.getPeriodoInicial());
 				p.add(condition);
 			}
 			if(instance.getPeriodoFinal()!=null){
 				System.out.println("temporada.periodoFinal");
-				Predicate condition=builder.equal(temporadaRoot.get("periodoFinal"), instance.getIdTemporada());
+				Predicate condition=builder.equal(temporadaRoot.get("periodoFinal"), instance.getPeriodoFinal());
 				p.add(condition);
 			}
-			
+			if(instance.getEstadoTemporada()!=null){
+				Predicate condition=builder.equal(temporadaRoot.get("estadoTemporada"), instance.getEstadoTemporada());
+				p.add(condition);
+			}
+			if(instance.getEtapaTemporada()!=null){
+				Predicate condition=builder.equal(temporadaRoot.get("etapaTemporada"), instance.getEtapaTemporada());
+				p.add(condition);
+			}
 		}
 		Predicate[] predicates = new Predicate[p.size()];
 	    p.toArray(predicates);
