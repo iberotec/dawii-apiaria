@@ -605,61 +605,75 @@ public class MBUsuarioApiario implements Serializable{
 	}
 	
 	public void localizarApiario() throws Exception{
+		
 		listaERET= new ArrayList<EstadoRevisionEquipamientoTrabajo>();
 		System.out.println("entrega ubicacion");
 		PlanillaSeguimiento obj= new PlanillaSeguimiento();
 		obj.setApiario(new Apiario());
 		System.out.println("entra el parametro "+usuarioApiario.getApiario().getIdApiario());
-		
-		obj.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
-		
-		System.out.println("dato encapsulado "+obj.getApiario().getIdApiario());
-		List<PlanillaSeguimiento> listaPlanillaSeguimiento = new ArrayList<PlanillaSeguimiento>();
-		listaPlanillaSeguimiento=service.buscarPlanillaSeguimiento(obj);
-		System.out.println("la lista se lleno "+listaPlanillaSeguimiento.size());
-		if(listaPlanillaSeguimiento.size()>0){
-		for (int i = 0; i < listaPlanillaSeguimiento.size(); i++) {
+		if(usuarioApiario.getApiario()!=null){
+			if(usuarioApiario.getApiario().getIdApiario()!=null && usuarioApiario.getApiario().getIdApiario().intValue()>0){
+				obj.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+				
+				System.out.println("dato encapsulado "+obj.getApiario().getIdApiario());
+				List<PlanillaSeguimiento> listaPlanillaSeguimiento = new ArrayList<PlanillaSeguimiento>();
+				listaPlanillaSeguimiento=service.buscarPlanillaSeguimiento(obj);
+				System.out.println("la lista se lleno "+listaPlanillaSeguimiento.size());
+				if(listaPlanillaSeguimiento.size()>0){
+				for (int i = 0; i < listaPlanillaSeguimiento.size(); i++) {
+					
+					obj=listaPlanillaSeguimiento.get(i);
+				}
+				System.out.println("del for salio el obj "+obj.getZona().getUbigeo().getDistrito());
+				ubicacionApiario=obj.getZona().getUbigeo().getDistrito();
+				System.out.println("el valor de ubicacionApiario es "+ubicacionApiario);
+				}else{
+					ubicacionApiario="";
+				}
+
+				
+				System.out.println("entraga el estado mayor de peligro");
+				 PlanillaRevision objRevision = new PlanillaRevision();
+				 objRevision.setUsuarioApiario(new UsuarioApiario());
+				 objRevision.getUsuarioApiario().setApiario(new Apiario());
+				 objRevision.getUsuarioApiario().getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+				 
+				 List<PlanillaRevision> listaPlanillaRevision = new ArrayList<PlanillaRevision>();
+				 System.out.println("tamaño lista planilla de revision antes "+listaPlanillaRevision.size());
+				 listaPlanillaRevision=service.buscarPlanillaRevision(objRevision);
+				System.out.println("tamaño lista planilla de revision "+ listaPlanillaRevision.size());
+				nivelPeligroId=0;
+				 if(listaPlanillaRevision.size()>0){
+					 System.out.println("entro al if");
+					 for (int i = 0; i < listaPlanillaRevision.size(); i++) {
+						 System.out.println("entro al for");
+						if(listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue()==1){
+							System.out.println("es 1");
+							nivelPeligro=listaPlanillaRevision.get(i).getEstadoRevision().getDescripcionEstadoRevision();
+							nivelPeligroId=listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue();
+						}
+						if(listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue()==2){
+							System.out.println("es 2");
+							nivelPeligro=listaPlanillaRevision.get(i).getEstadoRevision().getDescripcionEstadoRevision();
+							nivelPeligroId=listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue();
+						}
+					}
+				 }else{
+					 nivelPeligro="No precisa";
+				 }
+			}else{
+				nivelPeligro="";
+				nivelPeligroId=0;
+				ubicacionApiario="";
+			}
 			
-			obj=listaPlanillaSeguimiento.get(i);
-		}
-		System.out.println("del for salio el obj "+obj.getZona().getUbigeo().getDistrito());
-		ubicacionApiario=obj.getZona().getUbigeo().getDistrito();
-		System.out.println("el valor de ubicacionApiario es "+ubicacionApiario);
+
 		}else{
+			nivelPeligro="";
+			nivelPeligroId=0;
 			ubicacionApiario="";
 		}
-
 		
-		System.out.println("entraga el estado mayor de peligro");
-		 PlanillaRevision objRevision = new PlanillaRevision();
-		 objRevision.setUsuarioApiario(new UsuarioApiario());
-		 objRevision.getUsuarioApiario().setApiario(new Apiario());
-		 objRevision.getUsuarioApiario().getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
-		 
-		 List<PlanillaRevision> listaPlanillaRevision = new ArrayList<PlanillaRevision>();
-		 System.out.println("tamaño lista planilla de revision antes "+listaPlanillaRevision.size());
-		 listaPlanillaRevision=service.buscarPlanillaRevision(objRevision);
-		System.out.println("tamaño lista planilla de revision "+ listaPlanillaRevision.size());
-		nivelPeligroId=0;
-		 if(listaPlanillaRevision.size()>0){
-			 System.out.println("entro al if");
-			 for (int i = 0; i < listaPlanillaRevision.size(); i++) {
-				 System.out.println("entro al for");
-				if(listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue()==1){
-					System.out.println("es 1");
-					nivelPeligro=listaPlanillaRevision.get(i).getEstadoRevision().getDescripcionEstadoRevision();
-					nivelPeligroId=listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue();
-				}
-				if(listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue()==2){
-					System.out.println("es 2");
-					nivelPeligro=listaPlanillaRevision.get(i).getEstadoRevision().getDescripcionEstadoRevision();
-					nivelPeligroId=listaPlanillaRevision.get(i).getEstadoRevision().getIdEstadoRevision().intValue();
-				}
-			}
-		 }else{
-			 nivelPeligro="No precisa";
-		 }
-
 
 
 	}
@@ -684,20 +698,81 @@ public class MBUsuarioApiario implements Serializable{
 		
 	}
 	public boolean validarUsuarioApiarioUnico(UsuarioApiario obj) throws Exception{
-		boolean resultado=false;
+		boolean resultado=true;
+		boolean validar=false;
 		if(obj!=null){
-		List<UsuarioApiario> lista = new ArrayList<UsuarioApiario>();
-		lista=service.listarTodosUsuarioApiario();
-		if(lista.size()>0){
-			for (int i = 0; i < lista.size(); i++) {
-				if(obj.getApiario().getIdApiario()!=lista.get(i).getApiario().getIdApiario() && obj.getTemporada().getIdTemporada()!=lista.get(i).getTemporada().getIdTemporada()){
+			if(obj.getIdUsuarioApiario()!=null && obj.getIdUsuarioApiario().intValue()>0){
+				UsuarioApiario objGenerico = new UsuarioApiario();
+				objGenerico = service.obtenerPorIdUsuarioApiario(obj.getIdUsuarioApiario());
+				if(objGenerico.getApiario().getIdApiario()!=obj.getApiario().getIdApiario()){
+					System.out.println("validar que no haya repetido al modificar");
+					validar=true;
+					
+					
+				}else{
+					System.out.println("no es necesaria la validacion");
 					resultado=true;
 				}
+			}else{
+				System.out.println("validar que no haya repetido en nuevo registro");
+				validar=true;
+				
 			}
-
+			
+			if(validar){
+				if(obj.getApiario()!= null && obj.getTemporada()!=null){
+					System.out.println("entro al if no es null obj apiario ni temporada");
+					if(obj.getApiario().getIdApiario()!=null && obj.getApiario().getIdApiario().intValue()>0 &&
+							obj.getTemporada().getIdTemporada()!=null && obj.getTemporada().getIdTemporada().intValue()>0){
+						System.out.println("entro al if los ids existen");
+						List<UsuarioApiario> lista = new ArrayList<UsuarioApiario>();
+						lista=service.listarTodosUsuarioApiario();
+						if(lista.size()>0){
+							System.out.println("entro al if la lista es mayor a 0");
+							for (int i = 0; i < lista.size(); i++) {
+								System.out.println("recorriendo el for");
+								System.out.println("id apiario "+obj.getApiario().getIdApiario()+" - "+"lista "+lista.get(i).getApiario().getIdApiario());
+								System.out.println("id temporada "+obj.getTemporada().getIdTemporada()+" - "+"lista "+lista.get(i).getTemporada().getIdTemporada());
+								if(obj.getApiario().getIdApiario().intValue()==lista.get(i).getApiario().getIdApiario().intValue() && obj.getTemporada().getIdTemporada().intValue()==lista.get(i).getTemporada().getIdTemporada().intValue()){
+									System.out.println("se encontraron repetidos");
+									resultado=false;
+								}
+							}
+						}else{
+							System.out.println("no hay registros en la tabla");
+							resultado=true;
+						}
+						
+						if(!resultado){
+							 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "El Apiario "+usuarioApiario.getApiario().getIdApiario()+" ya fue asignado")); 
+						}
+					}else{
+						resultado=false;
+					}
+				}else{
+					resultado=false;
+				}
+				
+				
+			}
+			
+			
 		}
+		
+		System.out.println("resultado "+resultado);
+		return resultado;
+	}
+	public boolean validarIdApiarioConValor(UsuarioApiario obj){
+		boolean resultado=false;
+		if(obj.getApiario()!=null){
+			if(obj.getApiario().getIdApiario()!=null && obj.getApiario().getIdApiario().intValue()>0){
+				resultado=true;
+			}else{
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona un Apiario")); 
+			}
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona un Apiario")); 
 		}
-		System.out.println("sale "+resultado);
 		return resultado;
 	}
 	public void guardarUsuarioApiario() throws Exception{
@@ -725,6 +800,7 @@ public class MBUsuarioApiario implements Serializable{
 
 		UsuarioApiario confirm = null;
 		try {
+			validacion=validarIdApiarioConValor(usuarioApiario);
 			validacion=validarUsuarioApiarioUnico(usuarioApiario);
 			if(validacion){
 				confirm = service.guardarUsuarioApiario(usuarioApiario);
@@ -746,9 +822,6 @@ public class MBUsuarioApiario implements Serializable{
 					  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la asignacion")); 
 					System.out.println("error al grabar");
 				}
-			}else{
-				 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "El Apiario "+usuarioApiario.getApiario().getIdApiario()+" ya fue asignado")); 
-					System.out.println("error al grabar");
 			}
 			
 		} catch (Exception e) {
