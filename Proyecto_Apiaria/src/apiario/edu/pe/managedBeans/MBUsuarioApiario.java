@@ -1019,76 +1019,212 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("id planilla revision al abrir registrar"+planillaRevision.getIdPlanillaRevision());
 
 	}
-	public void guardarPlanillaRevision() throws Exception{
-		PlanillaRevision confirm=null;
-		try {
-			if(listaColmenas.size()>0){
-				System.out.println("tamñao lista "+listaColmenas.size());
-				for (int i = 0; i < listaColmenas.size(); i++) {
-					if(listaColmenas.get(i).isSel()){
-						System.out.println("activo? "+listaColmenas.get(i).isSel());
-						System.out.println("id colmena "+listaColmenas.get(i).getIdColmena());
-						
-						planillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
-						planillaRevision.setExistenciaReina(muestraExistenciaReina);
-						
-						Reina objR= new Reina();
-						objR = service.obtenerPorIdReina(listaColmenas.get(i).getIdColmena());
-						planillaRevision.getReina().setIdReina(objR.getIdReina());
-						planillaRevision.setEstadoCosecha(muestraEstadoCosecha);
-						planillaRevision.setNecesidadAlimentacion(muestraNecesidadAlimentacion);
-						planillaRevision.setNecesidadCuracion(muestraNecesidadCuracion);
-						planillaRevision.setFaltaEspacioCamara(muestraFaltaEspacioCamara);
-						planillaRevision.setFaltaAlza(muestraFaltaAlza);
-						planillaRevision.setComportamiento(muestraComportamiento);
-						planillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
-						planillaRevision.getEstadoRevision().setIdEstadoRevision(muestraEstadoRevision);
-						confirm=service.guardarPlanillaRevision(planillaRevision);
-						
-						List<Integer> listaIdPlanillaRevision= new ArrayList<Integer>();
-						listaIdPlanillaRevision = service.obtenerMaximoIdPlanillaRevision();
-						if(muestraTipoAlimentacion.intValue()>0){
-							System.out.println("grabando PlanillaRevisionTipoAlimentacion");
-							PlanillaRevisionTipoAlimentacion objPRTA= new PlanillaRevisionTipoAlimentacion();
-							objPRTA.setPlanillaRevision(new PlanillaRevision());
-							objPRTA.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
-							objPRTA.setTipoAlimentacion(new TipoAlimentacion());
-							objPRTA.getTipoAlimentacion().setIdTipoAlimentacion(muestraTipoAlimentacion);
-							
-							PlanillaRevisionTipoAlimentacion confirmPRTA= null;
-							confirmPRTA=service.guardarPlanillaRevisionTipoAlimentacion(objPRTA);
-							if(confirmPRTA.isSuccess()){
-								System.out.println("grabo PRTA");
-							}else{
-								System.out.println("error PRTA");
-							}
-						}
-						if(muestraTipoEnfermedad.intValue()>0){
-							System.out.println("grabando PlanillaRevisionTipoEnfermedad");
-							PlanillaRevisionTipoEnfermedad objPRTE= new PlanillaRevisionTipoEnfermedad();
-							objPRTE.setPlanillaRevision(new PlanillaRevision());
-							objPRTE.setTipoEnfermedad(new TipoEnfermedad());
-							objPRTE.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
-							objPRTE.getTipoEnfermedad().setIdTipoEnfermedad(muestraTipoEnfermedad);
-							
-							PlanillaRevisionTipoEnfermedad confirmPRTE= null;
-							confirmPRTE=service.guardarPlanillaRevisionTipoEnfermedad(objPRTE);
-							if(confirmPRTE.isSuccess()){
-								System.out.println("grabo PRTE");
-							}else{
-								System.out.println("error PRTE");
-							}
-						}
-					}
-				}
-				if(confirm.isSuccess()){
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva planilla de revision"));  
-					System.out.println("grabo");
+	public boolean validarPlanillaRevisionUnica(PlanillaRevision obj) throws Exception{
+		boolean resultado=true;
+		boolean validar=false;
+		if(obj!=null){
+			if(obj.getIdPlanillaRevision()!=null && obj.getIdPlanillaRevision().intValue()>0){
+				PlanillaRevision objGenerico = new PlanillaRevision();
+				objGenerico = service.obtenerPorIdPlanillaRevision(obj.getIdPlanillaRevision());
+				if(objGenerico.getColmena().getIdColmena()!=obj.getColmena().getIdColmena()){
+					System.out.println("validar que no haya repetido al modificar");
+					validar=true;
+					
+					
 				}else{
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la planilla de revision")); 
-					System.out.println("error al grabar");
+					System.out.println("no es necesaria la validacion");
+					resultado=true;
+				}
+			}else{
+				System.out.println("validar que no haya repetido en nuevo registro");
+				validar=true;
+				
+			}
+			if(validar){
+				if(obj.getUsuarioApiario()!= null && obj.getColmena()!=null){
+					System.out.println("entro al if no es null obj usuarioApiario ni colmena");
+					if(obj.getUsuarioApiario().getIdUsuarioApiario()!=null && obj.getUsuarioApiario().getIdUsuarioApiario().intValue()>0 &&
+							obj.getColmena().getIdColmena()!=null && obj.getColmena().getIdColmena().intValue()>0){
+						System.out.println("entro al if los ids existen");
+						List<PlanillaRevision> lista = new ArrayList<PlanillaRevision>();
+						lista=service.listarTodosPlanillaRevisions();
+						if(lista.size()>0){
+							System.out.println("entro al if la lista es mayor a 0");
+							for (int i = 0; i < lista.size(); i++) {
+								System.out.println("recorriendo el for");
+								System.out.println("id usuarioApiario "+obj.getUsuarioApiario().getIdUsuarioApiario()+" - "+"lista "+lista.get(i).getUsuarioApiario().getIdUsuarioApiario());
+								System.out.println("id colmena "+obj.getColmena().getIdColmena()+" - "+"lista "+lista.get(i).getColmena().getIdColmena());
+								if(obj.getUsuarioApiario().getIdUsuarioApiario().intValue()==lista.get(i).getUsuarioApiario().getIdUsuarioApiario().intValue() && obj.getColmena().getIdColmena().intValue()==lista.get(i).getColmena().getIdColmena().intValue()){
+									System.out.println("se encontraron repetidos");
+									resultado=false;
+								}
+							}
+						}else{
+							System.out.println("no hay registros en la tabla");
+							resultado=true;
+						}
+						
+						if(!resultado){
+							 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "La Colmena "+obj.getColmena().getIdColmena()+" ya fue revisada")); 
+						}
+					}else{
+						resultado=false;
+					}
+				}else{
+					resultado=false;
 				}
 			}
+		}
+		
+		
+		
+		
+		System.out.println("resultado validacion planillaRevision "+resultado);
+		return resultado;
+	}
+	public void guardarPlanillaRevision() throws Exception{
+		PlanillaRevision confirm=null;
+		boolean validacion=false;
+		try {
+			if(planillaRevision.getIdPlanillaRevision()==null){
+				System.out.println("nuevo registro planilla revision");
+				if(listaColmenas.size()>0){
+					System.out.println("tamñao lista "+listaColmenas.size());
+					for (int i = 0; i < listaColmenas.size(); i++) {
+						if(listaColmenas.get(i).isSel()){
+							System.out.println("activo? "+listaColmenas.get(i).isSel());
+							System.out.println("id colmena "+listaColmenas.get(i).getIdColmena());
+							
+							planillaRevision.getColmena().setIdColmena(listaColmenas.get(i).getIdColmena());
+							planillaRevision.setExistenciaReina(muestraExistenciaReina);
+							
+							Reina objR= new Reina();
+							objR = service.obtenerPorIdReina(listaColmenas.get(i).getIdColmena());
+							planillaRevision.getReina().setIdReina(objR.getIdReina());
+							planillaRevision.setEstadoCosecha(muestraEstadoCosecha);
+							planillaRevision.setNecesidadAlimentacion(muestraNecesidadAlimentacion);
+							planillaRevision.setNecesidadCuracion(muestraNecesidadCuracion);
+							planillaRevision.setFaltaEspacioCamara(muestraFaltaEspacioCamara);
+							planillaRevision.setFaltaAlza(muestraFaltaAlza);
+							planillaRevision.setComportamiento(muestraComportamiento);
+							planillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+							planillaRevision.getEstadoRevision().setIdEstadoRevision(muestraEstadoRevision);
+							
+							
+							
+							validacion=validarPlanillaRevisionUnica(planillaRevision);
+							if(validacion){
+								confirm=service.guardarPlanillaRevision(planillaRevision);
+								
+								List<Integer> listaIdPlanillaRevision= new ArrayList<Integer>();
+								listaIdPlanillaRevision = service.obtenerMaximoIdPlanillaRevision();
+								if(muestraTipoAlimentacion.intValue()>0){
+									System.out.println("grabando PlanillaRevisionTipoAlimentacion");
+									PlanillaRevisionTipoAlimentacion objPRTA= new PlanillaRevisionTipoAlimentacion();
+									objPRTA.setPlanillaRevision(new PlanillaRevision());
+									objPRTA.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+									objPRTA.setTipoAlimentacion(new TipoAlimentacion());
+									objPRTA.getTipoAlimentacion().setIdTipoAlimentacion(muestraTipoAlimentacion);
+									
+									PlanillaRevisionTipoAlimentacion confirmPRTA= null;
+									confirmPRTA=service.guardarPlanillaRevisionTipoAlimentacion(objPRTA);
+									if(confirmPRTA.isSuccess()){
+										System.out.println("grabo PRTA");
+									}else{
+										System.out.println("error PRTA");
+									}
+								}
+								if(muestraTipoEnfermedad.intValue()>0){
+									System.out.println("grabando PlanillaRevisionTipoEnfermedad");
+									PlanillaRevisionTipoEnfermedad objPRTE= new PlanillaRevisionTipoEnfermedad();
+									objPRTE.setPlanillaRevision(new PlanillaRevision());
+									objPRTE.setTipoEnfermedad(new TipoEnfermedad());
+									objPRTE.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+									objPRTE.getTipoEnfermedad().setIdTipoEnfermedad(muestraTipoEnfermedad);
+									
+									PlanillaRevisionTipoEnfermedad confirmPRTE= null;
+									confirmPRTE=service.guardarPlanillaRevisionTipoEnfermedad(objPRTE);
+									if(confirmPRTE.isSuccess()){
+										System.out.println("grabo PRTE");
+									}else{
+										System.out.println("error PRTE");
+									}
+								}
+							}
+							
+							
+						}
+					}
+					
+					if(validacion){
+						if(confirm.isSuccess()){
+							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva planilla de revision"));  
+							System.out.println("grabo");
+						}else{
+							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la planilla de revision")); 
+							System.out.println("error al grabar");
+						}
+					}
+					
+				}
+			}else{
+				System.out.println("modificacion planilla revision");
+				planillaRevision.setExistenciaReina(muestraExistenciaReina);
+				planillaRevision.setEstadoCosecha(muestraEstadoCosecha);
+				planillaRevision.setFaltaEspacioCamara(muestraFaltaEspacioCamara);
+				planillaRevision.setFaltaAlza(muestraFaltaAlza);
+				planillaRevision.setComportamiento(muestraComportamiento);
+				planillaRevision.getEstadoRevision().setIdEstadoRevision(muestraEstadoRevision);
+				planillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+				planillaRevision.setNecesidadAlimentacion(muestraNecesidadAlimentacion);
+				planillaRevision.setNecesidadCuracion(muestraNecesidadCuracion);
+				validacion=validarPlanillaRevisionUnica(planillaRevision);
+				if(validacion){
+					confirm=service.guardarPlanillaRevision(planillaRevision);
+					List<Integer> listaIdPlanillaRevision= new ArrayList<Integer>();
+					listaIdPlanillaRevision = service.obtenerMaximoIdPlanillaRevision();
+					if(muestraTipoAlimentacion.intValue()>0){
+						System.out.println("grabando PlanillaRevisionTipoAlimentacion");
+						PlanillaRevisionTipoAlimentacion objPRTA= new PlanillaRevisionTipoAlimentacion();
+						objPRTA.setPlanillaRevision(new PlanillaRevision());
+						objPRTA.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+						objPRTA.setTipoAlimentacion(new TipoAlimentacion());
+						objPRTA.getTipoAlimentacion().setIdTipoAlimentacion(muestraTipoAlimentacion);
+						
+						PlanillaRevisionTipoAlimentacion confirmPRTA= null;
+						confirmPRTA=service.guardarPlanillaRevisionTipoAlimentacion(objPRTA);
+						if(confirmPRTA.isSuccess()){
+							System.out.println("grabo PRTA");
+						}else{
+							System.out.println("error PRTA");
+						}
+					}
+					if(muestraTipoEnfermedad.intValue()>0){
+						System.out.println("grabando PlanillaRevisionTipoEnfermedad");
+						PlanillaRevisionTipoEnfermedad objPRTE= new PlanillaRevisionTipoEnfermedad();
+						objPRTE.setPlanillaRevision(new PlanillaRevision());
+						objPRTE.setTipoEnfermedad(new TipoEnfermedad());
+						objPRTE.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+						objPRTE.getTipoEnfermedad().setIdTipoEnfermedad(muestraTipoEnfermedad);
+						
+						PlanillaRevisionTipoEnfermedad confirmPRTE= null;
+						confirmPRTE=service.guardarPlanillaRevisionTipoEnfermedad(objPRTE);
+						if(confirmPRTE.isSuccess()){
+							System.out.println("grabo PRTE");
+						}else{
+							System.out.println("error PRTE");
+						}
+					}
+					if(confirm.isSuccess()){
+						FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva planilla de revision"));  
+						System.out.println("grabo");
+					}else{
+						FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la planilla de revision")); 
+						System.out.println("error al grabar");
+					}
+				}	
+			}
+	
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();

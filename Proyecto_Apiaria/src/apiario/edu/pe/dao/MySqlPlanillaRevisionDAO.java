@@ -54,21 +54,15 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 	public List<PlanillaRevision> listarTodosPlanillaRevisions()
 			throws Exception {
 		List<PlanillaRevision> lista=null;
-		
+		Open();
 		try {
-			em.getTransaction().begin();
-			
 			Query sql=em.createQuery("select c from PlanillaRevision c");
 			lista=sql.getResultList();
-			
-			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().rollback();
-		}finally{
-			em.close();
-			emf.close();
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
 		}
-		
+		Close();
 		return lista;
 	}
 
