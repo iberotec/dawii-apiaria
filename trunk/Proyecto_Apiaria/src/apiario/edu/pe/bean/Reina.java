@@ -19,7 +19,7 @@ public class Reina extends BaseEntidades implements Serializable {
 
 	@Id
 	@Column(name="id_reina")
-	private int idReina;
+	private Integer idReina;
 
 	@Column(name="caracteristica_reina")
 	private String caracteristicaReina;
@@ -39,11 +39,11 @@ public class Reina extends BaseEntidades implements Serializable {
     public Reina() {
     }
 
-	public int getIdReina() {
+	public Integer getIdReina() {
 		return this.idReina;
 	}
 
-	public void setIdReina(int idReina) {
+	public void setIdReina(Integer idReina) {
 		this.idReina = idReina;
 	}
 

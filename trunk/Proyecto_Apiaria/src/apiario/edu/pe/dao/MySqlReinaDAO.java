@@ -83,7 +83,7 @@ public class MySqlReinaDAO implements IReinaDAO{
 		criteria.select(reinaRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		if(instance!=null){
-			if(instance.getIdReina()>0){
+			if(instance.getIdReina()!=null && instance.getIdReina()>0){
 				Predicate condition=builder.equal(reinaRoot.get("idReina"),instance.getIdReina());
 				p.add(condition);
 			}
