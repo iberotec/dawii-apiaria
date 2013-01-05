@@ -1082,7 +1082,7 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("resultado validacion planillaRevision "+resultado);
 		return resultado;
 	}
-	public boolean validarCamposVacios(PlanillaRevision obj){
+	public boolean validarCamposVaciosPlanillaRevision(PlanillaRevision obj){
 		boolean resultado=true;
 		
 		System.out.println("obj.getEstadoCosecha() "+obj.getEstadoCosecha());
@@ -1105,10 +1105,20 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("obj.getReina().getIdReina() "+obj.getReina().getIdReina());
 		if(obj.getReina().getIdReina()==null || obj.getReina().getIdReina().intValue()==0){
 				resultado=false;
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "La Colmena no tiene reina")); 
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "La Colmena "+obj.getColmena().getIdColmena()+" no tiene reina")); 
 		}
-			
-		
+		if(obj.getNecesidadAlimentacion()){
+			if(muestraTipoAlimentacion==0){
+				resultado=false;
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Seleccione un tipo de alimentacion")); 
+			}
+		}
+		if(obj.getNecesidadCuracion()){
+			if(muestraTipoEnfermedad==0){
+				resultado=false;
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Seleccione un tipo de enfermedad")); 
+			}
+		}
 		
 		System.out.println("resulado validacion campos vacios "+resultado);
 		return resultado;
@@ -1156,6 +1166,7 @@ public class MBUsuarioApiario implements Serializable{
 								listaReina = service.buscarReina(objR);
 								System.out.println("listaReina "+listaReina);
 								System.out.println("tamaño lista Reina "+listaReina.size());
+								planillaRevision.getReina().setIdReina(null);
 								if(listaReina.size()>0){
 									planillaRevision.getReina().setIdReina(listaReina.get(0).getIdReina());
 								}
@@ -1171,7 +1182,7 @@ public class MBUsuarioApiario implements Serializable{
 								planillaRevision.getEstadoRevision().setIdEstadoRevision(muestraEstadoRevision);
 								
 								
-								validacion=validarCamposVacios(planillaRevision);
+								validacion=validarCamposVaciosPlanillaRevision(planillaRevision);
 								if(validacion){
 									validacion=validarPlanillaRevisionUnica(planillaRevision);
 								}
@@ -1242,7 +1253,7 @@ public class MBUsuarioApiario implements Serializable{
 				planillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 				planillaRevision.setNecesidadAlimentacion(muestraNecesidadAlimentacion);
 				planillaRevision.setNecesidadCuracion(muestraNecesidadCuracion);
-				validacion=validarCamposVacios(planillaRevision);
+				validacion=validarCamposVaciosPlanillaRevision(planillaRevision);
 				if(validacion){
 					validacion=validarPlanillaRevisionUnica(planillaRevision);
 				}
@@ -1404,31 +1415,185 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("tamaño lista alza "+listaAlza.size());
 		
 	}
+	public boolean validarPlanillaRevisionAlzaUnica(PlanillaRevisionAlza obj) throws Exception{
+		boolean resultado=true;
+		boolean validar=false;
+		
+		if(obj!=null){
+			if(obj.getIdPlanillaRevisionAlza()!=null && obj.getIdPlanillaRevisionAlza().intValue()>0){
+				PlanillaRevisionAlza objGenerico = new PlanillaRevisionAlza();
+				objGenerico = service.obtenerPorIdPlanillaRevisionAlza(obj.getIdPlanillaRevisionAlza());
+				if(objGenerico.getAlza().getIdAlza()!=obj.getAlza().getIdAlza()){
+					System.out.println("validar que no haya repetido al modificar");
+					validar=true;
+					
+					
+				}else{
+					System.out.println("no es necesaria la validacion");
+					resultado=true;
+				}
+			}else{
+				System.out.println("validar que no haya repetido en nuevo registro");
+				validar=true;
+				
+			}
+			
+			
+			
+			
+			if(validar){
+				if(obj.getPlanillaRevision()!= null && obj.getAlza()!=null){
+					System.out.println("entro al if no es null obj PlanillaRevision ni Alza");
+					if(obj.getPlanillaRevision().getIdPlanillaRevision()!=null && obj.getPlanillaRevision().getIdPlanillaRevision().intValue()>0 &&
+							obj.getAlza().getIdAlza()!=null && obj.getAlza().getIdAlza().intValue()>0){
+						System.out.println("entro al if los ids existen");
+						List<PlanillaRevisionAlza> lista = new ArrayList<PlanillaRevisionAlza>();
+						lista=service.listarTodosPlanillaRevisionAlza();
+						if(lista.size()>0){
+							System.out.println("entro al if la lista es mayor a 0");
+							for (int i = 0; i < lista.size(); i++) {
+								System.out.println("recorriendo el for");
+								System.out.println("id usuarioApiario "+obj.getPlanillaRevision().getIdPlanillaRevision()+" - "+"lista "+lista.get(i).getPlanillaRevision().getIdPlanillaRevision());
+								System.out.println("id colmena "+obj.getAlza().getIdAlza()+" - "+"lista "+lista.get(i).getAlza().getIdAlza());
+								if(obj.getPlanillaRevision().getIdPlanillaRevision().intValue()==lista.get(i).getPlanillaRevision().getIdPlanillaRevision().intValue() && obj.getAlza().getIdAlza().intValue()==lista.get(i).getAlza().getIdAlza().intValue()){
+									System.out.println("se encontraron repetidos");
+									resultado=false;
+								}
+							}
+						}else{
+							System.out.println("no hay registros en la tabla");
+							resultado=true;
+						}
+						
+						if(!resultado){
+							 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "El Alza "+obj.getAlza().getIdAlza()+" ya fue revisada")); 
+						}
+					}else{
+						resultado=false;
+					}
+				}else{
+					resultado=false;
+				}
+			}
+		}
+		
+		
+		System.out.println("resutaldo de planillaRevisionAlza "+resultado);
+		return resultado;
+	}
+	public boolean validarCamposVaciosPlanillaRevisionAlza(PlanillaRevisionAlza obj){
+		boolean resultado=true;
+		
+		System.out.println("obj.getEstadoCosecha() "+obj.getEstadoAlza());
+		if(obj.getEstadoAlza()==null || obj.getEstadoAlza().equals("0")){
+				resultado=false;
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona un estado de alza")); 
+		}
+			
+		System.out.println("obj.getEstadoCosecha() "+obj.getEstadoAlza());
+		if(obj.getPorcentajeMiel()==null || obj.getPorcentajeMiel().intValue()==0){
+				resultado=false;
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Ingrese el porcentaje de miel")); 
+		}
+
+
+		
+		System.out.println("resulado validacion campos vacios "+resultado);
+		return resultado;
+	}
 	public void guardarPlanillaRevisionAlza(){
 		System.out.println("guardarPlanillaRevisionAlza");
 		PlanillaRevisionAlza confirm=null;
+		boolean validar=false;
+		boolean grabar=false;
+		int cont=0;
 		try {
-			if(listaAlza.size()>0){
-				for (int i = 0; i < listaAlza.size(); i++) {
-					if(listaAlza.get(i).isSel()){
-						planillaRevisionAlza.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
-						planillaRevisionAlza.getAlza().setIdAlza(listaAlza.get(i).getIdAlza());
-						planillaRevisionAlza.setEstadoAlza(muestraEstadoAlza);
-						planillaRevisionAlza.setEstadoDeterioroAlza(muestraEstadoDeterioroAlza);
-						planillaRevisionAlza.setPorcentajeMiel(muestraPorcentajeMiel);
-						
-						confirm=service.guardarPlanillaRevisionAlza(planillaRevisionAlza);
-						
+			if(planillaRevisionAlza.getIdPlanillaRevisionAlza()==null){
+				System.out.println("nuevo registro planillaRevisionAlza");
+				
+				
+				
+				if(listaAlza.size()>0){
+					for (int i = 0; i < listaAlza.size(); i++) {
+						if(listaAlza.get(i).isSel()){
+							cont++;
+						}
 					}
 				}
-				if(confirm.isSuccess()){
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una revision de alza"));  
-					System.out.println("grabo");
+				if(cont>0){
+					System.out.println("graba planillaRevisionAlza");
+					grabar=true;
 				}else{
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la revision de alza")); 
-					System.out.println("error al grabar");
+					System.out.println("mensaje de seleccione un alza");
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona al menos una alza")); 
+				}
+				
+				
+				if(grabar){
+					
+					if(listaAlza.size()>0){
+						for (int i = 0; i < listaAlza.size(); i++) {
+							if(listaAlza.get(i).isSel()){
+								planillaRevisionAlza.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+								planillaRevisionAlza.getAlza().setIdAlza(listaAlza.get(i).getIdAlza());
+								planillaRevisionAlza.setEstadoAlza(muestraEstadoAlza);
+								planillaRevisionAlza.setEstadoDeterioroAlza(muestraEstadoDeterioroAlza);
+								planillaRevisionAlza.setPorcentajeMiel(muestraPorcentajeMiel);
+								
+								validar=validarCamposVaciosPlanillaRevisionAlza(planillaRevisionAlza);
+								
+								if(validar){
+									validar=validarPlanillaRevisionAlzaUnica(planillaRevisionAlza);
+								}
+								
+								
+								if(validar){
+									confirm=service.guardarPlanillaRevisionAlza(planillaRevisionAlza);
+								}
+								
+								
+							}
+						}
+						if(validar){
+							if(confirm.isSuccess()){
+								FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una revision de alza"));  
+								System.out.println("grabo");
+							}else{
+								FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la revision de alza")); 
+								System.out.println("error al grabar");
+							}
+						}
+					
+					}
+				}
+				
+			}else{
+				System.out.println("modificacion registro planillaRevisionAlza");
+				planillaRevisionAlza.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+				planillaRevisionAlza.getAlza().setIdAlza(muestraIdAlza);
+				planillaRevisionAlza.setEstadoAlza(muestraEstadoAlza);
+				planillaRevisionAlza.setEstadoDeterioroAlza(muestraEstadoDeterioroAlza);
+				planillaRevisionAlza.setPorcentajeMiel(muestraPorcentajeMiel);
+				
+				validar=validarCamposVaciosPlanillaRevisionAlza(planillaRevisionAlza);
+				
+				if(validar){
+					validar=validarPlanillaRevisionAlzaUnica(planillaRevisionAlza);
+				}
+				
+				
+				if(validar){
+					confirm=service.guardarPlanillaRevisionAlza(planillaRevisionAlza);
+					if(confirm.isSuccess()){
+						FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una revision de alza"));  
+						System.out.println("grabo");
+					}else{
+						FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la revision de alza")); 
+						System.out.println("error al grabar");
+					}
 				}
 			}
+			
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();
