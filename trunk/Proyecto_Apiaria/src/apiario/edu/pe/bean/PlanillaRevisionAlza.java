@@ -26,7 +26,7 @@ public class PlanillaRevisionAlza extends BaseEntidades implements Serializable 
 	private Boolean estadoDeterioroAlza;
 
 	@Column(name="porcentaje_miel")
-	private double porcentajeMiel;
+	private Double porcentajeMiel;
 
 	//bi-directional many-to-one association to PlanillaRevision
     @ManyToOne
@@ -65,11 +65,11 @@ public class PlanillaRevisionAlza extends BaseEntidades implements Serializable 
 		this.estadoDeterioroAlza = estadoDeterioroAlza;
 	}
 
-	public double getPorcentajeMiel() {
+	public Double getPorcentajeMiel() {
 		return this.porcentajeMiel;
 	}
 
-	public void setPorcentajeMiel(double porcentajeMiel) {
+	public void setPorcentajeMiel(Double porcentajeMiel) {
 		this.porcentajeMiel = porcentajeMiel;
 	}
 
