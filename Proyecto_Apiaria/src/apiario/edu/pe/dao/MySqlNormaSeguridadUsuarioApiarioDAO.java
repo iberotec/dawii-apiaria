@@ -34,7 +34,7 @@ public class MySqlNormaSeguridadUsuarioApiarioDAO implements INormaSeguridadUsua
 	}
 	
 	@Override
-	public List<NormaSeguridadUsuarioApiario> listarTodosNormaSeguridadApiarioes()
+	public List<NormaSeguridadUsuarioApiario> listarTodosNormaSeguridadUsuarioApiarioes()
 			throws Exception {
 		List<NormaSeguridadUsuarioApiario> lista=null;
 		Open();
@@ -52,7 +52,7 @@ public class MySqlNormaSeguridadUsuarioApiarioDAO implements INormaSeguridadUsua
 	}
 
 	@Override
-	public NormaSeguridadUsuarioApiario guardarNormaSeguridadApiario(
+	public NormaSeguridadUsuarioApiario guardarNormaSeguridadUsuarioApiario(
 			NormaSeguridadUsuarioApiario instance) throws Exception {
 		try {
 			Open();
@@ -74,7 +74,7 @@ public class MySqlNormaSeguridadUsuarioApiarioDAO implements INormaSeguridadUsua
 	}
 
 	@Override
-	public List<NormaSeguridadUsuarioApiario> buscarNormaSeguridadApiario(
+	public List<NormaSeguridadUsuarioApiario> buscarNormaSeguridadUsuarioApiario(
 			NormaSeguridadUsuarioApiario instance) throws Exception {
 		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
@@ -102,6 +102,10 @@ public class MySqlNormaSeguridadUsuarioApiarioDAO implements INormaSeguridadUsua
 					p.add(condition);
 				}
 			}
+			if(instance.getEstado()!=null){
+				Predicate condition=builder.equal(normaSeguridadUsuarioApiarioRoot.get("estado"),instance.getEstado());
+				p.add(condition);
+			}
 		}
 		Predicate[] predicates=new Predicate[p.size()];
 		p.toArray(predicates);
@@ -113,7 +117,7 @@ public class MySqlNormaSeguridadUsuarioApiarioDAO implements INormaSeguridadUsua
 	}
 
 	@Override
-	public NormaSeguridadUsuarioApiario obtenerPorIdNormaSeguridadApiario(int id)
+	public NormaSeguridadUsuarioApiario obtenerPorIdNormaSeguridadUsuarioApiario(int id)
 			throws Exception {
 		try {
 			Open();
@@ -127,7 +131,7 @@ public class MySqlNormaSeguridadUsuarioApiarioDAO implements INormaSeguridadUsua
 	}
 
 	@Override
-	public NormaSeguridadUsuarioApiario eliminarNormaSeguridadApiario(
+	public NormaSeguridadUsuarioApiario eliminarNormaSeguridadUsuarioApiario(
 			NormaSeguridadUsuarioApiario instance) throws Exception {
 		if(!(instance!=null && instance.getListaEliminar().size()>0)){
 			instance.setSuccess(false);

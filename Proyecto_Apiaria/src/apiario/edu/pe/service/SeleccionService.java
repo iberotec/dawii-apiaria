@@ -361,33 +361,33 @@ IDetalleCentrifugadoraPlanillaCosechaDAO, Serializable{
 	}
 
 	@Override
-	public List<NormaSeguridadUsuarioApiario> listarTodosNormaSeguridadApiarioes()
+	public List<NormaSeguridadUsuarioApiario> listarTodosNormaSeguridadUsuarioApiarioes()
 			throws Exception {
-		return daoNormaSeguidadApiario.listarTodosNormaSeguridadApiarioes();
+		return daoNormaSeguidadApiario.listarTodosNormaSeguridadUsuarioApiarioes();
 	}
 
 	@Override
-	public NormaSeguridadUsuarioApiario guardarNormaSeguridadApiario(
+	public NormaSeguridadUsuarioApiario guardarNormaSeguridadUsuarioApiario(
 			NormaSeguridadUsuarioApiario instance) throws Exception {
-		return daoNormaSeguidadApiario.guardarNormaSeguridadApiario(instance);
+		return daoNormaSeguidadApiario.guardarNormaSeguridadUsuarioApiario(instance);
 	}
 
 	@Override
-	public List<NormaSeguridadUsuarioApiario> buscarNormaSeguridadApiario(
+	public List<NormaSeguridadUsuarioApiario> buscarNormaSeguridadUsuarioApiario(
 			NormaSeguridadUsuarioApiario instance) throws Exception {
-		return daoNormaSeguidadApiario.buscarNormaSeguridadApiario(instance);
+		return daoNormaSeguidadApiario.buscarNormaSeguridadUsuarioApiario(instance);
 	}
 
 	@Override
-	public NormaSeguridadUsuarioApiario obtenerPorIdNormaSeguridadApiario(int id)
+	public NormaSeguridadUsuarioApiario obtenerPorIdNormaSeguridadUsuarioApiario(int id)
 			throws Exception {
-		return daoNormaSeguidadApiario.obtenerPorIdNormaSeguridadApiario(id);
+		return daoNormaSeguidadApiario.obtenerPorIdNormaSeguridadUsuarioApiario(id);
 	}
 
 	@Override
-	public NormaSeguridadUsuarioApiario eliminarNormaSeguridadApiario(
+	public NormaSeguridadUsuarioApiario eliminarNormaSeguridadUsuarioApiario(
 			NormaSeguridadUsuarioApiario instance) throws Exception {
-		return daoNormaSeguidadApiario.eliminarNormaSeguridadApiario(instance);
+		return daoNormaSeguidadApiario.eliminarNormaSeguridadUsuarioApiario(instance);
 	}
 
 
