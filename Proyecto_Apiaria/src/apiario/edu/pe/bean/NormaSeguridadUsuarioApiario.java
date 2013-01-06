@@ -13,13 +13,13 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="norma_seguridad_apiario")
-public class NormaSeguridadApiario extends BaseEntidades implements Serializable {
+@Table(name="norma_seguridad_usuario_apiario")
+public class NormaSeguridadUsuarioApiario extends BaseEntidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id_norma_seguridad_apiario")
-	private Integer idNormaSeguridadApiario;
+	@Column(name="id_norma_seguridad_usuario_apiario")
+	private Integer idNormaSeguridadUsuarioApiario;
 
 	private Boolean estado;
 
@@ -34,22 +34,23 @@ public class NormaSeguridadApiario extends BaseEntidades implements Serializable
 
 	//bi-directional many-to-one association to Apiario
     @ManyToOne
-	@JoinColumn(name="id_apiario")
-	private Apiario apiario;
+	@JoinColumn(name="id_usuario_apiario")
+	private UsuarioApiario usuarioApiario;
 
-    public NormaSeguridadApiario() {
+    public NormaSeguridadUsuarioApiario() {
     }
 
-	public Integer getIdNormaSeguridadApiario() {
-		return this.idNormaSeguridadApiario;
+	public Integer getIdNormaSeguridadUsuarioApiario() {
+		return idNormaSeguridadUsuarioApiario;
 	}
 
-	public void setIdNormaSeguridadApiario(Integer idNormaSeguridadApiario) {
-		this.idNormaSeguridadApiario = idNormaSeguridadApiario;
+	public void setIdNormaSeguridadUsuarioApiario(
+			Integer idNormaSeguridadUsuarioApiario) {
+		this.idNormaSeguridadUsuarioApiario = idNormaSeguridadUsuarioApiario;
 	}
 
 	public Boolean getEstado() {
-		return this.estado;
+		return estado;
 	}
 
 	public void setEstado(Boolean estado) {
@@ -57,7 +58,7 @@ public class NormaSeguridadApiario extends BaseEntidades implements Serializable
 	}
 
 	public Date getFechaRegistro() {
-		return this.fechaRegistro;
+		return fechaRegistro;
 	}
 
 	public void setFechaRegistro(Date fechaRegistro) {
@@ -65,19 +66,20 @@ public class NormaSeguridadApiario extends BaseEntidades implements Serializable
 	}
 
 	public NormaSeguridad getNormaSeguridad() {
-		return this.normaSeguridad;
+		return normaSeguridad;
 	}
 
 	public void setNormaSeguridad(NormaSeguridad normaSeguridad) {
 		this.normaSeguridad = normaSeguridad;
 	}
-	
-	public Apiario getApiario() {
-		return this.apiario;
+
+	public UsuarioApiario getUsuarioApiario() {
+		return usuarioApiario;
 	}
 
-	public void setApiario(Apiario apiario) {
-		this.apiario = apiario;
+	public void setUsuarioApiario(UsuarioApiario usuarioApiario) {
+		this.usuarioApiario = usuarioApiario;
 	}
-	
+
+		
 }
