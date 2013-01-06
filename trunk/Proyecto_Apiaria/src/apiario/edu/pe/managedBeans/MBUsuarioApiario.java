@@ -23,7 +23,7 @@ import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.NormaSeguridad;
-import apiario.edu.pe.bean.NormaSeguridadApiario;
+import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
@@ -67,8 +67,8 @@ public class MBUsuarioApiario implements Serializable{
 	private boolean muestraListaColmenas;
 	private List<NormaSeguridad> listaNS = new ArrayList<NormaSeguridad>();
 	private NormaSeguridad normaSeguridad;
-	private NormaSeguridadApiario normaSeguridadApiario;
-	private List<NormaSeguridadApiario> listaNSA = new ArrayList<NormaSeguridadApiario>();
+	private NormaSeguridadUsuarioApiario normaSeguridadUsuarioApiario;
+	private List<NormaSeguridadUsuarioApiario> listaNSA = new ArrayList<NormaSeguridadUsuarioApiario>();
 	private List<String> listaString = new ArrayList<String>();
 	private boolean muestraCajaTexto;
 	private PlanillaRevision planillaRevisionSeleccionada;
@@ -289,19 +289,19 @@ public class MBUsuarioApiario implements Serializable{
 		this.normaSeguridad = normaSeguridad;
 	}
 
-	public NormaSeguridadApiario getNormaSeguridadApiario() {
-		return normaSeguridadApiario;
+	public NormaSeguridadUsuarioApiario getNormaSeguridadApiario() {
+		return normaSeguridadUsuarioApiario;
 	}
 
-	public void setNormaSeguridadApiario(NormaSeguridadApiario normaSeguridadApiario) {
-		this.normaSeguridadApiario = normaSeguridadApiario;
+	public void setNormaSeguridadApiario(NormaSeguridadUsuarioApiario normaSeguridadUsuarioApiario) {
+		this.normaSeguridadUsuarioApiario = normaSeguridadUsuarioApiario;
 	}
 
-	public List<NormaSeguridadApiario> getListaNSA() {
+	public List<NormaSeguridadUsuarioApiario> getListaNSA() {
 		return listaNSA;
 	}
 
-	public void setListaNSA(List<NormaSeguridadApiario> listaNSA) {
+	public void setListaNSA(List<NormaSeguridadUsuarioApiario> listaNSA) {
 		this.listaNSA = listaNSA;
 	}
 
@@ -883,11 +883,11 @@ public class MBUsuarioApiario implements Serializable{
 		}
 		
 		
-		NormaSeguridadApiario objNSA= new NormaSeguridadApiario();
-		objNSA.setApiario(new Apiario());
-		objNSA.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		NormaSeguridadUsuarioApiario objNSUA= new NormaSeguridadUsuarioApiario();
+		objNSUA.setUsuarioApiario(new UsuarioApiario());
+		objNSUA.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 		
-		listaNSA = service.buscarNormaSeguridadApiario(objNSA);
+		listaNSA = service.buscarNormaSeguridadApiario(objNSUA);
 		System.out.println("tamaño listaNSA "+listaNSA.size());
 		if(listaNSA.size()>0){
 			for (int i = 0; i < listaNSA.size(); i++) {
@@ -1313,16 +1313,18 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("guardarControlCalidad");
 		System.out.println("tamaño lista NS "+listaNS.size());
 		System.out.println("tamaño listaString "+listaString.size());
-		NormaSeguridadApiario obj = new NormaSeguridadApiario();
-		NormaSeguridadApiario confirm =null;
+		NormaSeguridadUsuarioApiario obj = new NormaSeguridadUsuarioApiario();
+		NormaSeguridadUsuarioApiario confirm =null;
 		try {
 			if(listaString.size()>0){
 				for (int i = 0; i < listaString.size(); i++) {
 					System.out.println("listaString.get(i) "+listaString.get(i));
 					obj.setNormaSeguridad(new NormaSeguridad());
-					obj.setApiario(new Apiario());
+					obj.setUsuarioApiario(new UsuarioApiario());
 					obj.getNormaSeguridad().setIdNormaSeguridad(Integer.parseInt(listaString.get(i)));
-					obj.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+					obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+					obj.setEstado(true);
+					obj.setFechaRegistro(new Date());
 					confirm = service.guardarNormaSeguridadApiario(obj);
 					
 				}

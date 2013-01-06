@@ -12,7 +12,7 @@ import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 
 import apiario.edu.pe.bean.NormaSeguridad;
-import apiario.edu.pe.bean.NormaSeguridadApiario;
+import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
@@ -32,7 +32,7 @@ import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
-import apiario.edu.pe.dao.INormaSeguridadApiarioDAO;
+import apiario.edu.pe.dao.INormaSeguridadUsuarioApiarioDAO;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
@@ -54,7 +54,7 @@ import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,
 IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
-ITemporadaDAO,INormaSeguridadApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
+ITemporadaDAO,INormaSeguridadUsuarioApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
 IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
@@ -71,7 +71,7 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, Serializable{
 	IDetalleEquipoTrabajo daoDetalleEquipoTrabajo = objDAOFactory.getIDetalleEquipoTrabajo();
 	IPlanillaRevisionDAO daoPlanillaRevision =objDAOFactory.getIPlanillaRevisionDAO();
 	IPlanillaRevisionAlzaDAO daoPlanillaRevisionAlza = objDAOFactory.getIPlanillaRevisionAlza();
-	INormaSeguridadApiarioDAO daoNormaSeguidadApiario=objDAOFactory.getINormaSeguridadApiario();
+	INormaSeguridadUsuarioApiarioDAO daoNormaSeguidadApiario=objDAOFactory.getINormaSeguridadApiario();
 	ITemporadaDAO daoTemporada = objDAOFactory.getITemporadaDAO();
 	IUsuarioApiarioDAO daoUsuarioApiario = objDAOFactory.getIUsuarioApiarioDAO();
 	IReinaDAO daoReina=objDAOFactory.getIReinaDAO();
@@ -358,32 +358,32 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, Serializable{
 	}
 
 	@Override
-	public List<NormaSeguridadApiario> listarTodosNormaSeguridadApiarioes()
+	public List<NormaSeguridadUsuarioApiario> listarTodosNormaSeguridadApiarioes()
 			throws Exception {
 		return daoNormaSeguidadApiario.listarTodosNormaSeguridadApiarioes();
 	}
 
 	@Override
-	public NormaSeguridadApiario guardarNormaSeguridadApiario(
-			NormaSeguridadApiario instance) throws Exception {
+	public NormaSeguridadUsuarioApiario guardarNormaSeguridadApiario(
+			NormaSeguridadUsuarioApiario instance) throws Exception {
 		return daoNormaSeguidadApiario.guardarNormaSeguridadApiario(instance);
 	}
 
 	@Override
-	public List<NormaSeguridadApiario> buscarNormaSeguridadApiario(
-			NormaSeguridadApiario instance) throws Exception {
+	public List<NormaSeguridadUsuarioApiario> buscarNormaSeguridadApiario(
+			NormaSeguridadUsuarioApiario instance) throws Exception {
 		return daoNormaSeguidadApiario.buscarNormaSeguridadApiario(instance);
 	}
 
 	@Override
-	public NormaSeguridadApiario obtenerPorIdNormaSeguridadApiario(int id)
+	public NormaSeguridadUsuarioApiario obtenerPorIdNormaSeguridadApiario(int id)
 			throws Exception {
 		return daoNormaSeguidadApiario.obtenerPorIdNormaSeguridadApiario(id);
 	}
 
 	@Override
-	public NormaSeguridadApiario eliminarNormaSeguridadApiario(
-			NormaSeguridadApiario instance) throws Exception {
+	public NormaSeguridadUsuarioApiario eliminarNormaSeguridadApiario(
+			NormaSeguridadUsuarioApiario instance) throws Exception {
 		return daoNormaSeguidadApiario.eliminarNormaSeguridadApiario(instance);
 	}
 

@@ -15,11 +15,11 @@ import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.NormaSeguridad;
-import apiario.edu.pe.bean.NormaSeguridadApiario;
+import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.UsuarioApiario;
 @SuppressWarnings(value={"unchecked"})
-public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
+public class MySqlNormaSeguridadUsuarioApiarioDAO implements INormaSeguridadUsuarioApiarioDAO{
 
 	EntityManagerFactory emf;
 	EntityManager em;
@@ -34,12 +34,12 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 	}
 	
 	@Override
-	public List<NormaSeguridadApiario> listarTodosNormaSeguridadApiarioes()
+	public List<NormaSeguridadUsuarioApiario> listarTodosNormaSeguridadApiarioes()
 			throws Exception {
-		List<NormaSeguridadApiario> lista=null;
+		List<NormaSeguridadUsuarioApiario> lista=null;
 		Open();
 		try {
-			Query q=em.createQuery("select a from NormaSeguridadApiario a");
+			Query q=em.createQuery("select a from NormaSeguridadUsuarioApiario a");
 			lista=q.getResultList();
 		} catch (Exception e) {
 			System.out.println("DAO "+e.getMessage());
@@ -52,8 +52,8 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 	}
 
 	@Override
-	public NormaSeguridadApiario guardarNormaSeguridadApiario(
-			NormaSeguridadApiario instance) throws Exception {
+	public NormaSeguridadUsuarioApiario guardarNormaSeguridadApiario(
+			NormaSeguridadUsuarioApiario instance) throws Exception {
 		try {
 			Open();
 			instance.setSuccess(false);
@@ -74,25 +74,31 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 	}
 
 	@Override
-	public List<NormaSeguridadApiario> buscarNormaSeguridadApiario(
-			NormaSeguridadApiario instance) throws Exception {
+	public List<NormaSeguridadUsuarioApiario> buscarNormaSeguridadApiario(
+			NormaSeguridadUsuarioApiario instance) throws Exception {
 		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
-		CriteriaQuery<NormaSeguridadApiario> criteria=builder.createQuery(NormaSeguridadApiario.class);
-		Root<NormaSeguridadApiario> normaSeguridadApiarioRoot=criteria.from(NormaSeguridadApiario.class);
-		Join<NormaSeguridadApiario,Apiario> apiarioRoot = normaSeguridadApiarioRoot.join( "apiario" );
-		
-		criteria.select(normaSeguridadApiarioRoot);
+		CriteriaQuery<NormaSeguridadUsuarioApiario> criteria=builder.createQuery(NormaSeguridadUsuarioApiario.class);
+		Root<NormaSeguridadUsuarioApiario> normaSeguridadUsuarioApiarioRoot=criteria.from(NormaSeguridadUsuarioApiario.class);
+		Join<NormaSeguridadUsuarioApiario,UsuarioApiario> usuarioApiarioRoot = normaSeguridadUsuarioApiarioRoot.join( "usuarioApiario" );
+		Join<NormaSeguridadUsuarioApiario,NormaSeguridad> normaSeguridadRoot = normaSeguridadUsuarioApiarioRoot.join( "normaSeguridad" );
+		criteria.select(normaSeguridadUsuarioApiarioRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdNormaSeguridadApiario()!=null && instance.getIdNormaSeguridadApiario().intValue()>0){
-				Predicate condition=builder.equal(normaSeguridadApiarioRoot.get("idNormaSeguridadApiario"),instance.getIdNormaSeguridadApiario());
+			if(instance.getIdNormaSeguridadUsuarioApiario()!=null && instance.getIdNormaSeguridadUsuarioApiario().intValue()>0){
+				Predicate condition=builder.equal(normaSeguridadUsuarioApiarioRoot.get("idNormaSeguridadUsuarioApiario"),instance.getIdNormaSeguridadUsuarioApiario());
 				p.add(condition);
 			}
-			if(instance.getApiario()!=null){
-				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario().intValue()>0){
-					Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getApiario().getIdApiario());
+			if(instance.getUsuarioApiario()!=null){
+				if(instance.getUsuarioApiario().getIdUsuarioApiario()!=null && instance.getUsuarioApiario().getIdUsuarioApiario().intValue()>0){
+					Predicate condition=builder.equal(usuarioApiarioRoot.get("idUsuarioApiario"),instance.getUsuarioApiario().getIdUsuarioApiario());
+					p.add(condition);
+				}
+			}
+			if(instance.getNormaSeguridad()!=null){
+				if(instance.getNormaSeguridad().getIdNormaSeguridad()!=null && instance.getNormaSeguridad().getIdNormaSeguridad().intValue()>0){
+					Predicate condition=builder.equal(normaSeguridadRoot.get("idNormaSeguridad"),instance.getNormaSeguridad().getIdNormaSeguridad());
 					p.add(condition);
 				}
 			}
@@ -101,17 +107,17 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 		p.toArray(predicates);
 		criteria.where(predicates);
 		
-		List<NormaSeguridadApiario> lista=em.createQuery(criteria).getResultList();
+		List<NormaSeguridadUsuarioApiario> lista=em.createQuery(criteria).getResultList();
 		Close();
 		return lista;
 	}
 
 	@Override
-	public NormaSeguridadApiario obtenerPorIdNormaSeguridadApiario(int id)
+	public NormaSeguridadUsuarioApiario obtenerPorIdNormaSeguridadApiario(int id)
 			throws Exception {
 		try {
 			Open();
-			NormaSeguridadApiario instance=em.find(NormaSeguridadApiario.class, id);
+			NormaSeguridadUsuarioApiario instance=em.find(NormaSeguridadUsuarioApiario.class, id);
 			return instance;
 		} catch (RuntimeException e) {
 			throw e;
@@ -121,8 +127,8 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 	}
 
 	@Override
-	public NormaSeguridadApiario eliminarNormaSeguridadApiario(
-			NormaSeguridadApiario instance) throws Exception {
+	public NormaSeguridadUsuarioApiario eliminarNormaSeguridadApiario(
+			NormaSeguridadUsuarioApiario instance) throws Exception {
 		if(!(instance!=null && instance.getListaEliminar().size()>0)){
 			instance.setSuccess(false);
 			return instance;
@@ -133,7 +139,7 @@ public class MySqlNormaSeguridadApiarioDAO implements INormaSeguridadApiarioDAO{
 			Open();
 			em.getTransaction().begin();
 			for (int i = 0; i < listaIds.size(); i++) {
-				String hql="delete from NormaSeguridadApiario n where n.idNormaSeguridadApiario in (:v_ids)";		
+				String hql="delete from NormaSeguridadUsuarioApiario n where n.idNormaSeguridadApiario in (:v_ids)";		
 				em.createQuery(hql).setParameter("v_ids", listaIds.get(i)).executeUpdate();
 			}
 			em.getTransaction().commit();

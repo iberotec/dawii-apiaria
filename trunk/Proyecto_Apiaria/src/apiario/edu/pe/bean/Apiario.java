@@ -25,10 +25,6 @@ public class Apiario extends BaseEntidades implements Serializable {
 	@OneToMany(mappedBy="apiario")
 	private Set<Colmena> colmenas;
 
-	//bi-directional many-to-one association to NormaSeguridadApiario
-	@OneToMany(mappedBy="apiario")
-	private Set<NormaSeguridadApiario> normaSeguridadApiarios;
-
 	//bi-directional many-to-one association to PlanillaSeguimiento
 	@OneToMany(mappedBy="apiario")
 	private Set<PlanillaSeguimiento> planillaSeguimientos;
@@ -50,14 +46,6 @@ public class Apiario extends BaseEntidades implements Serializable {
 
 	public void setColmenas(Set<Colmena> colmenas) {
 		this.colmenas = colmenas;
-	}
-	
-	public Set<NormaSeguridadApiario> getNormaSeguridadApiarios() {
-		return this.normaSeguridadApiarios;
-	}
-
-	public void setNormaSeguridadApiarios(Set<NormaSeguridadApiario> normaSeguridadApiarios) {
-		this.normaSeguridadApiarios = normaSeguridadApiarios;
 	}
 	
 	public Set<PlanillaSeguimiento> getPlanillaSeguimientos() {
