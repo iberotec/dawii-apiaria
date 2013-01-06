@@ -13,6 +13,7 @@ import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.SelectEvent;
+import org.primefaces.model.DualListModel;
 
 
 
@@ -65,7 +66,7 @@ public class MBUsuarioApiario implements Serializable{
 	private String muestraComportamiento;
 	private Integer muestraEstadoRevision;
 	private boolean muestraListaColmenas;
-	private List<NormaSeguridad> listaNS = new ArrayList<NormaSeguridad>();
+	private DualListModel<NormaSeguridad> listaNS = new DualListModel<NormaSeguridad>();
 	private NormaSeguridad normaSeguridad;
 	private NormaSeguridadUsuarioApiario normaSeguridadUsuarioApiario;
 	private List<NormaSeguridadUsuarioApiario> listaNSA = new ArrayList<NormaSeguridadUsuarioApiario>();
@@ -273,14 +274,14 @@ public class MBUsuarioApiario implements Serializable{
 		this.muestraListaColmenas = muestraListaColmenas;
 	}
 	
-	public List<NormaSeguridad> getListaNS() {
+	public DualListModel<NormaSeguridad> getListaNS() {
 		return listaNS;
 	}
 
-	public void setListaNS(List<NormaSeguridad> listaNS) {
+	public void setListaNS(DualListModel<NormaSeguridad> listaNS) {
 		this.listaNS = listaNS;
 	}
-	
+
 	public NormaSeguridad getNormaSeguridad() {
 		return normaSeguridad;
 	}
@@ -289,11 +290,11 @@ public class MBUsuarioApiario implements Serializable{
 		this.normaSeguridad = normaSeguridad;
 	}
 
-	public NormaSeguridadUsuarioApiario getNormaSeguridadApiario() {
+	public NormaSeguridadUsuarioApiario getNormaSeguridadUsuarioApiario() {
 		return normaSeguridadUsuarioApiario;
 	}
 
-	public void setNormaSeguridadApiario(NormaSeguridadUsuarioApiario normaSeguridadUsuarioApiario) {
+	public void setNormaSeguridadUsuarioApiario(NormaSeguridadUsuarioApiario normaSeguridadUsuarioApiario) {
 		this.normaSeguridadUsuarioApiario = normaSeguridadUsuarioApiario;
 	}
 
@@ -832,6 +833,13 @@ public class MBUsuarioApiario implements Serializable{
 		
 	}
 	public void abrirModificarUsuarioApiario(int id) throws Exception{
+		
+		///////////////////
+		List<NormaSeguridad> fuente= new ArrayList<NormaSeguridad>();
+		fuente=service.listarTodosNormaSeguridades();
+		List<NormaSeguridad> destino= new ArrayList<NormaSeguridad>();
+		listaNS = new DualListModel<NormaSeguridad>(fuente, destino);
+		////////////////
 		System.out.println("abrirModificarUsuarioApiario");
 		System.out.println("id "+id);
 		UsuarioApiario objUA = new UsuarioApiario();
@@ -1309,37 +1317,73 @@ public class MBUsuarioApiario implements Serializable{
 		}	
 	}
 	
-	public void guardarControlCalidad(){
+	public void guardarControlCalidad() throws Exception{
 		System.out.println("guardarControlCalidad");
-		System.out.println("tamaño lista NS "+listaNS.size());
-		System.out.println("tamaño listaString "+listaString.size());
+		NormaSeguridadUsuarioApiario confirm= null;
 		NormaSeguridadUsuarioApiario obj = new NormaSeguridadUsuarioApiario();
-		NormaSeguridadUsuarioApiario confirm =null;
-		try {
-			if(listaString.size()>0){
-				for (int i = 0; i < listaString.size(); i++) {
-					System.out.println("listaString.get(i) "+listaString.get(i));
-					obj.setNormaSeguridad(new NormaSeguridad());
-					obj.setUsuarioApiario(new UsuarioApiario());
-					obj.getNormaSeguridad().setIdNormaSeguridad(Integer.parseInt(listaString.get(i)));
-					obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
-					obj.setEstado(true);
-					obj.setFechaRegistro(new Date());
-					confirm = service.guardarNormaSeguridadApiario(obj);
-					
-				}
-				if(confirm.isSuccess()){
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una la Planilla de Normas de Seguridad"));  
-					System.out.println("grabo");
-				}else{
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Planilla de Normas de Seguridad")); 
-					System.out.println("error al grabar");
-				}
+		obj.setNormaSeguridad(new NormaSeguridad());
+		obj.setUsuarioApiario(new UsuarioApiario());
+//		NormaSeguridadUsuarioApiario objNocumple= new NormaSeguridadUsuarioApiario();
+		if(listaNS.getSource().size()>0){
+			for (int i = 0; i < listaNS.getSource().size(); i++) {
+				//no cumple
+				System.out.println("id source NS "+listaNS.getSource().get(i).getIdNormaSeguridad());
+				System.out.println("desc source NS "+listaNS.getSource().get(i).getDescripcionNormaSeguridad());
+				obj.setEstado(false);
+				obj.setFechaRegistro(new Date());
+				obj.getNormaSeguridad().setIdNormaSeguridad(listaNS.getSource().get(i).getIdNormaSeguridad());
+				obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+				
+				confirm = service.guardarNormaSeguridadApiario(obj);
 			}
-		} catch (Exception e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
-			e.printStackTrace();
 		}
+	
+		
+		if(listaNS.getTarget().size()>0){
+			for (int i = 0; i < listaNS.getTarget().size(); i++) {
+				//cumple
+				System.out.println("id targetNS "+listaNS.getTarget().get(i).getIdNormaSeguridad());
+				System.out.println("desc target NS "+listaNS.getTarget().get(i).getDescripcionNormaSeguridad());
+				obj.setEstado(true);
+				obj.setFechaRegistro(new Date());
+				obj.getNormaSeguridad().setIdNormaSeguridad(listaNS.getTarget().get(i).getIdNormaSeguridad());
+				obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+				
+				confirm = service.guardarNormaSeguridadApiario(obj);
+			}
+		}
+		
+		
+		
+		
+//		System.out.println("tamaño listaString "+listaString.size());
+//		NormaSeguridadUsuarioApiario obj = new NormaSeguridadUsuarioApiario();
+//		NormaSeguridadUsuarioApiario confirm =null;
+//		try {
+//			if(listaString.size()>0){
+//				for (int i = 0; i < listaString.size(); i++) {
+//					System.out.println("listaString.get(i) "+listaString.get(i));
+//					obj.setNormaSeguridad(new NormaSeguridad());
+//					obj.setUsuarioApiario(new UsuarioApiario());
+//					obj.getNormaSeguridad().setIdNormaSeguridad(Integer.parseInt(listaString.get(i)));
+//					obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+//					obj.setEstado(true);
+//					obj.setFechaRegistro(new Date());
+//					confirm = service.guardarNormaSeguridadApiario(obj);
+//					
+//				}
+//				if(confirm.isSuccess()){
+//					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una la Planilla de Normas de Seguridad"));  
+//					System.out.println("grabo");
+//				}else{
+//					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Planilla de Normas de Seguridad")); 
+//					System.out.println("error al grabar");
+//				}
+//			}
+//		} catch (Exception e) {
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
+//			e.printStackTrace();
+//		}
 	}
 	public void mostrarComboTipoEnfermedad(){
 		System.out.println("mostrarComboTipoEnfermedad");

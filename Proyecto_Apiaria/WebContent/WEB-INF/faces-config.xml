@@ -70,6 +70,11 @@
   <managed-bean-class>apiario.edu.pe.managedBeans.MBCosecha</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
 </managed-bean> 
+<managed-bean>
+  <managed-bean-name>normaSeguridadConverter</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.util.NormaSeguridadConverter</managed-bean-class>
+  <managed-bean-scope>application</managed-bean-scope>
+</managed-bean>
  <!-- navegacion -->
  <navigation-rule>
   <navigation-case>
