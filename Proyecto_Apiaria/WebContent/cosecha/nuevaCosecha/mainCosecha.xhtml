@@ -31,9 +31,12 @@
 					            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
 					            selectionMode="single" 
 					            rowKey="lista">
+					    <f:facet name="header">
+							<h:outputLabel value="Listado de Cosecha" />
+						</f:facet>
 						<p:column>
 							<f:facet name="header">
-								<h:outputLabel value="" />
+								<h:outputLabel value="#{data.sel}" />
 							</f:facet>
 							<p:selectBooleanCheckbox></p:selectBooleanCheckbox>
 						</p:column>
@@ -41,12 +44,14 @@
 							<f:facet name="header">
 								<h:outputLabel value="Centrifugadora" />
 							</f:facet>
+							<h:outputLabel value="" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputLabel value="Fecha" />
 							</f:facet>
 						</p:column>
+						<h:outputLabel value="" />
 					</p:dataTable>
 	   			</div>
 			</h:form>

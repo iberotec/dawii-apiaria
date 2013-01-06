@@ -3,13 +3,16 @@ package apiario.edu.pe.factoria;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
+import apiario.edu.pe.dao.IDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadUsuarioApiarioDAO;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
+import apiario.edu.pe.dao.IPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionTipoAlimentacionDAO;
@@ -50,6 +53,9 @@ public abstract class DAOFactory {
 	public abstract IPlanillaRevisionTipoAlimentacionDAO getiPlanillaRevisionTipoAlimentacionDAO();
 	public abstract IPlanillaRevisionTipoEnfermedadDAO getPlanillaTipoRevisionEnfermedadDAO();
 	public abstract ITipoAlzaDAO getTipoAlzaDAO();
+	public abstract ICentrifugadoraDAO getCentrifugadoraDAO();
+	public abstract IPlanillaCosechaDAO getPlanillaCosechaDAO();
+	public abstract IDetalleCentrifugadoraPlanillaCosechaDAO getDetalleCentrifugadoraCosechaDAO();
 	
 	
 	public static DAOFactory getDAOFactory(TipoFabrica tipo) {

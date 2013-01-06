@@ -29,23 +29,25 @@
 							</td>
 							<td>
 								<p:selectOneMenu>
-									
+									<f:selectItems value="#{mBSelectItems.cboCentrifugadora}"></f:selectItems>
 								</p:selectOneMenu>
 							</td>
 						</tr>
 					</table>
 					<p:tabView>
 						<p:tab title="Alzas">
-							<p:dataTable>
+							<p:dataTable value="#{mBCosecha.listaAlzas}" var="data">
 								<p:column>
 									<f:facet name="header">
 										<h:outputLabel value="ID" />
 									</f:facet>
+									<h:outputLabel value="#{data.idAlza}" />
 								</p:column>
 								<p:column>
 									<f:facet name="header">
 										<h:outputLabel value="Alzas" />
 									</f:facet>
+									<h:outputLabel value="Alza #{data.idAlza}" />
 								</p:column>
 							</p:dataTable>
 							<table>
