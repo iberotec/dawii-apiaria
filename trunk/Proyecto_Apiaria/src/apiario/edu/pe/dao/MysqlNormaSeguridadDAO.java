@@ -47,21 +47,15 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 	@Override
 	public List<NormaSeguridad> listarTodosNormaSeguridades() throws Exception {
 		List<NormaSeguridad> lista=null;
-		
+		Open();
 		try {
-			em.getTransaction().begin();
-			
 			Query sql=em.createQuery("select n from NormaSeguridad n");
 			lista=sql.getResultList();
-			
-			em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().rollback();
-		}finally{
-			em.close();
-			emf.close();
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
 		}
-		
+		Close();
 		return lista;
 	}
 
@@ -69,6 +63,7 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 	public NormaSeguridad guardarNormaSeguridad(NormaSeguridad instance)
 			throws Exception {
 		try {
+			Open();
 			instance.setSuccess(false);
 			em.getTransaction().begin();
 			em.merge(instance);
@@ -82,8 +77,7 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 			em.getTransaction().rollback();
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
@@ -119,13 +113,13 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 	@Override
 	public NormaSeguridad obtenerPorIdNormaSeguridad(int id) throws Exception {
 		try {
+			Open();
 			NormaSeguridad instance=em.find(NormaSeguridad.class, id);
 			return instance;
 		} catch (RuntimeException e) {
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 
