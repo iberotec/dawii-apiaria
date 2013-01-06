@@ -834,12 +834,7 @@ public class MBUsuarioApiario implements Serializable{
 	}
 	public void abrirModificarUsuarioApiario(int id) throws Exception{
 		
-		///////////////////
-		List<NormaSeguridad> fuente= new ArrayList<NormaSeguridad>();
-		fuente=service.listarTodosNormaSeguridades();
-		List<NormaSeguridad> destino= new ArrayList<NormaSeguridad>();
-		listaNS = new DualListModel<NormaSeguridad>(fuente, destino);
-		////////////////
+
 		System.out.println("abrirModificarUsuarioApiario");
 		System.out.println("id "+id);
 		UsuarioApiario objUA = new UsuarioApiario();
@@ -891,21 +886,64 @@ public class MBUsuarioApiario implements Serializable{
 		}
 		
 		
-		NormaSeguridadUsuarioApiario objNSUA= new NormaSeguridadUsuarioApiario();
-		objNSUA.setUsuarioApiario(new UsuarioApiario());
-		objNSUA.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+//		NormaSeguridadUsuarioApiario objNSUA= new NormaSeguridadUsuarioApiario();
+//		objNSUA.setUsuarioApiario(new UsuarioApiario());
+//		objNSUA.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+//		
+//		listaNSA = service.buscarNormaSeguridadApiario(objNSUA);
+//		System.out.println("tamaño listaNSA "+listaNSA.size());
+//		if(listaNSA.size()>0){
+//			for (int i = 0; i < listaNSA.size(); i++) {
+//				String idNormaSeguridad=listaNSA.get(i).getNormaSeguridad().getIdNormaSeguridad().toString();
+//				System.out.println("id NormaSeguridad "+idNormaSeguridad);
+//				System.out.println("listaString antes "+listaString.size());
+//				listaString.add(idNormaSeguridad);
+//				System.out.println("listaString despues "+listaString.size());
+//			}
+//		}
 		
-		listaNSA = service.buscarNormaSeguridadApiario(objNSUA);
-		System.out.println("tamaño listaNSA "+listaNSA.size());
-		if(listaNSA.size()>0){
-			for (int i = 0; i < listaNSA.size(); i++) {
-				String idNormaSeguridad=listaNSA.get(i).getNormaSeguridad().getIdNormaSeguridad().toString();
-				System.out.println("id NormaSeguridad "+idNormaSeguridad);
-				System.out.println("listaString antes "+listaString.size());
-				listaString.add(idNormaSeguridad);
-				System.out.println("listaString despues "+listaString.size());
+		
+		
+		///////////////////
+		List<NormaSeguridad> fuente= new ArrayList<NormaSeguridad>();
+		fuente=service.listarTodosNormaSeguridades();
+		List<NormaSeguridad> destino= new ArrayList<NormaSeguridad>();
+		
+		NormaSeguridad objEstadoT= new NormaSeguridad();
+		
+		List<NormaSeguridadUsuarioApiario> listaCumple= new ArrayList<NormaSeguridadUsuarioApiario>();
+		NormaSeguridadUsuarioApiario objCumple=new NormaSeguridadUsuarioApiario();
+		objCumple.setUsuarioApiario(new UsuarioApiario());
+		objCumple.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+		objCumple.setEstado(true);
+		listaCumple=service.buscarNormaSeguridadUsuarioApiario(objCumple);
+		if(listaCumple.size()>0){
+			destino.clear();
+			for (int i = 0; i < listaCumple.size(); i++) {
+				objEstadoT=service.obtenerPorIdNormaSeguridad(listaCumple.get(i).getNormaSeguridad().getIdNormaSeguridad());
+				destino.add(objEstadoT);
 			}
 		}
+		
+		NormaSeguridad objEstadoF= new NormaSeguridad();
+		
+		List<NormaSeguridadUsuarioApiario> listaNoCumple= new ArrayList<NormaSeguridadUsuarioApiario>();
+		NormaSeguridadUsuarioApiario objNoCumple = new NormaSeguridadUsuarioApiario();
+		objNoCumple.setUsuarioApiario(new UsuarioApiario());
+		objCumple.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+		objCumple.setEstado(false);
+		listaNoCumple=service.buscarNormaSeguridadUsuarioApiario(objNoCumple);
+		if(listaNoCumple.size()>0){
+			fuente.clear();
+			for (int i = 0; i < listaNoCumple.size(); i++) {
+				objEstadoF=service.obtenerPorIdNormaSeguridad(listaNoCumple.get(i).getNormaSeguridad().getIdNormaSeguridad());
+				fuente.add(objEstadoF);
+			}
+		}
+		
+		
+		listaNS = new DualListModel<NormaSeguridad>(fuente, destino);
+		////////////////
 		
 		
 		ConfigurableNavigationHandler handler = (ConfigurableNavigationHandler) FacesContext
@@ -1334,7 +1372,7 @@ public class MBUsuarioApiario implements Serializable{
 				obj.getNormaSeguridad().setIdNormaSeguridad(listaNS.getSource().get(i).getIdNormaSeguridad());
 				obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 				
-				confirm = service.guardarNormaSeguridadApiario(obj);
+				confirm = service.guardarNormaSeguridadUsuarioApiario(obj);
 			}
 		}
 	
@@ -1349,41 +1387,16 @@ public class MBUsuarioApiario implements Serializable{
 				obj.getNormaSeguridad().setIdNormaSeguridad(listaNS.getTarget().get(i).getIdNormaSeguridad());
 				obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 				
-				confirm = service.guardarNormaSeguridadApiario(obj);
+				confirm = service.guardarNormaSeguridadUsuarioApiario(obj);
 			}
 		}
-		
-		
-		
-		
-//		System.out.println("tamaño listaString "+listaString.size());
-//		NormaSeguridadUsuarioApiario obj = new NormaSeguridadUsuarioApiario();
-//		NormaSeguridadUsuarioApiario confirm =null;
-//		try {
-//			if(listaString.size()>0){
-//				for (int i = 0; i < listaString.size(); i++) {
-//					System.out.println("listaString.get(i) "+listaString.get(i));
-//					obj.setNormaSeguridad(new NormaSeguridad());
-//					obj.setUsuarioApiario(new UsuarioApiario());
-//					obj.getNormaSeguridad().setIdNormaSeguridad(Integer.parseInt(listaString.get(i)));
-//					obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
-//					obj.setEstado(true);
-//					obj.setFechaRegistro(new Date());
-//					confirm = service.guardarNormaSeguridadApiario(obj);
-//					
-//				}
-//				if(confirm.isSuccess()){
-//					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una la Planilla de Normas de Seguridad"));  
-//					System.out.println("grabo");
-//				}else{
-//					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Planilla de Normas de Seguridad")); 
-//					System.out.println("error al grabar");
-//				}
-//			}
-//		} catch (Exception e) {
-//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
-//			e.printStackTrace();
-//		}
+		if(confirm.isSuccess()){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro el control de calidad"));  
+			System.out.println("grabo");
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro el control de calidad")); 
+			System.out.println("error al grabar");
+		}
 	}
 	public void mostrarComboTipoEnfermedad(){
 		System.out.println("mostrarComboTipoEnfermedad");
