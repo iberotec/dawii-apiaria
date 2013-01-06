@@ -33,7 +33,6 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
-import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.IDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
@@ -58,7 +57,7 @@ import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
 @SuppressWarnings("serial")
 public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanillaSeguimientoDAO,INormaSeguridadDAO,
-IDetalleApiarioNormaSeguridad,IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
+IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
 ITemporadaDAO,INormaSeguridadUsuarioApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
 IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IPlanillaCosechaDAO,
@@ -66,7 +65,6 @@ IDetalleCentrifugadoraPlanillaCosechaDAO, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
-	IDetalleApiarioNormaSeguridad daoDetalleApiarioNormaSeguridad=objDAOFactory.getDetalleApiarioNormaSeguridad();
 	IPlanillaSeguimientoDAO daoPlanillaSeguimiento=objDAOFactory.getIPlanillaSeguimientoDAO();
 	IUsuario daoUsuario = objDAOFactory.getIUsuarioDAO();
 	IColmenaDAO daoColmena=objDAOFactory.getIColmenaDAO();
@@ -91,11 +89,6 @@ IDetalleCentrifugadoraPlanillaCosechaDAO, Serializable{
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
-	}
-
-	@Override
-	public int insertarDetalleApiarioNormaSeguridad(Apiario apiario,NormaSeguridad normaSeguridad) {
-		return	daoDetalleApiarioNormaSeguridad.insertarDetalleApiarioNormaSeguridad(apiario, normaSeguridad);
 	}
 
 	@Override

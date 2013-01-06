@@ -4,7 +4,6 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
-import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.IDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
@@ -45,7 +44,6 @@ import apiario.edu.pe.dao.MySqlTipoAlzaDAO;
 import apiario.edu.pe.dao.MySqlTipoEnfermedadDAO;
 import apiario.edu.pe.dao.MySqlUsuarioApiarioDAO;
 import apiario.edu.pe.dao.MysqlApiarioDAO;
-import apiario.edu.pe.dao.MysqlDetalleApiarioNormaSeguridad;
 import apiario.edu.pe.dao.MysqlNormaSeguridadDAO;
 import apiario.edu.pe.dao.MysqlUsuarioDAO;
 
@@ -59,11 +57,6 @@ public class MySqlDAOFactory extends DAOFactory{
 	@Override
 	public INormaSeguridadDAO getINormaSeguridadDAO() {
 		return new MysqlNormaSeguridadDAO();
-	}
-
-	@Override
-	public IDetalleApiarioNormaSeguridad getDetalleApiarioNormaSeguridad() {
-		return new MysqlDetalleApiarioNormaSeguridad();
 	}
 
 	@Override
