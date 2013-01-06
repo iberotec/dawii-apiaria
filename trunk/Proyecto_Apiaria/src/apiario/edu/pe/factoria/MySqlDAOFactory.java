@@ -2,13 +2,16 @@ package apiario.edu.pe.factoria;
 
 import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDetalleApiarioNormaSeguridad;
+import apiario.edu.pe.dao.IDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadUsuarioApiarioDAO;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
+import apiario.edu.pe.dao.IPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionTipoAlimentacionDAO;
@@ -22,11 +25,14 @@ import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.dao.IUsuarioApiarioDAO;
 import apiario.edu.pe.dao.MySqlAlzaDAO;
+import apiario.edu.pe.dao.MySqlCentrifugadoraDAO;
 import apiario.edu.pe.dao.MySqlColmenaDAO;
+import apiario.edu.pe.dao.MySqlDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.MySqlEstadoRevisionDAO;
 import apiario.edu.pe.dao.MySqlDetalleEquipoTrabajoDAO;
 import apiario.edu.pe.dao.MySqlNormaSeguridadUsuarioApiarioDAO;
 import apiario.edu.pe.dao.MySqlPisoDAO;
+import apiario.edu.pe.dao.MySqlPlanillaCosechaDAO;
 import apiario.edu.pe.dao.MySqlPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.MySqlPlanillaRevisionDAO;
 import apiario.edu.pe.dao.MySqlPlanillaRevisionTipoAlimentacionDAO;
@@ -151,6 +157,21 @@ public class MySqlDAOFactory extends DAOFactory{
 	@Override
 	public ITipoAlzaDAO getTipoAlzaDAO() {
 		return new MySqlTipoAlzaDAO();
+	}
+
+	@Override
+	public ICentrifugadoraDAO getCentrifugadoraDAO() {
+		return new MySqlCentrifugadoraDAO();
+	}
+
+	@Override
+	public IPlanillaCosechaDAO getPlanillaCosechaDAO() {
+		return new MySqlPlanillaCosechaDAO();
+	}
+
+	@Override
+	public IDetalleCentrifugadoraPlanillaCosechaDAO getDetalleCentrifugadoraCosechaDAO() {
+		return new MySqlDetalleCentrifugadoraPlanillaCosechaDAO();
 	}
 
 
