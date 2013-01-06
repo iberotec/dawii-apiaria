@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import apiario.edu.pe.bean.base.BaseEntidades;
 
@@ -21,6 +23,7 @@ public class PlanillaCosecha extends BaseEntidades implements Serializable {
 	@Column(name="id_planilla_cosecha")
 	private Integer idPlanillaCosecha;
 	
+	@Temporal( TemporalType.DATE)
 	@Column(name="fecha_cosecha")
 	private Date fechaCosecha;
 	
