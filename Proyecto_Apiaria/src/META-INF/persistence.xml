@@ -11,7 +11,7 @@
 	<class>apiario.edu.pe.bean.Insumo</class>
 	<class>apiario.edu.pe.bean.Medicamento</class>
 	<class>apiario.edu.pe.bean.NormaSeguridad</class>
-	<class>apiario.edu.pe.bean.NormaSeguridadApiario</class>
+	<class>apiario.edu.pe.bean.NormaSeguridadUsuarioApiario</class>
 	<class>apiario.edu.pe.bean.Pai</class>
 	<class>apiario.edu.pe.bean.Piso</class>
 	<class>apiario.edu.pe.bean.PlanillaRevision</class>
@@ -42,7 +42,7 @@
 			<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/db_sistema_apiario"/>
 			<property name="eclipselink.jdbc.user" value="root"/>
-			<property name="eclipselink.jdbc.password" value="admin"/>
+			<property name="eclipselink.jdbc.password" value="root"/>
 
 
 		</properties>
