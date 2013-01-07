@@ -11,6 +11,7 @@
 		    <p:toolbarGroup align="left">  
 		        <p:commandButton  value="Nueva Revision de Alza" icon="ui-icon-document" actionListener="#{mBUsuarioApiario.abrirRegistrarPlanillaRevisionAlza}" update=":fPrAlza" oncomplete="alzaDialog.show()"/>  
 		 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" actionListener="#{mBUsuarioApiario.listarTodosPlanillaRevisionAlza}" update=":fPr:tabConteinerAlza:dtPrAlza" />
+		 	     <p:commandButton  value="Eliminar" icon="ui-icon-print" actionListener="#{mBUsuarioApiario.eliminarPlanillaRevisionAlza}"  update=":fPr:tabConteinerAlza:dtPrAlza"/>
 		    </p:toolbarGroup>  
 		    </p:toolbar>
 </h:form>
