@@ -41,6 +41,7 @@ import apiario.edu.pe.service.SeleccionService;
 
 @SuppressWarnings("serial")
 public class MBUsuarioApiario implements Serializable{
+//	private boolean muestraModal;
 	private UsuarioApiario usuarioApiario;
 	private List<UsuarioApiario> listaUsarioApiario = new ArrayList<UsuarioApiario>();
 	private SeleccionService service = new SeleccionService();
@@ -469,6 +470,14 @@ public class MBUsuarioApiario implements Serializable{
 		this.muestraIdAlza = muestraIdAlza;
 	}
 
+//	public boolean isMuestraModal() {
+//		return muestraModal;
+//	}
+//
+//	public void setMuestraModal(boolean muestraModal) {
+//		this.muestraModal = muestraModal;
+//	}
+
 	public MBUsuarioApiario() {
 
 
@@ -884,31 +893,16 @@ public class MBUsuarioApiario implements Serializable{
 			listaERET= new ArrayList<EstadoRevisionEquipamientoTrabajo>();
 			mostrarEquipoSeguridad=false;
 		}
-		
-		
-//		NormaSeguridadUsuarioApiario objNSUA= new NormaSeguridadUsuarioApiario();
-//		objNSUA.setUsuarioApiario(new UsuarioApiario());
-//		objNSUA.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
-//		
-//		listaNSA = service.buscarNormaSeguridadApiario(objNSUA);
-//		System.out.println("tamaño listaNSA "+listaNSA.size());
-//		if(listaNSA.size()>0){
-//			for (int i = 0; i < listaNSA.size(); i++) {
-//				String idNormaSeguridad=listaNSA.get(i).getNormaSeguridad().getIdNormaSeguridad().toString();
-//				System.out.println("id NormaSeguridad "+idNormaSeguridad);
-//				System.out.println("listaString antes "+listaString.size());
-//				listaString.add(idNormaSeguridad);
-//				System.out.println("listaString despues "+listaString.size());
-//			}
-//		}
-		
-		
-		
+
+
 		///////////////////
 		List<NormaSeguridad> fuente= new ArrayList<NormaSeguridad>();
 		fuente=service.listarTodosNormaSeguridades();
 		List<NormaSeguridad> destino= new ArrayList<NormaSeguridad>();
-		
+		//para sacar el tamaño de la lista
+		List<NormaSeguridad> listaTamaño= new ArrayList<NormaSeguridad>();
+		listaTamaño=service.listarTodosNormaSeguridades();
+		//para sacar el tamaño de la lista
 		NormaSeguridad objEstadoT= new NormaSeguridad();
 		
 		List<NormaSeguridadUsuarioApiario> listaCumple= new ArrayList<NormaSeguridadUsuarioApiario>();
@@ -917,11 +911,21 @@ public class MBUsuarioApiario implements Serializable{
 		objCumple.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 		objCumple.setEstado(true);
 		listaCumple=service.buscarNormaSeguridadUsuarioApiario(objCumple);
+		System.out.println("tamaño listaCumple "+listaCumple.size());
+		int contV=0;
 		if(listaCumple.size()>0){
 			destino.clear();
+			System.out.println("destino clear tamaño "+destino.size());
 			for (int i = 0; i < listaCumple.size(); i++) {
+				System.out.println("id norma seguridad cumple"+listaCumple.get(i).getNormaSeguridad().getIdNormaSeguridad());
+				System.out.println("esstado cumple "+listaCumple.get(i).getEstado());
 				objEstadoT=service.obtenerPorIdNormaSeguridad(listaCumple.get(i).getNormaSeguridad().getIdNormaSeguridad());
 				destino.add(objEstadoT);
+				System.out.println("destino add tamaño "+destino.size());
+				contV++;
+			}
+			if(contV==listaTamaño.size()){
+				fuente.clear();
 			}
 		}
 		
@@ -930,14 +934,24 @@ public class MBUsuarioApiario implements Serializable{
 		List<NormaSeguridadUsuarioApiario> listaNoCumple= new ArrayList<NormaSeguridadUsuarioApiario>();
 		NormaSeguridadUsuarioApiario objNoCumple = new NormaSeguridadUsuarioApiario();
 		objNoCumple.setUsuarioApiario(new UsuarioApiario());
-		objCumple.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
-		objCumple.setEstado(false);
+		objNoCumple.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+		objNoCumple.setEstado(false);
 		listaNoCumple=service.buscarNormaSeguridadUsuarioApiario(objNoCumple);
+		System.out.println("tamaño listaNoCumple "+listaNoCumple.size());
+		int contF=0;
 		if(listaNoCumple.size()>0){
 			fuente.clear();
+			System.out.println("fuente clear tamaño "+fuente.size());
 			for (int i = 0; i < listaNoCumple.size(); i++) {
+				System.out.println("id norma seguridad No cumple"+listaNoCumple.get(i).getNormaSeguridad().getIdNormaSeguridad());
+				System.out.println("estado no cumple "+listaNoCumple.get(i).getEstado());
 				objEstadoF=service.obtenerPorIdNormaSeguridad(listaNoCumple.get(i).getNormaSeguridad().getIdNormaSeguridad());
 				fuente.add(objEstadoF);
+				System.out.println("fuente add tamaño "+fuente.size());
+				contF++;
+			}
+			if(contF==listaTamaño.size()){
+				destino.clear();
 			}
 		}
 		
@@ -1348,7 +1362,7 @@ public class MBUsuarioApiario implements Serializable{
 					}
 				}	
 			}
-	
+			validarTerminoAsignacion();
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();
@@ -1363,6 +1377,12 @@ public class MBUsuarioApiario implements Serializable{
 		obj.setUsuarioApiario(new UsuarioApiario());
 //		NormaSeguridadUsuarioApiario objNocumple= new NormaSeguridadUsuarioApiario();
 		if(listaNS.getSource().size()>0){
+			
+			List<NormaSeguridadUsuarioApiario> listaBusqueda= new ArrayList<NormaSeguridadUsuarioApiario>();
+			NormaSeguridadUsuarioApiario objBusqueda= new NormaSeguridadUsuarioApiario();
+			objBusqueda.setNormaSeguridad(new NormaSeguridad());
+			objBusqueda.setUsuarioApiario(new UsuarioApiario());
+			
 			for (int i = 0; i < listaNS.getSource().size(); i++) {
 				//no cumple
 				System.out.println("id source NS "+listaNS.getSource().get(i).getIdNormaSeguridad());
@@ -1372,12 +1392,24 @@ public class MBUsuarioApiario implements Serializable{
 				obj.getNormaSeguridad().setIdNormaSeguridad(listaNS.getSource().get(i).getIdNormaSeguridad());
 				obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 				
+				objBusqueda.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+				objBusqueda.getNormaSeguridad().setIdNormaSeguridad(obj.getNormaSeguridad().getIdNormaSeguridad());
+				listaBusqueda=service.buscarNormaSeguridadUsuarioApiario(objBusqueda);
+				if(listaBusqueda.size()>0){
+					obj.setIdNormaSeguridadUsuarioApiario(listaBusqueda.get(0).getIdNormaSeguridadUsuarioApiario());
+				}
+				
 				confirm = service.guardarNormaSeguridadUsuarioApiario(obj);
 			}
 		}
 	
 		
 		if(listaNS.getTarget().size()>0){
+			List<NormaSeguridadUsuarioApiario> listaBusqueda= new ArrayList<NormaSeguridadUsuarioApiario>();
+			NormaSeguridadUsuarioApiario objBusqueda= new NormaSeguridadUsuarioApiario();
+			objBusqueda.setNormaSeguridad(new NormaSeguridad());
+			objBusqueda.setUsuarioApiario(new UsuarioApiario());
+			
 			for (int i = 0; i < listaNS.getTarget().size(); i++) {
 				//cumple
 				System.out.println("id targetNS "+listaNS.getTarget().get(i).getIdNormaSeguridad());
@@ -1387,9 +1419,17 @@ public class MBUsuarioApiario implements Serializable{
 				obj.getNormaSeguridad().setIdNormaSeguridad(listaNS.getTarget().get(i).getIdNormaSeguridad());
 				obj.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 				
+				objBusqueda.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+				objBusqueda.getNormaSeguridad().setIdNormaSeguridad(obj.getNormaSeguridad().getIdNormaSeguridad());
+				listaBusqueda=service.buscarNormaSeguridadUsuarioApiario(objBusqueda);
+				if(listaBusqueda.size()>0){
+					obj.setIdNormaSeguridadUsuarioApiario(listaBusqueda.get(0).getIdNormaSeguridadUsuarioApiario());
+				}
+				
 				confirm = service.guardarNormaSeguridadUsuarioApiario(obj);
 			}
 		}
+		validarTerminoAsignacion();
 		if(confirm.isSuccess()){
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro el control de calidad"));  
 			System.out.println("grabo");
@@ -1560,6 +1600,54 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("resulado validacion campos vacios "+resultado);
 		return resultado;
 	}
+//	public void abrirEliminarPlanillaRevisionAlza(){
+//		int cont=0;
+//		for (int i = 0; i < listaPlanillaRevisionAlza.size(); i++) {
+//			if(listaPlanillaRevisionAlza.get(i).isSel()){
+//				cont++;
+//			}
+//		}
+//		if(cont>0){
+//			System.out.println("entro if "+cont);
+//			muestraModal=true;
+////			setOnComplete("dialogEliminarPra.show()");
+////			System.out.println("oncomplete "+getOnComplete());
+//		}else{
+//			muestraModal=false;
+//			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona al menos uno"));
+//		}
+//		
+//	}
+	public void eliminarPlanillaRevisionAlza() throws Exception{
+		PlanillaRevisionAlza confirm=null;
+		int cont=0;
+		List<Integer> listaIds= new ArrayList<Integer>();
+		for (int i = 0; i < listaPlanillaRevisionAlza.size(); i++) {
+			if(listaPlanillaRevisionAlza.get(i).isSel()){
+				listaIds.add(listaPlanillaRevisionAlza.get(i).getIdPlanillaRevisionAlza());
+				cont++;
+			}
+		}
+		if(cont>0){
+			PlanillaRevisionAlza eliminar=new PlanillaRevisionAlza();
+			eliminar.setListaEliminar(listaIds);
+			
+			confirm=service.eliminarPlanillaRevisionAlza(eliminar);
+			listarTodosPlanillaRevisionAlza();
+			
+			if(confirm.isSuccess()){
+				validarTerminoAsignacion();
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se elimino el registro satisfactoriamente"));  
+				System.out.println("elimino");
+			}else{
+				System.out.println("mensaje de seleccione un alza");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error fatal", "No se pudo eliminar"));
+				System.out.println("error");
+			}
+		}else{
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona al menos uno")); 
+		}
+	}
 	public void guardarPlanillaRevisionAlza(){
 		System.out.println("guardarPlanillaRevisionAlza");
 		PlanillaRevisionAlza confirm=null;
@@ -1652,7 +1740,7 @@ public class MBUsuarioApiario implements Serializable{
 					}
 				}
 			}
-			
+			validarTerminoAsignacion();
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();
@@ -1660,4 +1748,117 @@ public class MBUsuarioApiario implements Serializable{
 	
 		
 	}
+	public void validarTerminoAsignacion() throws Exception{
+		System.out.println("empesando validacion para termino de asignacion");
+		boolean todasColmenasRevisadas=false;
+		boolean todasAlzasRevisadas=false;
+		boolean ControlCalidadRevisado=false;
+		UsuarioApiario confirm=null;
+		//todas las colmenas revisadas
+		
+		
+		List<PlanillaRevision> listaPRBusqueda = new ArrayList<PlanillaRevision>();
+		PlanillaRevision objPR= new PlanillaRevision();
+		objPR.setUsuarioApiario(new UsuarioApiario());
+		objPR.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+		listaPRBusqueda=service.buscarPlanillaRevision(objPR);
+		
+		List<Colmena> listaCBusqueda= new ArrayList<Colmena>();
+		Colmena objC= new Colmena();
+		objC.setApiario(new Apiario());
+		objC.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		listaCBusqueda=service.buscarColmena(objC);
+		System.out.println("listaPRBusqueda.size() "+listaPRBusqueda.size());
+		System.out.println("listaCBusqueda.size() "+listaCBusqueda.size());
+		if(listaPRBusqueda.size()==listaCBusqueda.size()){
+			System.out.println("entro 1");
+			todasColmenasRevisadas=true;
+		}
+		
+		//todas las alzas revisadas
+		
+		//alzas generales
+		List<Alza> listaA= new ArrayList<Alza>();
+		
+		for (Colmena colmenas : listaCBusqueda) {
+			for (Piso pisos : colmenas.getPisos()) {
+				for (Alza alzas : pisos.getAlzas()) {
+					listaA.add(alzas);
+				}
+			}
+		}
+		//alzas generales
+		
+		//alzas revisadas
+		List<PlanillaRevisionAlza> listaAcumulaPRA = new ArrayList<PlanillaRevisionAlza>();
+		
+
+		PlanillaRevisionAlza objBusquedaPRA= new PlanillaRevisionAlza();
+		List<PlanillaRevisionAlza> listaaBusquedaPRA= new ArrayList<PlanillaRevisionAlza>();
+		for (PlanillaRevision planillaRevisiones : listaPRBusqueda) {
+			objBusquedaPRA.setPlanillaRevision(new PlanillaRevision());
+			objBusquedaPRA.getPlanillaRevision().setIdPlanillaRevision(planillaRevisiones.getIdPlanillaRevision());
+			listaaBusquedaPRA= service.buscarPlanillaRevisionAlza(objBusquedaPRA);
+			
+			for (PlanillaRevisionAlza acumulaPRA : listaaBusquedaPRA) {
+				listaAcumulaPRA.add(acumulaPRA);
+			}
+
+		}
+		
+
+		//alzas revisadas
+		System.out.println("listaA.size() "+listaA.size());
+		System.out.println("listaAcumulaPRA.size() "+listaAcumulaPRA.size());
+		if(listaA.size()==listaAcumulaPRA.size()){
+			System.out.println("entro 2");
+			todasAlzasRevisadas=true;
+		}
+		
+		
+		//este registrado el control de calidad
+		List<NormaSeguridad> listaGeneralNS = new ArrayList<NormaSeguridad>();
+		listaGeneralNS=service.listarTodosNormaSeguridades();
+		
+		List<NormaSeguridadUsuarioApiario> listaBusquedaNSUA = new ArrayList<NormaSeguridadUsuarioApiario>();
+		NormaSeguridadUsuarioApiario objBusquedaNSUA = new NormaSeguridadUsuarioApiario();
+		objBusquedaNSUA.setUsuarioApiario(new UsuarioApiario());
+		objBusquedaNSUA.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+		listaBusquedaNSUA=service.buscarNormaSeguridadUsuarioApiario(objBusquedaNSUA);
+		System.out.println("listaGeneralNS.size() "+listaGeneralNS.size());
+		System.out.println("listaBusquedaNSUA.size() "+listaBusquedaNSUA.size());
+		if(listaGeneralNS.size()==listaBusquedaNSUA.size()){
+			System.out.println("entro 3");
+			ControlCalidadRevisado=true;
+		}
+		
+		if(ControlCalidadRevisado && todasAlzasRevisadas && todasColmenasRevisadas){
+			System.out.println("entro 4");
+			UsuarioApiario objUsuarioApiario = new UsuarioApiario();
+			objUsuarioApiario= service.obtenerPorIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+			objUsuarioApiario.setEstadoAsignacion("revisado");
+			objUsuarioApiario.setFechaRevision(new Date());
+			confirm=service.guardarUsuarioApiario(objUsuarioApiario);
+			if(confirm.isSuccess()){
+				System.out.println("cambio estado revisado");
+			}else{
+				System.out.println("aun no esta todo revisado");
+			}
+		}else{
+			System.out.println("entro 4 else");
+			UsuarioApiario objUsuarioApiario = new UsuarioApiario();
+			objUsuarioApiario= service.obtenerPorIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+			objUsuarioApiario.setEstadoAsignacion("asignado");
+			objUsuarioApiario.setFechaRevision(null);
+			confirm=service.guardarUsuarioApiario(objUsuarioApiario);
+			if(confirm.isSuccess()){
+				System.out.println("cambio estado asignado");
+			}else{
+				System.out.println("ya esta todo revisado");
+			}
+		}
+		
+	}
+	
+	
 }

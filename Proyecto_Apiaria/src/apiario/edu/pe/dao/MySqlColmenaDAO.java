@@ -113,13 +113,13 @@ public class MySqlColmenaDAO implements IColmenaDAO{
 	@Override
 	public Colmena obtenerPorIdColmena(int id) throws Exception {
 		try {
+			Open();
 			Colmena instance=em.find(Colmena.class, id);
 			return instance;
 		} catch (RuntimeException e) {
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 

@@ -86,23 +86,30 @@ public class MySqlNormaSeguridadUsuarioApiarioDAO implements INormaSeguridadUsua
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
+			System.out.println("1");
 			if(instance.getIdNormaSeguridadUsuarioApiario()!=null && instance.getIdNormaSeguridadUsuarioApiario().intValue()>0){
+				System.out.println("2");
 				Predicate condition=builder.equal(normaSeguridadUsuarioApiarioRoot.get("idNormaSeguridadUsuarioApiario"),instance.getIdNormaSeguridadUsuarioApiario());
 				p.add(condition);
 			}
 			if(instance.getUsuarioApiario()!=null){
+				System.out.println("3");
 				if(instance.getUsuarioApiario().getIdUsuarioApiario()!=null && instance.getUsuarioApiario().getIdUsuarioApiario().intValue()>0){
+					System.out.println("4");
 					Predicate condition=builder.equal(usuarioApiarioRoot.get("idUsuarioApiario"),instance.getUsuarioApiario().getIdUsuarioApiario());
 					p.add(condition);
 				}
 			}
 			if(instance.getNormaSeguridad()!=null){
+				System.out.println("5");
 				if(instance.getNormaSeguridad().getIdNormaSeguridad()!=null && instance.getNormaSeguridad().getIdNormaSeguridad().intValue()>0){
+					System.out.println("6");
 					Predicate condition=builder.equal(normaSeguridadRoot.get("idNormaSeguridad"),instance.getNormaSeguridad().getIdNormaSeguridad());
 					p.add(condition);
 				}
 			}
 			if(instance.getEstado()!=null){
+				System.out.println("7");
 				Predicate condition=builder.equal(normaSeguridadUsuarioApiarioRoot.get("estado"),instance.getEstado());
 				p.add(condition);
 			}
