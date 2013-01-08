@@ -86,7 +86,7 @@ public class MySqlPlanillaSeguimientoDAO implements IPlanillaSeguimientoDAO{
 		
 		if(instance!=null){
 			System.out.println("PlanillaSeguimiento");
-			if(instance.getIdPlanillaSeguimiento()!=null && instance.getIdPlanillaSeguimiento()>0){
+			if(instance.getIdPlanillaSeguimiento()!=null && instance.getIdPlanillaSeguimiento().intValue()>0){
 				System.out.println("PlanillaSeguimiento.getIdplanillaSeguimiento");
 				Predicate condition=builder.equal(planillaSeguimientoRoot.get("idPlanillaSeguimiento"), instance.getIdPlanillaSeguimiento());
 				p.add(condition);
@@ -98,7 +98,7 @@ public class MySqlPlanillaSeguimientoDAO implements IPlanillaSeguimientoDAO{
 			}
 			if(instance.getApiario()!=null){
 				System.out.println("PlanillaSeguimiento.getApiario()");
-				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario()>0){
+				if(instance.getApiario().getIdApiario()!=null && instance.getApiario().getIdApiario().intValue()>0){
 					System.out.println("PlanillaSeguimiento.getApiario().getIdapiario");
 					Predicate condition=builder.equal(apiarioRoot.get("idApiario"), instance.getApiario().getIdApiario());
 					p.add(condition);
