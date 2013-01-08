@@ -131,6 +131,7 @@ public class MySqlPlanillaRevisionTipoEnfermedadDAO implements
 		List<Integer> listaIds = instance.getListaEliminar();
 		instance.setSuccess(false);
 		try {
+			Open();
 			em.getTransaction().begin();
 			for (int i = 0; i < listaIds.size(); i++) {
 				String hql="delete from PlanillaRevisionTipoEnfermedad c where c.idPlanillaRevisionTipoEnfermedad in (:v_ids)";		
@@ -144,8 +145,7 @@ public class MySqlPlanillaRevisionTipoEnfermedadDAO implements
 			instance.setMsgResult("No se puede eliminar por estar relacionado con otra(s) Tablas");
 			re.printStackTrace();
 		}finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 		return instance;
 	}

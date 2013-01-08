@@ -24,6 +24,8 @@ public class NormaSeguridad extends BaseEntidades implements Serializable {
 	@Column(name="descripcion_norma_seguridad")
 	private String descripcionNormaSeguridad;
 
+	private Boolean activo;
+	
 	//bi-directional many-to-one association to NormaSeguridadUsuarioApiario
 	@OneToMany(mappedBy="normaSeguridad")
 	private Set<NormaSeguridadUsuarioApiario> normaSeguridadUsuarioApiarios;
@@ -47,12 +49,21 @@ public class NormaSeguridad extends BaseEntidades implements Serializable {
 		this.descripcionNormaSeguridad = descripcionNormaSeguridad;
 	}
 
-	public Set<NormaSeguridadUsuarioApiario> getNormaSeguridadApiarios() {
-		return this.normaSeguridadUsuarioApiarios;
+	public Set<NormaSeguridadUsuarioApiario> getNormaSeguridadUsuarioApiarios() {
+		return normaSeguridadUsuarioApiarios;
 	}
 
-	public void setNormaSeguridadApiarios(Set<NormaSeguridadUsuarioApiario> normaSeguridadUsuarioApiarios) {
+	public void setNormaSeguridadUsuarioApiarios(
+			Set<NormaSeguridadUsuarioApiario> normaSeguridadUsuarioApiarios) {
 		this.normaSeguridadUsuarioApiarios = normaSeguridadUsuarioApiarios;
+	}
+
+	public Boolean getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 	
 }

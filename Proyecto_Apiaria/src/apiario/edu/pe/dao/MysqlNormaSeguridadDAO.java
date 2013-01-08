@@ -84,6 +84,7 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 	@Override
 	public List<NormaSeguridad> buscarNormaSeguridad(NormaSeguridad instance)
 			throws Exception {
+		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<NormaSeguridad> criteria=builder.createQuery(NormaSeguridad.class);
 		Root<NormaSeguridad> colmenaRoot=criteria.from(NormaSeguridad.class);
@@ -92,12 +93,16 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdNormaSeguridad()>0){
+			if(instance.getIdNormaSeguridad()!=null && instance.getIdNormaSeguridad()>0){
 				Predicate condition=builder.equal(colmenaRoot.get("idNormaSeguridad"),instance.getIdNormaSeguridad());
 				p.add(condition);
 			}
 			if(instance.getDescripcionNormaSeguridad() !=null && instance.getDescripcionNormaSeguridad().length()>0){
 				Predicate condition=builder.equal(colmenaRoot.get("descripcionNormaSeguridad"),instance.getDescripcionNormaSeguridad());
+				p.add(condition);
+			}
+			if(instance.getActivo()!=null){
+				Predicate condition=builder.equal(colmenaRoot.get("activo"),instance.getActivo());
 				p.add(condition);
 			}
 		}
@@ -106,7 +111,7 @@ public class MysqlNormaSeguridadDAO implements INormaSeguridadDAO {
 		criteria.where(predicates);
 		
 		List<NormaSeguridad> lista=em.createQuery(criteria).getResultList();
-		em.close();
+		Close();
 		return lista;
 	}
 

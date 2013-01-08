@@ -67,20 +67,21 @@ public class MySqlEstadoRevisionDAO implements IEstadoRevisionDAO {
 	@Override
 	public List<EstadoRevision> buscarEstadoRevision(EstadoRevision instance)
 			throws Exception {
+		Open();
 		CriteriaBuilder builder=emf.getCriteriaBuilder();
 		CriteriaQuery<EstadoRevision> criteria=builder.createQuery(EstadoRevision.class);
-		Root<EstadoRevision> colmenaRoot=criteria.from(EstadoRevision.class);
+		Root<EstadoRevision> estadoRevisionRoot=criteria.from(EstadoRevision.class);
 		
-		criteria.select(colmenaRoot);
+		criteria.select(estadoRevisionRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
 			if(instance.getIdEstadoRevision()!=null && instance.getIdEstadoRevision().intValue()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("idEstadoRevision"),instance.getIdEstadoRevision());
+				Predicate condition=builder.equal(estadoRevisionRoot.get("idEstadoRevision"),instance.getIdEstadoRevision());
 				p.add(condition);
 			}
 			if(instance.getDescripcionEstadoRevision() !=null && instance.getDescripcionEstadoRevision().length()>0){
-				Predicate condition=builder.equal(colmenaRoot.get("descripcionEstadoRevision"),instance.getDescripcionEstadoRevision());
+				Predicate condition=builder.like(estadoRevisionRoot.<String>get("descripcionEstadoRevision"), "%"+instance.getDescripcionEstadoRevision()+"%");
 				p.add(condition);
 			}
 		}
@@ -89,7 +90,7 @@ public class MySqlEstadoRevisionDAO implements IEstadoRevisionDAO {
 		criteria.where(predicates);
 		
 		List<EstadoRevision> lista=em.createQuery(criteria).getResultList();
-		em.close();
+		Close();
 		return lista;
 	}
 

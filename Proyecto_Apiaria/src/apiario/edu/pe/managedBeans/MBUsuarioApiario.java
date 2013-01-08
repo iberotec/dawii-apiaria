@@ -841,38 +841,41 @@ public class MBUsuarioApiario implements Serializable{
 		
 		
 	}
-	public void abrirModificarUsuarioApiario(int id) throws Exception{
-		
-
-		System.out.println("abrirModificarUsuarioApiario");
-		System.out.println("id "+id);
-		UsuarioApiario objUA = new UsuarioApiario();
-		objUA= service.obtenerPorIdUsuarioApiario(id);
-		usuarioApiario =objUA;
-		PlanillaSeguimiento objPS = new PlanillaSeguimiento();
-		objPS.setEstado(1);
-		objPS.setApiario(new Apiario());
-		objPS.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
-		List<PlanillaSeguimiento> listaPS = new ArrayList<PlanillaSeguimiento>();
-		listaPS=service.buscarPlanillaSeguimiento(objPS);
-		ubicacionApiario=listaPS.get(0).getZona().getUbigeo().getDistrito();
-		
+	public void obtenerNivelPeligroEquipoTrabajo() throws Exception{
 		PlanillaRevision objPR = new PlanillaRevision();
 		objPR.setUsuarioApiario(new UsuarioApiario());
 		objPR.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 		List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
 		listaPR = service.buscarPlanillaRevision(objPR);
+		int cont=0;
 		if(listaPR.size()>0){
-			if(listaPR.get(0).getEstadoRevision()!=null){
-				if(listaPR.get(0).getEstadoRevision().getIdEstadoRevision()!=null && 
-						listaPR.get(0).getEstadoRevision().getIdEstadoRevision().intValue()>0){
-					nivelPeligroId= listaPR.get(0).getEstadoRevision().getIdEstadoRevision();
-				}
-				if(listaPR.get(0).getEstadoRevision().getDescripcionEstadoRevision()!=null &&
-						listaPR.get(0).getEstadoRevision().getDescripcionEstadoRevision().length()>0){
-					nivelPeligro = listaPR.get(0).getEstadoRevision().getDescripcionEstadoRevision();
+			for (int i = 0; i < listaPR.size(); i++) {
+				if(listaPR.get(i).getEstadoRevision().getDescripcionEstadoRevision().equals("Peligro")){
+					cont++;
 				}
 			}
+		if(cont>0){
+			nivelPeligro="Peligro";
+			EstadoRevision objBuscarER= new EstadoRevision();
+			objBuscarER.setDescripcionEstadoRevision(nivelPeligro);
+			List<EstadoRevision> listaBuscarER= new ArrayList<EstadoRevision>();
+			listaBuscarER=service.buscarEstadoRevision(objBuscarER);
+			if(listaBuscarER.size()>0){
+				nivelPeligroId= listaBuscarER.get(0).getIdEstadoRevision();
+			}
+			
+			
+		}else{
+			nivelPeligro="Normal";
+			EstadoRevision objBuscarER= new EstadoRevision();
+			objBuscarER.setDescripcionEstadoRevision(nivelPeligro);
+			List<EstadoRevision> listaBuscarER= new ArrayList<EstadoRevision>();
+			listaBuscarER=service.buscarEstadoRevision(objBuscarER);
+			if(listaBuscarER.size()>0){
+				nivelPeligroId= listaBuscarER.get(0).getIdEstadoRevision();
+			}
+		}
+
 		}else{
 			nivelPeligroId=0;
 			nivelPeligro="No precisa";
@@ -893,15 +896,91 @@ public class MBUsuarioApiario implements Serializable{
 			listaERET= new ArrayList<EstadoRevisionEquipamientoTrabajo>();
 			mostrarEquipoSeguridad=false;
 		}
+	}
+	public void abrirModificarUsuarioApiario(int id) throws Exception{
+		
+
+		System.out.println("abrirModificarUsuarioApiario");
+		System.out.println("id "+id);
+		UsuarioApiario objUA = new UsuarioApiario();
+		objUA= service.obtenerPorIdUsuarioApiario(id);
+		usuarioApiario =objUA;
+		PlanillaSeguimiento objPS = new PlanillaSeguimiento();
+		objPS.setEstado(1);
+		objPS.setApiario(new Apiario());
+		objPS.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		List<PlanillaSeguimiento> listaPS = new ArrayList<PlanillaSeguimiento>();
+		listaPS=service.buscarPlanillaSeguimiento(objPS);
+		System.out.println("listaPS.size() "+listaPS.size());
+		ubicacionApiario=listaPS.get(0).getZona().getUbigeo().getDistrito();
+		obtenerNivelPeligroEquipoTrabajo();
+//		PlanillaRevision objPR = new PlanillaRevision();
+//		objPR.setUsuarioApiario(new UsuarioApiario());
+//		objPR.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+//		List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
+//		listaPR = service.buscarPlanillaRevision(objPR);
+//		int cont=0;
+//		if(listaPR.size()>0){
+//			for (int i = 0; i < listaPR.size(); i++) {
+//				if(listaPR.get(i).getEstadoRevision().getDescripcionEstadoRevision().equals("Peligro")){
+//					cont++;
+//				}
+//			}
+//		if(cont>0){
+//			nivelPeligro="Peligro";
+//			EstadoRevision objBuscarER= new EstadoRevision();
+//			objBuscarER.setDescripcionEstadoRevision(nivelPeligro);
+//			List<EstadoRevision> listaBuscarER= new ArrayList<EstadoRevision>();
+//			listaBuscarER=service.buscarEstadoRevision(objBuscarER);
+//			if(listaBuscarER.size()>0){
+//				nivelPeligroId= listaBuscarER.get(0).getIdEstadoRevision();
+//			}
+//			
+//			
+//		}else{
+//			nivelPeligro="Normal";
+//			EstadoRevision objBuscarER= new EstadoRevision();
+//			objBuscarER.setDescripcionEstadoRevision(nivelPeligro);
+//			List<EstadoRevision> listaBuscarER= new ArrayList<EstadoRevision>();
+//			listaBuscarER=service.buscarEstadoRevision(objBuscarER);
+//			if(listaBuscarER.size()>0){
+//				nivelPeligroId= listaBuscarER.get(0).getIdEstadoRevision();
+//			}
+//		}
+//
+//		}else{
+//			nivelPeligroId=0;
+//			nivelPeligro="No precisa";
+//		}
+//	
+//		
+//		
+//		
+//		if(nivelPeligroId!=0){
+//			EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
+//			objERET.setEstadoRevision(new EstadoRevision());
+//			objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
+//			
+//			listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
+//			mostrarEquipoSeguridad=true;
+//		}else{
+//			System.out.println("no se esta mostrnado el listado -.-!");
+//			listaERET= new ArrayList<EstadoRevisionEquipamientoTrabajo>();
+//			mostrarEquipoSeguridad=false;
+//		}
 
 
 		///////////////////
 		List<NormaSeguridad> fuente= new ArrayList<NormaSeguridad>();
-		fuente=service.listarTodosNormaSeguridades();
+		NormaSeguridad objFuenteNS = new NormaSeguridad();
+		objFuenteNS.setActivo(true);
+		fuente=service.buscarNormaSeguridad(objFuenteNS);
 		List<NormaSeguridad> destino= new ArrayList<NormaSeguridad>();
 		//para sacar el tamaño de la lista
 		List<NormaSeguridad> listaTamaño= new ArrayList<NormaSeguridad>();
-		listaTamaño=service.listarTodosNormaSeguridades();
+		NormaSeguridad objTamaño = new NormaSeguridad();
+		objTamaño.setActivo(true);
+		listaTamaño=service.buscarNormaSeguridad(objTamaño);
 		//para sacar el tamaño de la lista
 		NormaSeguridad objEstadoT= new NormaSeguridad();
 		
@@ -1045,7 +1124,7 @@ public class MBUsuarioApiario implements Serializable{
 			obj.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
 			List<PlanillaRevisionTipoAlimentacion> lista = new ArrayList<PlanillaRevisionTipoAlimentacion>();
 			lista = service.buscarPlanillaRevisionTipoAlimentacion(obj);
-			muestraTipoAlimentacion=lista.get(0).getIdPlanillaRevisionTipoAlimentacion();
+			muestraTipoAlimentacion=lista.get(0).getTipoAlimentacion().getIdTipoAlimentacion();
 
 		}else{
 			System.out.println("else");
@@ -1060,7 +1139,7 @@ public class MBUsuarioApiario implements Serializable{
 			obj.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
 			List<PlanillaRevisionTipoEnfermedad> lista = new ArrayList<PlanillaRevisionTipoEnfermedad>();
 			lista = service.buscarPlanillaRevisionTipoEnfermedad(obj);
-			muestraTipoEnfermedad=lista.get(0).getIdPlanillaRevisionTipoEnfermedad();
+			muestraTipoEnfermedad=lista.get(0).getTipoEnfermedad().getIdTipoEnfermedad();
 			
 		}else{
 			System.out.println("else");
@@ -1076,6 +1155,7 @@ public class MBUsuarioApiario implements Serializable{
 		objC.setApiario(new Apiario());
 		objC.getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
 		listaColmenas = service.buscarColmena(objC);
+		muestraEstadoCosecha="no cosechable";
 		System.out.println("id planilla revision al abrir registrar"+planillaRevision.getIdPlanillaRevision());
 
 	}
@@ -1321,36 +1401,100 @@ public class MBUsuarioApiario implements Serializable{
 					confirm=service.guardarPlanillaRevision(planillaRevision);
 					List<Integer> listaIdPlanillaRevision= new ArrayList<Integer>();
 					listaIdPlanillaRevision = service.obtenerMaximoIdPlanillaRevision();
-					if(muestraTipoAlimentacion.intValue()>0){
-						System.out.println("grabando PlanillaRevisionTipoAlimentacion");
-						PlanillaRevisionTipoAlimentacion objPRTA= new PlanillaRevisionTipoAlimentacion();
-						objPRTA.setPlanillaRevision(new PlanillaRevision());
-						objPRTA.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
-						objPRTA.setTipoAlimentacion(new TipoAlimentacion());
-						objPRTA.getTipoAlimentacion().setIdTipoAlimentacion(muestraTipoAlimentacion);
-						
-						PlanillaRevisionTipoAlimentacion confirmPRTA= null;
-						confirmPRTA=service.guardarPlanillaRevisionTipoAlimentacion(objPRTA);
-						if(confirmPRTA.isSuccess()){
-							System.out.println("grabo PRTA");
-						}else{
-							System.out.println("error PRTA");
+					if(planillaRevision.getNecesidadAlimentacion()){
+						if(muestraTipoAlimentacion.intValue()>0){
+							
+							PlanillaRevisionTipoAlimentacion objBuscaIdPRTA= new PlanillaRevisionTipoAlimentacion();
+							objBuscaIdPRTA.setPlanillaRevision(new PlanillaRevision());
+							objBuscaIdPRTA.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+							List<PlanillaRevisionTipoAlimentacion> listaBuscaIdPRTA= new ArrayList<PlanillaRevisionTipoAlimentacion>();
+							listaBuscaIdPRTA=service.buscarPlanillaRevisionTipoAlimentacion(objBuscaIdPRTA);
+							
+							
+							System.out.println("grabando PlanillaRevisionTipoAlimentacion");
+							PlanillaRevisionTipoAlimentacion objPRTA= new PlanillaRevisionTipoAlimentacion();
+							objPRTA.setPlanillaRevision(new PlanillaRevision());
+							objPRTA.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+							objPRTA.setTipoAlimentacion(new TipoAlimentacion());
+							objPRTA.getTipoAlimentacion().setIdTipoAlimentacion(muestraTipoAlimentacion);
+							if(listaBuscaIdPRTA.size()>0){
+								objPRTA.setIdPlanillaRevisionTipoAlimentacion(listaBuscaIdPRTA.get(0).getIdPlanillaRevisionTipoAlimentacion());
+							}
+							PlanillaRevisionTipoAlimentacion confirmPRTA= null;
+							confirmPRTA=service.guardarPlanillaRevisionTipoAlimentacion(objPRTA);
+							if(confirmPRTA.isSuccess()){
+								System.out.println("grabo PRTA");
+							}else{
+								System.out.println("error PRTA");
+							}
+						}
+					}else{
+						PlanillaRevisionTipoAlimentacion objBuscarPRTA= new PlanillaRevisionTipoAlimentacion();
+						objBuscarPRTA.setPlanillaRevision(new PlanillaRevision());
+						objBuscarPRTA.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+						List<PlanillaRevisionTipoAlimentacion> listaBuscarPRTA= new ArrayList<PlanillaRevisionTipoAlimentacion>();
+						listaBuscarPRTA= service.buscarPlanillaRevisionTipoAlimentacion(objBuscarPRTA);
+						if(listaBuscarPRTA.size()>0){
+							PlanillaRevisionTipoAlimentacion confirmacion= null;
+							PlanillaRevisionTipoAlimentacion eliminar=new PlanillaRevisionTipoAlimentacion();
+							List<Integer> listaIds= new ArrayList<Integer>();
+							for (int i = 0; i < listaBuscarPRTA.size(); i++) {
+								listaIds.add(listaBuscarPRTA.get(i).getIdPlanillaRevisionTipoAlimentacion());
+							}
+							eliminar.setListaEliminar(listaIds);
+							confirmacion=service.eliminarPlanillaRevisionTipoAlimentacion(eliminar);
+							if(confirmacion.isSuccess()){
+								System.out.println("elimino correctamente PRTA");
+							}else{
+								System.out.println("error al eliminar PRTA");
+							}
 						}
 					}
-					if(muestraTipoEnfermedad.intValue()>0){
-						System.out.println("grabando PlanillaRevisionTipoEnfermedad");
-						PlanillaRevisionTipoEnfermedad objPRTE= new PlanillaRevisionTipoEnfermedad();
-						objPRTE.setPlanillaRevision(new PlanillaRevision());
-						objPRTE.setTipoEnfermedad(new TipoEnfermedad());
-						objPRTE.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
-						objPRTE.getTipoEnfermedad().setIdTipoEnfermedad(muestraTipoEnfermedad);
-						
-						PlanillaRevisionTipoEnfermedad confirmPRTE= null;
-						confirmPRTE=service.guardarPlanillaRevisionTipoEnfermedad(objPRTE);
-						if(confirmPRTE.isSuccess()){
-							System.out.println("grabo PRTE");
-						}else{
-							System.out.println("error PRTE");
+					if(planillaRevision.getNecesidadCuracion()){
+						if(muestraTipoEnfermedad.intValue()>0){
+							PlanillaRevisionTipoEnfermedad objBuscaIdPRTE= new PlanillaRevisionTipoEnfermedad();
+							objBuscaIdPRTE.setPlanillaRevision(new PlanillaRevision());
+							objBuscaIdPRTE.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+							List<PlanillaRevisionTipoEnfermedad> listaBuscaIdPRTE= new ArrayList<PlanillaRevisionTipoEnfermedad>();
+							listaBuscaIdPRTE=service.buscarPlanillaRevisionTipoEnfermedad(objBuscaIdPRTE);
+								
+							System.out.println("grabando PlanillaRevisionTipoEnfermedad");
+							PlanillaRevisionTipoEnfermedad objPRTE= new PlanillaRevisionTipoEnfermedad();
+							objPRTE.setPlanillaRevision(new PlanillaRevision());
+							objPRTE.setTipoEnfermedad(new TipoEnfermedad());
+							objPRTE.getPlanillaRevision().setIdPlanillaRevision(listaIdPlanillaRevision.get(0));
+							objPRTE.getTipoEnfermedad().setIdTipoEnfermedad(muestraTipoEnfermedad);
+							if(listaBuscaIdPRTE.size()>0){
+								objPRTE.setIdPlanillaRevisionTipoEnfermedad(listaBuscaIdPRTE.get(0).getIdPlanillaRevisionTipoEnfermedad());
+							}
+							PlanillaRevisionTipoEnfermedad confirmPRTE= null;
+							confirmPRTE=service.guardarPlanillaRevisionTipoEnfermedad(objPRTE);
+							if(confirmPRTE.isSuccess()){
+								System.out.println("grabo PRTE");
+							}else{
+								System.out.println("error PRTE");
+							}
+						}
+					}else{
+						PlanillaRevisionTipoEnfermedad objBuscarPRTE= new PlanillaRevisionTipoEnfermedad();
+						objBuscarPRTE.setPlanillaRevision(new PlanillaRevision());
+						objBuscarPRTE.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+						List<PlanillaRevisionTipoEnfermedad> listaBuscarPRTE= new ArrayList<PlanillaRevisionTipoEnfermedad>();
+						listaBuscarPRTE= service.buscarPlanillaRevisionTipoEnfermedad(objBuscarPRTE);
+						if(listaBuscarPRTE.size()>0){
+							PlanillaRevisionTipoEnfermedad confirmacion= null;
+							PlanillaRevisionTipoEnfermedad eliminar=new PlanillaRevisionTipoEnfermedad();
+							List<Integer> listaIds= new ArrayList<Integer>();
+							for (int i = 0; i < listaBuscarPRTE.size(); i++) {
+								listaIds.add(listaBuscarPRTE.get(i).getIdPlanillaRevisionTipoEnfermedad());
+							}
+							eliminar.setListaEliminar(listaIds);
+							confirmacion=service.eliminarPlanillaRevisionTipoEnfermedad(eliminar);
+							if(confirmacion.isSuccess()){
+								System.out.println("elimino correctamente PRTE");
+							}else{
+								System.out.println("error al eliminar PRTE");
+							}
 						}
 					}
 					if(confirm.isSuccess()){
@@ -1362,7 +1506,9 @@ public class MBUsuarioApiario implements Serializable{
 					}
 				}	
 			}
+			obtenerNivelPeligroEquipoTrabajo();
 			validarTerminoAsignacion();
+			listarTodosPlanillaRevision();
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();
@@ -1648,6 +1794,47 @@ public class MBUsuarioApiario implements Serializable{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona al menos uno")); 
 		}
 	}
+	public void validarCambioEstadoCosechaColmena() throws Exception{
+		System.out.println("validarCambioEstadoCosechaColmena");
+		PlanillaRevisionAlza objBusquedaPRA= new PlanillaRevisionAlza();
+		objBusquedaPRA.setPlanillaRevision(new PlanillaRevision());
+		objBusquedaPRA.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+		List<PlanillaRevisionAlza> listaBusquedaPRA= new ArrayList<PlanillaRevisionAlza>();
+		listaBusquedaPRA=service.buscarPlanillaRevisionAlza(objBusquedaPRA);
+		int cont=0;
+		if(listaBusquedaPRA.size()>0){
+			for (int i = 0; i < listaBusquedaPRA.size(); i++) {
+				if(listaBusquedaPRA.get(i).getPorcentajeMiel().intValue()>=75){
+					cont++;
+				}
+			}
+			if(cont>0){
+				System.out.println("cont>0");
+				PlanillaRevision objObtenerPR= new PlanillaRevision();
+				PlanillaRevision confirm= new PlanillaRevision();
+				objObtenerPR= service.obtenerPorIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+				objObtenerPR.setEstadoCosecha("cosechable");
+				confirm=service.guardarPlanillaRevision(objObtenerPR);
+				if(confirm.isSuccess()){
+					System.out.println("se modifico el estado de cosecha");
+				}else{
+					System.out.println("error en modificacion de estado de cosecha");
+				}
+			}else{
+				System.out.println("else");
+				PlanillaRevision objElse= new PlanillaRevision();
+				PlanillaRevision confirmElse= new PlanillaRevision();
+				objElse= service.obtenerPorIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+				objElse.setEstadoCosecha("no cosechable");
+				confirmElse=service.guardarPlanillaRevision(objElse);
+				if(confirmElse.isSuccess()){
+					System.out.println("se modifico el estado de cosecha");
+				}else{
+					System.out.println("error en modificacion de estado de cosecha");
+				}
+			}
+		}
+	}
 	public void guardarPlanillaRevisionAlza(){
 		System.out.println("guardarPlanillaRevisionAlza");
 		PlanillaRevisionAlza confirm=null;
@@ -1741,6 +1928,7 @@ public class MBUsuarioApiario implements Serializable{
 				}
 			}
 			validarTerminoAsignacion();
+			validarCambioEstadoCosechaColmena();
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();
@@ -1818,7 +2006,10 @@ public class MBUsuarioApiario implements Serializable{
 		
 		//este registrado el control de calidad
 		List<NormaSeguridad> listaGeneralNS = new ArrayList<NormaSeguridad>();
-		listaGeneralNS=service.listarTodosNormaSeguridades();
+		
+		NormaSeguridad objGeneralNS= new NormaSeguridad();
+		objGeneralNS.setActivo(true);
+		listaGeneralNS=service.buscarNormaSeguridad(objGeneralNS);
 		
 		List<NormaSeguridadUsuarioApiario> listaBusquedaNSUA = new ArrayList<NormaSeguridadUsuarioApiario>();
 		NormaSeguridadUsuarioApiario objBusquedaNSUA = new NormaSeguridadUsuarioApiario();
