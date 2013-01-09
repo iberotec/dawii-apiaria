@@ -21,11 +21,7 @@ public class MBApiario implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public String abrirUbicacionApiario(){
-		System.out.println("entrando a ubicacion apiario");
 
-		return "successUbicacion";
-	}
 	
 	public String abrirMainCosecha(){
 		System.out.println("Entrando a cosecha");

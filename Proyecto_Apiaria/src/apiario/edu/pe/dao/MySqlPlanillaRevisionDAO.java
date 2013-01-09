@@ -15,6 +15,7 @@ import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.UsuarioApiario;
 @SuppressWarnings(value={"unchecked"})
 public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
@@ -104,11 +105,12 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 		Root<PlanillaRevision> planillarevisionRoot=criteria.from(PlanillaRevision.class);
 		Join<PlanillaRevision,UsuarioApiario> usuarioApiarioRoot = planillarevisionRoot.join( "usuarioApiario" );
 		Join<UsuarioApiario,Apiario> apiarioRoot = usuarioApiarioRoot.join( "apiario" );
+		Join<UsuarioApiario,Temporada> temporadaRoot = usuarioApiarioRoot.join( "temporada" );
 		criteria.select(planillarevisionRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
-			if(instance.getIdPlanillaRevision()!=null && instance.getIdPlanillaRevision()>0){
+			if(instance.getIdPlanillaRevision()!=null && instance.getIdPlanillaRevision().intValue()>0){
 				Predicate condition=builder.equal(planillarevisionRoot.get("idPlanillaRevision"),instance.getIdPlanillaRevision());
 				p.add(condition);
 			}
@@ -119,8 +121,22 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 				}
 				
 				if(instance.getUsuarioApiario().getApiario()!=null){
-					if(instance.getUsuarioApiario().getApiario().getIdApiario()!=null && instance.getUsuarioApiario().getApiario().getIdApiario()>0){
+					if(instance.getUsuarioApiario().getApiario().getIdApiario()!=null && instance.getUsuarioApiario().getApiario().getIdApiario().intValue()>0){
 						Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getUsuarioApiario().getApiario().getIdApiario());
+						p.add(condition);
+					}
+				}
+				if(instance.getUsuarioApiario().getTemporada()!=null){
+					if(instance.getUsuarioApiario().getTemporada().getIdTemporada()!=null && instance.getUsuarioApiario().getTemporada().getIdTemporada().intValue()>0){
+						Predicate condition=builder.equal(temporadaRoot.get("idTemporada"),instance.getUsuarioApiario().getTemporada().getIdTemporada());
+						p.add(condition);
+					}
+					if(instance.getUsuarioApiario().getTemporada().getOrdenTemporada()!=null && instance.getUsuarioApiario().getTemporada().getOrdenTemporada().intValue()>0){
+						Predicate condition=builder.equal(temporadaRoot.get("ordenTemporada"),instance.getUsuarioApiario().getTemporada().getOrdenTemporada());
+						p.add(condition);
+					}
+					if(instance.getUsuarioApiario().getTemporada().getEtapaTemporada()!=null && instance.getUsuarioApiario().getTemporada().getEtapaTemporada().length()>0){
+						Predicate condition=builder.like(temporadaRoot.<String>get("etapaTemporada"), "%"+instance.getUsuarioApiario().getTemporada().getEtapaTemporada()+"%");
 						p.add(condition);
 					}
 				}
