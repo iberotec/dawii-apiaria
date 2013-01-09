@@ -30,9 +30,9 @@ public class MBCosecha implements Serializable{
 		listarCentrifugadoras();
 	}
 	public void listarCentrifugadoras() throws Exception{
-//		listaCentrifugadora=sevice.listarTodosCentrifugadoras();
+		listaCentrifugadora=sevice.listarTodosCentrifugadoras();
 //		listaPlanillaCosecha=sevice.listarTodosPlanillaCosechas();
-		listaDetalleCentrifugadoraPlanillaCosecha=sevice.listarTodosDetalleCentrifugadoraPlanillaCosechas();
+//		listaDetalleCentrifugadoraPlanillaCosecha=sevice.listarTodosDetalleCentrifugadoraPlanillaCosechas();
 	}
 	public void listarAlza() throws Exception{
 		listaAlzas=sevice.listarTodosAlzas();
