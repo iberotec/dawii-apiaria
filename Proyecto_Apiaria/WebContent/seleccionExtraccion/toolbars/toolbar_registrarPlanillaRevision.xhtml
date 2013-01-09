@@ -9,7 +9,7 @@
 
  <p:toolbar>  
     <p:toolbarGroup align="left">  
-        <p:commandButton  value="Guardar Seleccion" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarPlanillaRevision}" update=":fNuevaAsignacion"/>  
+        <p:commandButton  value="Guardar Seleccion" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarPlanillaRevision}" oncomplete="prDialog.hide()" update=":fNuevaAsignacion"/>  
     </p:toolbarGroup>  
     </p:toolbar>
 

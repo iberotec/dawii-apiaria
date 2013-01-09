@@ -10,7 +10,7 @@
 
 
  			<p:dialog id="dialogAlza" header="Revision de Alzas" widgetVar="alzaDialog" resizable="false"  
-              height="400" width="500" showEffect="clip" hideEffect="fold">
+              height="400" width="500" showEffect="clip" hideEffect="fold" modal="true">
 <h:form id="fPrAlza">
              <ui:include src="/seleccionExtraccion/toolbars/toolbar_registrarPlanillaRevisionAlza.xhtml"></ui:include>
 		    <p:messages id="mensajePRAlza" closable="true" showDetail="true" autoUpdate="true"></p:messages>
@@ -59,10 +59,10 @@
 					</p:row>
 					<p:row>
 					<p:column>
-					<h:outputText value="Estado" />
+					<h:outputText value="Estado" rendered="#{mBUsuarioApiario.muestraCajaIdAlza}"/>
 					</p:column>
 					<p:column>
-					<p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoAlza}">
+					<p:selectOneMenu value="#{mBUsuarioApiario.muestraEstadoAlza}" rendered="#{mBUsuarioApiario.muestraCajaIdAlza}" disabled="true">
 						<f:selectItems value="#{mBSelectItems.cboEstadoAlza}" ></f:selectItems>
 					</p:selectOneMenu>
 					</p:column>
