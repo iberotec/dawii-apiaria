@@ -844,9 +844,15 @@ public class MBUsuarioApiario implements Serializable{
 	public void obtenerNivelPeligroEquipoTrabajo() throws Exception{
 		PlanillaRevision objPR = new PlanillaRevision();
 		objPR.setUsuarioApiario(new UsuarioApiario());
-		objPR.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+//		objPR.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
+		objPR.getUsuarioApiario().setApiario(new Apiario());
+		objPR.getUsuarioApiario().getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
+		objPR.getUsuarioApiario().setTemporada(new Temporada());
+		objPR.getUsuarioApiario().getTemporada().setOrdenTemporada(usuarioApiario.getTemporada().getOrdenTemporada().intValue()-1);
+		objPR.getUsuarioApiario().getTemporada().setEtapaTemporada(usuarioApiario.getTemporada().getEtapaTemporada());
 		List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
 		listaPR = service.buscarPlanillaRevision(objPR);
+		System.out.println("listaPR.size() "+listaPR.size());
 		int cont=0;
 		if(listaPR.size()>0){
 			for (int i = 0; i < listaPR.size(); i++) {

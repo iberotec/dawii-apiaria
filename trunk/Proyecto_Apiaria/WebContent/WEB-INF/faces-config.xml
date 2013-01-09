@@ -61,11 +61,6 @@
   <managed-bean-scope>session</managed-bean-scope>
 </managed-bean>
 <managed-bean>
-  <managed-bean-name>mBExtraccion</managed-bean-name>
-  <managed-bean-class>apiario.edu.pe.managedBeans.MBExtraccion</managed-bean-class>
-  <managed-bean-scope>session</managed-bean-scope>
-</managed-bean> 
-<managed-bean>
   <managed-bean-name>mBCosecha</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.managedBeans.MBCosecha</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
@@ -90,10 +85,6 @@
    <to-view-id>/UI_login.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>successUbicacion</from-outcome>
-   <to-view-id>/extraccion/mainExtraccion.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
    <from-outcome>successNuevaAsignacion</from-outcome>
    <to-view-id>/seleccion/UI_registrarUsuarioApiario.xhtml</to-view-id>
   </navigation-case>
@@ -113,14 +104,7 @@
    <from-outcome>successNuevaAsignacionCosechaa</from-outcome>
    <to-view-id>/cosecha/nuevaCosecha/nuevaAsignacion.xhtml</to-view-id>
   </navigation-case>
-  <navigation-case>
-   <from-outcome>successMainExtraccion</from-outcome>
-   <to-view-id>/extraccion/nuevaExtraccion/mainExtraccion.xhtml</to-view-id>
-  </navigation-case>
-  <navigation-case>
-   <from-outcome>successNuevaAsignacionExtraccion</from-outcome>
-   <to-view-id>/extraccion/nuevaExtraccion/nuevaExtraccion.xhtml</to-view-id>
-  </navigation-case>
+
   
   <navigation-case>
    <from-outcome>successMantenimientoApiario</from-outcome>
