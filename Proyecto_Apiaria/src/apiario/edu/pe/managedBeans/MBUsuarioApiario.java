@@ -1783,6 +1783,8 @@ public class MBUsuarioApiario implements Serializable{
 			
 			if(confirm.isSuccess()){
 				validarTerminoAsignacion();
+				validarCambioEstadoCosechaColmena();
+				listarTodosPlanillaRevision();
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se elimino el registro satisfactoriamente"));  
 				System.out.println("elimino");
 			}else{
@@ -1817,6 +1819,7 @@ public class MBUsuarioApiario implements Serializable{
 				confirm=service.guardarPlanillaRevision(objObtenerPR);
 				if(confirm.isSuccess()){
 					System.out.println("se modifico el estado de cosecha");
+					muestraEstadoCosecha="cosechable";
 				}else{
 					System.out.println("error en modificacion de estado de cosecha");
 				}
@@ -1829,6 +1832,7 @@ public class MBUsuarioApiario implements Serializable{
 				confirmElse=service.guardarPlanillaRevision(objElse);
 				if(confirmElse.isSuccess()){
 					System.out.println("se modifico el estado de cosecha");
+					muestraEstadoCosecha="no cosechable";
 				}else{
 					System.out.println("error en modificacion de estado de cosecha");
 				}
@@ -1929,6 +1933,8 @@ public class MBUsuarioApiario implements Serializable{
 			}
 			validarTerminoAsignacion();
 			validarCambioEstadoCosechaColmena();
+			listarTodosPlanillaRevisionAlza();
+			listarTodosPlanillaRevision();
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL,"Error", "Fatal"));
 			e.printStackTrace();

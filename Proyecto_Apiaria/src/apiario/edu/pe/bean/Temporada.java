@@ -28,6 +28,9 @@ public class Temporada extends BaseEntidades implements Serializable {
 	@Column(name="estado_temporada")
 	private Boolean estadoTemporada;
 	
+	@Column(name="orden_temporada")
+	private Integer ordenTemporada;
+	
     @Temporal( TemporalType.DATE)
 	@Column(name="periodo_final")
 	private Date periodoFinal;
@@ -79,6 +82,14 @@ public class Temporada extends BaseEntidades implements Serializable {
 
 	public void setEstadoTemporada(Boolean estadoTemporada) {
 		this.estadoTemporada = estadoTemporada;
+	}
+
+	public Integer getOrdenTemporada() {
+		return ordenTemporada;
+	}
+
+	public void setOrdenTemporada(Integer ordenTemporada) {
+		this.ordenTemporada = ordenTemporada;
 	}
 
 
