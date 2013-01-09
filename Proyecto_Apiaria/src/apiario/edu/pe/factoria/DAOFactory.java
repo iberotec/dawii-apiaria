@@ -5,6 +5,7 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
+import apiario.edu.pe.dao.IDecantadoraDAO;
 import apiario.edu.pe.dao.IDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
@@ -52,6 +53,7 @@ public abstract class DAOFactory {
 	public abstract IPlanillaRevisionTipoEnfermedadDAO getPlanillaTipoRevisionEnfermedadDAO();
 	public abstract ITipoAlzaDAO getTipoAlzaDAO();
 	public abstract ICentrifugadoraDAO getCentrifugadoraDAO();
+	public abstract IDecantadoraDAO getDecantadoraDAO();
 	public abstract IPlanillaCosechaDAO getPlanillaCosechaDAO();
 	public abstract IDetalleCentrifugadoraPlanillaCosechaDAO getDetalleCentrifugadoraCosechaDAO();
 	

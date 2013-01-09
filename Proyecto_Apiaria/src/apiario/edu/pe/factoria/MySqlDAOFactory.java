@@ -4,6 +4,7 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
+import apiario.edu.pe.dao.IDecantadoraDAO;
 import apiario.edu.pe.dao.IDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
@@ -26,6 +27,7 @@ import apiario.edu.pe.dao.IUsuarioApiarioDAO;
 import apiario.edu.pe.dao.MySqlAlzaDAO;
 import apiario.edu.pe.dao.MySqlCentrifugadoraDAO;
 import apiario.edu.pe.dao.MySqlColmenaDAO;
+import apiario.edu.pe.dao.MySqlDecantadoraDAO;
 import apiario.edu.pe.dao.MySqlDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.MySqlEstadoRevisionDAO;
 import apiario.edu.pe.dao.MySqlDetalleEquipoTrabajoDAO;
@@ -165,6 +167,11 @@ public class MySqlDAOFactory extends DAOFactory{
 	@Override
 	public IDetalleCentrifugadoraPlanillaCosechaDAO getDetalleCentrifugadoraCosechaDAO() {
 		return new MySqlDetalleCentrifugadoraPlanillaCosechaDAO();
+	}
+
+	@Override
+	public IDecantadoraDAO getDecantadoraDAO() {
+		return new MySqlDecantadoraDAO();
 	}
 
 

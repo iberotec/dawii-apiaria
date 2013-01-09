@@ -12,6 +12,7 @@ import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 
 import apiario.edu.pe.bean.Centrifugadora;
+import apiario.edu.pe.bean.Decantadora;
 import apiario.edu.pe.bean.DetalleCentrifugadoraPlanillaCosecha;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
@@ -33,6 +34,7 @@ import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
+import apiario.edu.pe.dao.IDecantadoraDAO;
 import apiario.edu.pe.dao.IDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
@@ -61,7 +63,7 @@ IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
 ITemporadaDAO,INormaSeguridadUsuarioApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
 IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IPlanillaCosechaDAO,
-IDetalleCentrifugadoraPlanillaCosechaDAO, Serializable{
+IDetalleCentrifugadoraPlanillaCosechaDAO, IDecantadoraDAO, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -86,6 +88,7 @@ IDetalleCentrifugadoraPlanillaCosechaDAO, Serializable{
 	ICentrifugadoraDAO daoCentrifugadora=objDAOFactory.getCentrifugadoraDAO();
 	IPlanillaCosechaDAO daoPlanillaCosecha=objDAOFactory.getPlanillaCosechaDAO();
 	IDetalleCentrifugadoraPlanillaCosechaDAO daoDetalleCentrifugadoraPlanillaCosechaDAO=objDAOFactory.getDetalleCentrifugadoraCosechaDAO();
+	IDecantadoraDAO daoDecantadoraDAO=objDAOFactory.getDecantadoraDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -773,6 +776,34 @@ IDetalleCentrifugadoraPlanillaCosechaDAO, Serializable{
 	public DetalleCentrifugadoraPlanillaCosecha eliminarDetalleCentrifugadoraPlanillaCosecha(
 			DetalleCentrifugadoraPlanillaCosecha instance) throws Exception {
 		return daoDetalleCentrifugadoraPlanillaCosechaDAO.eliminarDetalleCentrifugadoraPlanillaCosecha(instance);
+	}
+
+	@Override
+	public List<Decantadora> listarTodosDecantadoras() throws Exception {
+		return daoDecantadoraDAO.listarTodosDecantadoras();
+	}
+
+	@Override
+	public Decantadora guardarDecantadora(Decantadora instance)
+			throws Exception {
+		return daoDecantadoraDAO.guardarDecantadora(instance);
+	}
+
+	@Override
+	public List<Decantadora> buscarDecantadora(Decantadora instance)
+			throws Exception {
+		return daoDecantadoraDAO.buscarDecantadora(instance);
+	}
+
+	@Override
+	public Decantadora obtenerPorIdDecantadora(int id) throws Exception {
+		return daoDecantadoraDAO.obtenerPorIdDecantadora(id);
+	}
+
+	@Override
+	public Decantadora eliminarDecantadora(Decantadora instance)
+			throws Exception {
+		return daoDecantadoraDAO.eliminarDecantadora(instance);
 	}
 
 }
