@@ -1664,6 +1664,7 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("obj id colmena "+obj.getPiso().getColmena().getIdColmena());
 		listaAlza = service.buscarAlza(obj);
 		System.out.println("tamaño lista alza "+listaAlza.size());
+		muestraEstadoAlza="en colmena";
 		
 	}
 	public boolean validarPlanillaRevisionAlzaUnica(PlanillaRevisionAlza obj) throws Exception{
@@ -1843,6 +1844,19 @@ public class MBUsuarioApiario implements Serializable{
 					System.out.println("error en modificacion de estado de cosecha");
 				}
 			}
+		}else{
+			System.out.println("else lista=0");
+			PlanillaRevision objElseLista= new PlanillaRevision();
+			PlanillaRevision confirmElseLista= new PlanillaRevision();
+			objElseLista= service.obtenerPorIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
+			objElseLista.setEstadoCosecha("no cosechable");
+			confirmElseLista=service.guardarPlanillaRevision(objElseLista);
+			if(confirmElseLista.isSuccess()){
+				System.out.println("se modifico el estado else lista de cosecha");
+				muestraEstadoCosecha="no cosechable";
+			}else{
+				System.out.println("error en modificacion de estado else lista de cosecha");
+			}
 		}
 	}
 	public void guardarPlanillaRevisionAlza(){
@@ -1892,6 +1906,7 @@ public class MBUsuarioApiario implements Serializable{
 								
 								
 								if(validar){
+									validarEstadoAlzaxPorcentajeMiel(planillaRevisionAlza);
 									confirm=service.guardarPlanillaRevisionAlza(planillaRevisionAlza);
 								}
 								
@@ -1927,6 +1942,7 @@ public class MBUsuarioApiario implements Serializable{
 				
 				
 				if(validar){
+					validarEstadoAlzaxPorcentajeMiel(planillaRevisionAlza);
 					confirm=service.guardarPlanillaRevisionAlza(planillaRevisionAlza);
 					if(confirm.isSuccess()){
 						FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una revision de alza"));  
@@ -2062,6 +2078,16 @@ public class MBUsuarioApiario implements Serializable{
 		}
 		
 	}
-	
+	public void validarEstadoAlzaxPorcentajeMiel(PlanillaRevisionAlza obj){
+		if(obj.getPorcentajeMiel().intValue()>=75){
+			System.out.println("entro al else de cambio de estado alza");
+			obj.setEstadoAlza("extraido");
+			muestraEstadoAlza="extraido";
+			System.out.println("planillaRevisionAlza.getEstadoAlza() "+obj.getEstadoAlza());
+		}else{
+			obj.setEstadoAlza("en colmena");
+			muestraEstadoAlza="en colmena";
+		}
+	}
 	
 }
