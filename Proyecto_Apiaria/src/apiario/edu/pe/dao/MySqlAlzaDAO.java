@@ -114,13 +114,13 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 	@Override
 	public Alza obtenerPorIdAlza(int id) throws Exception {
 		try {
+			Open();
 			Alza instance=em.find(Alza.class, id);
 			return instance;
 		} catch (RuntimeException e) {
 			throw e;
 		} finally{
-			emf.close();
-			em.close();
+			Close();
 		}
 	}
 

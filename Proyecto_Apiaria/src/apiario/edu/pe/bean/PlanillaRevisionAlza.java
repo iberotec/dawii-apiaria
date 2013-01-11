@@ -19,9 +19,6 @@ public class PlanillaRevisionAlza extends BaseEntidades implements Serializable 
 	@Column(name="id_planilla_revision_alza")
 	private Integer idPlanillaRevisionAlza;
 
-	@Column(name="estado_alza")
-	private String estadoAlza;
-
 	@Column(name="estado_deterioro_alza")
 	private Boolean estadoDeterioroAlza;
 
@@ -47,14 +44,6 @@ public class PlanillaRevisionAlza extends BaseEntidades implements Serializable 
 
 	public void setIdPlanillaRevisionAlza(Integer idPlanillaRevisionAlza) {
 		this.idPlanillaRevisionAlza = idPlanillaRevisionAlza;
-	}
-
-	public String getEstadoAlza() {
-		return this.estadoAlza;
-	}
-
-	public void setEstadoAlza(String estadoAlza) {
-		this.estadoAlza = estadoAlza;
 	}
 
 	public Boolean getEstadoDeterioroAlza() {
