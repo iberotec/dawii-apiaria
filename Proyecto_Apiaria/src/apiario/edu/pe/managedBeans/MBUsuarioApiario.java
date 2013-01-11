@@ -831,11 +831,19 @@ public class MBUsuarioApiario implements Serializable{
 				if(listaIdUsuarioApiario.size()>0){
 					for (int i = 0; i < listaIdUsuarioApiario.size(); i++) {
 						System.out.println("id?? "+listaIdUsuarioApiario.get(i));
-						usuarioApiario.setIdUsuarioApiario(listaIdUsuarioApiario.get(i));
+						usuarioApiario=service.obtenerPorIdUsuarioApiario(listaIdUsuarioApiario.get(i));
+//						usuarioApiario.setIdUsuarioApiario(listaIdUsuarioApiario.get(i));
 					}
 				}
 				System.out.println("usarioApiario id "+usuarioApiario.getIdUsuarioApiario());
 				if(confirm.isSuccess()){
+					
+					List<NormaSeguridad> fuente= new ArrayList<NormaSeguridad>();
+					NormaSeguridad objFuenteNS = new NormaSeguridad();
+					objFuenteNS.setActivo(true);
+					fuente=service.buscarNormaSeguridad(objFuenteNS);
+					List<NormaSeguridad> destino= new ArrayList<NormaSeguridad>();
+					listaNS = new DualListModel<NormaSeguridad>(fuente, destino);
 					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro una nueva asignacion"));  
 					System.out.println("grabo");
 				}else{
