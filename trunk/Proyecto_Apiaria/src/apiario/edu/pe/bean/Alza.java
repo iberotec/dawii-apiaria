@@ -20,7 +20,10 @@ public class Alza extends BaseEntidades implements Serializable {
 	@Id
 	@Column(name="id_alza")
 	private Integer idAlza;
-
+	
+	@Column(name="estado_alza")
+	private String estadoAlza;
+	
 	//bi-directional many-to-one association to Piso
     @ManyToOne
 	@JoinColumn(name="id_piso")
@@ -68,6 +71,14 @@ public class Alza extends BaseEntidades implements Serializable {
 
 	public void setPlanillaRevisionAlzas(Set<PlanillaRevisionAlza> planillaRevisionAlzas) {
 		this.planillaRevisionAlzas = planillaRevisionAlzas;
+	}
+
+	public String getEstadoAlza() {
+		return estadoAlza;
+	}
+
+	public void setEstadoAlza(String estadoAlza) {
+		this.estadoAlza = estadoAlza;
 	}
 	
 }

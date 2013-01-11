@@ -43,6 +43,9 @@ public class PlanillaRevision extends BaseEntidades implements Serializable {
 	@Column(name="necesidad_curacion")
 	private Boolean necesidadCuracion;
 	
+	@Column(name="estado_deterioro_colmena")
+	private Boolean estadoDeterioroColmena;
+	
 	//bi-directional many-to-one association to Colmena
     @ManyToOne
 	@JoinColumn(name="id_colmena")
@@ -195,6 +198,14 @@ public class PlanillaRevision extends BaseEntidades implements Serializable {
 
 	public void setPlanillaRevisionTipoEnfermedads(List<PlanillaRevisionTipoEnfermedad> planillaRevisionTipoEnfermedads) {
 		this.planillaRevisionTipoEnfermedads = planillaRevisionTipoEnfermedads;
+	}
+
+	public Boolean getEstadoDeterioroColmena() {
+		return estadoDeterioroColmena;
+	}
+
+	public void setEstadoDeterioroColmena(Boolean estadoDeterioroColmena) {
+		this.estadoDeterioroColmena = estadoDeterioroColmena;
 	}
 	
 }

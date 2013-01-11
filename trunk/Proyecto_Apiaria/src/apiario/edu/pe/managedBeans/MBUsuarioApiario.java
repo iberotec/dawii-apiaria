@@ -83,13 +83,14 @@ public class MBUsuarioApiario implements Serializable{
 	private List<PlanillaRevisionAlza> listaPlanillaRevisionAlza= new ArrayList<PlanillaRevisionAlza>();
 	private PlanillaRevisionAlza planillaRevisionAlzaSeleccionada;
 	private PlanillaRevisionAlza planillaRevisionAlza;
-	private String muestraEstadoAlza;
+//	private String muestraEstadoAlza;
 	private boolean muestraEstadoDeterioroAlza;
 	private boolean muestraCajaIdAlza;
 	private double muestraPorcentajeMiel;
 	private boolean activaTabAlza;
 	private boolean activaListadoAlza;
 	private Integer muestraIdAlza;
+	private boolean muestraEstadoDeterioroColmena;
 
 
 	public List<EstadoRevisionEquipamientoTrabajo> getListaERET() {
@@ -414,13 +415,13 @@ public class MBUsuarioApiario implements Serializable{
 		this.planillaRevisionAlza = planillaRevisionAlza;
 	}
 	
-	public String getMuestraEstadoAlza() {
-		return muestraEstadoAlza;
-	}
-
-	public void setMuestraEstadoAlza(String muestraEstadoAlza) {
-		this.muestraEstadoAlza = muestraEstadoAlza;
-	}
+//	public String getMuestraEstadoAlza() {
+//		return muestraEstadoAlza;
+//	}
+//
+//	public void setMuestraEstadoAlza(String muestraEstadoAlza) {
+//		this.muestraEstadoAlza = muestraEstadoAlza;
+//	}
 
 	public boolean isMuestraEstadoDeterioroAlza() {
 		return muestraEstadoDeterioroAlza;
@@ -477,6 +478,15 @@ public class MBUsuarioApiario implements Serializable{
 //	public void setMuestraModal(boolean muestraModal) {
 //		this.muestraModal = muestraModal;
 //	}
+
+	public boolean isMuestraEstadoDeterioroColmena() {
+		return muestraEstadoDeterioroColmena;
+	}
+
+	public void setMuestraEstadoDeterioroColmena(
+			boolean muestraEstadoDeterioroColmena) {
+		this.muestraEstadoDeterioroColmena = muestraEstadoDeterioroColmena;
+	}
 
 	public MBUsuarioApiario() {
 
@@ -1072,6 +1082,7 @@ public class MBUsuarioApiario implements Serializable{
 		muestraNecesidadCuracion=false;
 		muestraFaltaEspacioCamara=false;
 		muestraFaltaAlza=false;
+		muestraEstadoDeterioroColmena=false;
 		muestraEstadoCosecha="";
 		muestraComportamiento="";
 		muestraListaColmenas=true;
@@ -1105,6 +1116,8 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("planillaRevision.getNecesidadAlimentacion() "+planillaRevision.getNecesidadAlimentacion());
 		muestraNecesidadAlimentacion=planillaRevision.getNecesidadAlimentacion();
 		System.out.println("muestraNecesidadAlimentacion "+muestraNecesidadAlimentacion);
+		
+		muestraEstadoDeterioroColmena=planillaRevision.getEstadoDeterioroColmena();
 		
 		System.out.println("planillaRevision.getNecesidadCuracion() "+planillaRevision.getNecesidadCuracion());
 		muestraNecesidadCuracion=planillaRevision.getNecesidadCuracion();
@@ -1323,6 +1336,7 @@ public class MBUsuarioApiario implements Serializable{
 								planillaRevision.setNecesidadCuracion(muestraNecesidadCuracion);
 								planillaRevision.setFaltaEspacioCamara(muestraFaltaEspacioCamara);
 								planillaRevision.setFaltaAlza(muestraFaltaAlza);
+								planillaRevision.setEstadoDeterioroColmena(muestraEstadoDeterioroColmena);
 								planillaRevision.setComportamiento(muestraComportamiento);
 								planillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
 								planillaRevision.getEstadoRevision().setIdEstadoRevision(muestraEstadoRevision);
@@ -1394,6 +1408,7 @@ public class MBUsuarioApiario implements Serializable{
 				planillaRevision.setEstadoCosecha(muestraEstadoCosecha);
 				planillaRevision.setFaltaEspacioCamara(muestraFaltaEspacioCamara);
 				planillaRevision.setFaltaAlza(muestraFaltaAlza);
+				planillaRevision.setEstadoDeterioroColmena(muestraEstadoDeterioroColmena);
 				planillaRevision.setComportamiento(muestraComportamiento);
 				planillaRevision.getEstadoRevision().setIdEstadoRevision(muestraEstadoRevision);
 				planillaRevision.getUsuarioApiario().setIdUsuarioApiario(usuarioApiario.getIdUsuarioApiario());
@@ -1621,7 +1636,7 @@ public class MBUsuarioApiario implements Serializable{
 		planillaRevisionAlza.setAlza(new Alza());
 		planillaRevisionAlza.setPlanillaRevision(new PlanillaRevision());
 		listaAlza= new ArrayList<Alza>();
-		muestraEstadoAlza="";
+//		muestraEstadoAlza="";
 		muestraEstadoDeterioroAlza=false;
 		muestraCajaIdAlza=false;
 		muestraPorcentajeMiel=0;
@@ -1647,7 +1662,7 @@ public class MBUsuarioApiario implements Serializable{
 		obj.setIdPlanillaRevisionAlza(id);
 		planillaRevisionAlza=service.obtenerPorIdPlanillaRevisionAlza(obj.getIdPlanillaRevisionAlza());
 		muestraIdAlza=planillaRevisionAlza.getAlza().getIdAlza();
-		muestraEstadoAlza=planillaRevisionAlza.getEstadoAlza();
+//		muestraEstadoAlza=planillaRevisionAlza.getEstadoAlza();
 		muestraEstadoDeterioroAlza=planillaRevisionAlza.getEstadoDeterioroAlza();
 		muestraPorcentajeMiel= planillaRevisionAlza.getPorcentajeMiel();
 		
@@ -1664,7 +1679,7 @@ public class MBUsuarioApiario implements Serializable{
 		System.out.println("obj id colmena "+obj.getPiso().getColmena().getIdColmena());
 		listaAlza = service.buscarAlza(obj);
 		System.out.println("tamaño lista alza "+listaAlza.size());
-		muestraEstadoAlza="en colmena";
+//		muestraEstadoAlza="en colmena";
 		
 	}
 	public boolean validarPlanillaRevisionAlzaUnica(PlanillaRevisionAlza obj) throws Exception{
@@ -1736,13 +1751,13 @@ public class MBUsuarioApiario implements Serializable{
 	public boolean validarCamposVaciosPlanillaRevisionAlza(PlanillaRevisionAlza obj){
 		boolean resultado=true;
 		
-		System.out.println("obj.getEstadoCosecha() "+obj.getEstadoAlza());
-		if(obj.getEstadoAlza()==null || obj.getEstadoAlza().equals("0")){
-				resultado=false;
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona un estado de alza")); 
-		}
-			
-		System.out.println("obj.getEstadoCosecha() "+obj.getEstadoAlza());
+//		System.out.println("obj.getEstadoCosecha() "+obj.getEstadoAlza());
+//		if(obj.getEstadoAlza()==null || obj.getEstadoAlza().equals("0")){
+//				resultado=false;
+//				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Selecciona un estado de alza")); 
+//		}
+//			
+//		System.out.println("obj.getEstadoCosecha() "+obj.getEstadoAlza());
 		if(obj.getPorcentajeMiel()==null || obj.getPorcentajeMiel().intValue()==0){
 				resultado=false;
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atención", "Ingrese el porcentaje de miel")); 
@@ -1785,13 +1800,28 @@ public class MBUsuarioApiario implements Serializable{
 			PlanillaRevisionAlza eliminar=new PlanillaRevisionAlza();
 			eliminar.setListaEliminar(listaIds);
 			
+			PlanillaRevisionAlza obj = new PlanillaRevisionAlza();
+			Alza objAlza= new Alza(); 
+			Alza confirmacion= null;
+			for (int i = 0; i < eliminar.getListaEliminar().size(); i++) {
+				obj=service.obtenerPorIdPlanillaRevisionAlza(eliminar.getListaEliminar().get(i));
+				objAlza=service.obtenerPorIdAlza(obj.getAlza().getIdAlza());
+				objAlza.setEstadoAlza("en colmena");
+				confirmacion=service.guardarAlza(objAlza);
+				if(confirmacion.isSuccess()){
+					System.out.println("se paso el estado de alza a en colmena por eliminacion");
+				}else{
+					System.out.println("error no se paso el estado de alza a en colmena por eliminacion");
+				}
+			}
+			
 			confirm=service.eliminarPlanillaRevisionAlza(eliminar);
 			listarTodosPlanillaRevisionAlza();
 			
 			if(confirm.isSuccess()){
 				validarTerminoAsignacion();
 				validarCambioEstadoCosechaColmena();
-				listarTodosPlanillaRevision();
+				listarTodosPlanillaRevision();	
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se elimino el registro satisfactoriamente"));  
 				System.out.println("elimino");
 			}else{
@@ -1894,7 +1924,7 @@ public class MBUsuarioApiario implements Serializable{
 							if(listaAlza.get(i).isSel()){
 								planillaRevisionAlza.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
 								planillaRevisionAlza.getAlza().setIdAlza(listaAlza.get(i).getIdAlza());
-								planillaRevisionAlza.setEstadoAlza(muestraEstadoAlza);
+//								planillaRevisionAlza.setEstadoAlza(muestraEstadoAlza);
 								planillaRevisionAlza.setEstadoDeterioroAlza(muestraEstadoDeterioroAlza);
 								planillaRevisionAlza.setPorcentajeMiel(muestraPorcentajeMiel);
 								
@@ -1930,7 +1960,7 @@ public class MBUsuarioApiario implements Serializable{
 				System.out.println("modificacion registro planillaRevisionAlza");
 				planillaRevisionAlza.getPlanillaRevision().setIdPlanillaRevision(planillaRevision.getIdPlanillaRevision());
 				planillaRevisionAlza.getAlza().setIdAlza(muestraIdAlza);
-				planillaRevisionAlza.setEstadoAlza(muestraEstadoAlza);
+//				planillaRevisionAlza.setEstadoAlza(muestraEstadoAlza);
 				planillaRevisionAlza.setEstadoDeterioroAlza(muestraEstadoDeterioroAlza);
 				planillaRevisionAlza.setPorcentajeMiel(muestraPorcentajeMiel);
 				
@@ -2078,15 +2108,35 @@ public class MBUsuarioApiario implements Serializable{
 		}
 		
 	}
-	public void validarEstadoAlzaxPorcentajeMiel(PlanillaRevisionAlza obj){
+	public void validarEstadoAlzaxPorcentajeMiel(PlanillaRevisionAlza obj) throws Exception{
 		if(obj.getPorcentajeMiel().intValue()>=75){
 			System.out.println("entro al else de cambio de estado alza");
-			obj.setEstadoAlza("extraido");
-			muestraEstadoAlza="extraido";
-			System.out.println("planillaRevisionAlza.getEstadoAlza() "+obj.getEstadoAlza());
+			Alza objAlza= new Alza();
+			objAlza= service.obtenerPorIdAlza(obj.getAlza().getIdAlza());
+			objAlza.setEstadoAlza("en seleccion");
+			Alza confirm= null;
+			confirm=service.guardarAlza(objAlza);
+			if(confirm.isSuccess()){
+				System.out.println("se modifico alza a en seleccion");
+			}else{
+				System.out.println("error en modificacion");
+			}
+//			obj.setEstadoAlza("extraido");
+//			muestraEstadoAlza="extraido";
+//			System.out.println("planillaRevisionAlza.getEstadoAlza() "+obj.getEstadoAlza());
 		}else{
-			obj.setEstadoAlza("en colmena");
-			muestraEstadoAlza="en colmena";
+			Alza objAlza= new Alza();
+			objAlza= service.obtenerPorIdAlza(obj.getAlza().getIdAlza());
+			objAlza.setEstadoAlza("en colmena");
+			Alza confirm= null;
+			confirm=service.guardarAlza(objAlza);
+			if(confirm.isSuccess()){
+				System.out.println("se modifico alza a en colmena");
+			}else{
+				System.out.println("error en modificacion");
+			}
+//			obj.setEstadoAlza("en colmena");
+//			muestraEstadoAlza="en colmena";
 		}
 	}
 	
