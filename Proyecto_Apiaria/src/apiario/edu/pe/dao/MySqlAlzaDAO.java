@@ -93,6 +93,10 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 				Predicate condition=builder.equal(alzaRoot.get("idalza"),instance.getIdAlza());
 				p.add(condition);
 			}
+			if(instance.getEstadoAlza()!=null && instance.getEstadoAlza().length()>0){
+				Predicate condition=builder.like(alzaRoot.<String>get("estadoAlza"), "%"+instance.getEstadoAlza()+"%");
+				p.add(condition);
+			}
 			if(instance.getPiso()!=null){
 				if(instance.getPiso().getColmena()!=null){
 					if(instance.getPiso().getColmena().getIdColmena()!=null && instance.getPiso().getColmena().getIdColmena().intValue()>0){
