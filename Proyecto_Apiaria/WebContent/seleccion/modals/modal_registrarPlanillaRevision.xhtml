@@ -12,7 +12,7 @@
  			<p:dialog id="dialog" header="PLanilla Revision" modal="true" widgetVar="prDialog" resizable="false"  
               height="600" width="700" showEffect="clip" hideEffect="fold">  
               <h:form id="fPr">
-              <ui:include src="/seleccionExtraccion/toolbars/toolbar_registrarPlanillaRevision.xhtml"></ui:include>
+              <ui:include src="/seleccion/toolbars/toolbar_registrarPlanillaRevision.xhtml"></ui:include>
 
     
      <p:messages id="mensajeConfirm" closable="true" showDetail="true" autoUpdate="true"></p:messages>
@@ -191,7 +191,7 @@
           
            <p:tabView id="tabConteinerAlza" rendered="#{mBUsuarioApiario.activaTabAlza}">
 			<p:tab title="Revision de Alzas">
-			<ui:include src="/seleccionExtraccion/tabs/content_tab_mantenimientoPlanillaRevisionAlza.xhtml" />				
+			<ui:include src="/seleccion/tabs/content_tab_mantenimientoPlanillaRevisionAlza.xhtml" />				
 			</p:tab>
 			</p:tabView>
               
