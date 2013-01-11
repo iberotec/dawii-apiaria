@@ -1681,6 +1681,7 @@ public class MBUsuarioApiario implements Serializable{
 		limpiarPlanillaRevisionAlza();
 		System.out.println("id colmena "+planillaRevision.getColmena().getIdColmena());
 		Alza obj = new Alza();
+		obj.setEstadoAlza("en colmena");
 		obj.setPiso(new Piso());
 		obj.getPiso().setColmena(new Colmena());
 		obj.getPiso().getColmena().setIdColmena(planillaRevision.getColmena().getIdColmena());
