@@ -7,8 +7,6 @@ import java.util.List;
 
 import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Centrifugadora;
-import apiario.edu.pe.bean.DetalleCentrifugadoraPlanillaCosecha;
-import apiario.edu.pe.bean.PlanillaCosecha;
 import apiario.edu.pe.service.SeleccionService;
 
 public class MBCosecha implements Serializable{
@@ -16,8 +14,8 @@ public class MBCosecha implements Serializable{
 	SeleccionService sevice=new SeleccionService();
 	private List<Alza> listaAlzas=new ArrayList<Alza>();
 	private List<Centrifugadora> listaCentrifugadora=new ArrayList<Centrifugadora>();
-	private List<PlanillaCosecha> listaPlanillaCosecha=new ArrayList<PlanillaCosecha>();
-	private List<DetalleCentrifugadoraPlanillaCosecha> listaDetalleCentrifugadoraPlanillaCosecha=new ArrayList<DetalleCentrifugadoraPlanillaCosecha>();
+//	private List<PlanillaCosecha> listaPlanillaCosecha=new ArrayList<PlanillaCosecha>();
+//	private List<DetalleCentrifugadoraPlanillaCosecha> listaDetalleCentrifugadoraPlanillaCosecha=new ArrayList<DetalleCentrifugadoraPlanillaCosecha>();
 	
 	public String abrirMainCosecha(){
 		return "successMainCosechaa";
@@ -58,18 +56,6 @@ public class MBCosecha implements Serializable{
 	public void setListaCentrifugadora(List<Centrifugadora> listaCentrifugadora) {
 		this.listaCentrifugadora = listaCentrifugadora;
 	}
-	public List<PlanillaCosecha> getListaPlanillaCosecha() {
-		return listaPlanillaCosecha;
-	}
-	public void setListaPlanillaCosecha(List<PlanillaCosecha> listaPlanillaCosecha) {
-		this.listaPlanillaCosecha = listaPlanillaCosecha;
-	}
-	public void setListaDetalleCentrifugadoraPlanillaCosecha(
-			List<DetalleCentrifugadoraPlanillaCosecha> listaDetalleCentrifugadoraPlanillaCosecha) {
-		this.listaDetalleCentrifugadoraPlanillaCosecha = listaDetalleCentrifugadoraPlanillaCosecha;
-	}
-	public List<DetalleCentrifugadoraPlanillaCosecha> getListaDetalleCentrifugadoraPlanillaCosecha() {
-		return listaDetalleCentrifugadoraPlanillaCosecha;
-	}
+
 	
 }

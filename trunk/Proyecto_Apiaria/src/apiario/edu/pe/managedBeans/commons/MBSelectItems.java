@@ -262,8 +262,10 @@ public class MBSelectItems implements Serializable{
 		List<Centrifugadora> lista = service.listarTodosCentrifugadoras();
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
+		String desc;
 		for (int i = 0; i < cbo.length - 1; i++){
-			cbo[i+1] = new SelectItem(lista.get(i).getIdCentrifugadora(),lista.get(i).getDescripcionCentrifugadora());
+			desc= "Centrifugadora "+lista.get(i).getIdCentrifugadora().toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdCentrifugadora(),desc);
 		}
 		return cbo;
 	}
@@ -273,8 +275,10 @@ public class MBSelectItems implements Serializable{
 		List<Decantadora> lista = service.listarTodosDecantadoras();
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
+		String desc;
 		for (int i = 0; i < cbo.length - 1; i++){
-			cbo[i+1] = new SelectItem(lista.get(i).getIdDecantadora(),lista.get(i).getDescripcionDecantadora());
+			desc="Decantadora "+lista.get(i).getIdDecantadora().toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdDecantadora(),desc);
 		}
 		return cbo;
 	}

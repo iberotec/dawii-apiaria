@@ -24,6 +24,9 @@ public class Reina extends BaseEntidades implements Serializable {
 	@Column(name="caracteristica_reina")
 	private String caracteristicaReina;
 
+	@Column(name="activo_reina")
+	private Boolean activoReina;
+	
 	@Column(name="descripcion_reina")
 	private String descripcionReina;
 
@@ -77,6 +80,14 @@ public class Reina extends BaseEntidades implements Serializable {
 
 	public void setColmena(Colmena colmena) {
 		this.colmena = colmena;
+	}
+
+	public Boolean getActivoReina() {
+		return activoReina;
+	}
+
+	public void setActivoReina(Boolean activoReina) {
+		this.activoReina = activoReina;
 	}
 	
 }
