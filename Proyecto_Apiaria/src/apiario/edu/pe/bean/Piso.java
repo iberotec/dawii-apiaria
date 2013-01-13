@@ -21,6 +21,8 @@ public class Piso extends BaseEntidades implements Serializable {
 	@Column(name="id_piso")
 	private Integer idPiso;
 
+	private Integer capacidad;
+	
 	//bi-directional many-to-one association to Alza
 	@OneToMany(mappedBy="piso")
 	private Set<Alza> alzas;
@@ -55,6 +57,14 @@ public class Piso extends BaseEntidades implements Serializable {
 
 	public void setColmena(Colmena colmena) {
 		this.colmena = colmena;
+	}
+
+	public Integer getCapacidad() {
+		return capacidad;
+	}
+
+	public void setCapacidad(Integer capacidad) {
+		this.capacidad = capacidad;
 	}
 	
 }

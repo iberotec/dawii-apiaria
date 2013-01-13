@@ -18,9 +18,10 @@ public class Decantadora extends BaseEntidades implements Serializable {
 	@Column(name="id_decantadora")
 	private Integer idDecantadora;
 	
-	@Column(name="descripcion_decantadora")
-	private String descripcionDecantadora;
 
+	public Decantadora() {
+		
+	}
 	
 	public Integer getIdDecantadora() {
 		return idDecantadora;
@@ -28,10 +29,5 @@ public class Decantadora extends BaseEntidades implements Serializable {
 	public void setIdDecantadora(Integer idDecantadora) {
 		this.idDecantadora = idDecantadora;
 	}
-	public String getDescripcionDecantadora() {
-		return descripcionDecantadora;
-	}
-	public void setDescripcionDecantadora(String descripcionDecantadora) {
-		this.descripcionDecantadora = descripcionDecantadora;
-	}
+
 }

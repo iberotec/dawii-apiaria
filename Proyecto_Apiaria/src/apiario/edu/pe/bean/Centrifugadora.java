@@ -18,20 +18,17 @@ public class Centrifugadora extends BaseEntidades implements Serializable {
 	@Column(name="id_centrifugadora")
 	private Integer idCentrifugadora;
 	
-	@Column(name="descripcion_centrifugadora")
-	private String descripcionCentrifugadora;
 
 	
+	
+	public Centrifugadora() {
+		
+	}
 	public Integer getIdCentrifugadora() {
 		return idCentrifugadora;
 	}
 	public void setIdCentrifugadora(Integer idCentrifugadora) {
 		this.idCentrifugadora = idCentrifugadora;
 	}
-	public String getDescripcionCentrifugadora() {
-		return descripcionCentrifugadora;
-	}
-	public void setDescripcionCentrifugadora(String descripcionCentrifugadora) {
-		this.descripcionCentrifugadora = descripcionCentrifugadora;
-	}
+
 }

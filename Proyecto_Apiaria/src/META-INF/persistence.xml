@@ -37,17 +37,19 @@
 	<class>apiario.edu.pe.bean.Zona</class>
 	<class>apiario.edu.pe.bean.ZonaRecusoNatural</class>
 	<class>apiario.edu.pe.bean.UsuarioApiario</class>
-	<class>apiario.edu.pe.bean.PlanillaCosecha</class>
-	<class>apiario.edu.pe.bean.DetalleCentrifugadoraPlanillaCosecha</class>
-	<class>apiario.edu.pe.bean.DetalleDecantadoraPlanillaCosecha</class>
 	<class>apiario.edu.pe.bean.Centrifugadora</class>
 	<class>apiario.edu.pe.bean.Decantadora</class>
+	<class>apiario.edu.pe.bean.PlanillaExtraccionAlza</class>
+	<class>apiario.edu.pe.bean.Balde</class>
+	<class>apiario.edu.pe.bean.UsuarioDecantadoraCentrifugadora</class>
+	<class>apiario.edu.pe.bean.PlanillaCosechaAlza</class>
+	<class>apiario.edu.pe.bean.UsuarioDecantadoraCentrifugadoraBalde</class>
 		
 		<properties>
 			<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/db_sistema_apiario"/>
 			<property name="eclipselink.jdbc.user" value="root"/>
-			<property name="eclipselink.jdbc.password" value="admin"/>
+			<property name="eclipselink.jdbc.password" value="root"/>
 		</properties>
 	</persistence-unit>
 </persistence>

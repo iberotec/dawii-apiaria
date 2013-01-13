@@ -13,11 +13,9 @@ import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 
 import apiario.edu.pe.bean.Centrifugadora;
 import apiario.edu.pe.bean.Decantadora;
-import apiario.edu.pe.bean.DetalleCentrifugadoraPlanillaCosecha;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
 import apiario.edu.pe.bean.Piso;
-import apiario.edu.pe.bean.PlanillaCosecha;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
 import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
@@ -35,13 +33,11 @@ import apiario.edu.pe.dao.IApiarioDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDecantadoraDAO;
-import apiario.edu.pe.dao.IDetalleCentrifugadoraPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadUsuarioApiarioDAO;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
-import apiario.edu.pe.dao.IPlanillaCosechaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionTipoAlimentacionDAO;
@@ -62,8 +58,7 @@ public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanill
 IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
 ITemporadaDAO,INormaSeguridadUsuarioApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
-IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IPlanillaCosechaDAO,
-IDetalleCentrifugadoraPlanillaCosechaDAO, IDecantadoraDAO, Serializable{
+IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantadoraDAO, Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -86,8 +81,6 @@ IDetalleCentrifugadoraPlanillaCosechaDAO, IDecantadoraDAO, Serializable{
 	IPlanillaRevisionTipoAlimentacionDAO daoPlanillaRevisionTipoAlimentacion=objDAOFactory.getiPlanillaRevisionTipoAlimentacionDAO();
 	ITipoAlzaDAO daoTipoAlza=objDAOFactory.getTipoAlzaDAO();
 	ICentrifugadoraDAO daoCentrifugadora=objDAOFactory.getCentrifugadoraDAO();
-	IPlanillaCosechaDAO daoPlanillaCosecha=objDAOFactory.getPlanillaCosechaDAO();
-	IDetalleCentrifugadoraPlanillaCosechaDAO daoDetalleCentrifugadoraPlanillaCosechaDAO=objDAOFactory.getDetalleCentrifugadoraCosechaDAO();
 	IDecantadoraDAO daoDecantadoraDAO=objDAOFactory.getDecantadoraDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
@@ -718,64 +711,6 @@ IDetalleCentrifugadoraPlanillaCosechaDAO, IDecantadoraDAO, Serializable{
 	public Centrifugadora eliminarCentrifugadora(Centrifugadora instance)
 			throws Exception {
 		return daoCentrifugadora.eliminarCentrifugadora(instance);
-	}
-
-	@Override
-	public List<PlanillaCosecha> listarTodosPlanillaCosechas() throws Exception {
-		return daoPlanillaCosecha.listarTodosPlanillaCosechas();
-	}
-
-	@Override
-	public PlanillaCosecha guardarPlanillaCosecha(PlanillaCosecha instance)
-			throws Exception {
-		return daoPlanillaCosecha.guardarPlanillaCosecha(instance);
-	}
-
-	@Override
-	public List<PlanillaCosecha> buscarPlanillaCosecha(PlanillaCosecha instance)
-			throws Exception {
-		return daoPlanillaCosecha.buscarPlanillaCosecha(instance);
-	}
-
-	@Override
-	public PlanillaCosecha obtenerPorIdPlanillaCosecha(int id) throws Exception {
-		return daoPlanillaCosecha.obtenerPorIdPlanillaCosecha(id);
-	}
-
-	@Override
-	public PlanillaCosecha eliminarPlanillaCosecha(PlanillaCosecha instance)
-			throws Exception {
-		return daoPlanillaCosecha.eliminarPlanillaCosecha(instance);
-	}
-
-	@Override
-	public List<DetalleCentrifugadoraPlanillaCosecha> listarTodosDetalleCentrifugadoraPlanillaCosechas()
-			throws Exception {
-		return daoDetalleCentrifugadoraPlanillaCosechaDAO.listarTodosDetalleCentrifugadoraPlanillaCosechas();
-	}
-
-	@Override
-	public DetalleCentrifugadoraPlanillaCosecha guardarDetalleCentrifugadoraPlanillaCosecha(
-			DetalleCentrifugadoraPlanillaCosecha instance) throws Exception {
-		return daoDetalleCentrifugadoraPlanillaCosechaDAO.guardarDetalleCentrifugadoraPlanillaCosecha(instance);
-	}
-
-	@Override
-	public List<DetalleCentrifugadoraPlanillaCosecha> buscarDetalleCentrifugadoraPlanillaCosecha(
-			DetalleCentrifugadoraPlanillaCosecha instance) throws Exception {
-		return daoDetalleCentrifugadoraPlanillaCosechaDAO.buscarDetalleCentrifugadoraPlanillaCosecha(instance);
-	}
-
-	@Override
-	public DetalleCentrifugadoraPlanillaCosecha obtenerPorIdDetalleCentrifugadoraPlanillaCosecha(
-			int id) throws Exception {
-		return daoDetalleCentrifugadoraPlanillaCosechaDAO.obtenerPorIdDetalleCentrifugadoraPlanillaCosecha(id);
-	}
-
-	@Override
-	public DetalleCentrifugadoraPlanillaCosecha eliminarDetalleCentrifugadoraPlanillaCosecha(
-			DetalleCentrifugadoraPlanillaCosecha instance) throws Exception {
-		return daoDetalleCentrifugadoraPlanillaCosechaDAO.eliminarDetalleCentrifugadoraPlanillaCosecha(instance);
 	}
 
 	@Override
