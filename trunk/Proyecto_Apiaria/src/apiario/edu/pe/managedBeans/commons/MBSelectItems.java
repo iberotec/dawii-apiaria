@@ -283,19 +283,4 @@ public class MBSelectItems implements Serializable{
 		return cbo;
 	}
 	
-//	public SelectItem[] getCboDepartamento(int pais_id) {
-//		GnUbigeoDAO dao = (GnUbigeoDAO) ServiceFinder.findBean("GnUbigeoDAO");
-//		GnPais pais = new GnPais();
-//		pais.setPaisId(pais_id);
-//		List<GnUbigeo> listaDepartamentos = dao.listDpto(pais);
-//		SelectItem[] cboDepartamento = new SelectItem[listaDepartamentos.size() + 1];
-//		cboDepartamento[0] = new SelectItem("000000", "Seleccione...");
-//		for (int i = 0; i < cboDepartamento.length - 1; i++) {
-//			cboDepartamento[i + 1] = new SelectItem(listaDepartamentos.get(i)
-//					.getUbigeoCodigo(), listaDepartamentos.get(i)
-//					.getUbigeoDescripcion());
-//		}
-//		return cboDepartamento;
-//	}
-	
 }

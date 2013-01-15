@@ -866,60 +866,63 @@ public class MBUsuarioApiario implements Serializable{
 		objPR.getUsuarioApiario().setApiario(new Apiario());
 		objPR.getUsuarioApiario().getApiario().setIdApiario(usuarioApiario.getApiario().getIdApiario());
 		objPR.getUsuarioApiario().setTemporada(new Temporada());
-		objPR.getUsuarioApiario().getTemporada().setOrdenTemporada(usuarioApiario.getTemporada().getOrdenTemporada().intValue()-1);
-		objPR.getUsuarioApiario().getTemporada().setEtapaTemporada(usuarioApiario.getTemporada().getEtapaTemporada());
-		List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
-		listaPR = service.buscarPlanillaRevision(objPR);
-		System.out.println("listaPR.size() "+listaPR.size());
-		int cont=0;
-		if(listaPR.size()>0){
-			for (int i = 0; i < listaPR.size(); i++) {
-				if(listaPR.get(i).getEstadoRevision().getDescripcionEstadoRevision().equals("Peligro")){
-					cont++;
+		if(usuarioApiario.getTemporada().getOrdenTemporada()!=null){
+			objPR.getUsuarioApiario().getTemporada().setOrdenTemporada(usuarioApiario.getTemporada().getOrdenTemporada().intValue()-1);
+			objPR.getUsuarioApiario().getTemporada().setEtapaTemporada(usuarioApiario.getTemporada().getEtapaTemporada());
+			List<PlanillaRevision> listaPR = new ArrayList<PlanillaRevision>();
+			listaPR = service.buscarPlanillaRevision(objPR);
+			System.out.println("listaPR.size() "+listaPR.size());
+			int cont=0;
+			if(listaPR.size()>0){
+				for (int i = 0; i < listaPR.size(); i++) {
+					if(listaPR.get(i).getEstadoRevision().getDescripcionEstadoRevision().equals("Peligro")){
+						cont++;
+					}
+				}
+			if(cont>0){
+				nivelPeligro="Peligro";
+				EstadoRevision objBuscarER= new EstadoRevision();
+				objBuscarER.setDescripcionEstadoRevision(nivelPeligro);
+				List<EstadoRevision> listaBuscarER= new ArrayList<EstadoRevision>();
+				listaBuscarER=service.buscarEstadoRevision(objBuscarER);
+				if(listaBuscarER.size()>0){
+					nivelPeligroId= listaBuscarER.get(0).getIdEstadoRevision();
+				}
+				
+				
+			}else{
+				nivelPeligro="Normal";
+				EstadoRevision objBuscarER= new EstadoRevision();
+				objBuscarER.setDescripcionEstadoRevision(nivelPeligro);
+				List<EstadoRevision> listaBuscarER= new ArrayList<EstadoRevision>();
+				listaBuscarER=service.buscarEstadoRevision(objBuscarER);
+				if(listaBuscarER.size()>0){
+					nivelPeligroId= listaBuscarER.get(0).getIdEstadoRevision();
 				}
 			}
-		if(cont>0){
-			nivelPeligro="Peligro";
-			EstadoRevision objBuscarER= new EstadoRevision();
-			objBuscarER.setDescripcionEstadoRevision(nivelPeligro);
-			List<EstadoRevision> listaBuscarER= new ArrayList<EstadoRevision>();
-			listaBuscarER=service.buscarEstadoRevision(objBuscarER);
-			if(listaBuscarER.size()>0){
-				nivelPeligroId= listaBuscarER.get(0).getIdEstadoRevision();
-			}
-			
-			
-		}else{
-			nivelPeligro="Normal";
-			EstadoRevision objBuscarER= new EstadoRevision();
-			objBuscarER.setDescripcionEstadoRevision(nivelPeligro);
-			List<EstadoRevision> listaBuscarER= new ArrayList<EstadoRevision>();
-			listaBuscarER=service.buscarEstadoRevision(objBuscarER);
-			if(listaBuscarER.size()>0){
-				nivelPeligroId= listaBuscarER.get(0).getIdEstadoRevision();
-			}
-		}
 
-		}else{
-			nivelPeligroId=0;
-			nivelPeligro="No precisa";
-		}
-	
+			}else{
+				nivelPeligroId=0;
+				nivelPeligro="No precisa";
+			}
 		
-		
-		
-		if(nivelPeligroId!=0){
-			EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
-			objERET.setEstadoRevision(new EstadoRevision());
-			objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
 			
-			listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
-			mostrarEquipoSeguridad=true;
-		}else{
-			System.out.println("no se esta mostrnado el listado -.-!");
-			listaERET= new ArrayList<EstadoRevisionEquipamientoTrabajo>();
-			mostrarEquipoSeguridad=false;
+			
+			
+			if(nivelPeligroId!=0){
+				EstadoRevisionEquipamientoTrabajo objERET = new EstadoRevisionEquipamientoTrabajo();
+				objERET.setEstadoRevision(new EstadoRevision());
+				objERET.getEstadoRevision().setIdEstadoRevision(nivelPeligroId);
+				
+				listaERET=service.buscarEstadoRevisionEquipamientoTrabajo(objERET);
+				mostrarEquipoSeguridad=true;
+			}else{
+				System.out.println("no se esta mostrnado el listado -.-!");
+				listaERET= new ArrayList<EstadoRevisionEquipamientoTrabajo>();
+				mostrarEquipoSeguridad=false;
+			}
 		}
+		
 	}
 	public void abrirModificarUsuarioApiario(int id) throws Exception{
 		

@@ -6,26 +6,114 @@
     NAME="output" PATH="/UI_bienvenida.xhtml"
     TARGET="rules:#UI_bienvenida.xhtml" TITLE="successBienvenida" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="successMainSeleccion::#seleccion#mainSeleccion.xhtml"
-    NAME="output1" PATH="/seleccion/mainSeleccion.xhtml"
-    TARGET="rules:#seleccion#mainSeleccion.xhtml"
-    TITLE="successMainSeleccion" model-entity="JSFProcessItemOutput"/>
+    ID="successMantenimientoUsuarioApiario::#seleccion#UI_mantenimientoUsuarioApiario.xhtml"
+    NAME="output1"
+    PATH="/seleccion/UI_mantenimientoUsuarioApiario.xhtml"
+    TARGET="rules:#seleccion#UI_mantenimientoUsuarioApiario.xhtml"
+    TITLE="successMantenimientoUsuarioApiario" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="successLogin::#UI_login.xhtml"
     NAME="output2" PATH="/UI_login.xhtml" TARGET="rules:#UI_login.xhtml"
     TITLE="successLogin" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="successUbicacion::#extraccion#mainExtraccion.xhtml"
-    NAME="output3" PATH="/extraccion/mainExtraccion.xhtml"
-    TARGET="rules:#extraccion#mainExtraccion.xhtml"
-    TITLE="successUbicacion" model-entity="JSFProcessItemOutput"/>
+    ID="successNuevaAsignacion::#seleccion#UI_registrarUsuarioApiario.xhtml"
+    NAME="output3" PATH="/seleccion/UI_registrarUsuarioApiario.xhtml"
+    TARGET="rules:#seleccion#UI_registrarUsuarioApiario.xhtml"
+    TITLE="successNuevaAsignacion" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successMainCosecha::#cosecha#mainCosecha.xhtml" NAME="output4"
+    PATH="/cosecha/mainCosecha.xhtml"
+    TARGET="rules:#cosecha#mainCosecha.xhtml" TITLE="successMainCosecha" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successNuevaAsignacionCosecha::#cosecha#seleccionarCosecha#nuevaExtraccion.xhtml"
+    NAME="output5"
+    PATH="/cosecha/seleccionarCosecha/nuevaExtraccion.xhtml"
+    TARGET="rules:#cosecha#seleccionarCosecha#nuevaExtraccion.xhtml"
+    TITLE="successNuevaAsignacionCosecha" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successMainCosechaa::#cosecha#nuevaCosecha#mainCosecha.xhtml"
+    NAME="output6" PATH="/cosecha/nuevaCosecha/mainCosecha.xhtml"
+    TARGET="rules:#cosecha#nuevaCosecha#mainCosecha.xhtml"
+    TITLE="successMainCosechaa" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successNuevaAsignacionCosechaa::#cosecha#nuevaCosecha#nuevaAsignacion.xhtml"
+    NAME="output7" PATH="/cosecha/nuevaCosecha/nuevaAsignacion.xhtml"
+    TARGET="rules:#cosecha#nuevaCosecha#nuevaAsignacion.xhtml"
+    TITLE="successNuevaAsignacionCosechaa" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successMantenimientoApiario::#tablas#apiario#mantenimientoApiario.xhtml"
+    NAME="output8" PATH="/tablas/apiario/mantenimientoApiario.xhtml"
+    TARGET="rules:#tablas#apiario#mantenimientoApiario.xhtml"
+    TITLE="successMantenimientoApiario" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successNuevoApiario::#tablas#apiario#nuevoApiario.xhtml"
+    NAME="output9" PATH="/tablas/apiario/nuevoApiario.xhtml"
+    TARGET="rules:#tablas#apiario#nuevoApiario.xhtml"
+    TITLE="successNuevoApiario" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successMantenimientoColmena::#tablas#colmena#mantenimientoColmena.xhtml"
+    NAME="output10" PATH="/tablas/colmena/mantenimientoColmena.xhtml"
+    TARGET="rules:#tablas#colmena#mantenimientoColmena.xhtml"
+    TITLE="successMantenimientoColmena" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successNuevoColmena::#tablas#colmena#nuevoColmena.xhtml"
+    NAME="output11" PATH="/tablas/colmena/nuevoColmena.xhtml"
+    TARGET="rules:#tablas#colmena#nuevoColmena.xhtml"
+    TITLE="successNuevoColmena" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successMantenimientoPiso::#tablas#piso#mantenimientoPiso.xhtml"
+    NAME="output12" PATH="/tablas/piso/mantenimientoPiso.xhtml"
+    TARGET="rules:#tablas#piso#mantenimientoPiso.xhtml"
+    TITLE="successMantenimientoPiso" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successNuevoPiso::#tablas#piso#nuevoPiso.xhtml" NAME="output13"
+    PATH="/tablas/piso/nuevoPiso.xhtml"
+    TARGET="rules:#tablas#piso#nuevoPiso.xhtml" TITLE="successNuevoPiso" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successMantenimientoAlza::#tablas#alza#mantenimientoAlza.xhtml"
+    NAME="output14" PATH="/tablas/alza/mantenimientoAlza.xhtml"
+    TARGET="rules:#tablas#alza#mantenimientoAlza.xhtml"
+    TITLE="successMantenimientoAlza" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="successNuevoAlza::#tablas#alza#nuevoAlza.xhtml" NAME="output15"
+    PATH="/tablas/alza/nuevoAlza.xhtml"
+    TARGET="rules:#tablas#alza#nuevoAlza.xhtml" TITLE="successNuevoAlza" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#UI_bienvenida.xhtml"
   PATH="/UI_bienvenida.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#UI_login.xhtml" PATH="/UI_login.xhtml"
   SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#seleccion#mainSeleccion.xhtml"
-  PATH="/seleccion/mainSeleccion.xhtml" SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#extraccion#mainExtraccion.xhtml"
-  PATH="/extraccion/mainExtraccion.xhtml" SHAPE="288,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#piso#nuevoPiso.xhtml"
+  PATH="/tablas/piso/nuevoPiso.xhtml" SHAPE="304,1969,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#alza#mantenimientoAlza.xhtml"
+  PATH="/tablas/alza/mantenimientoAlza.xhtml" SHAPE="304,2081,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#seleccion#UI_mantenimientoUsuarioApiario.xhtml"
+  PATH="/seleccion/UI_mantenimientoUsuarioApiario.xhtml"
+  SHAPE="304,737,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cosecha#nuevaCosecha#mainCosecha.xhtml"
+  PATH="/cosecha/nuevaCosecha/mainCosecha.xhtml" SHAPE="304,1185,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#apiario#nuevoApiario.xhtml"
+  PATH="/tablas/apiario/nuevoApiario.xhtml" SHAPE="304,1521,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#piso#mantenimientoPiso.xhtml"
+  PATH="/tablas/piso/mantenimientoPiso.xhtml" SHAPE="304,1857,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#alza#nuevoAlza.xhtml"
+  PATH="/tablas/alza/nuevoAlza.xhtml" SHAPE="304,2193,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#colmena#nuevoColmena.xhtml"
+  PATH="/tablas/colmena/nuevoColmena.xhtml" SHAPE="304,1745,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#cosecha#seleccionarCosecha#nuevaExtraccion.xhtml"
+  PATH="/cosecha/seleccionarCosecha/nuevaExtraccion.xhtml"
+  SHAPE="304,1073,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#apiario#mantenimientoApiario.xhtml"
+  PATH="/tablas/apiario/mantenimientoApiario.xhtml" SHAPE="304,1409,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#colmena#mantenimientoColmena.xhtml"
+  PATH="/tablas/colmena/mantenimientoColmena.xhtml" SHAPE="304,1633,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cosecha#mainCosecha.xhtml"
+  PATH="/cosecha/mainCosecha.xhtml" SHAPE="304,961,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cosecha#nuevaCosecha#nuevaAsignacion.xhtml"
+  PATH="/cosecha/nuevaCosecha/nuevaAsignacion.xhtml"
+  SHAPE="304,1297,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#seleccion#UI_registrarUsuarioApiario.xhtml"
+  PATH="/seleccion/UI_registrarUsuarioApiario.xhtml" SHAPE="304,849,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

@@ -38,11 +38,11 @@ public class UsuarioDecantadoraCentrifugadora extends BaseEntidades implements S
 	
 	@ManyToOne
 	@JoinColumn(name="id_decantadora")
-	private Decantadora decantadora;
+	private Decantadora decantadora=new Decantadora();
 	
 	@ManyToOne
 	@JoinColumn(name="id_centrifugadora")
-	private Centrifugadora centrifugadora;
+	private Centrifugadora centrifugadora=new Centrifugadora();
 	
 	@ManyToOne
 	@JoinColumn(name="id_temporada")
