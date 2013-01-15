@@ -53,7 +53,6 @@ public abstract class DAOFactory {
 	public abstract ICentrifugadoraDAO getCentrifugadoraDAO();
 	public abstract IDecantadoraDAO getDecantadoraDAO();
 	
-	
 	public static DAOFactory getDAOFactory(TipoFabrica tipo) {
 		switch (tipo) {
 		case MYSQL:

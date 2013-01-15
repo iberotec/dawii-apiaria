@@ -21,71 +21,25 @@
 			 	    <p:commandButton  value="Limpiar" icon="ui-icon-print" action="#" ajax="false"/>
 			    </p:toolbarGroup>  
 			    </p:toolbar>
+			    <p:panelGrid columns="2">
+			    <h:outputText value="Centrifugadora" />
+			    <p:selectOneMenu value="#{mBCosecha.oUsuarioDecantadoraCentrifugadora.centrifugadora.idCentrifugadora}">
+			    <f:selectItems value="#{mBSelectItems.cboCentrifugadora}"/>
+			    </p:selectOneMenu>
+			    
+			     <h:outputText value="Decantadora" />
+			    <p:selectOneMenu value="#{mBCosecha.oUsuarioDecantadoraCentrifugadora.decantadora.idDecantadora}">
+			    <f:selectItems value="#{mBSelectItems.cboDecantadora}"/>
+			    </p:selectOneMenu>
+			    
+			    </p:panelGrid>
 				<div class="contenedor">	
-					<table>
-						<tr>
-							<td>
-								<h:outputLabel value="Centrigugadora" />
-							</td>
-							<td>
-								<p:selectOneMenu>
-									<f:selectItems value="#{mBSelectItems.cboCentrifugadora}"></f:selectItems>
-								</p:selectOneMenu>
-							</td>
-						</tr>
-					</table>
 					<p:tabView>
-						<p:tab title="Alzas">
-							<p:dataTable value="#{mBCosecha.listaAlzas}" var="data">
-								<p:column>
-									<f:facet name="header">
-										<h:outputLabel value="ID" />
-									</f:facet>
-									<h:outputLabel value="#{data.idAlza}" />
-								</p:column>
-								<p:column>
-									<f:facet name="header">
-										<h:outputLabel value="Alzas" />
-									</f:facet>
-									<h:outputLabel value="Alza #{data.idAlza}" />
-								</p:column>
-							</p:dataTable>
-							<table>
-								<tr>
-									<td>
-										<h:outputLabel value="Kilos Obtenidos" />
-									</td>
-									<td>
-										<p:inputText></p:inputText>
-									</td>
-								</tr>
-							</table>
-							<p:commandButton value="Confirmar"></p:commandButton>
+						<p:tab title="Planilla de Cosecha" closable="false">
+						hola
 						</p:tab>
-					</p:tabView>
-					<p:tabView>
-						<p:tab title="Decantado">
-							<table>
-								<tr>
-									<td>
-										<h:outputLabel value="Kilos" />
-									</td>
-									<td>
-										<p:inputText></p:inputText>
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<h:outputLabel value="Decantado" />
-									</td>
-									<td>
-										<p:selectOneMenu>
-											<f:selectItems value="#{mBSelectItems.cboDecantadora}"/>
-										</p:selectOneMenu>
-									</td>
-								</tr>
-							</table>
-							<p:commandButton value="Confirmar"></p:commandButton>
+						<p:tab title="Llenado de Baldes" closable="false">
+						hola2
 						</p:tab>
 					</p:tabView>
 				</div>

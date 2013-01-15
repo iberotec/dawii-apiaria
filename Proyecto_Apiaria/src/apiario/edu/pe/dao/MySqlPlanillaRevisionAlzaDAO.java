@@ -97,6 +97,11 @@ public class MySqlPlanillaRevisionAlzaDAO implements IPlanillaRevisionAlzaDAO {
 					Predicate condition=builder.equal(planillaRevisionRoot.get("idPlanillaRevision"), instance.getPlanillaRevision().getIdPlanillaRevision());
 					p.add(condition);
 				}
+				if(instance.getPlanillaRevision().getComportamiento()!=null && instance.getPlanillaRevision().getComportamiento().length()>0){
+					Predicate condition=builder.equal(planillaRevisionRoot.get("comportamiento"), instance.getPlanillaRevision().getComportamiento());
+					p.add(condition);
+				}
+				
 			}
 			if(instance.getAlza()!=null){
 				if(instance.getAlza().getIdAlza()!=null && instance.getAlza().getIdAlza().intValue()>0){
