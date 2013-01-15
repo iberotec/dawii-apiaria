@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import apiario.edu.pe.bean.base.BaseEntidades;
@@ -32,6 +34,10 @@ public class Balde extends BaseEntidades implements Serializable{
 	@Column(name="diponibilidad_balde")
 	private Boolean disponibilidadBalde;
 	
+    @ManyToOne
+	@JoinColumn(name="id_tipo_balde")
+	private TipoBalde tipoBalde;
+	
 	public Balde() {
 		// TODO Auto-generated constructor stub
 	}
@@ -58,6 +64,14 @@ public class Balde extends BaseEntidades implements Serializable{
 
 	public void setDisponibilidadBalde(Boolean disponibilidadBalde) {
 		this.disponibilidadBalde = disponibilidadBalde;
+	}
+
+	public TipoBalde getTipoBalde() {
+		return tipoBalde;
+	}
+
+	public void setTipoBalde(TipoBalde tipoBalde) {
+		this.tipoBalde = tipoBalde;
 	}
 	
 }

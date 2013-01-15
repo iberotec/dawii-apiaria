@@ -44,6 +44,13 @@
 	<class>apiario.edu.pe.bean.UsuarioDecantadoraCentrifugadora</class>
 	<class>apiario.edu.pe.bean.PlanillaCosechaAlza</class>
 	<class>apiario.edu.pe.bean.UsuarioDecantadoraCentrifugadoraBalde</class>
+	<class>apiario.edu.pe.bean.TipoBalde</class>
+	<class>apiario.edu.pe.bean.TipoEnvase</class>
+	<class>apiario.edu.pe.bean.Envase</class>
+	<class>apiario.edu.pe.bean.TipoEtiqueta</class>
+	<class>apiario.edu.pe.bean.Etiqueta</class>
+	<class>apiario.edu.pe.bean.OrdenPedido</class>	
+	<class>apiario.edu.pe.bean.PlanillaEnvasado</class>	
 		
 		<properties>
 			<property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
