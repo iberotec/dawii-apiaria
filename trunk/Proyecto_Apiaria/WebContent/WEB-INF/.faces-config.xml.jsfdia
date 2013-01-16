@@ -83,6 +83,38 @@
   PATH="/UI_bienvenida.xhtml" SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#UI_login.xhtml" PATH="/UI_login.xhtml"
   SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
+<<<<<<< .mine
+ <PROCESS-ITEM NAME="rules:#tablas#piso#nuevoPiso.xhtml"
+  PATH="/tablas/piso/nuevoPiso.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#alza#mantenimientoAlza.xhtml"
+  PATH="/tablas/alza/mantenimientoAlza.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#seleccion#UI_registrarUsuarioApiario.xhtml"
+  PATH="/seleccion/UI_registrarUsuarioApiario.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cosecha#nuevaCosecha#mainCosecha.xhtml"
+  PATH="/cosecha/nuevaCosecha/mainCosecha.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#apiario#nuevoApiario.xhtml"
+  PATH="/tablas/apiario/nuevoApiario.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#piso#mantenimientoPiso.xhtml"
+  PATH="/tablas/piso/mantenimientoPiso.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#alza#nuevoAlza.xhtml"
+  PATH="/tablas/alza/nuevoAlza.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#colmena#nuevoColmena.xhtml"
+  PATH="/tablas/colmena/nuevoColmena.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#cosecha#seleccionarCosecha#nuevaExtraccion.xhtml"
+  PATH="/cosecha/seleccionarCosecha/nuevaExtraccion.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#apiario#mantenimientoApiario.xhtml"
+  PATH="/tablas/apiario/mantenimientoApiario.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#tablas#colmena#mantenimientoColmena.xhtml"
+  PATH="/tablas/colmena/mantenimientoColmena.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#seleccion#UI_mantenimientoUsuarioApiario.xhtml"
+  PATH="/seleccion/UI_mantenimientoUsuarioApiario.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cosecha#mainCosecha.xhtml"
+  PATH="/cosecha/mainCosecha.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#cosecha#nuevaCosecha#nuevaAsignacion.xhtml"
+  PATH="/cosecha/nuevaCosecha/nuevaAsignacion.xhtml" model-entity="JSFProcessGroup"/>
+=======
  <PROCESS-ITEM NAME="rules:#tablas#piso#nuevoPiso.xhtml"
   PATH="/tablas/piso/nuevoPiso.xhtml" SHAPE="304,1969,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#tablas#alza#mantenimientoAlza.xhtml"
@@ -116,4 +148,5 @@
   SHAPE="304,1297,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#seleccion#UI_registrarUsuarioApiario.xhtml"
   PATH="/seleccion/UI_registrarUsuarioApiario.xhtml" SHAPE="304,849,0,0" model-entity="JSFProcessGroup"/>
+>>>>>>> .r214
 </PROCESS>
