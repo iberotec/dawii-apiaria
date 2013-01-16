@@ -4,11 +4,16 @@
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
  <!-- ManageBean -->
  <managed-bean>
+  <managed-bean-name>mBUsuarioApiarioExtraccion</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBUsuarioApiarioExtraccion</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <!-- Diego -->
+ <managed-bean>
   <managed-bean-name>mBPlanillaRevision</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.managedBeans.MBPlanillaRevision</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
- <!-- Diego -->
  <managed-bean>
   <managed-bean-name>mBSelectItems</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.managedBeans.commons.MBSelectItems</managed-bean-class>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es">
+
+
+<h:head>
+</h:head>
+
+<h:body>
+
+	<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MODULO DE SELECCION" />
+		</ui:define>
+		<ui:define name="content">
+		<h:form>
+			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
+				SELECCION</h1>
+				
+				<ui:include src="toolbars/toolbar_mantenimientoUsuarioApiario.xhtml"></ui:include>	
+				
+			<div class="contenedor">		
+					<p:dataTable id="dtlista" var="listado" value="#{mBUsuarioApiario.listaUsarioApiario}" 
+				    widgetVar="Seleccion" 
+		            emptyMessage="No se encontraron Asignaciones" 
+		            paginator="true" 
+		            rows="5" 
+		            paginatorPosition="bottom" 
+		            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+		            selection="#{mBUsuarioApiario.usuarioApiario}" 
+		            selectionMode="single" 
+		            rowKey="#{listado.idUsuarioApiario}">
+		            
+		            
+				    <p:ajax event="rowSelect" 
+				            listener="#{mBUsuarioApiario.abrirModificarUsuarioApiario(mBUsuarioApiario.usuarioApiario.idUsuarioApiario)}"
+				         />
+				          
+				       <f:facet name="header">
+								<h:outputText value="Listado de Apiarios Asignados" />
+							</f:facet>
+								
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="" />
+							</f:facet>
+							<h:selectBooleanCheckbox value="#{listado.sel}" />
+						</p:column>
+								
+						<p:column>
+							<f:facet name="header">
+										<h:outputText value="Id" />
+							</f:facet>
+							<h:outputText value="#{listado.idUsuarioApiario}" />		
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Apiario"></h:outputText>
+							</f:facet>
+							<h:outputText value="Apiario #{listado.apiario.idApiario}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Provincia"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{mBUsuarioApiario.obtenerProvincia(listado.apiario.planillaSeguimientos)}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Departamento"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{mBUsuarioApiario.obtenerDepartamento(listado.apiario.planillaSeguimientos)}" />
+						</p:column>
+<!--						<p:column>-->
+<!--							<f:facet name="header">-->
+<!--								<h:outputText value="Nivel Peligro"></h:outputText>-->
+<!--							</f:facet>-->
+<!--							<h:outputText value="#{mBUsuarioApiario.obtenerNivelPeligro(listado.planillaRevisions)}" />-->
+<!--						</p:column>-->
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Estado"></h:outputText>
+							</f:facet>
+							<h:outputText value="#{listado.estadoAsignacion}" />
+						</p:column>
+		   			</p:dataTable>
+			</div>
+
+
+		<!-- 	<p:growl id="growl" showDetail="true" life="5000" /> -->
+	
+		
+		</h:form>
+		</ui:define>
+		
+	</ui:composition>
+	
+</h:body>
+</html>
