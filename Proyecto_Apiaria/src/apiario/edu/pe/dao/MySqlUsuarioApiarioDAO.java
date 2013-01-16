@@ -116,6 +116,10 @@ public class MySqlUsuarioApiarioDAO implements IUsuarioApiarioDAO{
 					Predicate condition=builder.equal(temporadaRoot.get("estadoTemporada"), instance.getTemporada().getEstadoTemporada());
 					p.add(condition);
 				}
+				if(instance.getTemporada().getEtapaTemporada()!=null && instance.getTemporada().getEtapaTemporada().length()>0){
+					Predicate condition=builder.like(temporadaRoot.<String>get("etapaTemporada"), "%"+instance.getTemporada().getEtapaTemporada()+"%");
+					p.add(condition);
+				}
 			}
 		}
 		Predicate[] predicates = new Predicate[p.size()];

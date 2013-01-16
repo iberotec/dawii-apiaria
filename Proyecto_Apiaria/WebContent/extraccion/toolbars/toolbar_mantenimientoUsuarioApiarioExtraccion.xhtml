@@ -7,11 +7,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
 	xmlns:sec="http://www.springframework.org/security/tags">
 
-  <p:toolbar>  
+<p:toolbar>  
     <p:toolbarGroup align="left">  
-        <p:commandButton  value="Confirmar Atención" icon="ui-icon-document" action="#{mBUsuarioApiario.guardarUsuarioApiario}" update="mensajon,tabContainer" ajax="false"/>  
- 	    <p:commandButton  value="Equipo de Seguridad" icon="ui-icon-print" action="#{mBUsuarioApiario.obtenerEquipoSeguridad}" update="dtEquipoSeguridad" ajax="false"/>
- 	    <p:commandButton  value="Mapa" icon="ui-icon-print"/>
+        <p:commandButton  value="Nueva asignacion de Apiario para Extraccion" icon="ui-icon-document" action="#{mBUsuarioApiario.abrirNuevaAsignacion}" ajax="false"/>  
+ 	    <p:commandButton  value="Listar Todos" icon="ui-icon-print" action="#{mBUsuarioApiarioExtraccion.listarTodosUsuarioApiarioExtraccion}" update="dtlista" ajax="false"/>
     </p:toolbarGroup>  
     </p:toolbar>
 
