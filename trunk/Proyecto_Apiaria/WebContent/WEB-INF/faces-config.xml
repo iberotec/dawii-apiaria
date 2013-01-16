@@ -88,6 +88,12 @@
    <from-outcome>successMantenimientoUsuarioApiarioExtraccion</from-outcome>
    <to-view-id>/extraccion/UI_mantenimientoUsuarioApiarioExtraccion.xhtml</to-view-id>
   </navigation-case>
+  
+    <navigation-case>
+   <from-outcome>successNuevoUsuarioApiarioExtraccion</from-outcome>
+   <to-view-id>/extraccion/UI_registrarUsuarioApiarioExtraccion.xhtml</to-view-id>
+  </navigation-case>
+  
   <navigation-case>
    <from-outcome>successLogin</from-outcome>
    <to-view-id>/UI_login.xhtml</to-view-id>

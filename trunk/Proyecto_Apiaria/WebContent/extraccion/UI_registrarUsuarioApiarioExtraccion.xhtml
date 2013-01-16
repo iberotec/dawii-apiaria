@@ -15,60 +15,59 @@
 <h:body>
 <ui:composition template="/templates/templateLayoutContexto.xhtml">
 		<ui:define name="title">
-			<h:outputText value="MODULO DE SELECCION" />
+			<h:outputText value="MODULO DE EXTRACCION" />
 		</ui:define>
 		<ui:define name="content">
 			<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
-				SELECCION</h1>
+				EXTRACCION</h1>
 
-	<h:form id="fNuevaAsignacion">
-		<ui:include src="toolbars/toolbar_registrarUsuarioApiario.xhtml"></ui:include>
+	<h:form id="fNuevaAsignacionE">
+		<ui:include src="toolbars/toolbar_registrarUsuarioApiarioExtraccion.xhtml"></ui:include>
 
       
-      <p:messages id="mensajon" closable="true" showDetail="true" autoUpdate="true"></p:messages>
+      <p:messages id="mensajeExtraccion" closable="true" showDetail="true" autoUpdate="true"></p:messages>
 	<br/>
-		<table>
-			<tr>
-				<td>
+		<p:panelGrid>
+		<p:row>
+		<p:column>
 					<h:outputText value="Apiario"></h:outputText>
-				</td>
-				<td>
-					<p:selectOneMenu id="iApiarioN" value="#{mBUsuarioApiario.usuarioApiario.apiario.idApiario}">
+		</p:column>		
+		<p:column>	
+					<p:selectOneMenu id="iApiarioNE" value="#{mBUsuarioApiarioExtraccion.usuarioApiarioExtraccion.apiario.idApiario}">
 						<f:selectItems value="#{mBSelectItems.cboApiario}" />
-<!--						<f:validateLongRange minimum="1"></f:validateLongRange>-->
-		 				<p:ajax  update="iUbicacion,tabContainer,iNivelPeligro,dtEquipoSeguridad"  
-                        listener="#{mBUsuarioApiario.localizarApiario}" />  
+
+		 				<p:ajax  update="iUbicacionE,tabContainerExtraccion,iNivelPeligroE,dtEquipoSeguridadE"  
+                        listener="#{mBUsuarioApiarioExtraccion.localizarApiarioParaExtraccion}" />  
 
 					</p:selectOneMenu>
-					  
-				</td>
-<!--				<td><p:message id="iconMessage" for="iApiarioN" display="icon" /> </td>-->
-			</tr>
-			<tr>
-				<td>
+		</p:column>	
+		</p:row>			  
+			
+		<p:row>
+		<p:column>
 					<h:outputText value="Ubicacion"></h:outputText>
-				</td>
-				<td>
-					<p:inputText id="iUbicacion" value="#{mBUsuarioApiario.ubicacionApiario}" disabled="true"></p:inputText>
-				</td>
-			</tr>
-			<tr>
-				<td>
+			</p:column>
+			<p:column>	
+					<p:inputText id="iUbicacionE" value="#{mBUsuarioApiarioExtraccion.ubicacionApiarioExtraccion}" disabled="true"></p:inputText>
+		</p:column>
+		</p:row>
+		<p:row>	
+		<p:column>	
 					<h:outputText value="Nivel Peligro" />
-				</td>
-				<td>
-					<p:inputText id="iNivelPeligro" value="#{mBUsuarioApiario.nivelPeligro}" disabled="true"></p:inputText>
-				</td>
-			</tr>
-		</table>
+			</p:column>
+			<p:column>	
+					<p:inputText id="iNivelPeligroE" value="#{mBUsuarioApiarioExtraccion.nivelPeligroExtraccion}" disabled="true"></p:inputText>
+			</p:column>
+			</p:row>
+			</p:panelGrid>
 		<br/>
-		<p:dataTable id="dtEquipoSeguridad" 
-					value="#{mBUsuarioApiario.listaERET}"
+		<p:dataTable id="dtEquipoSeguridadE" 
+					value="#{mBUsuarioApiarioExtraccion.listaEretExtraccion}"
 								var="lista" 
 								rowIndexVar="fila" 
 								rows="10"
 								emptyMessage="No se encontraron Equipos de Seguridad"								
-								width="100%" rendered="#{mBUsuarioApiario.mostrarEquipoSeguridad}">
+								width="100%" rendered="#{mBUsuarioApiarioExtraccion.mostrarEquipoSeguridadExtraccion}">
 			<f:facet name="header">
 								<h:outputText value="Listado de Apiarios Equipos de Trabajo" />
 			</f:facet>
@@ -107,22 +106,20 @@
 		
 		<br/>
 		<br/>
-		<p:tabView id="tabContainer" rendered="#{(mBUsuarioApiario.usuarioApiario.idUsuarioApiario != null and mBUsuarioApiario.usuarioApiario.idUsuarioApiario > 0) ? 'true' : 'false'}">
-			<p:tab id="iTabPlanillaRevision" title="Planilla Revision">
-				<ui:include src="tabs/content_tab_mantenimientoPlanillaRevision.xhtml" />
+		<p:tabView id="tabContainerExtraccion" rendered="#{(mBUsuarioApiarioExtraccion.usuarioApiarioExtraccionSeleccionado.idUsuarioApiario != null and mBUsuarioApiarioExtraccion.usuarioApiarioExtraccionSeleccionado.idUsuarioApiario > 0) ? 'true' : 'false'}">
+			<p:tab id="iTabPlanillaExtraccion" title="Planilla Extraccion">
+<!--				<ui:include src="tabs/content_tab_mantenimientoPlanillaRevision.xhtml" />-->
 			</p:tab>
-			<p:tab id="iControldeCalidad" title="Control de Calidad">
-				<ui:include src="tabs/content_tab_registrarControldeCalidad.xhtml" />
-			</p:tab>
+
 		</p:tabView>
 	
 	</h:form>
 	
 	</ui:define>
 	<ui:define name="modalPanel">
-		<ui:include src="/seleccion/modals/modal_registrarPlanillaRevisionAlza.xhtml" />
-		<ui:include src="/seleccion/modals/modal_registrarPlanillaRevision.xhtml" />
-		<ui:include src="/seleccion/modals/modal_eliminarPlanillaRevisionAlza.xhtml" />
+<!--		<ui:include src="/seleccion/modals/modal_registrarPlanillaRevisionAlza.xhtml" />-->
+<!--		<ui:include src="/seleccion/modals/modal_registrarPlanillaRevision.xhtml" />-->
+<!--		<ui:include src="/seleccion/modals/modal_eliminarPlanillaRevisionAlza.xhtml" />-->
 	</ui:define>
 </ui:composition>	
 </h:body>
