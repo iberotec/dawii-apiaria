@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="es"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+
+	<h:head>
+	</h:head>
+
+	<h:body>
+		<ui:include
+			src="/cosecha/toolbars/toolbar_registrarLlenadoBaldes.xhtml"></ui:include>
+
+
+		<h2 align="center">
+			<h:outputText value="Control de Calidad del Apiario(SENASA)" />
+		</h2>
+
+		<p:pickList id="pojoPickList" value="#{mBCosecha.listaPCA}"
+			var="player" effect="bounce" itemValue="#{player}"
+			itemLabel="#{player.planillaExtraccionAlza.planillaRevisionAlza.alza.idAlza}"
+			converter="#{planillaCosechaAlzaConverter}" showSourceControls="true"
+			showTargetControls="true" showSourceFilter="true"
+			showTargetFilter="true" filterMatchMode="contains">
+
+			<f:facet name="sourceCaption">No cumple</f:facet>
+			<f:facet name="targetCaption">Cumple</f:facet>
+
+			<p:ajax event="transfer" />
+
+
+
+			<p:column style="width:75%;">  
+           Alza-#{player.planillaExtraccionAlza.planillaRevisionAlza.alza.idAlza}  
+        </p:column>
+
+		</p:pickList>
+
+		<br />
+
+
+
+
+
+
+	</h:body>
+
+</ui:composition>

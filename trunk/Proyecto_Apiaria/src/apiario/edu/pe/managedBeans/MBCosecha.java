@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.primefaces.model.DualListModel;
+
 import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Centrifugadora;
+import apiario.edu.pe.bean.PlanillaCosechaAlza;
 import apiario.edu.pe.bean.UsuarioDecantadoraCentrifugadora;
 import apiario.edu.pe.service.SeleccionService;
 
@@ -20,7 +23,7 @@ public class MBCosecha implements Serializable{
 	private List<Centrifugadora> listaCentrifugadora=new ArrayList<Centrifugadora>();
 //	private List<PlanillaCosecha> listaPlanillaCosecha=new ArrayList<PlanillaCosecha>();
 //	private List<DetalleCentrifugadoraPlanillaCosecha> listaDetalleCentrifugadoraPlanillaCosecha=new ArrayList<DetalleCentrifugadoraPlanillaCosecha>();
-	
+	private DualListModel<PlanillaCosechaAlza> listaPCA=new DualListModel<PlanillaCosechaAlza>();
 	public String abrirMainCosecha(){
 		return "successMainCosechaa";
 	}
@@ -65,6 +68,12 @@ public class MBCosecha implements Serializable{
 	public void setoUsuarioDecantadoraCentrifugadora(
 			UsuarioDecantadoraCentrifugadora oUsuarioDecantadoraCentrifugadora) {
 		this.oUsuarioDecantadoraCentrifugadora = oUsuarioDecantadoraCentrifugadora;
+	}
+	public void setListaPCA(DualListModel<PlanillaCosechaAlza> listaPCA) {
+		this.listaPCA = listaPCA;
+	}
+	public DualListModel<PlanillaCosechaAlza> getListaPCA() {
+		return listaPCA;
 	}
 	
 

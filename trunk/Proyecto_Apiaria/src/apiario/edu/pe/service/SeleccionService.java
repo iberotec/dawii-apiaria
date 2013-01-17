@@ -16,6 +16,7 @@ import apiario.edu.pe.bean.Decantadora;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
 import apiario.edu.pe.bean.Piso;
+import apiario.edu.pe.bean.PlanillaCosechaAlza;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
 import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
@@ -38,6 +39,7 @@ import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadUsuarioApiarioDAO;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
 import apiario.edu.pe.dao.IPisoDAO;
+import apiario.edu.pe.dao.IPlanillaCosechaAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionTipoAlimentacionDAO;
@@ -58,7 +60,7 @@ public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanill
 IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
 ITemporadaDAO,INormaSeguridadUsuarioApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
-IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantadoraDAO, Serializable{
+IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantadoraDAO,IPlanillaCosechaAlzaDAO ,Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -82,6 +84,7 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantado
 	ITipoAlzaDAO daoTipoAlza=objDAOFactory.getTipoAlzaDAO();
 	ICentrifugadoraDAO daoCentrifugadora=objDAOFactory.getCentrifugadoraDAO();
 	IDecantadoraDAO daoDecantadoraDAO=objDAOFactory.getDecantadoraDAO();
+	IPlanillaCosechaAlzaDAO daoPlanillaCosechaAlzaDAO=objDAOFactory.getPlanillaCosechaAlzaDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -739,6 +742,47 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantado
 	public Decantadora eliminarDecantadora(Decantadora instance)
 			throws Exception {
 		return daoDecantadoraDAO.eliminarDecantadora(instance);
+	}
+
+	@Override
+	public List<PlanillaCosechaAlza> listarTodosPlanillaCosechaAlza()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaCosechaAlzaDAO.listarTodosPlanillaCosechaAlza();
+	}
+
+	@Override
+	public PlanillaCosechaAlza guardarPlanillaCosechaAlza(
+			PlanillaCosechaAlza instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaCosechaAlzaDAO.guardarPlanillaCosechaAlza(instance);
+	}
+
+	@Override
+	public List<PlanillaCosechaAlza> buscarPlanillaCosechaAlza(
+			PlanillaCosechaAlza instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaCosechaAlzaDAO.buscarPlanillaCosechaAlza(instance);
+	}
+
+	@Override
+	public PlanillaCosechaAlza obtenerPorIdPlanillaCosechaAlza(int id)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaCosechaAlzaDAO.obtenerPorIdPlanillaCosechaAlza(id);
+	}
+
+	@Override
+	public PlanillaCosechaAlza eliminarPlanillaCosechaAlza(
+			PlanillaCosechaAlza instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaCosechaAlzaDAO.eliminarPlanillaCosechaAlza(instance);
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdPlanillaCosechaAlza() throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaCosechaAlzaDAO.obtenerMaximoIdPlanillaCosechaAlza();
 	}
 
 }
