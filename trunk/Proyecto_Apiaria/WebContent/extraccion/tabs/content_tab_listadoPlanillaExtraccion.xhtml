@@ -14,35 +14,30 @@
 </h:head>
 
 <h:body>
-<ui:include src="/seleccion/toolbars/toolbar_mantenimientoPlanillaRevision.xhtml"></ui:include>
+<ui:include src="/extraccion/toolbars/toolbar_listadoPlanillaExtraccion.xhtml"></ui:include>
 
-<p:dataTable id="dtlistaPR" var="listado" value="#{mBUsuarioApiario.listaPR}" 
-				    widgetVar="Seleccion" 
-		            emptyMessage="No se encontraron Planillas de Revision" 
+<p:dataTable id="dtlistaPE" var="listado" value="#{mBUsuarioApiarioExtraccion.listaPRCosechable}" 
+				    widgetVar="colmenaCosechable" 
+		            emptyMessage="No se encontraron Colmenas cosechables" 
 		            paginator="true" 
 		            rows="5" 
 		            paginatorPosition="bottom" 
 		            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
-		            selection="#{mBUsuarioApiario.planillaRevisionSeleccionada}" 
+		            selection="#{mBUsuarioApiarioExtraccion.planillaRevisioCosechableSeleccionada}" 
 		            selectionMode="single" 
 		            rowKey="#{listado.idPlanillaRevision}">
 		            
 		            
-				    <p:ajax event="rowSelect" 
-				            listener="#{mBUsuarioApiario.abrirModificarPlanillaRevision(mBUsuarioApiario.planillaRevisionSeleccionada.idPlanillaRevision)}"
-				         update=":fPr"
-            oncomplete="prDialog.show()"/>
+<!--				    <p:ajax event="rowSelect" -->
+<!--				            listener="#{mBUsuarioApiario.abrirModificarPlanillaRevision(mBUsuarioApiario.planillaRevisionSeleccionada.idPlanillaRevision)}"-->
+<!--				         update=":fPr"-->
+<!--            oncomplete="prDialog.show()"/>-->
 				          
 				       <f:facet name="header">
-								<h:outputText value="Listado de Planillas de Revision" />
+								<h:outputText value="Listado de Colmenas cosechables" />
 							</f:facet>
 								
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="" />
-							</f:facet>
-							<h:selectBooleanCheckbox value="#{listado.sel}" />
-						</p:column>
+
 								
 						<p:column width="20">
 							<f:facet name="header">
@@ -55,24 +50,6 @@
 								<h:outputText value="Colmena"></h:outputText>
 							</f:facet>
 							<h:outputText value="Colmena #{listado.colmena.idColmena}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Estado cosecha"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{listado.estadoCosecha}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Nivel peligro"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{listado.estadoRevision.descripcionEstadoRevision}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Comportamiento"></h:outputText>
-							</f:facet>
-							<h:outputText value="#{listado.comportamiento}" />
 						</p:column>
 		   			</p:dataTable>
 		   				   
