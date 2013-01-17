@@ -88,12 +88,10 @@
    <from-outcome>successMantenimientoUsuarioApiarioExtraccion</from-outcome>
    <to-view-id>/extraccion/UI_mantenimientoUsuarioApiarioExtraccion.xhtml</to-view-id>
   </navigation-case>
-  
-    <navigation-case>
+  <navigation-case>
    <from-outcome>successNuevoUsuarioApiarioExtraccion</from-outcome>
    <to-view-id>/extraccion/UI_registrarUsuarioApiarioExtraccion.xhtml</to-view-id>
   </navigation-case>
-  
   <navigation-case>
    <from-outcome>successLogin</from-outcome>
    <to-view-id>/UI_login.xhtml</to-view-id>
@@ -112,11 +110,11 @@
   </navigation-case>
   <navigation-case>
    <from-outcome>successMainCosechaa</from-outcome>
-   <to-view-id>/cosecha/nuevaCosecha/mainCosecha.xhtml</to-view-id>
+   <to-view-id>/cosecha/UI_mantenimientoUsuarioDecantadoraCentrifugadora.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>successNuevaAsignacionCosechaa</from-outcome>
-   <to-view-id>/cosecha/nuevaCosecha/nuevaAsignacion.xhtml</to-view-id>
+   <to-view-id>/cosecha/UI_registrarUsuarioDecantadoraCentrifugadora.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
    <from-outcome>successMantenimientoApiario</from-outcome>
