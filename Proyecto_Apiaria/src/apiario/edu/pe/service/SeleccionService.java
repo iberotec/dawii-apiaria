@@ -785,4 +785,10 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantado
 		return daoPlanillaCosechaAlzaDAO.obtenerMaximoIdPlanillaCosechaAlza();
 	}
 
+	@Override
+	public List<Integer> obtenerUltimaTemporada() throws Exception {
+		// TODO Auto-generated method stub
+		return daoTemporada.obtenerUltimaTemporada();
+	}
+
 }

@@ -110,33 +110,53 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 		List<Predicate> p=new ArrayList<Predicate>();
 		
 		if(instance!=null){
+			System.out.println("1");
 			if(instance.getIdPlanillaRevision()!=null && instance.getIdPlanillaRevision().intValue()>0){
+				System.out.println("2");
 				Predicate condition=builder.equal(planillarevisionRoot.get("idPlanillaRevision"),instance.getIdPlanillaRevision());
 				p.add(condition);
 			}
+			if(instance.getEstadoCosecha()!=null && instance.getEstadoCosecha().length()>0){
+				System.out.println("3");
+				Predicate condition=builder.like(planillarevisionRoot.<String>get("estadoCosecha"), instance.getEstadoCosecha());
+				p.add(condition);
+			}
 			if(instance.getUsuarioApiario()!=null){
+				System.out.println("4");
 				if(instance.getUsuarioApiario().getIdUsuarioApiario()!=null && instance.getUsuarioApiario().getIdUsuarioApiario().intValue()>0){
+					System.out.println("5");
 					Predicate condition=builder.equal(usuarioApiarioRoot.get("idUsuarioApiario"),instance.getUsuarioApiario().getIdUsuarioApiario());
 					p.add(condition);
 				}
 				
 				if(instance.getUsuarioApiario().getApiario()!=null){
+					System.out.println("6");
 					if(instance.getUsuarioApiario().getApiario().getIdApiario()!=null && instance.getUsuarioApiario().getApiario().getIdApiario().intValue()>0){
+						System.out.println("");
 						Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getUsuarioApiario().getApiario().getIdApiario());
 						p.add(condition);
 					}
 				}
 				if(instance.getUsuarioApiario().getTemporada()!=null){
+					System.out.println("7");
 					if(instance.getUsuarioApiario().getTemporada().getIdTemporada()!=null && instance.getUsuarioApiario().getTemporada().getIdTemporada().intValue()>0){
+						System.out.println("8");
 						Predicate condition=builder.equal(temporadaRoot.get("idTemporada"),instance.getUsuarioApiario().getTemporada().getIdTemporada());
 						p.add(condition);
 					}
 					if(instance.getUsuarioApiario().getTemporada().getOrdenTemporada()!=null && instance.getUsuarioApiario().getTemporada().getOrdenTemporada().intValue()>0){
+						System.out.println("9");
 						Predicate condition=builder.equal(temporadaRoot.get("ordenTemporada"),instance.getUsuarioApiario().getTemporada().getOrdenTemporada());
 						p.add(condition);
 					}
 					if(instance.getUsuarioApiario().getTemporada().getEtapaTemporada()!=null && instance.getUsuarioApiario().getTemporada().getEtapaTemporada().length()>0){
+						System.out.println("10");
 						Predicate condition=builder.like(temporadaRoot.<String>get("etapaTemporada"), "%"+instance.getUsuarioApiario().getTemporada().getEtapaTemporada()+"%");
+						p.add(condition);
+					}
+					if(instance.getUsuarioApiario().getTemporada().getEstadoTemporada()!=null){
+						System.out.println("11");
+						Predicate condition=builder.equal(temporadaRoot.get("estadoTemporada"),instance.getUsuarioApiario().getTemporada().getEstadoTemporada());
 						p.add(condition);
 					}
 				}

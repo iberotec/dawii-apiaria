@@ -99,6 +99,10 @@ public class MySqlTemporadaDAO implements ITemporadaDAO{
 				Predicate condition=builder.equal(temporadaRoot.get("etapaTemporada"), instance.getEtapaTemporada());
 				p.add(condition);
 			}
+			if(instance.getOrdenTemporada()!=null && instance.getOrdenTemporada().intValue()>0){
+				Predicate condition=builder.equal(temporadaRoot.get("ordenTemporada"), instance.getOrdenTemporada());
+				p.add(condition);
+			}
 		}
 		Predicate[] predicates = new Predicate[p.size()];
 	    p.toArray(predicates);
@@ -119,6 +123,21 @@ public class MySqlTemporadaDAO implements ITemporadaDAO{
 	public Temporada eliminarTemporada(Temporada instance) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	@Override
+	public List<Integer> obtenerUltimaTemporada() throws Exception {
+		List<Integer> lista=null;
+		Open();
+		try {
+			Query q=em.createQuery("select MAX(model.ordenTemporada) from Temporada model");
+			lista = q.getResultList();
+		} catch (Exception e) {
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
+		}
+		Close();
+		System.out.println("lista??dAO "+lista);
+		return lista;
 	}
 
 }

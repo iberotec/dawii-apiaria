@@ -31,12 +31,31 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 	private SeleccionService service = new SeleccionService();
 	private UsuarioApiario usuarioApiarioExtraccion;
 	private List<EstadoRevisionEquipamientoTrabajo> listaEretExtraccion=new ArrayList<EstadoRevisionEquipamientoTrabajo>();
+	private List<PlanillaRevision> listaPRCosechable= new ArrayList<PlanillaRevision>();
+	private PlanillaRevision planillaRevisioCosechableSeleccionada;
 	
 	private String nivelPeligroExtraccion;
 	private int nivelPeligroIdExtraccion;
 	private String ubicacionApiarioExtraccion;
 	private boolean mostrarEquipoSeguridadExtraccion;
 	
+
+	public PlanillaRevision getPlanillaRevisioCosechableSeleccionada() {
+		return planillaRevisioCosechableSeleccionada;
+	}
+
+	public void setPlanillaRevisioCosechableSeleccionada(
+			PlanillaRevision planillaRevisioCosechableSeleccionada) {
+		this.planillaRevisioCosechableSeleccionada = planillaRevisioCosechableSeleccionada;
+	}
+
+	public List<PlanillaRevision> getListaPRCosechable() {
+		return listaPRCosechable;
+	}
+
+	public void setListaPRCosechable(List<PlanillaRevision> listaPRCosechable) {
+		this.listaPRCosechable = listaPRCosechable;
+	}
 
 	public boolean isMostrarEquipoSeguridadExtraccion() {
 		return mostrarEquipoSeguridadExtraccion;
@@ -508,5 +527,31 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 				mostrarEquipoSeguridadExtraccion=false;
 			}
 		}
+	}
+	public void listarColmenaCosechable() throws Exception{
+		List<Integer> listaOrdenTemporada= new ArrayList<Integer>();
+		listaOrdenTemporada=service.obtenerUltimaTemporada();
+		System.out.println("tamaño listaOrdenTemporada "+listaOrdenTemporada.size());
+		System.out.println("ultimaTemporada "+listaOrdenTemporada.get(0));
+		
+		Temporada objT= new Temporada();
+		objT.setOrdenTemporada(listaOrdenTemporada.get(0));
+		objT.setEtapaTemporada("seleccion");
+		
+		List<Temporada> listaT= new ArrayList<Temporada>();
+		listaT= service.buscarTemporada(objT);
+		System.out.println("tamaño listaT "+listaT.size());
+		System.out.println("id temporada "+listaT.get(0).getIdTemporada());
+		System.out.println("id apiario "+usuarioApiarioExtraccion.getApiario().getIdApiario());
+		PlanillaRevision obj = new PlanillaRevision();
+		obj.setUsuarioApiario(new UsuarioApiario());
+		obj.getUsuarioApiario().setApiario(new Apiario());
+		obj.getUsuarioApiario().setTemporada(new Temporada());
+		obj.getUsuarioApiario().getApiario().setIdApiario(usuarioApiarioExtraccion.getApiario().getIdApiario());
+		obj.setEstadoCosecha("cosechable");
+		obj.getUsuarioApiario().getTemporada().setIdTemporada(listaT.get(0).getIdTemporada());
+		
+		listaPRCosechable = service.buscarPlanillaRevision(obj);
+		System.out.println("listaPrCosechable "+listaPRCosechable.size());
 	}
 }
