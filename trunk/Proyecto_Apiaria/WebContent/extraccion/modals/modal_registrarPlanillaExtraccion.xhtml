@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets" lang="es">
+
+
+ 			<p:dialog id="dialogPlEx" header="Planilla Extraccion" widgetVar="plExDialog" resizable="false"  
+              height="400" width="500" showEffect="clip" hideEffect="fold" modal="true">
+<h:form id="fPlEx">
+<!--             <ui:include src="/seleccion/toolbars/toolbar_registrarPlanillaRevisionAlza.xhtml"></ui:include>-->
+<!--		    <p:messages id="mensajePlEx" closable="true" showDetail="true" autoUpdate="true"></p:messages>-->
+					
+					
+					<p:panelGrid id="iPanelPlEx">
+					<p:row>
+					<p:column>
+					<h:outputText value="Tipo Alimentacion" rendered="#{mBUsuarioApiarioExtraccion.mostrarTipoAlimentacion}"/>
+					</p:column>
+					<p:column>
+					<p:inputText value="#{mBUsuarioApiarioExtraccion.tipoAlimentacion}" rendered="#{mBUsuarioApiarioExtraccion.mostrarTipoAlimentacion}"/>
+					</p:column>
+					</p:row>
+
+					<p:row>
+					<p:column>
+					<h:outputText value="Tipo Enfermedad" rendered="#{mBUsuarioApiarioExtraccion.mostrarTipoEnfermedad}"/>
+					</p:column>
+					<p:column>
+					<p:inputText value="#{mBUsuarioApiarioExtraccion.tipoEnfermedad}" rendered="#{mBUsuarioApiarioExtraccion.mostrarTipoEnfermedad}"></p:inputText>
+					</p:column>
+					</p:row>
+					<p:row>
+					<p:column>
+					<h:outputText value="Reina" />
+					</p:column>
+					<p:column>
+					<p:selectBooleanCheckbox value="#{mBUsuarioApiarioExtraccion.exitenciaReina}"></p:selectBooleanCheckbox>
+					</p:column>
+					</p:row>
+					</p:panelGrid>
+</h:form>		
+				</p:dialog>
+
+</ui:composition>

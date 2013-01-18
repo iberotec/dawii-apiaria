@@ -28,10 +28,10 @@
 		            rowKey="#{listado.idPlanillaRevision}">
 		            
 		            
-<!--				    <p:ajax event="rowSelect" -->
-<!--				            listener="#{mBUsuarioApiario.abrirModificarPlanillaRevision(mBUsuarioApiario.planillaRevisionSeleccionada.idPlanillaRevision)}"-->
-<!--				         update=":fPr"-->
-<!--            oncomplete="prDialog.show()"/>-->
+				    <p:ajax event="rowSelect" 
+				            listener="#{mBUsuarioApiarioExtraccion.abrirRegistrarPlanillaCosecha(mBUsuarioApiarioExtraccion.planillaRevisioCosechableSeleccionada.idPlanillaRevision)}"
+				         update=":fPlEx"
+            oncomplete="plExDialog.show()"/>
 				          
 				       <f:facet name="header">
 								<h:outputText value="Listado de Colmenas cosechables" />
