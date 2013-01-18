@@ -18,7 +18,10 @@ import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
+import apiario.edu.pe.bean.PlanillaExtraccionAlza;
 import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
+import apiario.edu.pe.bean.PlanillaRevisionTipoEnfermedad;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
 import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.Usuario;
@@ -33,12 +36,80 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 	private List<EstadoRevisionEquipamientoTrabajo> listaEretExtraccion=new ArrayList<EstadoRevisionEquipamientoTrabajo>();
 	private List<PlanillaRevision> listaPRCosechable= new ArrayList<PlanillaRevision>();
 	private PlanillaRevision planillaRevisioCosechableSeleccionada;
+	private PlanillaRevision planillaRevisionCosechable;
+	private PlanillaExtraccionAlza planillaExtraccionAlza;
+	
+	
 	
 	private String nivelPeligroExtraccion;
 	private int nivelPeligroIdExtraccion;
 	private String ubicacionApiarioExtraccion;
 	private boolean mostrarEquipoSeguridadExtraccion;
+	private String tipoAlimentacion;
+	private String tipoEnfermedad;
+	private boolean mostrarTipoAlimentacion;
+	private boolean mostrarTipoEnfermedad;
+	private boolean exitenciaReina;
 	
+	
+	
+	public boolean isExitenciaReina() {
+		return exitenciaReina;
+	}
+
+	public void setExitenciaReina(boolean exitenciaReina) {
+		this.exitenciaReina = exitenciaReina;
+	}
+
+	public boolean isMostrarTipoAlimentacion() {
+		return mostrarTipoAlimentacion;
+	}
+
+	public void setMostrarTipoAlimentacion(boolean mostrarTipoAlimentacion) {
+		this.mostrarTipoAlimentacion = mostrarTipoAlimentacion;
+	}
+
+	public boolean isMostrarTipoEnfermedad() {
+		return mostrarTipoEnfermedad;
+	}
+
+	public void setMostrarTipoEnfermedad(boolean mostrarTipoEnfermedad) {
+		this.mostrarTipoEnfermedad = mostrarTipoEnfermedad;
+	}
+
+	public String getTipoAlimentacion() {
+		return tipoAlimentacion;
+	}
+
+	public void setTipoAlimentacion(String tipoAlimentacion) {
+		this.tipoAlimentacion = tipoAlimentacion;
+	}
+
+	public String getTipoEnfermedad() {
+		return tipoEnfermedad;
+	}
+
+	public void setTipoEnfermedad(String tipoEnfermedad) {
+		this.tipoEnfermedad = tipoEnfermedad;
+	}
+
+	public PlanillaRevision getPlanillaRevisionCosechable() {
+		return planillaRevisionCosechable;
+	}
+
+	public void setPlanillaRevisionCosechable(
+			PlanillaRevision planillaRevisionCosechable) {
+		this.planillaRevisionCosechable = planillaRevisionCosechable;
+	}
+
+	public PlanillaExtraccionAlza getPlanillaExtraccionAlza() {
+		return planillaExtraccionAlza;
+	}
+
+	public void setPlanillaExtraccionAlza(
+			PlanillaExtraccionAlza planillaExtraccionAlza) {
+		this.planillaExtraccionAlza = planillaExtraccionAlza;
+	}
 
 	public PlanillaRevision getPlanillaRevisioCosechableSeleccionada() {
 		return planillaRevisioCosechableSeleccionada;
@@ -531,27 +602,83 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 	public void listarColmenaCosechable() throws Exception{
 		List<Integer> listaOrdenTemporada= new ArrayList<Integer>();
 		listaOrdenTemporada=service.obtenerUltimaTemporada();
-		System.out.println("tamaño listaOrdenTemporada "+listaOrdenTemporada.size());
-		System.out.println("ultimaTemporada "+listaOrdenTemporada.get(0));
 		
-		Temporada objT= new Temporada();
-		objT.setOrdenTemporada(listaOrdenTemporada.get(0));
-		objT.setEtapaTemporada("seleccion");
+		if(listaOrdenTemporada.size()>0){
+			Temporada objT= new Temporada();
+			objT.setOrdenTemporada(listaOrdenTemporada.get(0));
+			objT.setEtapaTemporada("seleccion");
+			
+			List<Temporada> listaT= new ArrayList<Temporada>();
+			listaT= service.buscarTemporada(objT);
 		
-		List<Temporada> listaT= new ArrayList<Temporada>();
-		listaT= service.buscarTemporada(objT);
-		System.out.println("tamaño listaT "+listaT.size());
-		System.out.println("id temporada "+listaT.get(0).getIdTemporada());
-		System.out.println("id apiario "+usuarioApiarioExtraccion.getApiario().getIdApiario());
-		PlanillaRevision obj = new PlanillaRevision();
-		obj.setUsuarioApiario(new UsuarioApiario());
-		obj.getUsuarioApiario().setApiario(new Apiario());
-		obj.getUsuarioApiario().setTemporada(new Temporada());
-		obj.getUsuarioApiario().getApiario().setIdApiario(usuarioApiarioExtraccion.getApiario().getIdApiario());
-		obj.setEstadoCosecha("cosechable");
-		obj.getUsuarioApiario().getTemporada().setIdTemporada(listaT.get(0).getIdTemporada());
+			if(listaT.size()>0){
+				PlanillaRevision obj = new PlanillaRevision();
+				obj.setUsuarioApiario(new UsuarioApiario());
+				obj.getUsuarioApiario().setApiario(new Apiario());
+				obj.getUsuarioApiario().setTemporada(new Temporada());
+				obj.getUsuarioApiario().getApiario().setIdApiario(usuarioApiarioExtraccion.getApiario().getIdApiario());
+				obj.setEstadoCosecha("cosechable");
+				obj.getUsuarioApiario().getTemporada().setIdTemporada(listaT.get(0).getIdTemporada());
+				
+				listaPRCosechable = service.buscarPlanillaRevision(obj);
+			}
+			
+			
+		}
 		
-		listaPRCosechable = service.buscarPlanillaRevision(obj);
-		System.out.println("listaPrCosechable "+listaPRCosechable.size());
 	}
+	public void abrirRegistrarPlanillaCosecha(int id) throws Exception{
+		if(id>0){
+			planillaRevisionCosechable=service.obtenerPorIdPlanillaRevision(id);
+			if(planillaRevisionCosechable!=null){
+				if(planillaRevisionCosechable.getExistenciaReina()!=null){
+					exitenciaReina=planillaRevisionCosechable.getExistenciaReina();
+				}
+				
+				if(planillaRevisionCosechable.getIdPlanillaRevision()!=null && planillaRevisionCosechable.getIdPlanillaRevision().intValue()>0){
+					PlanillaRevisionTipoAlimentacion objPRTA= new PlanillaRevisionTipoAlimentacion();
+					objPRTA.setPlanillaRevision(new PlanillaRevision());
+					objPRTA.getPlanillaRevision().setIdPlanillaRevision(planillaRevisionCosechable.getIdPlanillaRevision());
+					
+					List<PlanillaRevisionTipoAlimentacion> listaPRTA= new ArrayList<PlanillaRevisionTipoAlimentacion>();
+					listaPRTA=service.buscarPlanillaRevisionTipoAlimentacion(objPRTA);
+					if(listaPRTA.size()>0){
+						mostrarTipoAlimentacion=true;
+						tipoAlimentacion=listaPRTA.get(0).getTipoAlimentacion().getDescripcionTipoAlimentacion();
+					}else{
+						mostrarTipoAlimentacion=false;
+					}
+					
+					
+					PlanillaRevisionTipoEnfermedad objPRTE= new PlanillaRevisionTipoEnfermedad();
+					objPRTE.setPlanillaRevision(new PlanillaRevision());
+					objPRTE.getPlanillaRevision().setIdPlanillaRevision(planillaRevisionCosechable.getIdPlanillaRevision());
+					
+					List<PlanillaRevisionTipoEnfermedad> listaPRTE= new ArrayList<PlanillaRevisionTipoEnfermedad>();
+					listaPRTE=service.buscarPlanillaRevisionTipoEnfermedad(objPRTE);
+					if(listaPRTE.size()>0){
+						mostrarTipoEnfermedad=true;
+						tipoEnfermedad=listaPRTE.get(0).getTipoEnfermedad().getDescripcionTipoEnfermedad();
+					}else{
+						mostrarTipoEnfermedad=false;
+					}
+					
+				}else{
+					mostrarTipoEnfermedad=false;
+					mostrarTipoAlimentacion=false;
+				}
+			}else{
+				mostrarTipoEnfermedad=false;
+				mostrarTipoAlimentacion=false;
+			}
+			
+		}else{
+			mostrarTipoEnfermedad=false;
+			mostrarTipoAlimentacion=false;
+		}
+	
+		
+		
+	}
+	
 }
