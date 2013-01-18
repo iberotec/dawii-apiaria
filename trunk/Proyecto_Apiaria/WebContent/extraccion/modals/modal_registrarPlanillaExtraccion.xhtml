@@ -10,7 +10,7 @@
 
 
  			<p:dialog id="dialogPlEx" header="Planilla Extraccion" widgetVar="plExDialog" resizable="false"  
-              height="400" width="500" showEffect="clip" hideEffect="fold" modal="true">
+              height="600" width="700" showEffect="clip" hideEffect="fold" modal="true">
 <h:form id="fPlEx">
 <!--             <ui:include src="/seleccion/toolbars/toolbar_registrarPlanillaRevisionAlza.xhtml"></ui:include>-->
 <!--		    <p:messages id="mensajePlEx" closable="true" showDetail="true" autoUpdate="true"></p:messages>-->
@@ -43,6 +43,16 @@
 					</p:column>
 					</p:row>
 					</p:panelGrid>
+					
+					<p:tabView id="tabContainerPlEx">
+						<p:tab id="iTabExtraccionAlza" title="Extraccion de Alzas">
+							<ui:include src="/extraccion/tabs/content_tab_extraccionAlza.xhtml" />
+						</p:tab>
+						<p:tab id="iTabDistribucionAlza" title="Distribucion de Alzas">
+							<ui:include src="/extraccion/tabs/content_tab_distribucionAlza.xhtml" />
+						</p:tab>
+					</p:tabView>
+					
 </h:form>		
 				</p:dialog>
 
