@@ -13,12 +13,10 @@
 
 	<h:body>
 		<ui:include
-			src="/cosecha/toolbars/toolbar_registrarLlenadoBaldes.xhtml"></ui:include>
+			src="/cosecha/toolbars/toolbar_registrarPlanillaCosecha.xhtml"></ui:include>
 
 
-		<h2 align="center">
-			<h:outputText value="Control de Calidad del Apiario(SENASA)" />
-		</h2>
+		
 
 		<p:pickList id="pojoPickList" value="#{mBCosecha.listaPCA}"
 			var="player" effect="bounce" itemValue="#{player}"
