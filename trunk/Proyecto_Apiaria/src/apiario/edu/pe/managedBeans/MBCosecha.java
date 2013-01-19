@@ -72,7 +72,9 @@ public class MBCosecha implements Serializable{
 	public void setListaPCA(DualListModel<PlanillaCosechaAlza> listaPCA) {
 		this.listaPCA = listaPCA;
 	}
-	public DualListModel<PlanillaCosechaAlza> getListaPCA() {
+	@SuppressWarnings("unchecked")
+	public DualListModel<PlanillaCosechaAlza> getListaPCA() throws Exception {
+		listaPCA=(DualListModel<PlanillaCosechaAlza>) sevice.listarTodosAlzas();
 		return listaPCA;
 	}
 	
