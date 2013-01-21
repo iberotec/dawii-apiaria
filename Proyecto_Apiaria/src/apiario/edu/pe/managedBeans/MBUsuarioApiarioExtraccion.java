@@ -13,13 +13,16 @@ import javax.servlet.http.HttpSession;
 
 import org.primefaces.model.DualListModel;
 
+import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Apiario;
+import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
 import apiario.edu.pe.bean.PlanillaExtraccionAlza;
 import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.PlanillaRevisionAlza;
 import apiario.edu.pe.bean.PlanillaRevisionTipoAlimentacion;
 import apiario.edu.pe.bean.PlanillaRevisionTipoEnfermedad;
 import apiario.edu.pe.bean.PlanillaSeguimiento;
@@ -38,7 +41,7 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 	private PlanillaRevision planillaRevisioCosechableSeleccionada;
 	private PlanillaRevision planillaRevisionCosechable;
 	private PlanillaExtraccionAlza planillaExtraccionAlza;
-	
+	private DualListModel<PlanillaRevisionAlza> dListaPrA = new DualListModel<PlanillaRevisionAlza>();
 	
 	
 	private String nivelPeligroExtraccion;
@@ -53,6 +56,14 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 	
 	
 	
+	public DualListModel<PlanillaRevisionAlza> getdListaPrA() {
+		return dListaPrA;
+	}
+
+	public void setdListaPrA(DualListModel<PlanillaRevisionAlza> dListaPrA) {
+		this.dListaPrA = dListaPrA;
+	}
+
 	public boolean isExitenciaReina() {
 		return exitenciaReina;
 	}
@@ -676,8 +687,237 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 			mostrarTipoEnfermedad=false;
 			mostrarTipoAlimentacion=false;
 		}
-	
+		List<PlanillaRevisionAlza> fuente= new ArrayList<PlanillaRevisionAlza>();
+		List<PlanillaRevisionAlza> destino= new ArrayList<PlanillaRevisionAlza>();
 		
+		PlanillaRevisionAlza objFuentePrA= new PlanillaRevisionAlza();
+		objFuentePrA.setPlanillaRevision(new PlanillaRevision());
+		objFuentePrA.getPlanillaRevision().setIdPlanillaRevision(planillaRevisionCosechable.getIdPlanillaRevision());
+		
+		fuente=service.buscarPlanillaRevisionAlza(objFuentePrA);
+		
+		
+		
+		
+		List<PlanillaExtraccionAlza> listaPEA= new ArrayList<PlanillaExtraccionAlza>();
+		PlanillaExtraccionAlza objDestinoPEA= new PlanillaExtraccionAlza();
+		objDestinoPEA.setPlanillaRevisionAlza(new PlanillaRevisionAlza());
+		objDestinoPEA.getPlanillaRevisionAlza().setPlanillaRevision(new PlanillaRevision());
+		objDestinoPEA.getPlanillaRevisionAlza().getPlanillaRevision().setIdPlanillaRevision(planillaRevisionCosechable.getIdPlanillaRevision());
+		
+		listaPEA=service.buscarPlanillaExtraccionAlza(objDestinoPEA);
+		
+		
+		if(listaPEA.size()>0){
+			PlanillaRevisionAlza obj= new PlanillaRevisionAlza();
+			for (PlanillaExtraccionAlza planillasExtraccionAlza : listaPEA) {
+				obj=planillasExtraccionAlza.getPlanillaRevisionAlza();
+				
+				for (int i = 0; i < fuente.size(); i++) {
+					if(planillasExtraccionAlza.getPlanillaRevisionAlza().getIdPlanillaRevisionAlza()==fuente.get(i).getIdPlanillaRevisionAlza()){
+						fuente.remove(i);
+					}
+				}
+				
+				
+				
+				destino.add(obj);
+			}
+			
+			
+			
+		}
+		
+		
+		
+//		PlanillaRevisionAlza objDestinoPrA= new PlanillaRevisionAlza();
+//		objDestinoPrA.setAlza(new Alza());
+//		objDestinoPrA.getAlza().setEstadoAlza("en cosecha");
+//		objDestinoPrA.setPlanillaRevision(new PlanillaRevision());
+//		objDestinoPrA.getPlanillaRevision().setIdPlanillaRevision(planillaRevisionCosechable.getIdPlanillaRevision());
+//		
+//		destino=service.buscarPlanillaRevisionAlza(objDestinoPrA);
+		
+		dListaPrA= new DualListModel<PlanillaRevisionAlza>(fuente, destino);
+		
+		
+	}
+	public void validarDatosRepetidosPlanillaExtraccionAlza(List<PlanillaRevisionAlza> listaTarget,List<PlanillaExtraccionAlza> listaTabla,PlanillaExtraccionAlza obj) throws Exception{
+		PlanillaExtraccionAlza confirm= new PlanillaExtraccionAlza();
+		List<String> listaIds= new ArrayList<String>();
+		if(listaTarget.size()>0){
+			for (int i = 0; i < listaTarget.size(); i++) {
+				listaIds.add(listaTarget.get(i).getIdPlanillaRevisionAlza().toString());
+			}
+		}
+		String id="";
+		
+		
+		if(listaTabla.size()>0){
+			//validar la actualizacion e una tabla llena
+			if(dListaPrA.getTarget().size()>0){
+				for (int i = 0; i < dListaPrA.getTarget().size(); i++) {
+					for (int j = 0; j < listaTabla.size(); j++) {
+						System.out.println("lista "+listaTabla.get(j).getPlanillaRevisionAlza().getIdPlanillaRevisionAlza()+
+								" == "+"target "+dListaPrA.getTarget().get(i).getIdPlanillaRevisionAlza());
+						if(listaTabla.get(j).getPlanillaRevisionAlza().getIdPlanillaRevisionAlza().intValue()==
+							dListaPrA.getTarget().get(i).getIdPlanillaRevisionAlza().intValue()){
+							System.out.println("entra if");
+							id=dListaPrA.getTarget().get(i).getIdPlanillaRevisionAlza().toString();
+							System.out.println("id a remover "+id);
+							listaIds.remove(id);
+							
+						}else{
+							System.out.println("entra else");
+						
+						}
+					}
+					
+			
+				}
+			}
+			if(listaIds.size()>0){
+				for (int i = 0; i < listaIds.size(); i++) {
+					System.out.println("ids "+listaIds.get(i));
+					obj.getPlanillaRevisionAlza().setIdPlanillaRevisionAlza(Integer.parseInt(listaIds.get(i)));
+					confirm=service.guardarPlanillaExtraccionAlza(obj);
+					/////////////////////
+					PlanillaRevisionAlza objPRA=null;
+					objPRA=service.obtenerPorIdPlanillaRevisionAlza(obj.getPlanillaRevisionAlza().getIdPlanillaRevisionAlza());
+					
+					Alza confirmar=null;
+					Alza objAlza= new Alza();
+					objAlza=objPRA.getAlza();
+					objAlza.setEstadoAlza("en cosecha");
+					confirmar=service.guardarAlza(objAlza);
+					
+					if(confirmar.isSuccess()){
+						System.out.println("guardo "+objAlza.getIdAlza()+"en tabla llena");
+					}else{
+						System.out.println("error en tabla llena");
+					}
+					///////////////////////
+				}
+				if(confirm.isSuccess()){
+					System.out.println("ms1");
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro la Extraccion"));  
+				}else{
+					System.out.println("ms2");
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Extraccion")); 
+				}
+			}else{
+				System.out.println("lista id vacia");
+			}
+			
+			
+		}else{
+			//validar la actualizacion e una tabla vacia
+			if(dListaPrA.getTarget().size()>0){
+				for (int i = 0; i < dListaPrA.getTarget().size(); i++) {
+					obj.getPlanillaRevisionAlza().setIdPlanillaRevisionAlza(dListaPrA.getTarget().get(i).getIdPlanillaRevisionAlza());
+					confirm=service.guardarPlanillaExtraccionAlza(obj);	
+					
+					/////////////////////
+					PlanillaRevisionAlza objPRA=null;
+					objPRA=service.obtenerPorIdPlanillaRevisionAlza(obj.getPlanillaRevisionAlza().getIdPlanillaRevisionAlza());
+					
+					Alza confirmar=null;
+					Alza objAlza= new Alza();
+					objAlza=objPRA.getAlza();
+					objAlza.setEstadoAlza("en cosecha");
+					confirmar=service.guardarAlza(objAlza);
+					
+					if(confirmar.isSuccess()){
+						System.out.println("guardo "+objAlza.getIdAlza()+"en tabla vacia");
+					}else{
+						System.out.println("error en tabla vacia");
+					}
+					///////////////////////
+					
+				}
+				if(confirm.isSuccess()){
+					System.out.println("ms3");
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro la Extraccion"));  
+				}else{
+					System.out.println("ms4");
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Extraccion")); 
+				}
+			}
+		}
+		
+	}
+	public void validarEliminacionPlanillaRevision(List<PlanillaExtraccionAlza> listaTabla,List<PlanillaRevisionAlza> listaSource) throws Exception{
+		List<Integer> listaI= new ArrayList<Integer>();
+		if(listaTabla.size()>0){
+			for (int i = 0; i < listaTabla.size(); i++) {
+				if(listaSource.size()>0){
+					for (int j = 0; j < listaSource.size(); j++) {
+						if(listaTabla.get(i).getPlanillaRevisionAlza().getIdPlanillaRevisionAlza()==listaSource.get(j).getIdPlanillaRevisionAlza()){
+							listaI.add(listaTabla.get(i).getIdPlanillaExtraccionAlza());
+						}
+					}
+				}
+			
+			}
+		}
+		
+		System.out.println("tamaño listaI "+listaI.size());
+		if(listaI.size()>0){
+		PlanillaExtraccionAlza eliminar= new PlanillaExtraccionAlza();
+		eliminar.setListaEliminar(listaI);
+		PlanillaExtraccionAlza confirmEliminar=null;
+		/////////////////////
+		for (int i = 0; i < listaI.size(); i++) {
+			PlanillaExtraccionAlza objPEA =null;
+			objPEA=service.obtenerPorIdPlanillaExtraccionAlza(listaI.get(i));
+			/////////////////////
+			
+			
+			Alza confirmar=null;
+			Alza objAlza= new Alza();
+			objAlza=objPEA.getPlanillaRevisionAlza().getAlza();
+			objAlza.setEstadoAlza("en seleccion");
+			confirmar=service.guardarAlza(objAlza);
+			
+			if(confirmar.isSuccess()){
+				System.out.println("guardo "+objAlza.getIdAlza()+"en eliminacion");
+			}else{
+				System.out.println("error en eliminacion");
+			}
+			///////////////////////
+		}
+		//////////////////////////////
+		confirmEliminar=service.eliminarPlanillaExtraccionAlza(eliminar);
+		
+			if(confirmEliminar.isSuccess()){
+				System.out.println("ms5");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro la Extraccion"));  
+			}else{
+				System.out.println("ms6");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Extraccion")); 
+			}
+		}
+	}
+	public void guardarPlanillaExtraccionAlza() throws Exception{
+		Date fechaActualExtraccion = new Date();
+		PlanillaExtraccionAlza guardar= new PlanillaExtraccionAlza();
+		guardar.setUsuarioApiario(new UsuarioApiario());
+		guardar.getUsuarioApiario().setIdUsuarioApiario(usuarioApiarioExtraccion.getIdUsuarioApiario());
+		guardar.setPlanillaRevisionAlza(new PlanillaRevisionAlza());
+		guardar.setFechaExtraccionAlza(fechaActualExtraccion);
+		
+		List<PlanillaExtraccionAlza> listaPEA= new ArrayList<PlanillaExtraccionAlza>();
+		PlanillaExtraccionAlza obj= new PlanillaExtraccionAlza();
+		obj.setPlanillaRevisionAlza(new PlanillaRevisionAlza());
+		obj.getPlanillaRevisionAlza().setPlanillaRevision(new PlanillaRevision());
+		obj.getPlanillaRevisionAlza().getPlanillaRevision().setIdPlanillaRevision(planillaRevisionCosechable.getIdPlanillaRevision());
+		
+		listaPEA=service.buscarPlanillaExtraccionAlza(obj);
+	
+		validarDatosRepetidosPlanillaExtraccionAlza(dListaPrA.getTarget(), listaPEA, guardar);
+
+		validarEliminacionPlanillaRevision(listaPEA, dListaPrA.getSource());
+
 		
 	}
 	

@@ -81,13 +81,19 @@ public class MySqlPlanillaRevisionAlzaDAO implements IPlanillaRevisionAlzaDAO {
 		CriteriaQuery<PlanillaRevisionAlza> criteria = builder.createQuery( PlanillaRevisionAlza.class );
 		Root<PlanillaRevisionAlza> planillaRevisionAlzaRoot = criteria.from( PlanillaRevisionAlza.class );
 		Join<PlanillaRevisionAlza,PlanillaRevision> planillaRevisionRoot = planillaRevisionAlzaRoot.join( "planillaRevision" );
+		Join<PlanillaRevision,Colmena> colmenaPrRoot = planillaRevisionRoot.join( "colmena" );
 		Join<PlanillaRevisionAlza,Alza> alzaRoot = planillaRevisionAlzaRoot.join( "alza" );
 		Join<Alza,Piso> pisoRoot = alzaRoot.join( "piso" );
 		Join<Piso,Colmena> colmenaRoot = pisoRoot.join( "colmena" );
 		criteria.select( planillaRevisionAlzaRoot );
 		List<Predicate> p = new ArrayList<Predicate>();
 		
-		if(instance!=null){
+		
+		Predicate conditionExterno=builder.ge(planillaRevisionAlzaRoot.<Double>get("porcentajeMiel"), 75);
+		p.add(conditionExterno);
+		
+		
+		if(instance!=null){	
 			if(instance.getIdPlanillaRevisionAlza()!=null && instance.getIdPlanillaRevisionAlza().intValue()>0){
 				Predicate condition=builder.equal(planillaRevisionAlzaRoot.get("idPlanillaRevisionAlza"), instance.getIdPlanillaRevisionAlza());
 				p.add(condition);
@@ -101,6 +107,13 @@ public class MySqlPlanillaRevisionAlzaDAO implements IPlanillaRevisionAlzaDAO {
 					Predicate condition=builder.equal(planillaRevisionRoot.get("comportamiento"), instance.getPlanillaRevision().getComportamiento());
 					p.add(condition);
 				}
+				if(instance.getPlanillaRevision().getColmena()!=null){
+					if(instance.getPlanillaRevision().getColmena().getIdColmena()!=null && instance.getPlanillaRevision().getColmena().getIdColmena().intValue()>0){
+						Predicate condition=builder.equal(colmenaPrRoot.get("idColmena"), instance.getPlanillaRevision().getColmena().getIdColmena());
+						p.add(condition);
+					}
+				}
+				
 				
 			}
 			if(instance.getAlza()!=null){
@@ -108,6 +121,12 @@ public class MySqlPlanillaRevisionAlzaDAO implements IPlanillaRevisionAlzaDAO {
 					Predicate condition=builder.equal(alzaRoot.get("idAlza"), instance.getAlza().getIdAlza());
 					p.add(condition);
 				}
+				
+				if(instance.getAlza().getEstadoAlza()!=null && instance.getAlza().getEstadoAlza().length()>0){
+					Predicate condition=builder.like(alzaRoot.<String>get("estadoAlza"), "%"+instance.getAlza().getEstadoAlza()+"%");
+					p.add(condition);
+				}
+				
 				if(instance.getAlza().getPiso()!=null){
 					if(instance.getAlza().getPiso().getColmena()!=null){
 						if(instance.getAlza().getPiso().getColmena().getIdColmena()!=null && instance.getAlza().getPiso().getColmena().getIdColmena().intValue()>0){
