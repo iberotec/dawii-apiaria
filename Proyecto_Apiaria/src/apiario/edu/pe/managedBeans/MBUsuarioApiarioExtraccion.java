@@ -20,6 +20,7 @@ import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
+import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaExtraccionAlza;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
@@ -42,7 +43,7 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 	private PlanillaRevision planillaRevisionCosechable;
 	private PlanillaExtraccionAlza planillaExtraccionAlza;
 	private DualListModel<PlanillaRevisionAlza> dListaPrA = new DualListModel<PlanillaRevisionAlza>();
-	
+	private DualListModel<Alza> dListaA = new DualListModel<Alza>();
 	
 	private String nivelPeligroExtraccion;
 	private int nivelPeligroIdExtraccion;
@@ -56,6 +57,14 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 	
 	
 	
+	public DualListModel<Alza> getdListaA() {
+		return dListaA;
+	}
+
+	public void setdListaA(DualListModel<Alza> dListaA) {
+		this.dListaA = dListaA;
+	}
+
 	public DualListModel<PlanillaRevisionAlza> getdListaPrA() {
 		return dListaPrA;
 	}
@@ -741,7 +750,77 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 		dListaPrA= new DualListModel<PlanillaRevisionAlza>(fuente, destino);
 		
 		
+		
+		List<Alza> origen = new ArrayList<Alza>();
+		Alza objOrigen = new Alza();
+		objOrigen.setPiso(new Piso());
+		objOrigen.getPiso().setColmena(new Colmena());
+		objOrigen.getPiso().getColmena().setIdColmena(planillaRevisionCosechable.getColmena().getIdColmena());
+		objOrigen.setEstadoAlza("en colmena");
+		
+		origen=service.buscarAlza(objOrigen);
+		
+		
+		List<Alza> llegada = new ArrayList<Alza>();
+		Alza objLlegada = new Alza();
+		objLlegada.setPiso(new Piso());
+		objLlegada.getPiso().setColmena(new Colmena());
+		objLlegada.getPiso().getColmena().setIdColmena(planillaRevisionCosechable.getColmena().getIdColmena());
+		objLlegada.setEstadoAlza("en almacen");
+		
+		llegada=service.buscarAlza(objLlegada);
+		
+		dListaA= new DualListModel<Alza>(origen, llegada);
+		
 	}
+	public void guardarDistribucionAlza() throws Exception{
+		Alza confirm=new Alza();
+		int contCapacidad=0;
+		if(dListaA.getSource().size()>0){
+			Alza objA= new Alza();
+			for (int i = 0; i < dListaA.getSource().size(); i++) {
+				objA=dListaA.getSource().get(i);
+				objA.setEstadoAlza("en colmena");
+				System.out.println("id alza "+objA.getIdAlza());
+				contCapacidad++;
+				System.out.println("capacidad "+contCapacidad);
+				System.out.println("capacidad obj "+objA.getPiso().getCapacidad());
+				if(objA.getPiso().getCapacidad().intValue()>=contCapacidad){
+					confirm=service.guardarAlza(objA);
+				}else{
+					System.out.println("piso lleno");
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,"Atencion", "El piso "+objA.getPiso().getIdPiso()+" Solo tiene una capacidad de "+objA.getPiso().getCapacidad()));
+				}
+			}
+			if(confirm.isSuccess()){
+				System.out.println("guardo distribucion colmena");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro la Distribucion de Alzas"));
+			}else{
+				System.out.println("no guardo distribucion colmena");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Distribucion de Alzas"));
+			}
+		}
+		if(dListaA.getTarget().size()>0){
+			Alza objA= new Alza();
+			for (int i = 0; i < dListaA.getTarget().size(); i++) {
+				objA=dListaA.getTarget().get(i);
+				objA.setEstadoAlza("en almacen");
+				System.out.println("id alza "+objA.getIdAlza());
+				confirm=service.guardarAlza(objA);
+				
+			}
+			if(confirm.isSuccess()){
+				System.out.println("guardo distribucion almacen");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Bien!", "Se registro la Distribucion de Alzas"));
+			}else{
+				System.out.println("no guardo distribucion almacen");
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Distribucion de Alzas"));
+			}
+		}
+		
+	}
+	
+	
 	public void validarDatosRepetidosPlanillaExtraccionAlza(List<PlanillaRevisionAlza> listaTarget,List<PlanillaExtraccionAlza> listaTabla,PlanillaExtraccionAlza obj) throws Exception{
 		PlanillaExtraccionAlza confirm= new PlanillaExtraccionAlza();
 		List<String> listaIds= new ArrayList<String>();
