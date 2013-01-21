@@ -14,8 +14,25 @@
 </h:head>
 
 <h:body>
-<!--<ui:include src="/extraccion/toolbars/toolbar_listadoPlanillaExtraccion.xhtml"></ui:include>-->
+<ui:include src="/extraccion/toolbars/toolbar_registrarPlanillaExtraccion.xhtml"></ui:include>
 
+ 		<p:pickList id="pojoPickList" value="#{mBUsuarioApiarioExtraccion.dListaPrA}" var="player" effect="bounce"  
+                    itemValue="#{player}" itemLabel="Alza #{player.alza.idAlza}"  converter="#{planillaRevisionAlzaConverter}" 
+                    showSourceControls="true" showTargetControls="true"   
+                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >  
+  
+        <f:facet name="sourceCaption">Alzas Seleccionadas</f:facet>  
+        <f:facet name="targetCaption">Alzas Extraidas</f:facet>  
+  
+        <p:ajax event="transfer"  />  
+  
+    
+  
+            <p:column style="width:75%;">  
+            Alza #{player.alza.idAlza}  
+        </p:column>  
+  
+    	</p:pickList>  
 
 		   				   
 		   			

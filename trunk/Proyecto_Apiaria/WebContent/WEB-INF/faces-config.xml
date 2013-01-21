@@ -79,6 +79,11 @@
   <managed-bean-class>apiario.edu.pe.util.PlanillaCosechaAlzaConverter</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>planillaRevisionAlzaConverter</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.util.PlanillaRevisionAlzaConverter</managed-bean-class>
+  <managed-bean-scope>application</managed-bean-scope>
+ </managed-bean>
  <!-- navegacion -->
  <navigation-rule>
   <navigation-case>
