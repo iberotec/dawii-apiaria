@@ -18,8 +18,8 @@ public class Centrifugadora extends BaseEntidades implements Serializable {
 	@Column(name="id_centrifugadora")
 	private Integer idCentrifugadora;
 	
-
-	
+	@Column(name="disponibilidad_centrifugadora")
+	private Boolean disponibilidadCentrifugadora;
 	
 	public Centrifugadora() {
 		
@@ -30,5 +30,13 @@ public class Centrifugadora extends BaseEntidades implements Serializable {
 	public void setIdCentrifugadora(Integer idCentrifugadora) {
 		this.idCentrifugadora = idCentrifugadora;
 	}
+	public Boolean getDisponibilidadCentrifugadora() {
+		return disponibilidadCentrifugadora;
+	}
+	public void setDisponibilidadCentrifugadora(Boolean disponibilidadCentrifugadora) {
+		this.disponibilidadCentrifugadora = disponibilidadCentrifugadora;
+	}
+
+	
 
 }

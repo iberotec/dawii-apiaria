@@ -11,6 +11,7 @@ import apiario.edu.pe.bean.EstadoRevision;
 
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 
+import apiario.edu.pe.bean.Balde;
 import apiario.edu.pe.bean.Centrifugadora;
 import apiario.edu.pe.bean.Decantadora;
 import apiario.edu.pe.bean.NormaSeguridad;
@@ -30,8 +31,11 @@ import apiario.edu.pe.bean.TipoAlza;
 import apiario.edu.pe.bean.TipoEnfermedad;
 import apiario.edu.pe.bean.Usuario;
 import apiario.edu.pe.bean.UsuarioApiario;
+import apiario.edu.pe.bean.UsuarioDecantadoraCentrifugadora;
+import apiario.edu.pe.bean.UsuarioDecantadoraCentrifugadoraBalde;
 import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.dao.IBaldeDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDecantadoraDAO;
@@ -54,6 +58,8 @@ import apiario.edu.pe.dao.ITipoAlzaDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.dao.IUsuarioApiarioDAO;
+import apiario.edu.pe.dao.IUsuarioDecantadoraCentrifugadoraBaldeDAO;
+import apiario.edu.pe.dao.IUsuarioDecantadoraCentrifugadoraDAO;
 import apiario.edu.pe.factoria.DAOFactory;
 import apiario.edu.pe.factoria.DAOFactory.TipoFabrica;
 
@@ -62,7 +68,8 @@ public class SeleccionService implements IUsuarioApiarioDAO,IApiarioDAO,IPlanill
 IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
 ITemporadaDAO,INormaSeguridadUsuarioApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
-IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantadoraDAO,IPlanillaCosechaAlzaDAO ,IPlanillaExtraccionAlzaDAO,Serializable{
+IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantadoraDAO,IPlanillaCosechaAlzaDAO ,
+IPlanillaExtraccionAlzaDAO,IUsuarioDecantadoraCentrifugadoraDAO,IBaldeDAO,IUsuarioDecantadoraCentrifugadoraBaldeDAO,Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -88,6 +95,9 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantado
 	IDecantadoraDAO daoDecantadoraDAO=objDAOFactory.getDecantadoraDAO();
 	IPlanillaCosechaAlzaDAO daoPlanillaCosechaAlzaDAO=objDAOFactory.getPlanillaCosechaAlzaDAO();
 	IPlanillaExtraccionAlzaDAO daoPlanillaExtraccionAlzaDAO=objDAOFactory.getIPlanillaExtraccionAlzaDAO();
+	IUsuarioDecantadoraCentrifugadoraDAO daoUsuarioDecantadoraCentrifugadoraDAO=objDAOFactory.getIUsuarioDecantadoraCentrifugadoraDAO();
+	IBaldeDAO daoBaldeDAO=objDAOFactory.getIBaldeDAO();
+	IUsuarioDecantadoraCentrifugadoraBaldeDAO daoUsuarioDecantadoraCentrifugadoraBaldeDAO=objDAOFactory.getIUsuarioDecantadoraCentrifugadoraBaldeDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -844,6 +854,126 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantado
 			PlanillaRevision instance) throws Exception {
 		// TODO Auto-generated method stub
 		return daoApiario.buscarApiarioCosechableDistinto(instance);
+	}
+
+	@Override
+	public List<UsuarioDecantadoraCentrifugadora> listarTodosUsuarioDecantadoraCentrifugadora()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraDAO.listarTodosUsuarioDecantadoraCentrifugadora();
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdUsuarioDecantadoraCentrifugadora()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraDAO.obtenerMaximoIdUsuarioDecantadoraCentrifugadora();
+	}
+
+	@Override
+	public UsuarioDecantadoraCentrifugadora guardarUsuarioDecantadoraCentrifugadora(
+			UsuarioDecantadoraCentrifugadora instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraDAO.guardarUsuarioDecantadoraCentrifugadora(instance);
+	}
+
+	@Override
+	public List<UsuarioDecantadoraCentrifugadora> buscarUsuarioDecantadoraCentrifugadora(
+			UsuarioDecantadoraCentrifugadora instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraDAO.buscarUsuarioDecantadoraCentrifugadora(instance);
+	}
+
+	@Override
+	public UsuarioDecantadoraCentrifugadora obtenerPorIdUsuarioDecantadoraCentrifugadora(
+			int id) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraDAO.obtenerPorIdUsuarioDecantadoraCentrifugadora(id);
+	}
+
+	@Override
+	public UsuarioDecantadoraCentrifugadora eliminarUsuarioDecantadoraCentrifugadora(
+			UsuarioDecantadoraCentrifugadora instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraDAO.eliminarUsuarioDecantadoraCentrifugadora(instance);
+	}
+
+	@Override
+	public List<Balde> listarTodosBalde() throws Exception {
+		// TODO Auto-generated method stub
+		return daoBaldeDAO.listarTodosBalde();
+	}
+
+	@Override
+	public Balde guardarBalde(Balde instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoBaldeDAO.guardarBalde(instance);
+	}
+
+	@Override
+	public List<Balde> buscarBalde(Balde instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoBaldeDAO.buscarBalde(instance);
+	}
+
+	@Override
+	public Balde obtenerPorIdBalde(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return daoBaldeDAO.obtenerPorIdBalde(id);
+	}
+
+	@Override
+	public Balde eliminarBalde(Balde instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoBaldeDAO.eliminarBalde(instance);
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdBalde() throws Exception {
+		// TODO Auto-generated method stub
+		return daoBaldeDAO.obtenerMaximoIdBalde();
+	}
+
+	@Override
+	public List<UsuarioDecantadoraCentrifugadoraBalde> listarTodosUsuarioDecantadoraCentrifugadoraBalde()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraBaldeDAO.listarTodosUsuarioDecantadoraCentrifugadoraBalde();
+	}
+
+	@Override
+	public UsuarioDecantadoraCentrifugadoraBalde guardarUsuarioDecantadoraCentrifugadoraBalde(
+			UsuarioDecantadoraCentrifugadoraBalde instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraBaldeDAO.guardarUsuarioDecantadoraCentrifugadoraBalde(instance);
+	}
+
+	@Override
+	public List<UsuarioDecantadoraCentrifugadoraBalde> buscarUsuarioDecantadoraCentrifugadoraBalde(
+			UsuarioDecantadoraCentrifugadoraBalde instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraBaldeDAO.buscarUsuarioDecantadoraCentrifugadoraBalde(instance);
+	}
+
+	@Override
+	public UsuarioDecantadoraCentrifugadoraBalde obtenerPorIdUsuarioDecantadoraCentrifugadoraBalde(
+			int id) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraBaldeDAO.obtenerPorIdUsuarioDecantadoraCentrifugadoraBalde(id);
+	}
+
+	@Override
+	public UsuarioDecantadoraCentrifugadoraBalde eliminarUsuarioDecantadoraCentrifugadoraBalde(
+			UsuarioDecantadoraCentrifugadoraBalde instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraBaldeDAO.eliminarUsuarioDecantadoraCentrifugadoraBalde(instance);
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdUsuarioDecantadoraCentrifugadoraBalde()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoUsuarioDecantadoraCentrifugadoraBaldeDAO.obtenerMaximoIdUsuarioDecantadoraCentrifugadoraBalde();
 	}
 
 

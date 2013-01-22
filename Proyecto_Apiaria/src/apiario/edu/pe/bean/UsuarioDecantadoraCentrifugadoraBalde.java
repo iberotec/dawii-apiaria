@@ -33,11 +33,25 @@ public class UsuarioDecantadoraCentrifugadoraBalde extends BaseEntidades impleme
 	@JoinColumn(name="id_balde")
 	private Balde balde;
 	
+	@ManyToOne
+	@JoinColumn(name="id_usuario_decantadora_centrifugadora")
+	private UsuarioDecantadoraCentrifugadora usuarioDecantadoraCentrifugadora;
+	
 	private Integer kilos;
 	
 	public UsuarioDecantadoraCentrifugadoraBalde() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public UsuarioDecantadoraCentrifugadora getUsuarioDecantadoraCentrifugadora() {
+		return usuarioDecantadoraCentrifugadora;
+	}
+
+	public void setUsuarioDecantadoraCentrifugadora(
+			UsuarioDecantadoraCentrifugadora usuarioDecantadoraCentrifugadora) {
+		this.usuarioDecantadoraCentrifugadora = usuarioDecantadoraCentrifugadora;
+	}
+
 	public Integer getIdUsuarioDecantadoraCentrifugadoraBalde() {
 		return idUsuarioDecantadoraCentrifugadoraBalde;
 	}

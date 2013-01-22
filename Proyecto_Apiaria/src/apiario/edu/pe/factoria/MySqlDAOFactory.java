@@ -2,6 +2,7 @@ package apiario.edu.pe.factoria;
 
 import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.dao.IBaldeDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDecantadoraDAO;
@@ -24,7 +25,10 @@ import apiario.edu.pe.dao.ITipoAlzaDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.dao.IUsuarioApiarioDAO;
+import apiario.edu.pe.dao.IUsuarioDecantadoraCentrifugadoraBaldeDAO;
+import apiario.edu.pe.dao.IUsuarioDecantadoraCentrifugadoraDAO;
 import apiario.edu.pe.dao.MySqlAlzaDAO;
+import apiario.edu.pe.dao.MySqlBaldeDAO;
 import apiario.edu.pe.dao.MySqlCentrifugadoraDAO;
 import apiario.edu.pe.dao.MySqlColmenaDAO;
 import apiario.edu.pe.dao.MySqlDecantadoraDAO;
@@ -45,6 +49,8 @@ import apiario.edu.pe.dao.MySqlTipoAlimentacionDAO;
 import apiario.edu.pe.dao.MySqlTipoAlzaDAO;
 import apiario.edu.pe.dao.MySqlTipoEnfermedadDAO;
 import apiario.edu.pe.dao.MySqlUsuarioApiarioDAO;
+import apiario.edu.pe.dao.MySqlUsuarioDecantadoraCentrifugadoraBaldeDAO;
+import apiario.edu.pe.dao.MySqlUsuarioDecantadoraCentrifugadoraDAO;
 import apiario.edu.pe.dao.MysqlApiarioDAO;
 import apiario.edu.pe.dao.MysqlNormaSeguridadDAO;
 import apiario.edu.pe.dao.MysqlUsuarioDAO;
@@ -175,6 +181,24 @@ public class MySqlDAOFactory extends DAOFactory{
 	public IPlanillaExtraccionAlzaDAO getIPlanillaExtraccionAlzaDAO() {
 		// TODO Auto-generated method stub
 		return new MySqlPlanillaExtraccionAlzaDAO();
+	}
+
+	@Override
+	public IUsuarioDecantadoraCentrifugadoraDAO getIUsuarioDecantadoraCentrifugadoraDAO() {
+		// TODO Auto-generated method stub
+		return new MySqlUsuarioDecantadoraCentrifugadoraDAO();
+	}
+
+	@Override
+	public IBaldeDAO getIBaldeDAO() {
+		// TODO Auto-generated method stub
+		return new MySqlBaldeDAO();
+	}
+
+	@Override
+	public IUsuarioDecantadoraCentrifugadoraBaldeDAO getIUsuarioDecantadoraCentrifugadoraBaldeDAO() {
+		// TODO Auto-generated method stub
+		return new MySqlUsuarioDecantadoraCentrifugadoraBaldeDAO();
 	}
 
 

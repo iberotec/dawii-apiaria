@@ -1073,6 +1073,7 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 			UsuarioApiario confirm = new UsuarioApiario();
 			objUsuApi=service.obtenerPorIdUsuarioApiario(usuarioApiarioExtraccion.getIdUsuarioApiario());
 			objUsuApi.setEstadoAsignacion("revisado");
+			objUsuApi.setFechaRevision(new Date());
 			confirm=service.guardarUsuarioApiario(objUsuApi);
 			if(confirm.isSuccess()){
 				System.out.println("se modifico el estado a revisado");
@@ -1082,6 +1083,18 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 			
 		}else{
 			System.out.println("aun no se ah acabado");
+			System.out.println("cambia el estado de asignacion a asignado");
+			UsuarioApiario objUsuApi = new UsuarioApiario();
+			UsuarioApiario confirm = new UsuarioApiario();
+			objUsuApi=service.obtenerPorIdUsuarioApiario(usuarioApiarioExtraccion.getIdUsuarioApiario());
+			objUsuApi.setEstadoAsignacion("asignado");
+			objUsuApi.setFechaRevision(null);
+			confirm=service.guardarUsuarioApiario(objUsuApi);
+			if(confirm.isSuccess()){
+				System.out.println("se modifico el estado a asignado");
+			}else{
+				System.out.println("erro en cambio de asignado");
+			}
 		}
 
 		

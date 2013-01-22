@@ -3,6 +3,7 @@ package apiario.edu.pe.factoria;
 import apiario.edu.pe.bean.EstadoRevisionEquipamientoTrabajo;
 import apiario.edu.pe.dao.IAlzaDAO;
 import apiario.edu.pe.dao.IApiarioDAO;
+import apiario.edu.pe.dao.IBaldeDAO;
 import apiario.edu.pe.dao.ICentrifugadoraDAO;
 import apiario.edu.pe.dao.IColmenaDAO;
 import apiario.edu.pe.dao.IDecantadoraDAO;
@@ -25,6 +26,8 @@ import apiario.edu.pe.dao.ITipoAlzaDAO;
 import apiario.edu.pe.dao.ITipoEnfermedadDAO;
 import apiario.edu.pe.dao.IUsuario;
 import apiario.edu.pe.dao.IUsuarioApiarioDAO;
+import apiario.edu.pe.dao.IUsuarioDecantadoraCentrifugadoraBaldeDAO;
+import apiario.edu.pe.dao.IUsuarioDecantadoraCentrifugadoraDAO;
 
 public abstract class DAOFactory {
 	public enum TipoFabrica {
@@ -56,7 +59,9 @@ public abstract class DAOFactory {
 	public abstract IDecantadoraDAO getDecantadoraDAO();
 	public abstract IPlanillaCosechaAlzaDAO getPlanillaCosechaAlzaDAO();
 	public abstract IPlanillaExtraccionAlzaDAO getIPlanillaExtraccionAlzaDAO();
-	
+	public abstract IUsuarioDecantadoraCentrifugadoraDAO getIUsuarioDecantadoraCentrifugadoraDAO();
+	public abstract IBaldeDAO getIBaldeDAO();
+	public abstract IUsuarioDecantadoraCentrifugadoraBaldeDAO getIUsuarioDecantadoraCentrifugadoraBaldeDAO();
 	
 	public static DAOFactory getDAOFactory(TipoFabrica tipo) {
 		switch (tipo) {

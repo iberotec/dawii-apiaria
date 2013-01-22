@@ -295,8 +295,25 @@ public class MBSelectItems implements Serializable{
 		return cbo;
 	}
 	
-	public SelectItem[] getCboCentrifugadora() throws Exception{
+	public SelectItem[] getCboCentrifugadoraRegistro() throws Exception{
 		SeleccionService service = new SeleccionService();
+		Centrifugadora obj= new Centrifugadora();
+		obj.setDisponibilidadCentrifugadora(true);
+		
+		List<Centrifugadora> lista = service.buscarCentrifugadora(obj);
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		String desc;
+		for (int i = 0; i < cbo.length - 1; i++){
+			desc= "Centrifugadora "+lista.get(i).getIdCentrifugadora().toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdCentrifugadora(),desc);
+		}
+		return cbo;
+	}
+	public SelectItem[] getCboCentrifugadoraModifica() throws Exception{
+		SeleccionService service = new SeleccionService();
+
+		
 		List<Centrifugadora> lista = service.listarTodosCentrifugadoras();
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
@@ -308,8 +325,25 @@ public class MBSelectItems implements Serializable{
 		return cbo;
 	}
 	
-	public SelectItem[] getCboDecantadora() throws Exception{
+	public SelectItem[] getCboDecantadoraRegistro() throws Exception{
 		SeleccionService service = new SeleccionService();
+		Decantadora obj = new Decantadora();
+		obj.setDisponibilidadDecantadora(true);
+		
+		List<Decantadora> lista = service.buscarDecantadora(obj);
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		String desc;
+		for (int i = 0; i < cbo.length - 1; i++){
+			desc="Decantadora "+lista.get(i).getIdDecantadora().toString();
+			cbo[i+1] = new SelectItem(lista.get(i).getIdDecantadora(),desc);
+		}
+		return cbo;
+	}
+	public SelectItem[] getCboDecantadoraModifica() throws Exception{
+		SeleccionService service = new SeleccionService();
+
+		
 		List<Decantadora> lista = service.listarTodosDecantadoras();
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
@@ -320,5 +354,4 @@ public class MBSelectItems implements Serializable{
 		}
 		return cbo;
 	}
-	
 }
