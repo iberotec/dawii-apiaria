@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<h:body>
+	<ui:composition template="/templates/templateLayoutContexto.xhtml">
+		<ui:define name="title">
+			<h:outputText value="MODULO DE ENVASADO" />
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+				<h1 class="titlePage ui-widget-header ui-corner-all">MODULO DE
+					ENVASADO</h1>
+				<ui:include
+					src="/envasado/toolbars/toolbar_mantenimientoEnvasado.xhtml"></ui:include>
+				<div class="contenedor">
+					<p:dataTable id="dtlista" value="#{mBEnvasado.listaOP}"
+						var="data" 
+						widgetVar="Envasado"
+						emptyMessage="No se encontraron Pedidos" 
+						paginator="true"
+						rows="5" 
+						paginatorPosition="bottom"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
+						selection="#{mBEnvasado.ordenPedidoSeleccionado}"
+						selectionMode="single" 
+						rowKey="#{data.idOrdenPedido}">
+						
+						
+						  <p:ajax event="rowSelect" 
+				            listener="#{mBEnvasado.abrirRegistroPlanillaEnvasado(mBEnvasado.ordenPedidoSeleccionado.idOrdenPedido)}"
+				         />
+						
+						<f:facet name="header">
+							<h:outputLabel value="Listado de Asignaciones de Maquinaria para Cosecha" />
+						</f:facet>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="Id" />
+							</f:facet>
+							<h:outputLabel value="#{data.idOrdenPedido}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="Producto" />
+							</f:facet>
+							<h:outputLabel value="#{data.productoOrdenPedido}"/>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="Envase" />
+							</f:facet>
+							<h:outputLabel value="#{data.envase.tipoEnvase.descripcionTipoEnvase} Kg" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="Cantidad" />
+							</f:facet>
+							<h:outputLabel value="#{data.cantidadOrdenPedido}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="Estado" />
+							</f:facet>
+							<h:outputLabel value="#{data.estadoOrdenPedido}" />
+						</p:column>
+					</p:dataTable>
+					</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

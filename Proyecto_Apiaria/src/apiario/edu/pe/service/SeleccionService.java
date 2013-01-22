@@ -16,8 +16,10 @@ import apiario.edu.pe.bean.Centrifugadora;
 import apiario.edu.pe.bean.Decantadora;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.NormaSeguridadUsuarioApiario;
+import apiario.edu.pe.bean.OrdenPedido;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaCosechaAlza;
+import apiario.edu.pe.bean.PlanillaEnvasado;
 import apiario.edu.pe.bean.PlanillaExtraccionAlza;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
@@ -43,8 +45,10 @@ import apiario.edu.pe.dao.IEstadoRevisionDAO;
 import apiario.edu.pe.dao.IDetalleEquipoTrabajo;
 import apiario.edu.pe.dao.INormaSeguridadUsuarioApiarioDAO;
 import apiario.edu.pe.dao.INormaSeguridadDAO;
+import apiario.edu.pe.dao.IOrdenPedidoDAO;
 import apiario.edu.pe.dao.IPisoDAO;
 import apiario.edu.pe.dao.IPlanillaCosechaAlzaDAO;
+import apiario.edu.pe.dao.IPlanillaEnvasadoDAO;
 import apiario.edu.pe.dao.IPlanillaExtraccionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionAlzaDAO;
 import apiario.edu.pe.dao.IPlanillaRevisionDAO;
@@ -69,7 +73,7 @@ IColmenaDAO,IPisoDAO,IAlzaDAO,ITipoAlimentacionDAO,ITipoEnfermedadDAO,
 IDetalleEquipoTrabajo,IEstadoRevisionDAO,IUsuario, IPlanillaRevisionDAO, IPlanillaRevisionAlzaDAO,
 ITemporadaDAO,INormaSeguridadUsuarioApiarioDAO,IReinaDAO, IPlanillaRevisionTipoAlimentacionDAO,
 IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantadoraDAO,IPlanillaCosechaAlzaDAO ,
-IPlanillaExtraccionAlzaDAO,IUsuarioDecantadoraCentrifugadoraDAO,IBaldeDAO,IUsuarioDecantadoraCentrifugadoraBaldeDAO,Serializable{
+IPlanillaExtraccionAlzaDAO,IUsuarioDecantadoraCentrifugadoraDAO,IBaldeDAO,IUsuarioDecantadoraCentrifugadoraBaldeDAO,IOrdenPedidoDAO,IPlanillaEnvasadoDAO,Serializable{
 	DAOFactory objDAOFactory= DAOFactory.getDAOFactory(TipoFabrica.MYSQL);
 	IApiarioDAO daoApiario = objDAOFactory.getIApiarioDAO();
 	INormaSeguridadDAO daoNormaSeguridad=objDAOFactory.getINormaSeguridadDAO();
@@ -98,6 +102,8 @@ IPlanillaExtraccionAlzaDAO,IUsuarioDecantadoraCentrifugadoraDAO,IBaldeDAO,IUsuar
 	IUsuarioDecantadoraCentrifugadoraDAO daoUsuarioDecantadoraCentrifugadoraDAO=objDAOFactory.getIUsuarioDecantadoraCentrifugadoraDAO();
 	IBaldeDAO daoBaldeDAO=objDAOFactory.getIBaldeDAO();
 	IUsuarioDecantadoraCentrifugadoraBaldeDAO daoUsuarioDecantadoraCentrifugadoraBaldeDAO=objDAOFactory.getIUsuarioDecantadoraCentrifugadoraBaldeDAO();
+	IOrdenPedidoDAO daoOrdenPedidoDAO = objDAOFactory.getIOrdenPedidoDAO();
+	IPlanillaEnvasadoDAO daoPlanillaEnvasadoDAO = objDAOFactory.getIPlanillaEnvasadoDAO();
 	
 	public List<NormaSeguridad> listaNormaSeguridad() {
 		return daoNormaSeguridad.listaNormaSeguridad();
@@ -974,6 +980,86 @@ IPlanillaExtraccionAlzaDAO,IUsuarioDecantadoraCentrifugadoraDAO,IBaldeDAO,IUsuar
 			throws Exception {
 		// TODO Auto-generated method stub
 		return daoUsuarioDecantadoraCentrifugadoraBaldeDAO.obtenerMaximoIdUsuarioDecantadoraCentrifugadoraBalde();
+	}
+
+	@Override
+	public List<OrdenPedido> listarTodosOrdenPedido() throws Exception {
+		// TODO Auto-generated method stub
+		return daoOrdenPedidoDAO.listarTodosOrdenPedido();
+	}
+
+	@Override
+	public OrdenPedido guardarOrdenPedido(OrdenPedido instance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoOrdenPedidoDAO.guardarOrdenPedido(instance);
+	}
+
+	@Override
+	public List<OrdenPedido> buscarOrdenPedido(OrdenPedido instance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoOrdenPedidoDAO.buscarOrdenPedido(instance);
+	}
+
+	@Override
+	public OrdenPedido obtenerPorIdOrdenPedido(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return daoOrdenPedidoDAO.obtenerPorIdOrdenPedido(id);
+	}
+
+	@Override
+	public OrdenPedido eliminarOrdenPedido(OrdenPedido instance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoOrdenPedidoDAO.eliminarOrdenPedido(instance);
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdOrdenPedido() throws Exception {
+		// TODO Auto-generated method stub
+		return daoOrdenPedidoDAO.obtenerMaximoIdOrdenPedido();
+	}
+
+	@Override
+	public List<PlanillaEnvasado> listarTodosPlanillaEnvasado()
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaEnvasadoDAO.listarTodosPlanillaEnvasado();
+	}
+
+	@Override
+	public PlanillaEnvasado guardarPlanillaEnvasado(PlanillaEnvasado instance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaEnvasadoDAO.guardarPlanillaEnvasado(instance);
+	}
+
+	@Override
+	public List<PlanillaEnvasado> buscarPlanillaEnvasado(
+			PlanillaEnvasado instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaEnvasadoDAO.buscarPlanillaEnvasado(instance);
+	}
+
+	@Override
+	public PlanillaEnvasado obtenerPorIdPlanillaEnvasado(int id)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaEnvasadoDAO.obtenerPorIdPlanillaEnvasado(id);
+	}
+
+	@Override
+	public PlanillaEnvasado eliminarPlanillaEnvasado(PlanillaEnvasado instance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaEnvasadoDAO.eliminarPlanillaEnvasado(instance);
+	}
+
+	@Override
+	public List<Integer> obtenerMaximoIdPlanillaEnvasado() throws Exception {
+		// TODO Auto-generated method stub
+		return daoPlanillaEnvasadoDAO.obtenerMaximoIdPlanillaEnvasado();
 	}
 
 
