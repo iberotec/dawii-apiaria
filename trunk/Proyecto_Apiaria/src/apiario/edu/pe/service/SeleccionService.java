@@ -788,11 +788,7 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantado
 		return daoPlanillaCosechaAlzaDAO.obtenerMaximoIdPlanillaCosechaAlza();
 	}
 
-	@Override
-	public List<Integer> obtenerUltimaTemporada() throws Exception {
-		// TODO Auto-generated method stub
-		return daoTemporada.obtenerUltimaTemporada();
-	}
+
 
 	@Override
 	public List<PlanillaExtraccionAlza> listarTodosPlanillaExtraccionAlza()
@@ -835,5 +831,21 @@ IPlanillaRevisionTipoEnfermedadDAO, ITipoAlzaDAO, ICentrifugadoraDAO, IDecantado
 		// TODO Auto-generated method stub
 		return daoPlanillaExtraccionAlzaDAO.obtenerMaximoIdPlanillaExtraccionAlza();
 	}
+
+	@Override
+	public List<Integer> obtenerUltimaTemporada(Temporada instance)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return daoTemporada.obtenerUltimaTemporada(instance);
+	}
+
+	@Override
+	public List<Apiario> buscarApiarioCosechableDistinto(
+			PlanillaRevision instance) throws Exception {
+		// TODO Auto-generated method stub
+		return daoApiario.buscarApiarioCosechableDistinto(instance);
+	}
+
+
 
 }

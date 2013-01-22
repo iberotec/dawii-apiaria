@@ -14,6 +14,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Alza;
+import apiario.edu.pe.bean.Apiario;
 import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaRevision;
@@ -83,7 +84,7 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 		Root<Alza> alzaRoot=criteria.from(Alza.class);
 		Join<Alza,Piso> pisoRoot = alzaRoot.join( "piso" );
 		Join<Piso,Colmena> colmenaRoot = pisoRoot.join( "colmena" );
-		
+		Join<Colmena,Apiario> apiarioRoot = colmenaRoot.join( "apiario" );
 		
 		criteria.select(alzaRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
@@ -98,10 +99,21 @@ public class MySqlAlzaDAO  implements IAlzaDAO{
 				p.add(condition);
 			}
 			if(instance.getPiso()!=null){
+				if(instance.getPiso().getIdPiso()!=null && instance.getPiso().getIdPiso().intValue()>0){
+					Predicate condition=builder.equal(pisoRoot.get("idPiso"),instance.getPiso().getIdPiso());
+					p.add(condition);
+				}
+				
 				if(instance.getPiso().getColmena()!=null){
 					if(instance.getPiso().getColmena().getIdColmena()!=null && instance.getPiso().getColmena().getIdColmena().intValue()>0){
 						Predicate condition=builder.equal(colmenaRoot.get("idColmena"),instance.getPiso().getColmena().getIdColmena());
 						p.add(condition);
+					}
+					if(instance.getPiso().getColmena().getApiario()!=null){
+						if(instance.getPiso().getColmena().getApiario().getIdApiario()!=null && instance.getPiso().getColmena().getApiario().getIdApiario().intValue()>0){
+							Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getPiso().getColmena().getApiario().getIdApiario());
+							p.add(condition);
+						}
 					}
 				}
 			}

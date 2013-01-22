@@ -34,7 +34,7 @@
 		</p:column>		
 		<p:column>	
 					<p:selectOneMenu id="iApiarioNE" value="#{mBUsuarioApiarioExtraccion.usuarioApiarioExtraccion.apiario.idApiario}">
-						<f:selectItems value="#{mBSelectItems.cboApiario}" />
+						<f:selectItems value="#{mBSelectItems.cboApiarioCosechable}" />
 
 		 				<p:ajax  update="iUbicacionE,tabContainerExtraccion,iNivelPeligroE,dtEquipoSeguridadE"  
                         listener="#{mBUsuarioApiarioExtraccion.localizarApiarioParaExtraccion}" />  

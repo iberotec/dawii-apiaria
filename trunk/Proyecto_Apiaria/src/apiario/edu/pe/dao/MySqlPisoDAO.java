@@ -80,6 +80,7 @@ public class MySqlPisoDAO implements IPisoDAO{
 		CriteriaQuery<Piso> criteria=builder.createQuery(Piso.class);
 		Root<Piso> pisoRoot=criteria.from(Piso.class);
 		Join<Piso,Colmena> colmenaRoot = pisoRoot.join("colmena");
+		Join<Colmena,Apiario> apiarioRoot = colmenaRoot.join("apiario");
 		
 		criteria.select(pisoRoot);
 		List<Predicate> p=new ArrayList<Predicate>();
@@ -93,6 +94,12 @@ public class MySqlPisoDAO implements IPisoDAO{
 				if(instance.getColmena().getIdColmena()!=null && instance.getColmena().getIdColmena().intValue()>0){
 					Predicate condition=builder.equal(colmenaRoot.get("idColmena"),instance.getColmena().getIdColmena());
 					p.add(condition);
+				}
+				if(instance.getColmena().getApiario()!=null){
+					if(instance.getColmena().getApiario().getIdApiario()!=null && instance.getColmena().getApiario().getIdApiario().intValue()>0){
+						Predicate condition=builder.equal(apiarioRoot.get("idApiario"),instance.getColmena().getApiario().getIdApiario());
+						p.add(condition);
+					}
 				}
 			}
 		}

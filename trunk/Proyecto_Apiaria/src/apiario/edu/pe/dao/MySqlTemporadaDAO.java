@@ -125,11 +125,19 @@ public class MySqlTemporadaDAO implements ITemporadaDAO{
 		return null;
 	}
 	@Override
-	public List<Integer> obtenerUltimaTemporada() throws Exception {
+	public List<Integer> obtenerUltimaTemporada(Temporada instance) throws Exception {
 		List<Integer> lista=null;
 		Open();
 		try {
-			Query q=em.createQuery("select MAX(model.ordenTemporada) from Temporada model");
+			String sql;
+			sql="select MAX(model.ordenTemporada) from Temporada model " +
+							"where 0=0 ";
+			
+			if(instance.getEtapaTemporada()!=null && instance.getEtapaTemporada().length()>0){
+				sql+="and model.etapaTemporada = '"+instance.getEtapaTemporada()+"' ";
+			}
+			System.out.println(sql);
+			Query q=em.createQuery(sql);
 			lista = q.getResultList();
 		} catch (Exception e) {
 			System.out.println("DAO "+e.getMessage());

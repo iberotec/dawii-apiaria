@@ -621,7 +621,9 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 	}
 	public void listarColmenaCosechable() throws Exception{
 		List<Integer> listaOrdenTemporada= new ArrayList<Integer>();
-		listaOrdenTemporada=service.obtenerUltimaTemporada();
+		Temporada objBusqueda= new Temporada();
+		objBusqueda.setEtapaTemporada("seleccion");
+		listaOrdenTemporada=service.obtenerUltimaTemporada(objBusqueda);
 		
 		if(listaOrdenTemporada.size()>0){
 			Temporada objT= new Temporada();
@@ -817,7 +819,7 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "No se registro la Distribucion de Alzas"));
 			}
 		}
-		
+		validarTerminoAsignacion();
 	}
 	
 	
@@ -997,7 +999,91 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 
 		validarEliminacionPlanillaRevision(listaPEA, dListaPrA.getSource());
 
+		validarTerminoAsignacion();
+	}
+	public void validarTerminoAsignacion() throws Exception{
+		List<Alza> listaAlzaSeleccionada = new ArrayList<Alza>();
+		Alza objSeleccionado = new Alza();
+		objSeleccionado.setEstadoAlza("en seleccion");
+		objSeleccionado.setPiso(new Piso());
+		objSeleccionado.getPiso().setColmena(new Colmena());
+		objSeleccionado.getPiso().getColmena().setApiario(new Apiario());
+		objSeleccionado.getPiso().getColmena().getApiario().setIdApiario(usuarioApiarioExtraccion.getApiario().getIdApiario());
+		
+		boolean todasAlzasExtraidas=false;
+		listaAlzaSeleccionada = service.buscarAlza(objSeleccionado);
+		if(listaAlzaSeleccionada.size()>0){
+			System.out.println("aun hay alzas en seleccion no se puede acabar la asignacion");
+		}else{
+			System.out.println("todas las alzas en seleccion fueron extraidas");
+			todasAlzasExtraidas=true;
+		}
+		
+		
+		
+		
+//		Piso objBuscaPiso = new Piso();
+//		objBuscaPiso.setColmena(new Colmena());
+//		objBuscaPiso.getColmena().setApiario(new Apiario());
+//		objBuscaPiso.getColmena().getApiario().setIdApiario(usuarioApiarioExtraccion.getApiario().getIdApiario());
+		List<Piso> listaBuscaPisos= new ArrayList<Piso>();
+	
+		
+		for (PlanillaRevision planillasRevision : listaPRCosechable) {
+			for (Piso pisos : planillasRevision.getColmena().getPisos()) {
+				System.out.println("piso "+pisos.getIdPiso());
+				listaBuscaPisos.add(pisos);
+			}
+		}
+//		listaBuscaPisos=service.buscarPiso(objBuscaPiso);
+		
+		Alza objBuscaAlzaFor = new Alza();
+		objBuscaAlzaFor.setEstadoAlza("en colmena");
+		objBuscaAlzaFor.setPiso(new Piso());
+		List<Alza> listaAlzaBuscaFor = new ArrayList<Alza>();
+		boolean todasAlzasColocadas=true;
+		int cont=0;
+		if(listaBuscaPisos.size()>0){
+			for (int i = 0; i < listaBuscaPisos.size(); i++) {
+				objBuscaAlzaFor.getPiso().setIdPiso(listaBuscaPisos.get(i).getIdPiso());
+				listaAlzaBuscaFor=service.buscarAlza(objBuscaAlzaFor);
+				if(listaAlzaBuscaFor.size()>0){
+					for (int j = 0; j < listaAlzaBuscaFor.size(); j++) {
+						cont++;
+						System.out.println("alza "+listaAlzaBuscaFor.get(j).getIdAlza());
+						System.out.println("hay "+cont+" alzas colocadas en el piso "+listaBuscaPisos.get(i).getIdPiso());
+					}
+				}
+				
+				if(cont!=listaBuscaPisos.get(i).getCapacidad().intValue()){
+					System.out.println("espacios vacion aun en el piso "+listaBuscaPisos.get(i).getIdPiso());
+					cont=0;
+					todasAlzasColocadas=false;
+					
+				}else{
+					System.out.println("todas los "+listaBuscaPisos.get(i).getCapacidad()+" espacios del piso "+listaBuscaPisos.get(i).getIdPiso()+" estan llenos");
+					cont=0;
+				}
+				
+			}
+		}
+		if(todasAlzasColocadas && todasAlzasExtraidas){
+			System.out.println("cambia el estado de asignacion a completado");
+			UsuarioApiario objUsuApi = new UsuarioApiario();
+			UsuarioApiario confirm = new UsuarioApiario();
+			objUsuApi=service.obtenerPorIdUsuarioApiario(usuarioApiarioExtraccion.getIdUsuarioApiario());
+			objUsuApi.setEstadoAsignacion("revisado");
+			confirm=service.guardarUsuarioApiario(objUsuApi);
+			if(confirm.isSuccess()){
+				System.out.println("se modifico el estado a revisado");
+			}else{
+				System.out.println("erro en cambio de esstado");
+			}
+			
+		}else{
+			System.out.println("aun no se ah acabado");
+		}
+
 		
 	}
-	
 }
