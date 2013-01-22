@@ -14,9 +14,13 @@ import apiario.edu.pe.bean.Decantadora;
 import apiario.edu.pe.bean.EstadoRevision;
 import apiario.edu.pe.bean.NormaSeguridad;
 import apiario.edu.pe.bean.Piso;
+import apiario.edu.pe.bean.PlanillaRevision;
+import apiario.edu.pe.bean.PlanillaRevisionAlza;
+import apiario.edu.pe.bean.Temporada;
 import apiario.edu.pe.bean.TipoAlimentacion;
 import apiario.edu.pe.bean.TipoAlza;
 import apiario.edu.pe.bean.TipoEnfermedad;
+import apiario.edu.pe.bean.UsuarioApiario;
 import apiario.edu.pe.service.SeleccionService;
 
 @SuppressWarnings("serial")
@@ -29,6 +33,40 @@ public class MBSelectItems implements Serializable{
 		System.out.println("entro a apiario");
 		SeleccionService service = new SeleccionService();
 		List<Apiario> lista = service.listarTodosApiarios();
+		SelectItem[] cbo = new SelectItem[lista.size() + 1];
+		cbo[0] = new SelectItem(0, "Seleccione...");
+		int api;
+		String apia="";
+		for (int i = 0; i < cbo.length - 1; i++){
+			api=lista.get(i).getIdApiario();
+			apia="Apiario "+api;
+			cbo[i+1] = new SelectItem(lista.get(i).getIdApiario(),apia);
+		}
+		return cbo;
+	}
+	
+	public SelectItem[] getCboApiarioCosechable() throws Exception { 
+		System.out.println("entro a apiario Cosechable");
+		SeleccionService service = new SeleccionService();
+		
+		PlanillaRevision obj = new PlanillaRevision();
+		obj.setEstadoCosecha("cosechable");
+		obj.setUsuarioApiario(new UsuarioApiario());
+		obj.getUsuarioApiario().setTemporada(new Temporada());
+		obj.getUsuarioApiario().getTemporada().setEtapaTemporada("seleccion");
+		
+		List<Integer> listaOrdenTemporada= new ArrayList<Integer>();
+		Temporada objBusqueda= new Temporada();
+		objBusqueda.setEtapaTemporada("seleccion");
+		listaOrdenTemporada=service.obtenerUltimaTemporada(objBusqueda);
+		if(listaOrdenTemporada.size()>0){
+			obj.getUsuarioApiario().getTemporada().setOrdenTemporada(listaOrdenTemporada.get(0));
+		}
+		
+		
+		List<Apiario> lista = new ArrayList<Apiario>();
+		lista=service.buscarApiarioCosechableDistinto(obj);
+		
 		SelectItem[] cbo = new SelectItem[lista.size() + 1];
 		cbo[0] = new SelectItem(0, "Seleccione...");
 		int api;

@@ -228,5 +228,4 @@ public class MySqlPlanillaRevisionDAO implements IPlanillaRevisionDAO{
 		System.out.println("lista??dAO "+lista);
 		return lista;
 	}
-
 }

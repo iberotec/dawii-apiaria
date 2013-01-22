@@ -14,6 +14,7 @@ import javax.persistence.criteria.Root;
 
 
 import apiario.edu.pe.bean.Apiario;
+import apiario.edu.pe.bean.PlanillaRevision;
 
 
 @SuppressWarnings(value={"unchecked"})
@@ -149,6 +150,49 @@ public class MysqlApiarioDAO implements IApiarioDAO {
 		System.out.println("Tamaño lista DAO "+lista.size());
 		return lista;
 	}
+	@Override
+	public List<Apiario> buscarApiarioCosechableDistinto(PlanillaRevision instance)
+			throws Exception {
+		List<Apiario> lista=null;
+		Open();
+		try {
+			String sql;
+			sql="select DISTINCT apiario from PlanillaRevision planillaRevision " +
+					"join planillaRevision.usuarioApiario as usuarioApiario " +
+					"join usuarioApiario.temporada as temporada " +
+					"join usuarioApiario.apiario as apiario " +
+							"where 0=0 ";
+			if(instance!=null){
+				if(instance.getEstadoCosecha()!=null && instance.getEstadoCosecha().length()>0){
+					sql+="and planillaRevision.estadoCosecha = '"+instance.getEstadoCosecha()+"' ";
+				}
+				if(instance.getUsuarioApiario()!=null){
+					if(instance.getUsuarioApiario().getTemporada()!=null){
+						if(instance.getUsuarioApiario().getTemporada().getEtapaTemporada()!=null
+								&& instance.getUsuarioApiario().getTemporada().getEtapaTemporada().length()>0){
+							sql+="and temporada.etapaTemporada = '"+instance.getUsuarioApiario().getTemporada().getEtapaTemporada()+"' ";
+						}
+						if(instance.getUsuarioApiario().getTemporada().getOrdenTemporada()!=null &&
+								instance.getUsuarioApiario().getTemporada().getOrdenTemporada().intValue()>0){
+							sql+="and temporada.ordenTemporada = '"+instance.getUsuarioApiario().getTemporada().getOrdenTemporada()+"' ";
+						}
+					}
+				}
+			}
+			System.out.println(sql);
+			Query q=em.createQuery(sql);
+			lista = q.getResultList();
+
+			
+		} catch (Exception e) {
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
+		}
+		Close();
+		System.out.println("lista??dAO "+lista);
+		return lista;
+	}
+	
 
 	
 

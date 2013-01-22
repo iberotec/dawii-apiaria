@@ -12,5 +12,5 @@ public interface ITemporadaDAO {
 	public abstract List<Temporada> buscarTemporada(Temporada instance) throws Exception;
 	public abstract Temporada obtenerPorIdTemporada(int id) throws Exception;
 	public abstract Temporada eliminarTemporada(Temporada instance) throws Exception;
-	public abstract List<Integer> obtenerUltimaTemporada() throws Exception;
+	public abstract List<Integer> obtenerUltimaTemporada(Temporada instance) throws Exception;
 }
