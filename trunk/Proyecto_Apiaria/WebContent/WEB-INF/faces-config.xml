@@ -70,6 +70,11 @@
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
  <managed-bean>
+  <managed-bean-name>mBEnvasado</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.managedBeans.MBEnvasado</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
   <managed-bean-name>normaSeguridadConverter</managed-bean-name>
   <managed-bean-class>apiario.edu.pe.util.NormaSeguridadConverter</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
@@ -172,6 +177,14 @@
   <navigation-case>
    <from-outcome>successNuevoAlza</from-outcome>
    <to-view-id>/tablas/alza/nuevoAlza.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>successRegistrarPlanillaEnvasado</from-outcome>
+   <to-view-id>/envasado/UI_registrarPlanillaEnvasado.xhtml</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>successListadoOrdenPedido</from-outcome>
+   <to-view-id>/envasado/UI_listadoOrdenPedido.xhtml</to-view-id>
   </navigation-case>
  </navigation-rule>
  <!--navegacion -->
