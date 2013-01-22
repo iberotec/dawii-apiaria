@@ -31,7 +31,7 @@ public class Balde extends BaseEntidades implements Serializable{
 	@Column(name="capacidad_balde")
 	private Integer capacidadBalde;
 	
-	@Column(name="diponibilidad_balde")
+	@Column(name="disponibilidad_balde")
 	private Boolean disponibilidadBalde;
 	
     @ManyToOne

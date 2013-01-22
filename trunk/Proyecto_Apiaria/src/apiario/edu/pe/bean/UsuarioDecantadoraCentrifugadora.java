@@ -56,7 +56,8 @@ public class UsuarioDecantadoraCentrifugadora extends BaseEntidades implements S
     @Column(name="fecha_termino")
 	private Date fechaTermino;
 	
-	
+	@Column(name="estado_asignacion")
+	private String estadoAsignacion;
 	
 	public UsuarioDecantadoraCentrifugadora() {
 		super();
@@ -104,6 +105,12 @@ public class UsuarioDecantadoraCentrifugadora extends BaseEntidades implements S
 	}
 	public void setFechaTermino(Date fechaTermino) {
 		this.fechaTermino = fechaTermino;
+	}
+	public String getEstadoAsignacion() {
+		return estadoAsignacion;
+	}
+	public void setEstadoAsignacion(String estadoAsignacion) {
+		this.estadoAsignacion = estadoAsignacion;
 	}
 	
 	

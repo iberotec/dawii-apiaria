@@ -18,27 +18,35 @@
 					COSECHA</h1>
 				<ui:include
 					src="/cosecha/toolbars/toolbar_registrarUsuarioDecantadoraCentrifugadora.xhtml"></ui:include>
+				<p:messages id="mensajeCosecha" closable="true" showDetail="true" autoUpdate="true"></p:messages>
 				<p:panelGrid columns="2">
 					<h:outputText value="Centrifugadora" />
-					<p:selectOneMenu
-						value="#{mBCosecha.oUsuarioDecantadoraCentrifugadora.centrifugadora.idCentrifugadora}">
-						<f:selectItems value="#{mBSelectItems.cboCentrifugadora}" />
+					<p:selectOneMenu rendered="#{mBCosecha.mostrarComboRegistro}"
+						value="#{mBCosecha.usuarioDecantadoraCentrifugadora.centrifugadora.idCentrifugadora}">
+						<f:selectItems value="#{mBSelectItems.cboCentrifugadoraRegistro}" />
+					</p:selectOneMenu>
+				<p:selectOneMenu rendered="#{mBCosecha.mostrarComboModificacion}"
+						value="#{mBCosecha.usuarioDecantadoraCentrifugadora.centrifugadora.idCentrifugadora}">
+						<f:selectItems value="#{mBSelectItems.cboCentrifugadoraModifica}" />
 					</p:selectOneMenu>
 
 					<h:outputText value="Decantadora" />
-					<p:selectOneMenu
-						value="#{mBCosecha.oUsuarioDecantadoraCentrifugadora.decantadora.idDecantadora}">
-						<f:selectItems value="#{mBSelectItems.cboDecantadora}" />
+					<p:selectOneMenu rendered="#{mBCosecha.mostrarComboRegistro}"
+						value="#{mBCosecha.usuarioDecantadoraCentrifugadora.decantadora.idDecantadora}">
+						<f:selectItems value="#{mBSelectItems.cboDecantadoraRegistro}" />
 					</p:selectOneMenu>
-
+					<p:selectOneMenu rendered="#{mBCosecha.mostrarComboModificacion}"
+						value="#{mBCosecha.usuarioDecantadoraCentrifugadora.decantadora.idDecantadora}">
+						<f:selectItems value="#{mBSelectItems.cboDecantadoraModifica}" />
+					</p:selectOneMenu>
 				</p:panelGrid>
 				<div class="contenedor">
-					<p:tabView>
-						<p:tab title="Planilla de Cosecha" closable="false">
+					<p:tabView id="iTabConteinerCosecha" rendered="#{(mBCosecha.usuarioDecantadoraCentrifugadoraSeleccionado.idUsuarioDecantadoraCentrifugadora != null and mBCosecha.usuarioDecantadoraCentrifugadoraSeleccionado.idUsuarioDecantadoraCentrifugadora > 0) ? 'true' : 'false'}">
+						<p:tab id="iTabPlanillaCosecha" title="Planilla de Cosecha">
 							<ui:include
 								src="/cosecha/tabs/content_tabRegistrarPlanillaCosecha.xhtml"></ui:include>
 						</p:tab>
-						<p:tab title="Llenado de Baldes" closable="false">
+						<p:tab id="iTabLlenadoBaldes" title="Llenado de Baldes" >
 						<ui:include
 								src="/cosecha/tabs/content_tabRegistrarLlenadoBaldes.xhtml"></ui:include>
 						</p:tab>

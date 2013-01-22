@@ -89,6 +89,16 @@
   <managed-bean-class>apiario.edu.pe.util.AlzaConverter</managed-bean-class>
   <managed-bean-scope>application</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+  <managed-bean-name>planillaExtraccionAlzaConverter</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.util.PlanillaExtraccionAlzaConverter</managed-bean-class>
+  <managed-bean-scope>application</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>baldeConverter</managed-bean-name>
+  <managed-bean-class>apiario.edu.pe.util.BaldeConverter</managed-bean-class>
+  <managed-bean-scope>application</managed-bean-scope>
+ </managed-bean>
  <!-- navegacion -->
  <navigation-rule>
   <navigation-case>
@@ -124,7 +134,7 @@
    <to-view-id>/cosecha/seleccionarCosecha/nuevaExtraccion.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>
-   <from-outcome>successMainCosechaa</from-outcome>
+   <from-outcome>successMantenimientoUsuarioDecantadoraCentrifugadora</from-outcome>
    <to-view-id>/cosecha/UI_mantenimientoUsuarioDecantadoraCentrifugadora.xhtml</to-view-id>
   </navigation-case>
   <navigation-case>

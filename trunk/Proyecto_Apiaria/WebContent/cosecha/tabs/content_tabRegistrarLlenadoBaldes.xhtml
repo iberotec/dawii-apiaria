@@ -13,25 +13,25 @@
 
 <h:body>
 	<ui:include src="/cosecha/toolbars/toolbar_registrarLlenadoBaldes.xhtml"></ui:include>
-	<h:outputText value="KILOS" />
-	<p:inputText id="kilos" value=""></p:inputText>
+<!--	<h:outputText value="KILOS" />-->
+<!--	<p:inputText  value="#{mBCosecha.entradaKilos}"></p:inputText>-->
 		
-			<p:pickList id="pojoPickList1" value="#{mBCosecha.listaPCA}"
+			<p:pickList id="pojoPickList1" value="#{mBCosecha.dListaBalde}"
 			var="player" effect="bounce" itemValue="#{player}"
-			itemLabel="#{player.planillaExtraccionAlza.planillaRevisionAlza.alza.idAlza}"
-			converter="#{planillaCosechaAlzaConverter}" showSourceControls="true"
+			itemLabel="#{player.idBalde}"
+			converter="#{baldeConverter}" showSourceControls="true" 
 			showTargetControls="true" showSourceFilter="true"
 			showTargetFilter="true" filterMatchMode="contains">
 
-			<f:facet name="sourceCaption">No cumple</f:facet>
-			<f:facet name="targetCaption">Cumple</f:facet>
+			<f:facet name="sourceCaption">Baldes Vacios</f:facet>
+			<f:facet name="targetCaption">Baldes Seleccionados</f:facet>
 
 			<p:ajax event="transfer" />
 
 
 
 			<p:column style="width:75%;">  
-           Alza-#{player.planillaExtraccionAlza.planillaRevisionAlza.alza.idAlza}  
+           Balde #{player.capacidadBalde}  
         </p:column>
 
 		</p:pickList>

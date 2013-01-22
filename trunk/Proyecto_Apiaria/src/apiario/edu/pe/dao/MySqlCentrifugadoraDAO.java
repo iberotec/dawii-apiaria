@@ -1,15 +1,23 @@
 package apiario.edu.pe.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 
 import apiario.edu.pe.bean.Centrifugadora;
-import apiario.edu.pe.bean.Colmena;
 
+
+@SuppressWarnings(value={"unchecked"})
 public class MySqlCentrifugadoraDAO implements ICentrifugadoraDAO {
 
 	EntityManagerFactory emf;
@@ -29,15 +37,11 @@ public class MySqlCentrifugadoraDAO implements ICentrifugadoraDAO {
 		List<Centrifugadora> lista=null;
 		Open();
 		try {
-			em.getTransaction().begin();
-			
 			Query sql=em.createQuery("select c from Centrifugadora c");
-			lista=sql.getResultList();
-			
-			em.getTransaction().commit();
-			
+			lista=sql.getResultList();			
 		} catch (Exception e) {
-			em.getTransaction().rollback();
+			System.out.println("DAO "+e.getMessage());
+			// TODO: handle exception
 		}
 		Close();
 		return lista;
@@ -68,8 +72,33 @@ public class MySqlCentrifugadoraDAO implements ICentrifugadoraDAO {
 	@Override
 	public List<Centrifugadora> buscarCentrifugadora(Centrifugadora instance)
 			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Open();
+		CriteriaBuilder builder = emf.getCriteriaBuilder();
+		CriteriaQuery<Centrifugadora> criteria = builder.createQuery( Centrifugadora.class );
+		Root<Centrifugadora> centrifugadoraRoot = criteria.from( Centrifugadora.class );
+		criteria.select( centrifugadoraRoot );
+		List<Predicate> p = new ArrayList<Predicate>();
+		
+		if(instance!=null){
+			if(instance.getIdCentrifugadora()!=null && instance.getIdCentrifugadora().intValue()>0){
+				Predicate condition=builder.equal(centrifugadoraRoot.get("idCentrifugadora"), instance.getIdCentrifugadora());
+				p.add(condition);
+			}
+			if(instance.getDisponibilidadCentrifugadora()!=null){
+				Predicate condition=builder.equal(centrifugadoraRoot.get("disponibilidadCentrifugadora"), instance.getDisponibilidadCentrifugadora());
+				p.add(condition);
+			}
+		}
+		
+		
+		
+		Predicate[] predicates = new Predicate[p.size()];
+	    p.toArray(predicates);
+	    criteria.where(predicates);
+	    
+	    List<Centrifugadora> lista = em.createQuery( criteria ).getResultList();
+	    Close();
+	    return lista;
 	}
 
 	@Override

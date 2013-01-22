@@ -19,33 +19,56 @@
 				<ui:include
 					src="/cosecha/toolbars/toolbar_matenimientoUsuarioDecantadoraCentrifugadora.xhtml"></ui:include>
 				<div class="contenedor">
-					<p:dataTable id="dtlista" value="#{mBCosecha.listaCentrifugadora}"
-						var="data" widgetVar="Cosecha"
-						emptyMessage="No se encontraron Cosechas" paginator="true"
-						rows="5" paginatorPosition="bottom"
+					<p:dataTable id="dtlista" value="#{mBCosecha.listaUDC}"
+						var="data" 
+						widgetVar="Cosecha"
+						emptyMessage="No se encontraron Cosechas" 
+						paginator="true"
+						rows="5" 
+						paginatorPosition="bottom"
 						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}"
-						selectionMode="single" rowKey="lista">
+						selection="#{mBCosecha.usuarioDecantadoraCentrifugadoraSeleccionado}"
+						selectionMode="single" 
+						rowKey="#{data.idUsuarioDecantadoraCentrifugadora}">
+						
+						
+						  <p:ajax event="rowSelect" 
+				            listener="#{mBCosecha.abrirModificarUsuarioDecantadoraCentrifugadora(mBCosecha.usuarioDecantadoraCentrifugadoraSeleccionado.idUsuarioDecantadoraCentrifugadora)}"
+				         />
+						
 						<f:facet name="header">
-							<h:outputLabel value="Listado de Cosecha" />
+							<h:outputLabel value="Listado de Asignaciones de Maquinaria para Cosecha" />
 						</f:facet>
 						<p:column>
 							<f:facet name="header">
-								<h:outputLabel value="#" />
+								<h:outputLabel value="" />
 							</f:facet>
-							<p:selectBooleanCheckbox></p:selectBooleanCheckbox>
+							<p:selectBooleanCheckbox value="#{data.sel}"></p:selectBooleanCheckbox>
+						</p:column>
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="Decantadora" />
+							</f:facet>
+							<h:outputLabel value="Decantadora #{data.decantadora.idDecantadora}" />
 						</p:column>
 						<p:column>
 							<f:facet name="header">
 								<h:outputLabel value="Centrifugadora" />
 							</f:facet>
-							<h:outputLabel value="" />
+							<h:outputLabel value="Centrifugadora #{data.centrifugadora.idCentrifugadora}"/>
 						</p:column>
 						<p:column>
 							<f:facet name="header">
-								<h:outputLabel value="Fecha" />
+								<h:outputLabel value="Estado" />
 							</f:facet>
+							<h:outputLabel value="#{data.estadoAsignacion}"/>
 						</p:column>
-						<h:outputLabel value="" />
+						<p:column>
+							<f:facet name="header">
+								<h:outputLabel value="Kilos" />
+							</f:facet>
+							<h:outputLabel value="#{mBCosecha.obtenerKilosExtraidos(data.idUsuarioDecantadoraCentrifugadora)}" />
+						</p:column>
 					</p:dataTable>
 					</div>
 			</h:form>
