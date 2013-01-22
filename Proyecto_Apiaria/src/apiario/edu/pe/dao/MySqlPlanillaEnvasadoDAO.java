@@ -15,10 +15,12 @@ import javax.persistence.criteria.Root;
 
 import apiario.edu.pe.bean.Alza;
 import apiario.edu.pe.bean.Colmena;
+import apiario.edu.pe.bean.OrdenPedido;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaEnvasado;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
+import apiario.edu.pe.bean.Usuario;
 
 @SuppressWarnings(value={"unchecked"})
 public class MySqlPlanillaEnvasadoDAO implements IPlanillaEnvasadoDAO{
@@ -79,6 +81,8 @@ public class MySqlPlanillaEnvasadoDAO implements IPlanillaEnvasadoDAO{
 		CriteriaBuilder builder = emf.getCriteriaBuilder();
 		CriteriaQuery<PlanillaEnvasado> criteria = builder.createQuery( PlanillaEnvasado.class );
 		Root<PlanillaEnvasado> planillaEnvasadoRoot = criteria.from( PlanillaEnvasado.class );
+		Join<PlanillaEnvasado,Usuario> usuarioRoot = planillaEnvasadoRoot.join( "usuario" );
+		Join<PlanillaEnvasado,OrdenPedido> ordenPedidoRoot = planillaEnvasadoRoot.join( "ordenPedido" );
 		criteria.select( planillaEnvasadoRoot );
 		List<Predicate> p = new ArrayList<Predicate>();
 		
@@ -86,6 +90,18 @@ public class MySqlPlanillaEnvasadoDAO implements IPlanillaEnvasadoDAO{
 			if(instance.getIdPlanillaEnvasado()!=null && instance.getIdPlanillaEnvasado().intValue()>0){
 				Predicate condition=builder.equal(planillaEnvasadoRoot.get("idPlanillaEnvasado"), instance.getIdPlanillaEnvasado());
 				p.add(condition);
+			}
+			if(instance.getUsuario()!=null){
+				if(instance.getUsuario().getIdUsuario()!=null && instance.getUsuario().getIdUsuario().intValue()>0){
+					Predicate condition=builder.equal(usuarioRoot.get("idUsuario"), instance.getUsuario().getIdUsuario());
+					p.add(condition);
+				}
+			}
+			if(instance.getOrdenPedido()!=null){
+				if(instance.getOrdenPedido().getIdOrdenPedido()!=null && instance.getOrdenPedido().getIdOrdenPedido().intValue()>0){
+					Predicate condition=builder.equal(ordenPedidoRoot.get("idOrdenPedido"), instance.getOrdenPedido().getIdOrdenPedido());
+					p.add(condition);
+				}
 			}
 		}
 		
