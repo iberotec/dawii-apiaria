@@ -186,9 +186,29 @@ public class MBCosecha implements Serializable{
 		mostrarComboRegistro=false;
 		usuarioDecantadoraCentrifugadora=service.obtenerPorIdUsuarioDecantadoraCentrifugadora(id);
 		
+		Temporada objT = new Temporada();
+		objT.setEtapaTemporada("extraccion");
+		
+		List<Integer> listaOrden= new ArrayList<Integer>();
+		listaOrden=service.obtenerUltimaTemporada(objT);
+		List<Temporada> listaTemporada = new ArrayList<Temporada>();
+		Temporada objTemporada = new Temporada();
+		if(listaOrden.size()>0){
+			objTemporada.setEtapaTemporada("extraccion");
+			objTemporada.setOrdenTemporada(listaOrden.get(0));
+			
+			listaTemporada=service.buscarTemporada(objTemporada);
+		}else{
+			System.out.println("no se encontro temporada para llenar fuente de pick list");
+		}
+		
 		
 		List<PlanillaExtraccionAlza> fuente = new ArrayList<PlanillaExtraccionAlza>();
-		fuente=service.listarTodosPlanillaExtraccionAlza();
+		PlanillaExtraccionAlza objFuentePEA = new PlanillaExtraccionAlza();
+		objFuentePEA.setUsuarioApiario(new UsuarioApiario());
+		objFuentePEA.getUsuarioApiario().setTemporada(new Temporada());
+		objFuentePEA.getUsuarioApiario().getTemporada().setIdTemporada(listaTemporada.get(0).getIdTemporada());
+		fuente=service.buscarPlanillaExtraccionAlza(objFuentePEA);
 		
 		List<PlanillaCosechaAlza> listaRemueveRepetidos= new ArrayList<PlanillaCosechaAlza>();
 		PlanillaCosechaAlza objRemueveRepetidos= new PlanillaCosechaAlza();

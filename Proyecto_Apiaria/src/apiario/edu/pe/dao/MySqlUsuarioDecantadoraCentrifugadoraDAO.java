@@ -18,6 +18,8 @@ import apiario.edu.pe.bean.Colmena;
 import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
+import apiario.edu.pe.bean.Temporada;
+import apiario.edu.pe.bean.Usuario;
 import apiario.edu.pe.bean.UsuarioDecantadoraCentrifugadora;
 
 @SuppressWarnings(value={"unchecked"})
@@ -86,6 +88,8 @@ public class MySqlUsuarioDecantadoraCentrifugadoraDAO implements IUsuarioDecanta
 		CriteriaBuilder builder = emf.getCriteriaBuilder();
 		CriteriaQuery<UsuarioDecantadoraCentrifugadora> criteria = builder.createQuery( UsuarioDecantadoraCentrifugadora.class );
 		Root<UsuarioDecantadoraCentrifugadora> usuarioDecantadoraCentrifugadoraRoot = criteria.from( UsuarioDecantadoraCentrifugadora.class );
+		Join<UsuarioDecantadoraCentrifugadora,Usuario> usuarioRoot = usuarioDecantadoraCentrifugadoraRoot.join( "usuario" );
+		Join<UsuarioDecantadoraCentrifugadora,Temporada> temporadaRoot = usuarioDecantadoraCentrifugadoraRoot.join( "temporada" );
 		criteria.select( usuarioDecantadoraCentrifugadoraRoot );
 		List<Predicate> p = new ArrayList<Predicate>();
 		
@@ -93,6 +97,18 @@ public class MySqlUsuarioDecantadoraCentrifugadoraDAO implements IUsuarioDecanta
 			if(instance.getIdUsuarioDecantadoraCentrifugadora()!=null && instance.getIdUsuarioDecantadoraCentrifugadora().intValue()>0){
 				Predicate condition=builder.equal(usuarioDecantadoraCentrifugadoraRoot.get("idUsuarioDecantadoraCentrifugadora"), instance.getIdUsuarioDecantadoraCentrifugadora());
 				p.add(condition);
+			}
+			if(instance.getTemporada()!=null){
+				if(instance.getTemporada().getIdTemporada()!=null && instance.getTemporada().getIdTemporada().intValue()>0){
+					Predicate condition=builder.equal(temporadaRoot.get("idTemporada"), instance.getTemporada().getIdTemporada());
+					p.add(condition);
+				}
+			}
+			if(instance.getUsuario()!=null){
+				if(instance.getUsuario().getIdUsuario()!=null && instance.getUsuario().getIdUsuario().intValue()>0){
+					Predicate condition=builder.equal(usuarioRoot.get("idUsuario"), instance.getUsuario().getIdUsuario());
+					p.add(condition);
+				}
 			}
 		}
 		
