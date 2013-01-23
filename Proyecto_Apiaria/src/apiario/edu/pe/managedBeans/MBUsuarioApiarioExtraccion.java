@@ -497,21 +497,20 @@ public class MBUsuarioApiarioExtraccion implements Serializable{
 		listaTemporada = service.listarTodosTemporada();
 		System.out.println("tamaño lista temporada "+listaTemporada.size());
 		Date fechaActual= new Date();
-		for (int i = 0; i < listaTemporada.size(); i++) {
-			System.out.println("etapa "+listaTemporada.get(i).getEtapaTemporada()+" "+"Fecha Final "+listaTemporada.get(i).getPeriodoFinal());
-			System.out.println("fecha actual "+fechaActual);
-			if(listaTemporada.get(i).getEtapaTemporada().equals("extraccion") && listaTemporada.get(i).getPeriodoFinal().getTime()>=fechaActual.getTime() && listaTemporada.get(i).getEstadoTemporada()){
-				System.out.println("entro al if");
-				System.out.println("id temporada "+listaTemporada.get(i).getIdTemporada());
-				usuarioApiarioExtraccion.getTemporada().setIdTemporada(listaTemporada.get(i).getIdTemporada());
-			}
-
-		}
-
+		
+		
+		Temporada objT = new Temporada();
+		objT.setEtapaTemporada("extraccion");
+		
+		List<Integer> idTemp = new ArrayList<Integer>();
+		idTemp=service.obtenerUltimaTemporada(objT);
+		usuarioApiarioExtraccion.setTemporada(new Temporada());
+		usuarioApiarioExtraccion.getTemporada().setIdTemporada(idTemp.get(0));
+		
 		UsuarioApiario confirm = null;
 		try {
 			validacion=validarIdApiarioConValor(usuarioApiarioExtraccion);
-			validacion=validarUsuarioApiarioUnico(usuarioApiarioExtraccion);
+//			validacion=validarUsuarioApiarioUnico(usuarioApiarioExtraccion);
 			if(validacion){
 				confirm = service.guardarUsuarioApiario(usuarioApiarioExtraccion);
 				
