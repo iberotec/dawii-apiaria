@@ -19,6 +19,8 @@ import apiario.edu.pe.bean.Piso;
 import apiario.edu.pe.bean.PlanillaExtraccionAlza;
 import apiario.edu.pe.bean.PlanillaRevision;
 import apiario.edu.pe.bean.PlanillaRevisionAlza;
+import apiario.edu.pe.bean.Temporada;
+import apiario.edu.pe.bean.UsuarioApiario;
 
 @SuppressWarnings(value={"unchecked"})
 public class MySqlPlanillaExtraccionAlzaDAO implements IPlanillaExtraccionAlzaDAO{
@@ -83,6 +85,8 @@ public class MySqlPlanillaExtraccionAlzaDAO implements IPlanillaExtraccionAlzaDA
 		Root<PlanillaExtraccionAlza> planillaExtraccionAlzaRoot = criteria.from( PlanillaExtraccionAlza.class );
 		Join<PlanillaExtraccionAlza,PlanillaRevisionAlza> planillaRevisionAlzaRoot = planillaExtraccionAlzaRoot.join( "planillaRevisionAlza" );
 		Join<PlanillaRevisionAlza,PlanillaRevision> planillaRevisionRoot = planillaRevisionAlzaRoot.join( "planillaRevision" );
+		Join<PlanillaExtraccionAlza,UsuarioApiario> usuarioApiarioRoot = planillaExtraccionAlzaRoot.join( "usuarioApiario" );
+		Join<UsuarioApiario,Temporada> temporadaRoot = usuarioApiarioRoot.join( "temporada" );
 		criteria.select( planillaExtraccionAlzaRoot );
 		List<Predicate> p = new ArrayList<Predicate>();
 		
@@ -91,6 +95,15 @@ public class MySqlPlanillaExtraccionAlzaDAO implements IPlanillaExtraccionAlzaDA
 			if(instance.getIdPlanillaExtraccionAlza()!=null && instance.getIdPlanillaExtraccionAlza().intValue()>0){
 				Predicate condition=builder.equal(planillaExtraccionAlzaRoot.get("idPlanillaExtraccionAlza"), instance.getIdPlanillaExtraccionAlza());
 				p.add(condition);
+			}
+			
+			if(instance.getUsuarioApiario()!=null){
+				if(instance.getUsuarioApiario().getTemporada()!=null){
+					if(instance.getUsuarioApiario().getTemporada().getIdTemporada()!=null && instance.getUsuarioApiario().getTemporada().getIdTemporada().intValue()>0){
+						Predicate condition=builder.equal(temporadaRoot.get("idTemporada"), instance.getUsuarioApiario().getTemporada().getIdTemporada());
+						p.add(condition);
+					}
+				}
 			}
 			
 			if(instance.getPlanillaRevisionAlza()!=null){

@@ -2041,7 +2041,9 @@ public class MBUsuarioApiario implements Serializable{
 		for (Colmena colmenas : listaCBusqueda) {
 			for (Piso pisos : colmenas.getPisos()) {
 				for (Alza alzas : pisos.getAlzas()) {
-					listaA.add(alzas);
+					if(alzas.getEstadoAlza().equals("en seleccion")){
+						listaA.add(alzas);
+					}
 				}
 			}
 		}
